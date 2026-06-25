@@ -1,0 +1,29 @@
+{
+  "name": "David Kleňha — Jazzové duo",
+  "short_name": "Jazzové duo",
+  "description": "Jazzové duo živě — zpěv a klavír (na přání kytara) na svatební obřady, recepce a jazz k večeři.",
+  "lang": "cs",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f0e4",
+  "theme_color": "#0f5257",
+  "icons": [
+    {
+      "src": "/favicon/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
