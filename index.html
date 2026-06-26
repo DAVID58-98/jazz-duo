@@ -1050,7 +1050,7 @@ main{position:relative;z-index:2}
           <input type="hidden" name="subject" value="Nová poptávka z jazzduo.cz">
           <input type="hidden" name="from_name" value="jazzduo.cz">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="Sestava" id="hidSestava" value="Jazz Duo (4 muzikanti)">
+          <input type="hidden" name="Sestava" id="hidSestava" value="Jazz Duo (2 muzikanti)">
           <input type="hidden" name="Hudební bloky" id="hidBlocks" value="3 × 45 minut + pauzy">
           <input type="hidden" name="Typ akce" id="hidType" value="Svatba">
 
@@ -1569,7 +1569,7 @@ main{position:relative;z-index:2}
    {role:'Pozoun',   file:'trombone.webp'}
   ];
   var lineup=MUS.map(function(m){return m.role;});
-  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Duo',5:'Jazz Quintet',6:'Jazz Sextet',7:'Jazz Septet'};
+  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartet',5:'Jazz Quintet',6:'Jazz Sextet',7:'Jazz Septet'};
   function musFigureHTML(m){
     return '<img src="'+BASE+m.file+'" alt="'+m.role+'" width="263" height="263" loading="lazy" decoding="async">';
   }
@@ -1632,7 +1632,7 @@ main{position:relative;z-index:2}
     }
   }
   function setCount(n){count=Math.max(MIN,Math.min(MAX,n));renderHead();renderMusicians();renderSteps();}
-  setCount(4);
+  setCount(2);
   // Překreslit jen když se změní ŠÍŘKA okna. Na mobilu scroll mění výšku (lišta prohlížeče
   // se skrývá/ukazuje) a spouští 'resize' — to ignorujeme, jinak by sestava problikávala.
   var lastW=window.innerWidth,bResize;
@@ -1908,7 +1908,7 @@ main{position:relative;z-index:2}
     fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)})
       .then(function(r){return r.json();})
       .then(function(j){
-        if(j.success){showToast();form.reset();setCount(4);
+        if(j.success){showToast();form.reset();setCount(2);
           $('blkChoice').querySelectorAll('.blk').forEach(function(x){x.classList.toggle('sel',x.dataset.n==='3');});
           $('hidBlocks').value='3 × 45 minut + pauzy';
           $('segType').querySelectorAll('.opt').forEach(function(x){x.classList.toggle('sel',x.dataset.v==='Svatba');});$('hidType').value='Svatba';
