@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="fonts-loading">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,6 +42,7 @@
 <meta name="theme-color" content="#0f5257">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Sora:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Sora:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap">
 
 <!-- Měření návštěvnosti (GA4 / Google Ads) zatím nenasazeno.
@@ -55,6 +56,8 @@
   });
 </script>
 
+<script>(function(){var d=document.documentElement;function ok(){d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}if(document.fonts&&document.fonts.ready){document.fonts.ready.then(ok);setTimeout(ok,1500);}else{ok();}})();</script>
+<noscript><style>#jtIntro{display:none!important}html.fonts-loading .hero-copy{visibility:visible!important}.hero-copy>*{opacity:1!important;transform:none!important}html.fonts-loading #jtIntro .intro-brand{opacity:1!important}</style></noscript>
 <style>
 :root{
   --emerald:#0f5257;--emerald-2:#157a7f;--petrol:#14302f;
@@ -526,6 +529,8 @@ footer{background:var(--petrol);color:var(--mint-soft);padding:22px clamp(18px,4
 #jtIntro{position:fixed;inset:0;z-index:9999;background:var(--petrol);display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:26px;transition:opacity .8s ease,visibility .8s ease}
 #jtIntro.done{opacity:0;visibility:hidden;pointer-events:none}
+html.fonts-loading .hero-copy{visibility:hidden}
+html.fonts-loaded #jtIntro .intro-brand{animation:introFade .7s ease .05s forwards}
 #jtIntro .intro-eq{display:flex;align-items:flex-end;gap:5px;height:64px}
 #jtIntro .intro-eq i{width:6px;border-radius:3px;background:var(--mint);height:14px;
   animation:introBar 1s ease-in-out infinite alternate}
@@ -538,7 +543,7 @@ footer{background:var(--petrol);color:var(--mint-soft);padding:22px clamp(18px,4
 #jtIntro .intro-eq i:nth-child(7){animation-delay:.72s;background:var(--gold)}
 @keyframes introBar{from{height:10px}to{height:58px}}
 #jtIntro .intro-brand{font-family:var(--font-hero);font-weight:800;font-size:26px;color:var(--cream);letter-spacing:-.02em;
-  opacity:0;animation:introFade .7s ease .25s forwards}
+  opacity:0}
 #jtIntro .intro-brand b{color:var(--mint)}
 @keyframes introFade{to{opacity:1}}
 .intro-lock{overflow:hidden;height:100vh}
@@ -825,10 +830,7 @@ main{position:relative;z-index:2}
       <div class="ceq-wrap">
         <div class="ceq-host" id="ceqHost"></div>
         <div class="hero-photo">
-          <picture>
-            <source srcset="https://jazzduo.cz/uvodni_foto.webp" type="image/webp">
-            <img src="https://jazzduo.cz/uvodni_foto.png" alt="David Kleňha — jazz singer and bandleader" width="539" height="752" loading="eager" fetchpriority="high" decoding="async">
-          </picture>
+          <img src="https://jazzduo.cz/uvodni_foto.webp" alt="David Kleňha — jazz singer and bandleader" width="539" height="752" loading="eager" fetchpriority="high" decoding="async">
         </div>
         <div class="name-badge">David&nbsp;Kleňha<span>singer &amp; bandleader</span></div>
       </div>
@@ -851,10 +853,10 @@ main{position:relative;z-index:2}
       <button class="btn btn-ghost" id="aboutMoreBtn" type="button">More about David Kleňha</button>
       <p class="about-lead">
         Need a fuller sound? Go for a
-        <a href="https://www.jazztrio.cz/" target="_blank" rel="noopener"><strong>jazz trio</strong></a>,
-        a livelier <a href="https://www.jazzquartet.cz/" target="_blank" rel="noopener"><strong>quartet</strong></a>
+        <a href="https://jazztrio.cz/" target="_blank" rel="noopener"><strong>jazz trio</strong></a>,
+        a livelier <a href="https://jazzquartet.cz/" target="_blank" rel="noopener"><strong>quartet</strong></a>
         with drums, or a refined
-        <a href="https://www.jazzquintet.cz/" target="_blank" rel="noopener"><strong>quintet</strong></a>.
+        <a href="https://jazzquintet.cz/" target="_blank" rel="noopener"><strong>quintet</strong></a>.
         Pick the line-up size right&nbsp;below.</p>
       <a href="#builder" class="roll-arrow-link" aria-label="Go to band builder">
         <span class="roll-arrow-big" aria-hidden="true">
