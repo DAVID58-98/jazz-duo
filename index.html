@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs" class="fonts-loading">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +40,7 @@
 <meta name="theme-color" content="#0f5257">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Sora:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Sora:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap">
 
 <!-- Měření návštěvnosti (GA4 / Google Ads) zatím nenasazeno.
@@ -53,6 +54,8 @@
   });
 </script>
 
+<script>(function(){var d=document.documentElement;function ok(){d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}if(document.fonts&&document.fonts.ready){document.fonts.ready.then(ok);setTimeout(ok,1500);}else{ok();}})();</script>
+<noscript><style>#jtIntro{display:none!important}html.fonts-loading .hero-copy{visibility:visible!important}.hero-copy>*{opacity:1!important;transform:none!important}html.fonts-loading #jtIntro .intro-brand{opacity:1!important}</style></noscript>
 <style>
 :root{
   --emerald:#0f5257;--emerald-2:#157a7f;--petrol:#14302f;
@@ -524,6 +527,8 @@ footer{background:var(--petrol);color:var(--mint-soft);padding:22px clamp(18px,4
 #jtIntro{position:fixed;inset:0;z-index:9999;background:var(--petrol);display:flex;flex-direction:column;
   align-items:center;justify-content:center;gap:26px;transition:opacity .8s ease,visibility .8s ease}
 #jtIntro.done{opacity:0;visibility:hidden;pointer-events:none}
+html.fonts-loading .hero-copy{visibility:hidden}
+html.fonts-loaded #jtIntro .intro-brand{animation:introFade .7s ease .05s forwards}
 #jtIntro .intro-eq{display:flex;align-items:flex-end;gap:5px;height:64px}
 #jtIntro .intro-eq i{width:6px;border-radius:3px;background:var(--mint);height:14px;
   animation:introBar 1s ease-in-out infinite alternate}
@@ -536,7 +541,7 @@ footer{background:var(--petrol);color:var(--mint-soft);padding:22px clamp(18px,4
 #jtIntro .intro-eq i:nth-child(7){animation-delay:.72s;background:var(--gold)}
 @keyframes introBar{from{height:10px}to{height:58px}}
 #jtIntro .intro-brand{font-family:var(--font-hero);font-weight:800;font-size:26px;color:var(--cream);letter-spacing:-.02em;
-  opacity:0;animation:introFade .7s ease .25s forwards}
+  opacity:0}
 #jtIntro .intro-brand b{color:var(--mint)}
 @keyframes introFade{to{opacity:1}}
 .intro-lock{overflow:hidden;height:100vh}
@@ -822,10 +827,7 @@ main{position:relative;z-index:2}
       <div class="ceq-wrap">
         <div class="ceq-host" id="ceqHost"></div>
         <div class="hero-photo">
-          <picture>
-            <source srcset="https://jazzduo.cz/uvodni_foto.webp" type="image/webp">
-            <img src="https://jazzduo.cz/uvodni_foto.png" alt="David Kleňha — zpěvák a bandleader" width="539" height="752" loading="eager" fetchpriority="high" decoding="async">
-          </picture>
+          <img src="https://jazzduo.cz/uvodni_foto.webp" alt="David Kleňha — zpěvák a bandleader" width="539" height="752" loading="eager" fetchpriority="high" decoding="async">
         </div>
         <div class="name-badge">David&nbsp;Kleňha<span>zpěvák &amp; bandleader</span></div>
       </div>
@@ -848,10 +850,10 @@ main{position:relative;z-index:2}
       <button class="btn btn-ghost" id="aboutMoreBtn" type="button">Více o Davidu Kleňhovi</button>
       <p class="about-lead">
         Potřebujete plnější zvuk? Sáhněte po
-        <a href="https://www.jazztrio.cz/" target="_blank" rel="noopener"><strong>jazzovém triu</strong></a>,
-        energičtějším <a href="https://www.jazzquartet.cz/" target="_blank" rel="noopener"><strong>kvartetu</strong></a>
+        <a href="https://jazztrio.cz/" target="_blank" rel="noopener"><strong>jazzovém triu</strong></a>,
+        energičtějším <a href="https://jazzquartet.cz/" target="_blank" rel="noopener"><strong>kvartetu</strong></a>
         s&nbsp;bicími, nebo reprezentativním
-        <a href="https://www.jazzquintet.cz/" target="_blank" rel="noopener"><strong>kvintetu</strong></a>.
+        <a href="https://jazzquintet.cz/" target="_blank" rel="noopener"><strong>kvintetu</strong></a>.
         Velikost sestavy si naklikáte hned&nbsp;níže.</p>
       <a href="#builder" class="roll-arrow-link" aria-label="Přejít na sestavení kapely">
         <span class="roll-arrow-big" aria-hidden="true">
@@ -1033,6 +1035,21 @@ main{position:relative;z-index:2}
     </div>
     <div class="rev-dots" id="revDots"></div>
     <p class="rev-verify"><a href="https://www.budemesvoji.cz/listing/david-klenha/#recenze" target="_blank" rel="noopener">Recenze si ověřte na budemesvoji.cz</a></p>
+  </div>
+</section>
+
+<style>#faq .wrap{text-align:center}#faq .section-title{color:var(--petrol)}#faq .eyebrow{color:var(--emerald)}.faq-wrap{max-width:820px;margin:26px auto 0;text-align:left}.faq-item{background:var(--cream-2);border:1px solid var(--line);border-radius:16px;margin:10px 0;overflow:hidden}.faq-item summary{cursor:pointer;list-style:none;padding:18px 22px;font-family:var(--font-head);font-weight:600;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:14px}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary::after{content:'+';font-size:24px;line-height:1;color:var(--emerald-2);transition:transform .25s}.faq-item[open] summary::after{transform:rotate(45deg)}.faq-item .faq-a{padding:0 22px 18px;color:var(--ink-soft);line-height:1.6}</style>
+<section class="section reveal" id="faq">
+  <div class="wrap">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="section-title">Časté dotazy</h2>
+    <div class="faq-wrap">
+        <details class="faq-item"><summary>Kolik stojí jazzové duo na svatbu nebo raut?</summary><div class="faq-a">Pevný ceník nemáme — cena závisí na délce vystoupení, místě konání a zvolené sestavě. Napište nám termín a místo akce a do 24 hodin pošleme nezávaznou orientační nabídku.</div></details>
+        <details class="faq-item"><summary>Pro jaké akce se duo hodí nejvíc?</summary><div class="faq-a">Duo je naše nejkomornější obsazení — ideální jako nenápadná hudební kulisa na svatební obřad, raut, recepci nebo jazz k večeři. Zní kultivovaně, ale nepřehluší konverzaci.</div></details>
+        <details class="faq-item"><summary>Vozíte vlastní ozvučení?</summary><div class="faq-a">Ano. Na komornější prostory vozíme vlastní aparaturu a postaráme se o ozvučení sami. U velkých sálů se rádi domluvíme s vaším zvukařem.</div></details>
+        <details class="faq-item"><summary>Kam dojíždíte?</summary><div class="faq-a">Hrajeme po celé České republice, sídlíme v Praze. Vystoupení v Praze a okolí řešíme operativně, vzdálenější akce po domluvě.</div></details>
+        <details class="faq-item"><summary>Můžeme zvolit větší sestavu?</summary><div class="faq-a">Ano. Kromě dua hrajeme i jako trio, kvartet a kvintet — podle prostoru a charakteru akce vám doporučíme ideální obsazení.</div></details>
+    </div>
   </div>
 </section>
 
@@ -1966,6 +1983,54 @@ document.addEventListener('click',function(e){
   var l=e.target.closest('a[href^="tel:"]');if(!l)return;
   if(typeof gtag==='function')gtag('event','conversion',{'send_to':'AW-XXXXXXXXXX/XXXXXXXX'});
 }); */
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kolik stojí jazzové duo na svatbu nebo raut?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pevný ceník nemáme — cena závisí na délce vystoupení, místě konání a zvolené sestavě. Napište nám termín a místo akce a do 24 hodin pošleme nezávaznou orientační nabídku."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pro jaké akce se duo hodí nejvíc?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Duo je naše nejkomornější obsazení — ideální jako nenápadná hudební kulisa na svatební obřad, raut, recepci nebo jazz k večeři. Zní kultivovaně, ale nepřehluší konverzaci."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vozíte vlastní ozvučení?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Na komornější prostory vozíme vlastní aparaturu a postaráme se o ozvučení sami. U velkých sálů se rádi domluvíme s vaším zvukařem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kam dojíždíte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hrajeme po celé České republice, sídlíme v Praze. Vystoupení v Praze a okolí řešíme operativně, vzdálenější akce po domluvě."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Můžeme zvolit větší sestavu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Kromě dua hrajeme i jako trio, kvartet a kvintet — podle prostoru a charakteru akce vám doporučíme ideální obsazení."
+      }
+    }
+  ]
+}
 </script>
 </body>
 </html>
