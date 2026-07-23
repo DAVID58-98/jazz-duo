@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jazz Duo aus Prag für Hochzeiten &amp; Empfänge | David Kleňha</title>
-<meta name="description" content="Live-Jazz Duo aus Prag — Gesang und Klavier (auf Wunsch Gitarre) als dezente musikalische Kulisse für Trauungen, Empfänge und Jazz zum Dinner. Intimer Klang. Wir reisen gern nach Deutschland und ins Grenzgebiet.">
+<meta name="description" content="Live-Jazz Duo aus Prag — Gesang und Klavier (auf Wunsch Gitarre) für Trauungen, Empfänge und Dinner. Intimer Klang, wir reisen gern nach Deutschland.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://jazzduo.cz/de/">
 <link rel="alternate" hreflang="cs" href="https://jazzduo.cz/">
@@ -19,15 +19,15 @@
 <meta property="og:locale:alternate" content="cs_CZ">
 <meta property="og:locale:alternate" content="en_US">
 <meta property="og:url" content="https://jazzduo.cz/de/">
-<meta property="og:image" content="https://jazzduo.cz/SEO/og-image.png">
-<meta property="og:image:secure_url" content="https://jazzduo.cz/SEO/og-image.png">
+<meta property="og:image" content="https://jazzduo.cz/SEO/og-image.jpg">
+<meta property="og:image:secure_url" content="https://jazzduo.cz/SEO/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Jazz Duo David Kleňha — intime Live-Musik für Hochzeiten und Empfänge">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Jazz Duo aus Prag für Hochzeiten &amp; Empfänge | David Kleňha">
 <meta name="twitter:description" content="Live-Jazz Duo aus Prag — Gesang und Klavier. Eine dezente Kulisse für Trauungen, Empfänge und Dinner.">
-<meta name="twitter:image" content="https://jazzduo.cz/SEO/twitter-card.png">
+<meta name="twitter:image" content="https://jazzduo.cz/SEO/twitter-card.jpg">
 
 <!-- Google Search Console -->
 <!-- Google Search Console: po založení property pro jazzduo.cz sem vložte vlastní ověřovací meta tag -->
@@ -40,10 +40,6 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0f5257">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Sora:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Sora:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap">
 
 <!-- Měření návštěvnosti (GA4 / Google Ads) zatím nenasazeno.
      Připraveno pro budoucí doplnění: stačí přidat gtag.js skript a config s reálným ID. -->
@@ -56,8 +52,25 @@
   });
 </script>
 
-<script>(function(){var d=document.documentElement;function ok(){d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}if(document.fonts&&document.fonts.ready){document.fonts.ready.then(ok);setTimeout(ok,1500);}else{ok();}})();</script>
 <noscript><style>#jtIntro{display:none!important}html.fonts-loading .hero-copy{visibility:visible!important}.hero-copy>*{opacity:1!important;transform:none!important}html.fonts-loading #jtIntro .intro-brand{opacity:1!important}</style></noscript>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="gfonts" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap"></noscript>
+<script>(function(){
+  var d=document.documentElement,l=document.getElementById('gfonts'),done=false;
+  function ok(){if(done)return;done=true;d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}
+  function afterCss(){
+    if(!document.fonts||!document.fonts.load){ok();return;}
+    Promise.all([document.fonts.load('800 1em Unbounded'),
+                 document.fonts.load('700 1em Sora'),
+                 document.fonts.load('400 1em Poppins')]).then(ok)['catch'](ok);
+  }
+  if(l){l.addEventListener('load',function(){this.rel='stylesheet';afterCss();});
+        l.addEventListener('error',ok);}
+  else {afterCss();}
+  setTimeout(ok,1500);
+})();</script>
 <style>
 :root{
   --emerald:#0f5257;--emerald-2:#157a7f;--petrol:#14302f;
@@ -123,6 +136,7 @@ img{max-width:100%;display:block}
 .drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,86vw);background:var(--petrol);color:var(--cream);z-index:80;
   transform:translateX(100%);transition:transform .5s cubic-bezier(.7,0,.2,1);padding:32px 30px;display:flex;flex-direction:column}
 .drawer.open{transform:translateX(0)}
+.drawer:focus,.drawer:focus-visible{outline:none}
 .drawer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
 .drawer .brand{color:#fff}
 .drawer-close{background:none;border:none;color:var(--mint);font-size:30px;cursor:pointer;line-height:1;width:40px;height:40px}
@@ -267,7 +281,7 @@ img{max-width:100%;display:block}
 .gal-arrow:disabled{opacity:.35;cursor:default;background:var(--white);color:var(--emerald);border-color:var(--line)}
 .gal-viewport{flex:1;min-width:0;overflow:hidden}
 .gal-track{display:flex;gap:16px;will-change:transform;transition:transform .45s cubic-bezier(.4,.0,.2,1);touch-action:pan-y}
-.gal-item{position:relative;flex:0 0 calc((100% - 48px)/4);aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--cream-3);display:flex;align-items:center;justify-content:center;cursor:pointer;box-sizing:border-box}
+.gal-item{border:none;padding:0;font:inherit;position:relative;flex:0 0 calc((100% - 48px)/4);aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--cream-3);display:flex;align-items:center;justify-content:center;cursor:pointer;box-sizing:border-box}
 .gal-item img{width:100%;height:100%;object-fit:cover}
 .gal-item::after{content:"";position:absolute;inset:0;background:rgba(15,82,87,0);transition:background .2s}
 .gal-item:hover::after{background:rgba(15,82,87,.12)}
@@ -366,7 +380,7 @@ img{max-width:100%;display:block}
 .rev-viewport{overflow:hidden;flex:1}
 .rev-track{display:flex;gap:18px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .review{flex:0 0 calc(50% - 9px);box-sizing:border-box;background:var(--emerald);color:var(--cream);border-radius:24px;padding:28px 26px;display:flex;flex-direction:column;gap:14px}
-.review .stars{color:var(--gold);font-size:15px;letter-spacing:2px}
+.review .stars{color:#f0c163;font-size:15px;letter-spacing:2px}
 .review p{font-size:14.5px;line-height:1.6}
 .review .who{margin-top:auto;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
 .review .who b{font-size:14px;font-weight:700;color:#fff}
@@ -399,12 +413,12 @@ img{max-width:100%;display:block}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--mint);background:rgba(255,255,255,.11)}
 /* tile-style choice grids */
 .choice{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.choice .opt{text-align:center;padding:16px 12px;border-radius:14px;border:1.5px solid rgba(157,194,182,.24);
+.choice .opt{font:inherit;width:100%;display:block;text-align:center;padding:16px 12px;border-radius:14px;border:1.5px solid rgba(157,194,182,.24);
   background:rgba(255,255,255,.05);cursor:pointer;font-size:14.5px;font-weight:600;transition:.2s;color:var(--cream)}
 .choice .opt:hover{border-color:var(--mint)}
 .choice .opt.sel{background:var(--mint);color:var(--petrol);border-color:var(--mint)}
 .blocks-choice{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.blk{text-align:center;padding:16px 10px;border-radius:14px;border:1.5px solid rgba(157,194,182,.24);background:rgba(255,255,255,.05);cursor:pointer;transition:.2s;color:var(--cream)}
+.blk{font:inherit;width:100%;display:block;text-align:center;padding:16px 10px;border-radius:14px;border:1.5px solid rgba(157,194,182,.24);background:rgba(255,255,255,.05);cursor:pointer;transition:.2s;color:var(--cream)}
 .blk:hover{border-color:var(--mint)}
 .blk.sel{background:var(--emerald);color:#fff;border-color:var(--emerald)}
 .blk.sel span{color:#fff}
@@ -714,7 +728,7 @@ main{position:relative;z-index:2}
   "name": "Jazz Duo — David Kleňha",
   "url": "https://jazzduo.cz/",
   "logo": "https://jazzduo.cz/favicon/favicon-512.png",
-  "image": "https://jazzduo.cz/SEO/og-image.png",
+  "image": "https://jazzduo.cz/SEO/og-image.jpg",
   "description": "Live-Jazz Duo aus Prag — Gesang und Klavier (auf Wunsch Gitarre) als intime musikalische Kulisse für Trauungen, Empfänge und Jazz-Abende. Wir reisen gern nach Deutschland und ins Grenzgebiet.",
   "genre": ["Jazz", "Swing", "Bossa nova", "Chanson"],
   "foundingLocation": {
@@ -778,16 +792,16 @@ main{position:relative;z-index:2}
     </span>
     <a href="#poptavka" class="cta pulse-cta">Termin prüfen</a>
   </nav>
-  <button class="menu-btn" id="menuBtn" aria-label="Menü öffnen">Menü
+  <button type="button" class="menu-btn" id="menuBtn" aria-label="Menü öffnen">Menü
     <span class="burger"><span></span><span></span><span></span></span>
   </button>
 </header>
 
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-hidden="true">
+<aside class="drawer" id="drawer" aria-hidden="true" tabindex="-1" inert>
   <div class="drawer-top">
     <span class="brand">jazz<b>duo</b>.cz</span>
-    <button class="drawer-close" id="drawerClose" aria-label="Menü schließen">&times;</button>
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="Menü schließen">&times;</button>
   </div>
   <div class="drawer-lang">
     <a href="/" hreflang="cs">CS</a>
@@ -830,7 +844,7 @@ main{position:relative;z-index:2}
       <div class="ceq-wrap">
         <div class="ceq-host" id="ceqHost"></div>
         <div class="hero-photo">
-          <img src="https://jazzduo.cz/uvodni_foto.webp" alt="David Kleňha — Jazzsänger und Bandleader" width="539" height="752" loading="eager" fetchpriority="high" decoding="async">
+          <img src="https://jazzduo.cz/uvodni_foto-860.webp" srcset="https://jazzduo.cz/uvodni_foto-430.webp 430w, https://jazzduo.cz/uvodni_foto-645.webp 645w, https://jazzduo.cz/uvodni_foto-860.webp 860w, https://jazzduo.cz/uvodni_foto-1290.webp 1290w, https://jazzduo.cz/uvodni_foto-1720.webp 1720w" sizes="(max-width: 500px) 86vw, 430px" alt="David Kleňha — Jazzsänger und Bandleader" width="539" height="752" loading="eager" fetchpriority="high" decoding="async">
         </div>
         <div class="name-badge">David&nbsp;Kleňha<span>Sänger &amp; Bandleader</span></div>
       </div>
@@ -955,9 +969,9 @@ main{position:relative;z-index:2}
       </div>
       <div class="cats" id="cats"></div>
       <div class="rep-player">
-        <button class="rep-arrow" id="repPrev" aria-label="Vorherige Songs">‹</button>
+        <button type="button" class="rep-arrow" id="repPrev" aria-label="Vorherige Songs">‹</button>
         <div class="songs-viewport"><div class="songs auto" id="songs"></div></div>
-        <button class="rep-arrow" id="repNext" aria-label="Nächste Songs">›</button>
+        <button type="button" class="rep-arrow" id="repNext" aria-label="Nächste Songs">›</button>
       </div>
       <p class="rep-hint" style="display:none"></p>
     </div>
@@ -1032,9 +1046,9 @@ main{position:relative;z-index:2}
       <p class="section-lead">Stimmen von Menschen, für die wir gespielt haben.</p>
     </div>
     <div class="rev-slider">
-      <button class="rev-arrow prev" id="revPrev" aria-label="Předchozí recenze">‹</button>
+      <button type="button" class="rev-arrow prev" id="revPrev" aria-label="Předchozí recenze">‹</button>
       <div class="rev-viewport"><div class="rev-track" id="revTrack"></div></div>
-      <button class="rev-arrow next" id="revNext" aria-label="Další recenze">›</button>
+      <button type="button" class="rev-arrow next" id="revNext" aria-label="Další recenze">›</button>
     </div>
     <div class="rev-dots" id="revDots"></div>
     <p class="rev-verify"><a href="https://www.budemesvoji.cz/listing/david-klenha/#recenze" target="_blank" rel="noopener">Bewertungen prüfen auf budemesvoji.cz</a></p>
@@ -1062,11 +1076,11 @@ main{position:relative;z-index:2}
           <div class="calc-grid">
             <div class="field full">
               <label>Art der Veranstaltung</label>
-              <div class="choice" id="segType">
-                <div class="opt sel" data-v="Hochzeit">Hochzeit</div>
-                <div class="opt" data-v="Firmenfeier">Firmenfeier</div>
-                <div class="opt" data-v="Ball">Ball</div>
-                <div class="opt" data-v="Sonstiges">Sonstiges</div>
+              <div class="choice" id="segType" role="radiogroup" aria-label="Art der Veranstaltung">
+                <button type="button" class="opt sel" data-v="Hochzeit" role="radio" aria-checked="true">Hochzeit</button>
+                <button type="button" class="opt" data-v="Firmenfeier" role="radio" aria-checked="false">Firmenfeier</button>
+                <button type="button" class="opt" data-v="Ball" role="radio" aria-checked="false">Ball</button>
+                <button type="button" class="opt" data-v="Sonstiges" role="radio" aria-checked="false">Sonstiges</button>
               </div>
             </div>
             <div class="field">
@@ -1079,11 +1093,11 @@ main{position:relative;z-index:2}
             </div>
             <div class="field full">
               <label>Spieldauer — Musikblöcke</label>
-              <div class="blocks-choice" id="blkChoice">
-                <div class="blk" data-n="1"><b>1×</b><span>45 Minuten</span></div>
-                <div class="blk" data-n="2"><b>2×</b><span>45 Minuten</span></div>
-                <div class="blk sel" data-n="3"><b>3×</b><span>45 Minuten</span></div>
-                <div class="blk" data-n="4"><b>4×</b><span>45 Minuten</span></div>
+              <div class="blocks-choice" id="blkChoice" role="radiogroup" aria-label="Auftrittsdauer — Musikblöcke">
+                <button type="button" class="blk" data-n="1" role="radio" aria-checked="false"><b>1×</b><span>45 Minuten</span></button>
+                <button type="button" class="blk" data-n="2" role="radio" aria-checked="false"><b>2×</b><span>45 Minuten</span></button>
+                <button type="button" class="blk sel" data-n="3" role="radio" aria-checked="true"><b>3×</b><span>45 Minuten</span></button>
+                <button type="button" class="blk" data-n="4" role="radio" aria-checked="false"><b>4×</b><span>45 Minuten</span></button>
               </div>
               <div class="blocks-warn" id="blkWarn">Live-Musik ist anspruchsvoll, und um eine konzentrierte, hochwertige Darbietung zu gewährleisten, spielen wir maximal 4 Blöcke (4 × 45 Minuten). Für längere Veranstaltungen finden wir gern eine individuelle Lösung.</div>
             </div>
@@ -1155,16 +1169,16 @@ main{position:relative;z-index:2}
 <div class="jt-cookie-overlay" id="jtCookieBanner" role="dialog" aria-labelledby="jtCookieTitle">
   <div class="jt-cookie-card">
     <div class="jt-cookie-badge">🍪</div>
-    <button class="jt-cookie-close" onclick="jtCookieAcceptNecessary()" aria-label="Schließen">&times;</button>
+    <button type="button" class="jt-cookie-close" onclick="jtCookieAcceptNecessary()" aria-label="Schließen">&times;</button>
     <h3 class="jt-cookie-title" id="jtCookieTitle">Bevor wir loslegen …</h3>
     <p class="jt-cookie-text">
       Wir verwenden Cookies, um zu sehen, wie viele Menschen uns finden. Sie können sie ablehnen, die Website funktioniert weiter.
       Details in der <a href="/de/gdpr.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
     </p>
     <div class="jt-cookie-buttons">
-      <button class="jt-cookie-btn jt-cookie-btn-primary" onclick="jtCookieAcceptAll()">Alle akzeptieren</button>
-      <button class="jt-cookie-btn jt-cookie-btn-secondary" onclick="jtCookieAcceptNecessary()">Nur notwendige</button>
-      <button class="jt-cookie-btn jt-cookie-btn-text" onclick="jtCookieOpenSettings()">Cookie-Einstellungen →</button>
+      <button type="button" class="jt-cookie-btn jt-cookie-btn-primary" onclick="jtCookieAcceptAll()">Alle akzeptieren</button>
+      <button type="button" class="jt-cookie-btn jt-cookie-btn-secondary" onclick="jtCookieAcceptNecessary()">Nur notwendige</button>
+      <button type="button" class="jt-cookie-btn jt-cookie-btn-text" onclick="jtCookieOpenSettings()">Cookie-Einstellungen →</button>
     </div>
   </div>
 </div>
@@ -1200,14 +1214,14 @@ main{position:relative;z-index:2}
       </div>
     </div>
     <div class="jt-cookie-settings-footer">
-      <button class="jt-cookie-set-all" onclick="jtCookieAcceptAll(); jtCookieCloseSettings();">Alle akzeptieren</button>
-      <button class="jt-cookie-set-save" onclick="jtCookieSaveCustom()">Auswahl speichern</button>
+      <button type="button" class="jt-cookie-set-all" onclick="jtCookieAcceptAll(); jtCookieCloseSettings();">Alle akzeptieren</button>
+      <button type="button" class="jt-cookie-set-save" onclick="jtCookieSaveCustom()">Auswahl speichern</button>
     </div>
   </div>
 </div>
 
 
-<button class="back-to-top" id="backToTop" aria-label="Nach oben">
+<button type="button" class="back-to-top" id="backToTop" aria-label="Nach oben">
   <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 14 12 8 18 14"/></svg>
 </button>
 
@@ -1216,7 +1230,7 @@ main{position:relative;z-index:2}
     <div class="toast-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
     <h3>Vielen Dank!</h3>
     <p>Wir haben Ihre Anfrage. Wir melden uns innerhalb von 24 Stunden mit einem Angebot.</p>
-    <button class="btn btn-primary" id="toastClose">Schließen</button>
+    <button type="button" class="btn btn-primary" id="toastClose">Schließen</button>
   </div>
 </div>
 
@@ -1224,7 +1238,7 @@ main{position:relative;z-index:2}
 <div class="toast-overlay about-modal" id="aboutModal" aria-hidden="true">
   <div class="about-card" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
     <div class="about-vinyl" aria-hidden="true"></div>
-    <button class="about-close" id="aboutClose" aria-label="Zavřít">&times;</button>
+    <button type="button" class="about-close" id="aboutClose" aria-label="Zavřít">&times;</button>
     <div class="about-card-inner">
       <span class="eyebrow">Unser Sänger</span>
       <h3 id="aboutTitle">David Kleňha</h3>
@@ -1259,6 +1273,45 @@ main{position:relative;z-index:2}
   "use strict";
   var SONGS = {"standards": [{"t": "'S Wonderful", "a": "G. Gershwin"}, {"t": "A Foggy Day", "a": "F. Sinatra"}, {"t": "Almost Like Being In Love", "a": "N. K. Cole"}, {"t": "Blue Moon", "a": "F. Sinatra"}, {"t": "Cheek to Cheek", "a": "Ella & Armstrong"}, {"t": "Don't Get Around Much Anymore", "a": "D. Ellington"}, {"t": "Feeling Good", "a": "N. Simone"}, {"t": "Fly Me to the Moon", "a": "F. Sinatra"}, {"t": "How Insensitive", "a": "A. C. Jobim"}, {"t": "I Can't Give You Anything But Love", "a": "E. Fitzgerald"}, {"t": "I've Got You Under My Skin", "a": "F. Sinatra"}, {"t": "It Don't Mean a Thing", "a": "D. Ellington"}, {"t": "It's A Lovely Day Today", "a": "E. Fitzgerald"}, {"t": "It's Only a Paper Moon", "a": "N. K. Cole"}, {"t": "La Vie en Rose", "a": "É. Piaf"}, {"t": "Lady Is a Tramp", "a": "F. Sinatra"}, {"t": "Let's Call the Whole Thing Off", "a": "Ella & Armstrong"}, {"t": "Let's Fall In Love", "a": "D. Krall"}, {"t": "L-O-V-E", "a": "N. K. Cole"}, {"t": "Lullaby of Birdland", "a": "E. Fitzgerald"}, {"t": "Oh, Lady Be Good!", "a": "E. Fitzgerald"}, {"t": "On The Sunny Side Of The Street", "a": "L. Armstrong"}, {"t": "Orange Colored Sky", "a": "N. K. Cole"}, {"t": "Perhaps, Perhaps, Perhaps", "a": "D. Day"}, {"t": "Quando, Quando, Quando", "a": "E. Humperdinck"}, {"t": "Route 66", "a": "N. K. Cole"}, {"t": "Something Stupid", "a": "F. & N. Sinatra"}, {"t": "Strangers In The Night", "a": "F. Sinatra"}, {"t": "Summertime", "a": "E. Fitzgerald"}, {"t": "Sunny", "a": "B. Hebb"}, {"t": "Sway", "a": "D. Martin"}, {"t": "That's All", "a": "M. Bublé"}, {"t": "The Girl From Ipanema", "a": "Getz & Gilberto"}, {"t": "The Way You Look Tonight", "a": "F. Sinatra"}, {"t": "Theme from New York, New York", "a": "F. Sinatra"}, {"t": "Unchain My Heart", "a": "R. Charles"}, {"t": "You Make Me Feel So Young", "a": "F. Sinatra"}], "pop": [{"t": "All About That Bass", "a": "M. Trainor"}, {"t": "Blue Suede Shoes", "a": "E. Presley"}, {"t": "Crazy Little Thing Called Love", "a": "Queen"}, {"t": "Hey Jude", "a": "The Beatles"}, {"t": "How Deep Is Your Love", "a": "Bee Gees"}, {"t": "I Got You (I Feel Good)", "a": "J. Brown"}, {"t": "I Wish", "a": "S. Wonder"}, {"t": "If I Ain't Got You", "a": "A. Keys"}, {"t": "Isn't She Lovely", "a": "S. Wonder"}, {"t": "Just The Two of Us", "a": "B. Withers"}, {"t": "Knockin' on Heaven's Door", "a": "B. Dylan"}, {"t": "Let It Be", "a": "The Beatles"}, {"t": "Mamma Mia", "a": "ABBA"}, {"t": "Mercy", "a": "Duffy"}, {"t": "Pretty Woman", "a": "R. Orbison"}, {"t": "Rome Wasn't Built In A Day", "a": "Morcheeba"}, {"t": "Sweet Home Alabama", "a": "Lynyrd Skynyrd"}, {"t": "Valerie", "a": "A. Winehouse"}], "ballads": [{"t": "At Last", "a": "E. James"}, {"t": "But Beautiful", "a": "B. Holiday"}, {"t": "Don't Know Why", "a": "N. Jones"}, {"t": "Georgia on My Mind", "a": "R. Charles"}, {"t": "Hallelujah", "a": "L. Cohen"}, {"t": "Home", "a": "M. Bublé"}, {"t": "Killing Me Softly", "a": "R. Flack"}, {"t": "Moon River", "a": "A. Williams"}, {"t": "My Way", "a": "F. Sinatra"}, {"t": "Smile", "a": "N. K. Cole"}, {"t": "Tears in Heaven", "a": "E. Clapton"}, {"t": "Thinking Out Loud", "a": "E. Sheeran"}, {"t": "What A Wonderful World", "a": "L. Armstrong"}, {"t": "When I Fall In Love", "a": "N. K. Cole"}, {"t": "Yesterday", "a": "The Beatles"}, {"t": "You Don't Know Me", "a": "M. Bublé"}, {"t": "You'll Never Find Another Love Like Mine", "a": "L. Rawls"}], "czech": [{"t": "Dva roky jezdím bez nehod", "a": "M. Chladil"}, {"t": "Ezop a brabenec", "a": "Ježek, V+W"}, {"t": "Já s tebou žít nebudu", "a": "Nerez"}, {"t": "Jen pro ten dnešní den", "a": "O. Nový"}, {"t": "Klobouk ve křoví", "a": "Ježek, V+W"}, {"t": "Lady Carneval", "a": "K. Gott"}, {"t": "Loudá se půlměsíc", "a": "M. Kubišová"}, {"t": "Pramínek vlasů", "a": "J. Suchý"}, {"t": "Sladké mámení", "a": "H. Vondráčková"}, {"t": "Víno", "a": "Chinaski"}, {"t": "Život je jen náhoda", "a": "Ježek, V+W"}]};
   function $(id){return document.getElementById(id);}
+
+  /* --- pauza dekorativnich animaci mimo viewport / na skryte karte (uspora CPU) --- */
+  function jtRafLoop(hostEl, step){
+    var visible=true, running=false, gen=0;
+    /* gen = generacni zamek: kazdy start/stop zneplatni predchozi smycku,
+       takze nikdy nemuze bezet vic smycek najednou (= nasobna rychlost) */
+    function frame(g){ if(g!==gen) return; step(); requestAnimationFrame(function(){frame(g);}); }
+    function start(){ if(running) return; running=true; gen++; var g=gen;
+      requestAnimationFrame(function(){frame(g);}); }
+    function stop(){ if(!running) return; running=false; gen++; }
+    function sync(){ (visible && !document.hidden) ? start() : stop(); }
+    /* pojistka: odpojeny prvek by nikdy nebyl "viditelny" -> animace by nenabehla */
+    if(window.IntersectionObserver && hostEl && hostEl.isConnected!==false){
+      new IntersectionObserver(function(es){ visible=es[0].isIntersecting; sync(); },
+        {threshold:0}).observe(hostEl);
+    }
+    document.addEventListener('visibilitychange', sync);
+    sync();
+  }
+
+  /* --- fokus v modalnich oknech: uzamknout uvnitr a vratit zpet --- */
+  var jtLastFocus=null;
+  function jtTrap(box){
+    jtLastFocus=document.activeElement;
+    var f=box.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    if(f.length) f[0].focus();
+    box._jtKey=function(e){
+      if(e.key!=='Tab'||!f.length) return;
+      var first=f[0], last=f[f.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+    };
+    box.addEventListener('keydown', box._jtKey);
+  }
+  function jtRelease(box){
+    if(box._jtKey) box.removeEventListener('keydown', box._jtKey);
+    if(jtLastFocus && jtLastFocus.focus) jtLastFocus.focus();
+    jtLastFocus=null;
+  }
   function el(tag,css,html){var n=document.createElement(tag);if(css)n.style.cssText=css;if(html!=null)n.innerHTML=html;return n;}
   $('year').textContent=new Date().getFullYear();
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1343,6 +1396,19 @@ main{position:relative;z-index:2}
       'M44,-54C56,-44,62,-25,66,-4C70,17,72,40,60,56C48,72,22,81,-3,80C-28,79,-53,68,-69,49C-85,30,-92,3,-84,-19C-76,-41,-54,-58,-31,-66C-8,-74,16,-72,44,-54Z'
     ];
 
+
+    /* nahledy videi se stahnou az kdyz se sekce bliz i do viewportu (usetri ~274 kB) */
+    function lazyThumbs(){
+      var imgs=track.querySelectorAll('image[data-href]');
+      function show(){Array.prototype.forEach.call(imgs,function(im){
+        var h=im.getAttribute('data-href');
+        if(h){im.setAttribute('href',h);im.removeAttribute('data-href');}});}
+      if(!window.IntersectionObserver){show();return;}
+      var io=new IntersectionObserver(function(es){
+        if(es[0].isIntersecting){show();io.disconnect();}
+      },{rootMargin:'600px 0px'});
+      io.observe(track);
+    }
     function buildItems(){
       VIDEOS.forEach(function(v,i){
         var item=el('div');item.className='vid-item';
@@ -1355,7 +1421,7 @@ main{position:relative;z-index:2}
           '<span class="vid-photo">'+
             '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
               '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[i]+'"/></clipPath></defs>'+
-              '<image href="'+src+'" x="-105" y="-105" width="210" height="210" '+
+              '<image data-href="'+src+'" x="-105" y="-105" width="210" height="210" '+
               'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
             '</svg>'+
           '</span>'+
@@ -1386,11 +1452,11 @@ main{position:relative;z-index:2}
         var base=14,amp=120;
         if(reduce){for(var j=0;j<N;j++){var a0=(j/N)*Math.PI*2;bars[j].style.height=(base+amp*wave(a0,idx*1.9))+'%';}return;}
         var phase=idx*1.9,speed=0.009*(1+idx*0.1),dir=(idx%2===0?1:-1),t=phase;
-        (function f(){t+=speed*dir;for(var i=0;i<N;i++){var a=(i/N)*Math.PI*2;bars[i].style.height=(base+amp*wave(a,t))+'%';}requestAnimationFrame(f);})();
+        jtRafLoop(wrap,function(){t+=speed*dir;for(var i=0;i<N;i++){var a=(i/N)*Math.PI*2;bars[i].style.height=(base+amp*wave(a,t))+'%';}});
       });
     }
 
-    buildItems();buildEqs();
+    buildItems();buildEqs();lazyThumbs();
 
     /* ---- slider (šipky + tečky + swipe) ---- */
     var prevBtn=$('vidPrev'),nextBtn=$('vidNext'),dotsHost=$('vidDots');
@@ -1493,7 +1559,7 @@ main{position:relative;z-index:2}
     var base=14,amp=120;
     function upd(t){for(var i=0;i<N;i++){var a=(i/N)*Math.PI*2;bars[i].style.height=(base+amp*wave(a,t))+'%';}}
     if(reduce){upd(0);return;}
-    var t=0;(function f(){t+=0.009;upd(t);requestAnimationFrame(f);})();
+    var t=0;jtRafLoop(host,function(){t+=0.009;upd(t);});
   })();
 
   /* ---- rotating hero slogan (5 slogans, slow + smooth) ---- */
@@ -1506,10 +1572,11 @@ main{position:relative;z-index:2}
       ['Musik, die','Stimmung macht.']
     ];
     var host=$('heroSlogans');if(!host)return;
-    host.innerHTML='';
+    /* pozor: NEMAZAT innerHTML - uvnitr je sr-only H1 text pro SEO a ctecky */
+    Array.prototype.slice.call(host.querySelectorAll('.slogan')).forEach(function(n){n.parentNode.removeChild(n);});
     slogans.forEach(function(s,i){
       var sp=el('span',null,s[0]+'<br><span class="accent">'+s[1]+'</span>');
-      sp.className='slogan'+(i===0?'':' in-wait');host.appendChild(sp);
+      sp.className='slogan'+(i===0?'':' in-wait');sp.setAttribute('aria-hidden','true');host.appendChild(sp);
     });
     if(reduce)return;
     var nodes=host.querySelectorAll('.slogan'),cur=0;
@@ -1539,8 +1606,8 @@ main{position:relative;z-index:2}
 
   /* ---- drawer ---- */
   var drawer=$('drawer'),scrim=$('scrim');
-  function openD(){drawer.classList.add('open');scrim.classList.add('open');drawer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
-  function closeD(){drawer.classList.remove('open');scrim.classList.remove('open');drawer.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+  function openD(){drawer.classList.add('open');scrim.classList.add('open');drawer.setAttribute('aria-hidden','false');drawer.removeAttribute('inert');document.body.style.overflow='hidden';drawer.focus();}
+  function closeD(){var wasOpen=drawer.classList.contains('open');drawer.classList.remove('open');scrim.classList.remove('open');drawer.setAttribute('aria-hidden','true');drawer.setAttribute('inert','');document.body.style.overflow='';if(wasOpen){var mb=document.getElementById('menuBtn');if(mb)mb.focus();}}
   $('menuBtn').addEventListener('click',openD);$('drawerClose').addEventListener('click',closeD);scrim.addEventListener('click',closeD);
   document.querySelectorAll('[data-close]').forEach(function(a){a.addEventListener('click',closeD);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeD();});
@@ -1717,13 +1784,15 @@ main{position:relative;z-index:2}
 
   /* ---- gallery (reálné fotky z /foto/, plynulá smyčka + klikací lightbox) ---- */
   (function(){
+    var GAL_OPEN='Foto {n} von {total} in großer Ansicht öffnen';
+    var GAL_ALTS=["Jazz-Duo David Kleňha — Sänger, Bandleader und Musiker in festlicher Kleidung vor dem Auftritt", "Jazz-Duo David Kleňha bei einem Live-Auftritt auf der Bühne im Abendlicht", "Jazz-Duo David Kleňha singt ins Mikrofon, Pianist und Kontrabassist auf der Terrasse einer historischen Villa", "Jazz-Duo David Kleňha mit Gitarrist und Kontrabassist nach einem Open-Air-Abendkonzert", "Jazz-Duo David Kleňha mit Kontrabassist und Pianist in einem Saal mit historischem Spiegel", "Jazz-Duo David Kleňha mit Kontrabassist und Pianist im Klubambiente am Klavier", "Jazz-Duo David Kleňha mit Gitarrist und Kontrabassist beim Auftritt in einer Bibliothek", "Jazz-Duo David Kleňha mit Gitarrist und Kontrabassist auf einer weihnachtlich geschmückten Bühne", "Jazz-Duo David Kleňha mit Gitarrist und Bassist bei einer Gesellschaftsveranstaltung im Saal"];
     var GBASE='https://jazzduo.cz/foto/';
     var files=['foto_1.webp','foto_2.webp','foto_3.webp','foto_4.webp','foto_5.webp','foto_6.webp','foto_7.webp','foto_8.webp','foto_9.webp'];
     var track=$('galTrack');if(!track)return;
     function build(){files.forEach(function(f,i){
-      var d=el('div');d.className='gal-item';
+      var d=el('button');d.className='gal-item';d.type='button';d.setAttribute('aria-label',GAL_OPEN.replace('{n}',i+1).replace('{total}',files.length));
       d.setAttribute('data-idx',i);
-      d.innerHTML='<img src="'+GBASE+f+'" alt="Jazz Duo David Kleňha live — Auftrittsfoto '+(i+1)+'" loading="lazy">';
+      d.innerHTML='<img src="'+GBASE+f+'" alt="'+(GAL_ALTS[i]||'')+'" width="880" height="1129" loading="lazy" decoding="async">';
       d.addEventListener('click',function(){openLB(i);});
       track.appendChild(d);});}
     build();
@@ -1776,12 +1845,12 @@ main{position:relative;z-index:2}
       lbImg.src=GBASE+files[cur];
       lbImg.alt='Jazz Duo David Kleňha live — Foto '+(cur+1);
     }
-    function openLB(i){
+    function openLB(i){jtTrap(lb);
       if(!lb)return;
       show(i);
       lb.classList.add('show');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
     }
-    function closeLB(){
+    function closeLB(){jtRelease(lb);
       if(!lb)return;
       lb.classList.remove('show');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';
       setTimeout(function(){lbImg.src='';},260);
@@ -1822,7 +1891,7 @@ main{position:relative;z-index:2}
     var track=$('revTrack');if(!track)return;
     revs.forEach(function(r){
       var f=el('figure');f.className='review';
-      f.innerHTML='<div class="stars">★★★★★</div><p>'+r.p+'</p><figcaption class="who"><b>'+r.w+'</b><span>'+r.e+'</span></figcaption>';
+      f.innerHTML='<div class="stars" role="img" aria-label="Bewertung 5 von 5 Sternen">★★★★★</div><p>'+r.p+'</p><figcaption class="who"><b>'+r.w+'</b><span>'+r.e+'</span></figcaption>';
       track.appendChild(f);
     });
     function perView(){return window.innerWidth<=680?1:2;}
@@ -1850,8 +1919,8 @@ main{position:relative;z-index:2}
     var seg=$('segType');
     seg.addEventListener('click',function(e){
       var o=e.target.closest('.opt');if(!o)return;
-      seg.querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel');});
-      o.classList.add('sel');$('hidType').value=o.dataset.v;
+      seg.querySelectorAll('.opt').forEach(function(x){x.classList.remove('sel');x.setAttribute('aria-checked','false');});
+      o.classList.add('sel');o.setAttribute('aria-checked','true');$('hidType').value=o.dataset.v;
     });
   })();
 
@@ -1860,8 +1929,8 @@ main{position:relative;z-index:2}
     var box=$('blkChoice'),warn=$('blkWarn');
     box.addEventListener('click',function(e){
       var b=e.target.closest('.blk');if(!b)return;
-      box.querySelectorAll('.blk').forEach(function(x){x.classList.remove('sel');});
-      b.classList.add('sel');var n=b.dataset.n;
+      box.querySelectorAll('.blk').forEach(function(x){x.classList.remove('sel');x.setAttribute('aria-checked','false');});
+      b.classList.add('sel');b.setAttribute('aria-checked','true');var n=b.dataset.n;
       $('hidBlocks').value=n+' × 45 Minuten + Pausen';
       warn.classList.remove('show');
     });
