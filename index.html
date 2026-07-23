@@ -139,6 +139,7 @@ img{max-width:100%;display:block}
 .drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,86vw);background:var(--petrol);color:var(--cream);z-index:80;
   transform:translateX(100%);transition:transform .5s cubic-bezier(.7,0,.2,1);padding:32px 30px;display:flex;flex-direction:column}
 .drawer.open{transform:translateX(0)}
+.drawer:focus,.drawer:focus-visible{outline:none}
 .drawer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
 .drawer .brand{color:#fff}
 .drawer-close{background:none;border:none;color:var(--mint);font-size:30px;cursor:pointer;line-height:1;width:40px;height:40px}
@@ -883,7 +884,7 @@ main{position:relative;z-index:2}
 </header>
 
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-hidden="true" inert>
+<aside class="drawer" id="drawer" aria-hidden="true" tabindex="-1" inert>
   <div class="drawer-top">
     <span class="brand">jazz<b>duo</b>.cz</span>
     <button type="button" class="drawer-close" id="drawerClose" aria-label="Zavřít menu">&times;</button>
@@ -1376,12 +1377,16 @@ main{position:relative;z-index:2}
 
   /* --- pauza dekorativnich animaci mimo viewport / na skryte karte (uspora CPU) --- */
   function jtRafLoop(hostEl, step){
-    var visible=true, running=false;
-    function frame(){ if(!running) return; step(); requestAnimationFrame(frame); }
-    function start(){ if(running) return; running=true; requestAnimationFrame(frame); }
-    function stop(){ running=false; }
+    var visible=true, running=false, gen=0;
+    /* gen = generacni zamek: kazdy start/stop zneplatni predchozi smycku,
+       takze nikdy nemuze bezet vic smycek najednou (= nasobna rychlost) */
+    function frame(g){ if(g!==gen) return; step(); requestAnimationFrame(function(){frame(g);}); }
+    function start(){ if(running) return; running=true; gen++; var g=gen;
+      requestAnimationFrame(function(){frame(g);}); }
+    function stop(){ if(!running) return; running=false; gen++; }
     function sync(){ (visible && !document.hidden) ? start() : stop(); }
-    if(window.IntersectionObserver && hostEl){
+    /* pojistka: odpojeny prvek by nikdy nebyl "viditelny" -> animace by nenabehla */
+    if(window.IntersectionObserver && hostEl && hostEl.isConnected!==false){
       new IntersectionObserver(function(es){ visible=es[0].isIntersecting; sync(); },
         {threshold:0}).observe(hostEl);
     }
@@ -1535,7 +1540,7 @@ main{position:relative;z-index:2}
         var base=14,amp=120;
         if(reduce){for(var j=0;j<N;j++){var a0=(j/N)*Math.PI*2;bars[j].style.height=(base+amp*wave(a0,idx*1.9))+'%';}return;}
         var phase=idx*1.9,speed=0.009*(1+idx*0.1),dir=(idx%2===0?1:-1),t=phase;
-        jtRafLoop(host,function(){t+=speed*dir;for(var i=0;i<N;i++){var a=(i/N)*Math.PI*2;bars[i].style.height=(base+amp*wave(a,t))+'%';}});
+        jtRafLoop(wrap,function(){t+=speed*dir;for(var i=0;i<N;i++){var a=(i/N)*Math.PI*2;bars[i].style.height=(base+amp*wave(a,t))+'%';}});
       });
     }
 
@@ -1689,7 +1694,7 @@ main{position:relative;z-index:2}
 
   /* ---- drawer ---- */
   var drawer=$('drawer'),scrim=$('scrim');
-  function openD(){drawer.classList.add('open');scrim.classList.add('open');drawer.setAttribute('aria-hidden','false');drawer.removeAttribute('inert');document.body.style.overflow='hidden';var fl=drawer.querySelector('#drawerClose');if(fl)fl.focus();}
+  function openD(){drawer.classList.add('open');scrim.classList.add('open');drawer.setAttribute('aria-hidden','false');drawer.removeAttribute('inert');document.body.style.overflow='hidden';drawer.focus();}
   function closeD(){var wasOpen=drawer.classList.contains('open');drawer.classList.remove('open');scrim.classList.remove('open');drawer.setAttribute('aria-hidden','true');drawer.setAttribute('inert','');document.body.style.overflow='';if(wasOpen){var mb=document.getElementById('menuBtn');if(mb)mb.focus();}}
   $('menuBtn').addEventListener('click',openD);$('drawerClose').addEventListener('click',closeD);scrim.addEventListener('click',closeD);
   document.querySelectorAll('[data-close]').forEach(function(a){a.addEventListener('click',closeD);});
