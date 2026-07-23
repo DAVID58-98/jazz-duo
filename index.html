@@ -50,12 +50,25 @@
   });
 </script>
 
-<script>(function(){var d=document.documentElement;function ok(){d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}if(document.fonts&&document.fonts.ready){document.fonts.ready.then(ok);setTimeout(ok,1500);}else{ok();}})();</script>
 <noscript><style>#jtIntro{display:none!important}html.fonts-loading .hero-copy{visibility:visible!important}.hero-copy>*{opacity:1!important;transform:none!important}html.fonts-loading #jtIntro .intro-brand{opacity:1!important}</style></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap">
+<link id="gfonts" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap"></noscript>
+<script>(function(){
+  var d=document.documentElement,l=document.getElementById('gfonts'),done=false;
+  function ok(){if(done)return;done=true;d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}
+  function afterCss(){
+    if(!document.fonts||!document.fonts.load){ok();return;}
+    Promise.all([document.fonts.load('800 1em Unbounded'),
+                 document.fonts.load('700 1em Sora'),
+                 document.fonts.load('400 1em Poppins')]).then(ok)['catch'](ok);
+  }
+  if(l){l.addEventListener('load',function(){this.rel='stylesheet';afterCss();});
+        l.addEventListener('error',ok);}
+  else {afterCss();}
+  setTimeout(ok,1500);
+})();</script>
 <style>
 :root{
   --emerald:#0f5257;--emerald-2:#157a7f;--petrol:#14302f;
@@ -1479,6 +1492,19 @@ main{position:relative;z-index:2}
       'M44,-54C56,-44,62,-25,66,-4C70,17,72,40,60,56C48,72,22,81,-3,80C-28,79,-53,68,-69,49C-85,30,-92,3,-84,-19C-76,-41,-54,-58,-31,-66C-8,-74,16,-72,44,-54Z'
     ];
 
+
+    /* nahledy videi se stahnou az kdyz se sekce bliz i do viewportu (usetri ~274 kB) */
+    function lazyThumbs(){
+      var imgs=track.querySelectorAll('image[data-href]');
+      function show(){Array.prototype.forEach.call(imgs,function(im){
+        var h=im.getAttribute('data-href');
+        if(h){im.setAttribute('href',h);im.removeAttribute('data-href');}});}
+      if(!window.IntersectionObserver){show();return;}
+      var io=new IntersectionObserver(function(es){
+        if(es[0].isIntersecting){show();io.disconnect();}
+      },{rootMargin:'600px 0px'});
+      io.observe(track);
+    }
     function buildItems(){
       VIDEOS.forEach(function(v,i){
         var item=el('div');item.className='vid-item';
@@ -1491,7 +1517,7 @@ main{position:relative;z-index:2}
           '<span class="vid-photo">'+
             '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
               '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[i]+'"/></clipPath></defs>'+
-              '<image href="'+src+'" x="-105" y="-105" width="210" height="210" '+
+              '<image data-href="'+src+'" x="-105" y="-105" width="210" height="210" '+
               'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
             '</svg>'+
           '</span>'+
@@ -1526,7 +1552,7 @@ main{position:relative;z-index:2}
       });
     }
 
-    buildItems();buildEqs();
+    buildItems();buildEqs();lazyThumbs();
 
     /* ---- slider (šipky + tečky + swipe) ---- */
     var prevBtn=$('vidPrev'),nextBtn=$('vidNext'),dotsHost=$('vidDots');

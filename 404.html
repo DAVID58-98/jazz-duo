@@ -10,8 +10,22 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&amp;family=Sora:wght@400;600&amp;family=Poppins:wght@400;500&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&amp;family=Sora:wght@400;600&amp;family=Poppins:wght@400;500&amp;display=swap">
+<link id="gfonts" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&amp;family=Sora:wght@400;600&amp;family=Poppins:wght@400;500&amp;display=swap">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&amp;family=Sora:wght@400;600&amp;family=Poppins:wght@400;500&amp;display=swap"></noscript>
+<script>(function(){
+  var d=document.documentElement,l=document.getElementById('gfonts'),done=false;
+  function ok(){if(done)return;done=true;d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}
+  function afterCss(){
+    if(!document.fonts||!document.fonts.load){ok();return;}
+    Promise.all([document.fonts.load('800 1em Unbounded'),
+                 document.fonts.load('700 1em Sora'),
+                 document.fonts.load('400 1em Poppins')]).then(ok)['catch'](ok);
+  }
+  if(l){l.addEventListener('load',function(){this.rel='stylesheet';afterCss();});
+        l.addEventListener('error',ok);}
+  else {afterCss();}
+  setTimeout(ok,1500);
+})();</script>
 <style>
 
 :root{--cream:#f4f0e4;--petrol:#14302f;--emerald:#0f5257;--mint:#7fb5a8;--ink:#14302f;--ink-soft:#4a5e58;
