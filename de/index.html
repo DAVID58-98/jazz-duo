@@ -117,6 +117,8 @@ img{max-width:100%;display:block}
 .brand{font-family:var(--font-hero);font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--petrol)}
 .brand b{color:var(--emerald)}
 .topnav{display:flex;align-items:center;gap:clamp(18px,2.6vw,40px);flex-wrap:wrap}
+/* uzsi desktop: mirne stesnat listu, aby se nezalamovala */
+@media (min-width:861px) and (max-width:1050px){.topnav{gap:18px}.topnav a{font-size:13.5px}}
 .topnav a{font-size:14px;font-weight:600;color:var(--ink-soft);transition:color .2s}
 .topnav a:hover{color:var(--emerald)}
 .topnav .cta{color:#fff;background:var(--emerald);padding:11px 20px;border-radius:100px}
@@ -134,7 +136,8 @@ img{max-width:100%;display:block}
 .scrim{position:fixed;inset:0;background:rgba(12,31,30,.5);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;z-index:70;backdrop-filter:blur(2px)}
 .scrim.open{opacity:1;visibility:visible}
 .drawer{position:fixed;top:0;right:0;height:100%;width:min(380px,86vw);background:var(--petrol);color:var(--cream);z-index:80;
-  transform:translateX(100%);transition:transform .5s cubic-bezier(.7,0,.2,1);padding:32px 30px;display:flex;flex-direction:column}
+  transform:translateX(100%);transition:transform .5s cubic-bezier(.7,0,.2,1);padding:32px 30px;display:flex;flex-direction:column;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .drawer.open{transform:translateX(0)}
 .drawer:focus,.drawer:focus-visible{outline:none}
 .drawer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
@@ -175,8 +178,6 @@ img{max-width:100%;display:block}
 .slogan.in-wait{opacity:0;transform:translateY(-40px);pointer-events:none}
 .hero-sub{font-size:clamp(15px,1.6vw,18px);color:var(--ink-soft);max-width:440px;margin:22px 0 30px}
 .hero-cta{display:flex;gap:13px;flex-wrap:wrap}
-.hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:26px}
-.tag{font-size:13px;font-weight:500;color:var(--emerald);background:rgba(15,82,87,.08);padding:7px 14px;border-radius:100px;border:1px solid var(--line)}
 
 .hero-art{position:relative;display:flex;justify-content:center;align-items:center;z-index:2}
 .ceq-wrap{position:relative;width:min(430px,86vw);aspect-ratio:1/1.06;display:flex;align-items:center;justify-content:center}
@@ -195,7 +196,7 @@ img{max-width:100%;display:block}
   .hero-grid{grid-template-columns:1fr;gap:20px;text-align:center}
   .hero-copy{order:2}.hero-art{order:1}
   .hero-sub{margin-left:auto;margin-right:auto}
-  .hero-cta,.hero-tags{justify-content:center}.eyebrow{justify-content:center}
+  .hero-cta{justify-content:center}.eyebrow{justify-content:center}
 }
 
 /* ---------- builder: inset dark tile (cream shows around) ---------- */
@@ -333,26 +334,26 @@ img{max-width:100%;display:block}
 .ticket-big{font-family:var(--font-hero);font-size:46px;color:var(--cream);line-height:1}
 .ticket-bot{font-family:var(--font-head);font-weight:600;font-size:14px;color:var(--cream)}
 @media (max-width:680px){.concerts-inner{grid-template-columns:1fr;gap:28px}.concerts-art{order:-1}}
-.map-tile{background:var(--petrol);border-radius:var(--radius-lg);padding:clamp(30px,4vw,56px);color:var(--cream);overflow:hidden}
+.map-tile{background:var(--cream-2);border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(30px,4vw,56px);color:var(--ink);overflow:hidden}
 .map-wrap{display:grid;grid-template-columns:.82fr 1.18fr;gap:40px;align-items:center}
 .cz-map{width:100%;height:auto}
-.region{stroke:var(--petrol);stroke-width:1.4;stroke-linejoin:round}
-.reg-rest{fill:#3a564f}
-.reg-home{fill:var(--mint)}
-.spider{stroke:var(--mint);stroke-width:1.7;stroke-dasharray:2 8;stroke-linecap:round;opacity:.65;animation:dashmove 3s linear infinite}
-.spider-foreign{stroke:var(--gold);opacity:.6}
+.region{stroke:var(--cream-2);stroke-width:1.4;stroke-linejoin:round}
+.reg-rest{fill:#9dc2b6}
+.reg-home{fill:var(--emerald)}
+.spider{stroke:var(--emerald);stroke-width:1.7;stroke-dasharray:2 8;stroke-linecap:round;opacity:.5;animation:dashmove 3s linear infinite}
+.spider-foreign{stroke:#a8791d;opacity:.55}
 @keyframes dashmove{to{stroke-dashoffset:-40}}
-.city circle{fill:var(--cream);stroke:var(--petrol);stroke-width:1.5}
-.city text{font-family:var(--font-body);font-weight:600;font-size:12px;fill:var(--cream);text-anchor:middle}
-.city-foreign circle{fill:var(--gold)}.city-foreign text{fill:var(--gold)}
-.praha-marker circle{fill:var(--gold);stroke:#fff;stroke-width:2}
-.praha-marker text{font-family:var(--font-body);font-weight:700;font-size:14px;fill:#fff;text-anchor:middle}
+.city circle{fill:var(--white);stroke:var(--emerald);stroke-width:1.5}
+.city text{font-family:var(--font-body);font-weight:600;font-size:12px;fill:var(--petrol);text-anchor:middle}
+.city-foreign circle{fill:var(--gold);stroke:#a8791d}.city-foreign text{fill:#8a6413}
+.praha-marker circle{fill:var(--gold);stroke:var(--emerald);stroke-width:2}
+.praha-marker text{font-family:var(--font-body);font-weight:700;font-size:14px;fill:var(--petrol);text-anchor:middle}
 .pulse{fill:var(--gold);opacity:.35;transform-origin:center;transform-box:fill-box;animation:pulse 2.6s ease-out infinite}
 @keyframes pulse{0%{transform:scale(1);opacity:.45}70%,100%{transform:scale(2.6);opacity:0}}
-.map-tile .eyebrow{color:var(--mint)}.map-tile .eyebrow::before{background:var(--mint)}
-.map-tile .section-title{color:#fff}.map-tile .section-lead{color:var(--mint-soft)}
+.map-tile .eyebrow{color:var(--emerald-2)}.map-tile .eyebrow::before{background:var(--emerald-2)}
+.map-tile .section-title{color:var(--petrol)}.map-tile .section-lead{color:var(--ink-soft)}
 .legend{display:flex;flex-direction:column;gap:12px;margin-top:24px}
-.legend-row{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--cream)}
+.legend-row{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--ink-soft)}
 .legend-dot{width:15px;height:15px;border-radius:5px;flex-shrink:0}
 @media (max-width:820px){.map-wrap{grid-template-columns:1fr;gap:28px}}
 @media (max-width:820px){.cz-map{max-width:560px;margin:0 auto;display:block}}
@@ -652,7 +653,7 @@ main{position:relative;z-index:2}
 /* pruh statistik sedí symetricky v prázdném místě mezi sekcemi */
 .stats-band{padding:clamp(46px,7vw,78px) 0}
 #benefits{padding-bottom:clamp(46px,7vw,78px)}
-.stats-band + #repertoire{padding-top:clamp(46px,7vw,78px)}
+.stats-band + #poslech{padding-top:clamp(46px,7vw,78px)}
 .stat{text-align:center}
 .stat .num{font-family:var(--font-hero);font-weight:800;font-size:clamp(30px,5vw,46px);color:var(--emerald);line-height:1}
 .stat .lab{font-size:13.5px;color:var(--ink-soft);margin-top:6px}
@@ -682,7 +683,10 @@ main{position:relative;z-index:2}
 .about-lead a:hover{color:var(--petrol)}
 .about-lead strong{font-weight:700;color:var(--emerald)}
 .about-lead a strong{color:var(--emerald)}
-.intro-about .btn-ghost{margin:30px 0}
+/* galerie vlozena primo do sekce "Kdo jsme" */
+#kdo-jsme .gal-head{margin-top:clamp(112px,13vw,184px);scroll-margin-top:96px}
+#kdo-jsme .gal-head .section-title{margin-bottom:10px}
+#kdo-jsme .intro-after{margin-top:clamp(106px,12.5vw,176px)}
 .roll-arrow-link{display:inline-flex;margin-top:22px;color:var(--emerald);transition:color .2s}
 .roll-arrow-link:hover{color:var(--petrol)}
 .roll-arrow-big{display:inline-flex;width:40px;height:40px}
@@ -690,33 +694,11 @@ main{position:relative;z-index:2}
 @keyframes rollDown{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(7px);opacity:1}}
 @media (prefers-reduced-motion:reduce){.roll-arrow-big svg{animation:none}}
 
-/* ---- 13. Modal "Více o Davidu Kleňhovi" ---- */
-.about-modal .about-card{background:var(--white);border-radius:var(--radius-lg);padding:clamp(30px,4vw,48px);
-  max-width:560px;width:100%;position:relative;overflow:hidden;transform:translateY(20px) scale(.97);
-  transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 30px 80px -30px rgba(12,31,30,.5);
-  max-height:88vh;overflow-y:auto;text-align:left}
-.about-modal.show .about-card{transform:none}
-.about-vinyl{position:absolute;top:-150px;right:-130px;width:360px;aspect-ratio:1;border-radius:50%;pointer-events:none;
-  background:repeating-radial-gradient(circle at center,rgba(15,82,87,.12) 0,rgba(15,82,87,.12) 1.5px,transparent 1.5px,transparent 11px)}
-.about-vinyl::after{content:"";position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at center,var(--white) 8%,transparent 30%)}
-.about-card-inner{position:relative;z-index:2}
-.about-card h3{font-family:var(--font-hero);font-weight:800;font-size:clamp(26px,4vw,34px);color:var(--petrol);margin:6px 0 16px}
-.about-card p{font-size:15.5px;line-height:1.7;color:var(--ink-soft);margin:0 0 14px}
-.about-card p strong{color:var(--emerald);font-weight:700}
-.about-card-cta{text-align:center;margin-top:22px}
-.about-close{position:absolute;top:16px;right:18px;z-index:3;width:38px;height:38px;border:none;background:var(--cream-2);
-  border-radius:50%;font-size:22px;line-height:1;color:var(--petrol);cursor:pointer;transition:background .2s}
-.about-close:hover{background:var(--cream-3)}
-
 /* ---- 14. Drawer (mobil) — viditelný brand, barevné akcenty, CTA ---- */
 .drawer .brand b{color:var(--mint)}
-.drawer nav a:nth-child(1){color:#ffffff}
-.drawer nav a:nth-child(2){color:#f3ecd8}
-.drawer nav a:nth-child(3){color:#dff0ea}
-.drawer nav a:nth-child(4){color:#ffffff}
-.drawer nav a:nth-child(5){color:#f3ecd8}
-.drawer nav a:nth-child(6){color:#dff0ea}
+.drawer nav a:nth-child(3n+1){color:#ffffff}
+.drawer nav a:nth-child(3n+2){color:#f3ecd8}
+.drawer nav a:nth-child(3n+3){color:#dff0ea}
 .drawer-cta{width:100%;text-align:center;justify-content:center;margin-bottom:12px;background:var(--emerald);color:#fff}
 .drawer-cta:hover{background:var(--mint);color:var(--petrol)}
 .drawer-sign{opacity:.7;font-size:13px;color:var(--mint-soft);text-align:center}
@@ -785,9 +767,9 @@ main{position:relative;z-index:2}
 <header class="topbar" id="topbar">
   <a href="#hero" class="brand">jazz<b>duo</b>.cz</a>
   <nav class="topnav">
+    <a href="#gallery">Galerie</a>
     <a href="#poslech">Videos</a>
     <a href="#repertoire">Repertoire</a>
-    <a href="#koncerty">Konzerte</a>
     <a href="#reviews">Referenzen</a>
     <a href="https://jazztrio.cz/de/blog/">Blog</a>
     <span class="lang-switch" aria-label="Jazyk / Language / Sprache">
@@ -814,10 +796,9 @@ main{position:relative;z-index:2}
     <a href="/de/" class="active" hreflang="de">DE</a>
   </div>
   <nav>
-    <a href="#poslech" data-close>Ansehen &amp; anhören</a>
-    <a href="#repertoire" data-close>Repertoire</a>
-    <a href="#koncerty" data-close>Konzerte</a>
     <a href="#gallery" data-close>Galerie</a>
+    <a href="#poslech" data-close>Videos</a>
+    <a href="#repertoire" data-close>Repertoire</a>
     <a href="#reviews" data-close>Referenzen</a>
     <a href="https://jazztrio.cz/de/blog/" data-close>Blog</a>
   </nav>
@@ -834,15 +815,10 @@ main{position:relative;z-index:2}
       <span class="eyebrow">Live-Jazz Duo</span>
       <h1 class="hero-slogans" id="heroSlogans"><span class="sr-only">Jazz Duo aus Prag für Trauungen, Empfänge und Jazz zum Dinner — David Kleňha</span></h1>
       <p class="sr-only">Live-Jazz Duo für Trauungen, Empfänge und Jazz zum Dinner — David Kleňha. Gesang und Klavier (auf Wunsch Gitarre), intimer Klang. Aus Prag, wir reisen gern nach Deutschland und ins Grenzgebiet.</p>
-      <p class="hero-sub">Gesang und Klavier live (auf Wunsch Gitarre) — unsere intimste Besetzung, die Stimmung schafft, ohne die Gäste zu übertönen. Ideal als <strong>Trauungsmusik</strong>, für Empfänge und <strong>Jazz zum Dinner</strong>.</p>
+      <p class="hero-sub">Gesang und Klavier oder Gitarre — unsere intimste Besetzung, die Stimmung schafft, ohne die Gäste zu übertönen. Ideal als <strong>Trauungsmusik</strong> oder als Jazz im Hintergrund zum&nbsp;Dinner.</p>
       <div class="hero-cta">
         <a href="#builder" class="btn btn-primary">Stellen Sie Ihre Band zusammen</a>
         <a href="#poptavka" class="btn btn-ghost">Angebot anfordern</a>
-      </div>
-      <div class="hero-tags">
-        <span class="tag">100% live</span>
-        <span class="tag">Kammerbesetzung</span>
-        <span class="tag">Trauung, Empfang &amp; Dinner</span>
       </div>
     </div>
     <div class="hero-art">
@@ -861,22 +837,38 @@ main{position:relative;z-index:2}
 <section class="section reveal" id="kdo-jsme">
   <div class="wrap">
     <div class="intro-about">
-      <span class="eyebrow">Wer wir sind</span>
       <p class="about-lead">
         <strong>Wir sind ein Jazz Duo</strong> rund um Sänger
         <a href="https://www.davidklenha.cz/" target="_blank" rel="noopener">David Kleňha</a>.
-        Das Duo ist unsere intimste Besetzung — Gesang und Klavier, auf Wunsch Gitarre.
-        Leise genug für Gespräche und trotzdem echte Live-Musik.
-        Für Anlässe, bei denen Musik die Stimmung tragen soll, nicht im Mittelpunkt steht.
+        Das Duo ist unsere intimste Besetzung — Gesang und Klavier oder Gitarre.
+        Wir spielen dort, wo Musik Atmosphäre schaffen soll, nicht im Mittelpunkt stehen.
       </p>
-      <button class="btn btn-ghost" id="aboutMoreBtn" type="button">Mehr über David Kleňha</button>
+    </div>
+  </div>
+
+  <!-- galerie: 7 fotek, slider + lightbox -->
+  <div class="wrap center gal-head" id="gallery">
+    <h2 class="section-title">So sieht es bei uns aus</h2>
+    <p class="section-lead">Momentaufnahmen von unseren Auftritten im kleinen Rahmen.</p>
+  </div>
+  <div class="gal-slider">
+    <button class="gal-arrow prev" id="galPrev" type="button" aria-label="Vorheriges Foto">‹</button>
+    <div class="gal-viewport">
+      <div class="gal-track" id="galTrack"></div>
+    </div>
+    <button class="gal-arrow next" id="galNext" type="button" aria-label="Nächstes Foto">›</button>
+  </div>
+  <div class="gal-dots" id="galDots"></div>
+
+  <div class="wrap">
+    <div class="intro-about intro-after">
       <p class="about-lead">
         Brauchen Sie mehr Klang? Wählen Sie ein
         <a href="https://jazztrio.cz/" target="_blank" rel="noopener"><strong>Jazz Trio</strong></a>,
         ein lebhafteres <a href="https://jazzquartet.cz/" target="_blank" rel="noopener"><strong>Quartett</strong></a>
         mit Schlagzeug oder ein repräsentatives
         <a href="https://jazzquintet.cz/" target="_blank" rel="noopener"><strong>Quintett</strong></a>.
-        Die Besetzungsgröße wählen Sie gleich&nbsp;unten.</p>
+        Die Besetzungsgröße wählen Sie&nbsp;unten.</p>
       <a href="#builder" class="roll-arrow-link" aria-label="Zum Band-Konfigurator">
         <span class="roll-arrow-big" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
@@ -903,14 +895,24 @@ main{position:relative;z-index:2}
   </div>
 </section>
 
+<!-- UPGRADE: pruh statistik vycentrovaný mezi sekcemi -->
+<div class="stats-band reveal">
+  <div class="wrap">
+    <div class="stats-strip">
+      <div class="stat"><div class="num" data-count="320" data-suffix="+">0</div><div class="lab">gespielte Events</div></div>
+      <div class="stat"><div class="num" data-count="10" data-suffix="+">0</div><div class="lab">Jahre auf der Bühne</div></div>
+      <div class="stat"><div class="num" data-count="100" data-suffix="+">0</div><div class="lab">Songs im Repertoire</div></div>
+    </div>
+  </div>
+</div>
+
 <!-- UPGRADE: samostatná sekce s videoukázkami (bloby + ekvalizér + YouTube modal) -->
 <section class="section reveal" id="poslech">
   <div class="wrap">
     <div class="player-tile">
       <div class="center" style="margin-bottom:8px">
-        <span class="eyebrow" style="justify-content:center">Sehen Sie uns</span>
-        <h2 class="section-title" style="margin-bottom:6px">Live-Videoclips</h2>
-        <p class="section-lead">Fünf Songs von unseren Auftritten. Klicken Sie auf einen Clip zum Abspielen.</p>
+        <h2 class="section-title" style="margin-bottom:6px">Videoclips</h2>
+        <p class="section-lead">Einige Ausschnitte, wie unsere Musik live klingt. Jedes Mal ein Original.</p>
       </div>
 
       <div class="vid-slider" id="vidSlider">
@@ -928,8 +930,7 @@ main{position:relative;z-index:2}
 <section class="section reveal" id="benefits">
   <div class="wrap">
     <div class="center" style="margin-bottom:42px">
-      <span class="eyebrow">Warum wir</span>
-      <h2 class="section-title" style="margin-bottom:0">Was Sie zusätzlich bekommen</h2>
+      <h2 class="section-title" style="margin-bottom:0">Warum wir</h2>
     </div>
     <div class="benefits-grid">
       <div class="benefit benefit-reveal">
@@ -952,114 +953,6 @@ main{position:relative;z-index:2}
   </div>
 </section>
 
-<!-- UPGRADE: pruh statistik vycentrovaný mezi sekcemi -->
-<div class="stats-band reveal">
-  <div class="wrap">
-    <div class="stats-strip">
-      <div class="stat"><div class="num" data-count="320" data-suffix="+">0</div><div class="lab">gespielte Events</div></div>
-      <div class="stat"><div class="num" data-count="10" data-suffix="+">0</div><div class="lab">Jahre auf der Bühne</div></div>
-      <div class="stat"><div class="num" data-count="100" data-suffix="+">0</div><div class="lab">Songs im Repertoire</div></div>
-    </div>
-  </div>
-</div>
-
-<section class="section reveal" id="repertoire">
-  <div class="wrap">
-    <div class="tile-dark" style="padding:clamp(34px,5vw,64px) clamp(20px,4vw,52px)">
-      <div class="rep-head">
-        <div>
-          <span class="eyebrow on-dark">Repertoire-Auszug</span>
-          <h2 class="section-title" style="margin-bottom:0;color:#fff">Was Sie hören werden</h2>
-        </div>
-      </div>
-      <div class="cats" id="cats"></div>
-      <div class="rep-player">
-        <button type="button" class="rep-arrow" id="repPrev" aria-label="Vorherige Songs">‹</button>
-        <div class="songs-viewport"><div class="songs auto" id="songs"></div></div>
-        <button type="button" class="rep-arrow" id="repNext" aria-label="Nächste Songs">›</button>
-      </div>
-      <p class="rep-hint" style="display:none"></p>
-    </div>
-  </div>
-</section>
-
-<section class="section reveal" id="koncerty">
-  <div class="wrap">
-    <div class="concerts-tile tilt-3d">
-      <div class="dots"></div>
-      <div class="concerts-inner">
-        <div>
-          <span class="eyebrow">Live</span>
-          <h2 class="section-title">Hören Sie uns live</h2>
-          <p class="section-lead">Am besten überzeugen Sie sich live von uns. Unsere öffentlichen Konzerttermine halten wir aktuell — schauen Sie, wann wir in Ihrer Nähe spielen.</p>
-          <a href="https://www.davidklenha.cz/en/#concerts" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:22px">Konzerttermine ansehen</a>
-        </div>
-        <div class="concerts-art" aria-hidden="true">
-          <div class="ticket">
-            <span class="ticket-top">JAZZ&nbsp;LIVE</span>
-            <span class="ticket-big">♪</span>
-            <span class="ticket-bot">David Kleňha &amp; band</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section reveal" id="gallery">
-  <div class="wrap center">
-    <span class="eyebrow">Galerie</span>
-    <h2 class="section-title">So sieht es bei uns aus</h2>
-    <p class="section-lead">Authentische Fotos von unseren Auftritten — Hochzeiten, Bälle und Firmenfeiern. Kein gestelltes Studio, nur eine Live-Jazzband in Aktion.</p>
-  </div>
-  <div class="gal-slider">
-    <button class="gal-arrow prev" id="galPrev" type="button" aria-label="Vorheriges Foto">‹</button>
-    <div class="gal-viewport">
-      <div class="gal-track" id="galTrack"></div>
-    </div>
-    <button class="gal-arrow next" id="galNext" type="button" aria-label="Nächstes Foto">›</button>
-  </div>
-  <div class="gal-dots" id="galDots"></div>
-</section>
-
-<section class="section reveal" id="map">
-  <div class="wrap">
-    <div class="map-tile">
-      <div class="map-wrap">
-        <div>
-          <span class="eyebrow">Wo wir spielen</span>
-          <h2 class="section-title">Wir kommen gern zu Ihnen</h2>
-          <p class="section-lead">Wir sind ein professionelles Jazz Duo aus Prag und reisen gern zu Ihnen — durch ganz Tschechien sowie nach Deutschland, ins Grenzgebiet und nach Österreich. Für Anfahrten ins Ausland kommt zum Honorar ein fairer Reisekostenanteil hinzu.</p>
-          <div class="legend">
-            <div class="legend-row"><span class="legend-dot" style="background:var(--mint)"></span> Prag &amp; Mittelböhmen — unser Zuhause</div>
-            <div class="legend-row"><span class="legend-dot" style="background:#3a564f"></span> Übriges Tschechien — wir kommen gern</div>
-            <div class="legend-row"><span class="legend-dot" style="background:var(--gold)"></span> Deutschland, Österreich &amp; Grenzgebiet — nach Absprache</div>
-          </div>
-        </div>
-        <div>
-<svg class="cz-map" viewBox="0 0 920 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa působení – Praha a Středočeský kraj jako domov, dojezd po celé ČR i do zahraničí"><g class="regions"><path class="region reg-home" d="M350.9,216.9 L355.8,220.2 L357.0,224.1 L352.3,229.0 L353.4,238.3 L352.4,240.2 L337.7,240.5 L332.9,244.2 L312.4,249.7 L309.9,248.5 L309.6,242.5 L300.2,228.0 L301.0,224.7 L296.8,220.5 L299.7,217.9 L305.9,215.7 L311.2,217.2 L314.0,211.9 L330.8,207.1 L337.2,206.4 L340.1,207.5 L345.2,213.7 L350.9,216.9 Z"/><path class="region reg-rest" d="M746.4,465.4 L732.0,471.6 L727.1,471.1 L721.0,466.1 L710.8,471.0 L695.5,463.8 L689.1,462.4 L683.3,463.8 L676.4,469.1 L674.5,474.9 L668.2,481.4 L665.2,487.0 L659.0,506.4 L655.5,511.8 L655.3,515.6 L650.6,510.4 L648.4,497.3 L645.2,492.9 L635.4,495.1 L626.1,490.5 L621.1,490.8 L617.2,489.4 L614.5,481.8 L596.9,476.9 L589.4,477.5 L587.1,479.1 L580.7,490.7 L577.2,492.7 L553.3,489.2 L541.1,490.2 L534.1,487.2 L517.5,475.2 L514.6,470.8 L508.5,469.2 L505.6,464.8 L500.4,465.1 L493.6,468.3 L487.6,467.7 L469.5,459.1 L473.3,446.3 L477.9,446.2 L480.4,450.0 L482.7,449.7 L486.4,445.0 L489.0,445.0 L494.6,448.5 L504.0,439.8 L507.7,438.0 L512.2,438.4 L514.8,433.4 L517.9,432.7 L523.1,428.0 L525.7,431.5 L531.2,431.7 L534.9,429.4 L544.0,430.7 L549.6,424.8 L558.8,421.6 L562.6,414.3 L561.9,406.9 L564.5,402.6 L560.9,397.9 L561.0,390.9 L565.4,387.1 L564.1,379.8 L567.5,374.6 L578.8,367.4 L579.2,363.9 L576.3,354.8 L576.1,341.0 L579.9,340.2 L580.1,332.9 L576.1,327.5 L578.5,319.0 L596.9,317.4 L600.6,311.2 L607.5,311.1 L611.3,312.2 L618.9,312.0 L629.9,315.8 L627.4,320.8 L622.0,320.9 L624.5,326.5 L630.1,331.9 L628.9,337.5 L632.4,345.7 L630.9,354.6 L638.0,359.9 L641.5,358.4 L644.9,353.6 L641.2,338.5 L644.9,336.3 L650.1,338.3 L652.6,341.6 L656.0,351.2 L662.2,357.0 L664.3,365.5 L671.4,368.0 L674.2,370.5 L678.4,377.7 L678.4,381.5 L676.3,385.9 L677.4,392.8 L681.0,398.7 L684.6,400.6 L686.1,404.2 L680.2,408.6 L674.4,416.0 L678.7,420.5 L689.0,418.6 L689.4,427.2 L690.9,429.6 L704.6,433.4 L707.0,439.5 L711.7,441.3 L715.6,445.3 L718.5,445.6 L722.6,443.2 L729.6,444.7 L732.5,451.4 L740.6,453.8 L743.9,457.4 L746.4,465.4 Z"/><path class="region reg-rest" d="M839.2,354.6 L839.3,361.7 L831.7,368.2 L814.4,375.8 L807.8,384.8 L804.2,397.7 L803.8,417.6 L801.3,422.3 L797.6,426.1 L793.3,428.2 L786.3,427.9 L780.4,430.4 L777.3,443.2 L774.0,448.4 L765.5,449.0 L757.0,460.8 L746.4,465.4 L743.9,457.4 L740.6,453.8 L732.5,451.4 L729.6,444.7 L722.6,443.2 L718.5,445.6 L715.6,445.3 L711.7,441.3 L707.0,439.5 L704.6,433.4 L690.9,429.6 L689.4,427.2 L689.0,418.6 L678.7,420.5 L674.4,416.0 L680.2,408.6 L686.1,404.2 L684.6,400.6 L681.0,398.7 L677.4,392.8 L676.3,385.9 L678.4,381.5 L680.1,383.7 L682.1,381.9 L684.5,376.2 L694.4,375.4 L700.5,368.6 L702.0,365.6 L699.7,360.8 L700.2,354.1 L705.5,355.2 L708.8,357.8 L718.5,361.8 L721.4,361.0 L723.1,357.4 L729.2,353.7 L738.5,353.7 L741.3,350.2 L739.8,346.1 L745.5,344.2 L757.0,346.1 L760.4,344.4 L760.3,338.4 L765.5,331.0 L769.4,332.8 L773.7,332.7 L775.4,327.4 L781.2,327.2 L784.5,333.0 L786.5,333.6 L806.7,330.8 L812.9,334.1 L822.8,333.6 L825.7,335.0 L828.7,340.6 L832.7,343.9 L836.3,353.8 L839.2,354.6 Z"/><path class="region reg-rest" d="M775.4,327.4 L773.7,332.7 L769.4,332.8 L765.5,331.0 L760.3,338.4 L760.4,344.4 L757.0,346.1 L745.5,344.2 L739.8,346.1 L741.3,350.2 L738.5,353.7 L729.2,353.7 L723.1,357.4 L721.4,361.0 L718.5,361.8 L708.8,357.8 L705.5,355.2 L700.2,354.1 L699.7,360.8 L702.0,365.6 L700.5,368.6 L694.4,375.4 L684.5,376.2 L682.1,381.9 L680.1,383.7 L678.4,381.5 L678.4,377.7 L674.2,370.5 L671.4,368.0 L664.3,365.5 L662.2,357.0 L656.0,351.2 L652.6,341.6 L650.1,338.3 L644.9,336.3 L641.2,338.5 L644.9,353.6 L641.5,358.4 L638.0,359.9 L630.9,354.6 L632.4,345.7 L628.9,337.5 L630.1,331.9 L624.5,326.5 L622.0,320.9 L627.4,320.8 L631.2,314.4 L632.4,305.9 L636.3,301.7 L635.2,294.9 L630.5,290.5 L630.1,287.1 L621.6,271.9 L623.5,264.1 L623.1,253.9 L620.1,239.1 L630.5,230.6 L630.0,222.8 L637.5,199.4 L643.6,193.8 L648.3,194.4 L648.9,190.7 L651.5,191.2 L655.1,194.9 L655.6,190.6 L653.8,188.4 L652.1,180.0 L644.0,173.4 L640.1,161.7 L635.8,155.8 L635.8,153.0 L639.2,150.8 L642.1,151.0 L647.7,154.3 L650.6,153.8 L663.8,157.1 L668.3,160.4 L675.6,160.2 L680.3,169.0 L688.0,172.4 L694.0,172.1 L696.3,176.6 L696.5,181.7 L699.3,185.0 L700.5,181.3 L703.4,180.9 L705.8,192.7 L704.8,195.7 L701.6,197.8 L698.9,196.7 L694.8,202.1 L684.6,208.2 L682.0,212.9 L680.0,220.7 L681.1,229.3 L673.8,240.3 L673.0,244.6 L677.7,251.9 L674.2,256.9 L673.2,266.3 L676.0,269.3 L681.6,269.8 L683.7,273.9 L694.9,279.2 L701.3,277.2 L711.6,287.7 L720.1,288.7 L724.4,285.9 L729.2,289.0 L737.2,287.4 L741.0,289.0 L744.9,293.2 L745.1,302.2 L752.1,302.0 L756.3,310.2 L761.4,312.8 L766.4,317.4 L768.0,323.1 L771.7,323.9 L775.4,327.4 Z"/><path class="region reg-rest" d="M629.9,315.8 L618.9,312.0 L600.6,311.2 L596.9,317.4 L578.5,319.0 L564.5,312.3 L561.6,308.2 L554.9,303.7 L548.4,301.0 L542.3,301.3 L536.7,296.7 L526.5,293.0 L524.6,296.4 L517.5,300.9 L509.0,299.6 L506.9,295.5 L499.6,289.8 L495.5,283.9 L492.1,283.1 L483.9,278.0 L474.1,278.8 L466.0,268.5 L460.4,264.9 L463.1,249.9 L461.6,247.5 L457.0,245.1 L452.4,240.6 L444.0,236.7 L441.6,233.4 L448.3,230.6 L448.3,221.6 L450.5,219.5 L458.6,222.1 L466.3,214.7 L470.8,213.3 L475.8,215.7 L481.6,214.5 L487.5,218.2 L490.0,217.4 L493.0,209.7 L499.3,207.8 L501.7,213.8 L505.0,216.9 L513.0,208.8 L519.6,208.0 L523.2,209.0 L526.4,218.5 L533.8,219.8 L536.8,224.3 L550.7,234.6 L554.6,232.3 L566.0,231.1 L569.1,228.4 L571.4,223.3 L584.6,216.7 L587.5,208.6 L601.1,212.7 L611.1,219.4 L616.3,218.9 L622.9,211.2 L628.0,202.7 L630.8,200.2 L637.5,199.4 L630.0,222.8 L630.5,230.6 L620.1,239.1 L623.1,253.9 L623.5,264.1 L621.6,271.9 L630.1,287.1 L630.5,290.5 L635.2,294.9 L636.3,301.7 L632.4,305.9 L631.2,314.4 L629.9,315.8 Z"/><path class="region reg-rest" d="M78.7,254.0 L70.9,248.5 L71.9,240.7 L69.8,238.6 L65.1,237.9 L43.9,224.8 L42.4,217.6 L36.8,212.9 L35.8,209.9 L36.7,199.4 L31.4,191.2 L25.2,186.9 L24.0,184.5 L27.9,180.5 L27.9,175.0 L24.2,170.0 L33.5,171.1 L35.8,172.9 L36.8,179.8 L43.7,182.0 L43.5,187.3 L46.7,191.7 L49.5,201.5 L53.5,200.7 L52.6,194.3 L57.0,182.6 L61.0,178.6 L65.3,171.5 L74.6,165.8 L75.5,161.1 L80.1,157.4 L85.3,156.0 L94.9,155.6 L101.6,157.1 L104.8,155.6 L107.7,151.3 L111.5,149.0 L120.7,148.1 L132.3,155.6 L137.7,155.0 L144.0,160.0 L152.3,161.2 L157.0,166.9 L169.5,170.1 L171.0,172.3 L171.3,194.0 L176.3,205.8 L172.9,211.1 L178.3,216.1 L175.5,219.8 L176.2,225.6 L168.7,227.1 L167.9,230.5 L169.3,236.5 L164.5,237.4 L160.0,232.1 L151.1,230.1 L146.4,234.0 L134.3,240.2 L131.1,250.1 L129.7,251.0 L124.2,248.6 L119.5,251.1 L115.3,247.8 L105.3,247.2 L100.4,252.2 L90.5,251.3 L84.8,255.4 L78.7,254.0 Z"/><path class="region reg-rest" d="M473.3,446.3 L469.5,459.1 L459.9,452.4 L441.9,444.8 L435.8,444.7 L432.4,443.3 L429.1,449.7 L416.5,452.4 L417.4,446.8 L415.9,441.3 L395.5,438.3 L393.2,445.5 L393.7,462.8 L389.7,479.3 L391.4,483.7 L389.8,487.2 L387.2,487.5 L380.4,484.7 L371.5,484.4 L368.2,494.9 L361.2,501.0 L358.7,505.1 L357.5,521.7 L352.7,524.2 L349.5,519.1 L345.2,518.7 L342.1,515.4 L334.6,517.4 L329.3,514.6 L326.2,510.9 L324.3,512.1 L321.2,520.0 L319.1,522.1 L307.2,527.7 L294.1,522.9 L275.4,520.7 L270.9,518.7 L266.4,510.9 L270.0,508.0 L263.4,497.6 L246.9,486.8 L241.6,485.3 L239.1,482.6 L229.9,465.0 L220.7,461.8 L216.6,456.4 L215.0,449.0 L212.5,449.2 L203.7,444.2 L206.5,436.2 L213.6,426.6 L213.3,420.5 L215.7,413.3 L220.9,411.0 L225.8,402.9 L230.3,399.1 L227.4,395.1 L229.1,391.0 L228.7,385.8 L232.9,382.7 L239.0,370.1 L238.1,361.0 L239.4,351.5 L236.0,340.9 L243.6,336.5 L257.1,340.6 L267.4,336.5 L269.5,332.1 L273.8,330.7 L276.6,332.7 L285.0,333.9 L292.5,333.0 L297.5,329.6 L302.2,328.8 L310.8,336.0 L319.3,332.6 L328.3,334.3 L342.7,333.8 L344.4,336.1 L350.3,336.1 L355.4,332.2 L360.4,330.9 L363.1,328.2 L363.6,321.8 L368.1,317.4 L374.6,321.4 L375.9,324.6 L382.8,325.9 L385.8,330.8 L387.8,331.2 L390.6,335.0 L389.2,337.6 L383.5,340.2 L385.4,347.1 L385.7,354.1 L382.8,364.9 L386.6,372.8 L387.5,379.9 L394.8,386.0 L401.7,383.5 L419.3,398.0 L424.8,393.4 L433.7,397.8 L441.2,399.0 L444.2,408.9 L450.4,414.7 L462.4,415.7 L468.9,413.9 L476.2,422.3 L470.2,424.1 L468.4,429.8 L463.6,435.7 L463.4,439.4 L466.8,442.9 L471.3,443.7 L473.3,446.3 Z"/><path class="region reg-rest" d="M578.5,319.0 L576.1,327.5 L580.1,332.9 L579.9,340.2 L576.1,341.0 L576.3,354.8 L579.2,363.9 L578.8,367.4 L567.5,374.6 L564.1,379.8 L565.4,387.1 L561.0,390.9 L560.9,397.9 L564.5,402.6 L561.9,406.9 L562.6,414.3 L558.8,421.6 L549.6,424.8 L544.0,430.7 L534.9,429.4 L531.2,431.7 L525.7,431.5 L523.1,428.0 L517.9,432.7 L514.8,433.4 L512.2,438.4 L507.7,438.0 L504.0,439.8 L494.6,448.5 L489.0,445.0 L486.4,445.0 L482.7,449.7 L480.4,450.0 L477.9,446.2 L473.3,446.3 L471.3,443.7 L466.8,442.9 L463.4,439.4 L463.6,435.7 L468.4,429.8 L470.2,424.1 L476.2,422.3 L468.9,413.9 L462.4,415.7 L450.4,414.7 L444.2,408.9 L441.2,399.0 L433.7,397.8 L424.8,393.4 L419.3,398.0 L401.7,383.5 L394.8,386.0 L387.5,379.9 L386.6,372.8 L382.8,364.9 L385.7,354.1 L385.4,347.1 L383.5,340.2 L389.2,337.6 L390.6,335.0 L387.8,331.2 L392.3,325.7 L394.8,324.4 L395.5,320.5 L402.4,322.6 L418.2,322.0 L428.4,317.1 L428.7,314.6 L426.3,308.8 L420.5,304.5 L420.6,300.2 L424.6,295.3 L426.0,291.3 L428.8,289.8 L432.2,290.9 L442.0,286.0 L447.4,281.4 L454.2,280.3 L456.0,273.9 L459.8,270.2 L460.4,264.9 L466.0,268.5 L474.1,278.8 L483.9,278.0 L492.1,283.1 L495.5,283.9 L499.6,289.8 L506.9,295.5 L509.0,299.6 L517.5,300.9 L524.6,296.4 L526.5,293.0 L536.7,296.7 L542.3,301.3 L548.4,301.0 L554.9,303.7 L561.6,308.2 L564.5,312.3 L578.5,319.0 Z"/><path class="region reg-home" d="M450.5,219.5 L448.3,221.6 L448.3,230.6 L441.6,233.4 L444.0,236.7 L452.4,240.6 L457.0,245.1 L461.6,247.5 L463.1,249.9 L459.8,270.2 L456.0,273.9 L454.2,280.3 L447.4,281.4 L442.0,286.0 L432.2,290.9 L428.8,289.8 L426.0,291.3 L424.6,295.3 L420.6,300.2 L420.5,304.5 L426.3,308.8 L428.7,314.6 L428.4,317.1 L418.2,322.0 L402.4,322.6 L395.5,320.5 L394.8,324.4 L392.3,325.7 L387.8,331.2 L385.8,330.8 L382.8,325.9 L375.9,324.6 L374.6,321.4 L368.1,317.4 L363.6,321.8 L363.1,328.2 L360.4,330.9 L355.4,332.2 L350.3,336.1 L344.4,336.1 L342.7,333.8 L328.3,334.3 L319.3,332.6 L310.8,336.0 L302.2,328.8 L297.5,329.6 L292.5,333.0 L285.0,333.9 L276.6,332.7 L273.8,330.7 L269.5,332.1 L267.4,336.5 L257.1,340.6 L243.6,336.5 L236.0,340.9 L237.2,331.6 L234.4,326.5 L234.5,319.5 L229.9,314.4 L230.6,309.8 L228.6,307.4 L230.5,304.9 L228.1,302.2 L230.7,298.9 L237.6,296.5 L242.9,291.5 L240.4,287.5 L242.0,280.9 L241.6,276.6 L244.2,266.8 L247.4,266.0 L244.8,254.2 L238.0,250.6 L236.3,247.7 L232.1,246.3 L227.2,241.3 L222.3,239.2 L213.0,238.6 L206.9,232.5 L200.9,230.1 L194.1,231.9 L193.0,230.1 L194.5,224.7 L193.1,220.7 L205.6,211.2 L209.3,204.7 L218.4,201.0 L226.5,195.3 L234.1,195.3 L246.4,189.1 L250.2,190.5 L262.6,182.0 L267.6,181.2 L269.6,173.6 L277.5,172.7 L286.2,174.8 L296.3,173.2 L300.4,174.8 L306.8,171.1 L314.7,170.2 L317.3,165.5 L316.5,154.3 L320.5,155.5 L328.0,150.3 L329.3,143.4 L331.0,141.3 L343.9,141.6 L345.4,145.7 L360.2,142.7 L375.8,133.0 L386.3,120.1 L391.7,119.8 L399.2,121.9 L402.5,125.5 L407.5,125.2 L410.0,133.4 L414.5,137.5 L413.4,141.6 L415.2,147.7 L416.3,159.3 L413.7,164.0 L413.5,171.8 L419.9,174.5 L422.5,177.6 L423.8,182.5 L434.1,183.9 L439.3,183.2 L442.2,184.6 L446.8,203.5 L443.6,209.5 L448.6,214.4 L450.5,219.5 Z M350.9,216.9 L345.2,213.7 L340.1,207.5 L337.2,206.4 L330.8,207.1 L314.0,211.9 L311.2,217.2 L305.9,215.7 L299.7,217.9 L296.8,220.5 L301.0,224.7 L300.2,228.0 L309.6,242.5 L309.9,248.5 L312.4,249.7 L332.9,244.2 L337.7,240.5 L352.4,240.2 L353.4,238.3 L352.3,229.0 L357.0,224.1 L355.8,220.2 L350.9,216.9 Z"/><path class="region reg-rest" d="M414.5,137.5 L410.0,133.4 L407.5,125.2 L402.5,125.5 L399.2,121.9 L391.7,119.8 L386.3,120.1 L375.8,133.0 L360.2,142.7 L345.4,145.7 L343.9,141.6 L331.0,141.3 L330.0,136.7 L321.0,129.2 L314.1,106.7 L319.4,96.2 L322.8,92.9 L323.3,89.2 L326.2,85.1 L327.6,76.9 L329.7,76.1 L336.3,83.0 L339.4,82.3 L341.8,74.5 L346.5,73.1 L348.4,69.9 L359.9,77.4 L364.7,78.4 L369.4,77.9 L373.9,68.9 L381.2,67.7 L395.5,68.8 L397.4,48.8 L392.9,42.1 L397.4,39.1 L398.4,36.5 L400.8,38.7 L407.1,40.1 L411.5,44.4 L414.4,39.5 L417.5,39.1 L419.3,45.0 L426.5,45.1 L429.9,46.8 L431.9,50.0 L429.8,57.7 L431.4,64.1 L434.2,69.6 L441.0,74.1 L442.5,77.9 L442.1,83.7 L444.7,85.9 L448.5,80.8 L453.7,80.4 L463.9,83.9 L470.0,98.1 L469.2,105.2 L470.4,112.4 L472.5,115.4 L472.5,126.0 L477.0,135.9 L476.6,140.8 L475.0,141.6 L465.2,140.0 L461.1,136.1 L455.6,136.8 L454.1,144.9 L451.7,148.2 L447.9,146.1 L441.6,139.2 L436.1,136.9 L433.4,137.5 L427.9,143.7 L425.5,143.5 L418.4,137.5 L414.5,137.5 Z"/><path class="region reg-rest" d="M450.5,219.5 L448.6,214.4 L443.6,209.5 L446.8,203.5 L442.2,184.6 L439.3,183.2 L434.1,183.9 L423.8,182.5 L422.5,177.6 L419.9,174.5 L413.5,171.8 L413.7,164.0 L416.3,159.3 L415.2,147.7 L413.4,141.6 L414.5,137.5 L418.4,137.5 L425.5,143.5 L427.9,143.7 L433.4,137.5 L436.1,136.9 L441.6,139.2 L447.9,146.1 L451.7,148.2 L454.1,144.9 L455.6,136.8 L461.1,136.1 L465.2,140.0 L475.0,141.6 L476.6,140.8 L477.0,135.9 L472.5,126.0 L472.5,115.4 L470.4,112.4 L469.2,105.2 L470.0,98.1 L463.9,83.9 L479.1,89.1 L484.6,93.9 L498.2,91.5 L505.4,104.9 L509.7,105.0 L517.2,102.1 L521.1,104.0 L523.9,109.8 L524.4,115.0 L522.6,119.0 L528.0,117.9 L535.8,110.1 L541.1,110.6 L547.1,114.5 L550.8,112.0 L552.6,107.4 L558.8,107.1 L566.9,110.2 L577.9,121.5 L579.2,125.3 L575.2,126.9 L575.7,129.1 L573.8,136.0 L570.1,140.4 L563.8,139.8 L552.3,149.0 L549.6,154.4 L550.9,158.0 L555.1,158.6 L556.8,163.7 L559.1,166.2 L562.4,164.6 L568.2,164.6 L570.3,166.7 L570.7,172.1 L573.1,175.1 L581.7,179.0 L590.5,192.8 L594.5,196.8 L597.6,207.3 L601.1,212.7 L587.5,208.6 L584.6,216.7 L571.4,223.3 L569.1,228.4 L566.0,231.1 L554.6,232.3 L550.7,234.6 L536.8,224.3 L533.8,219.8 L526.4,218.5 L523.2,209.0 L519.6,208.0 L513.0,208.8 L505.0,216.9 L501.7,213.8 L499.3,207.8 L493.0,209.7 L490.0,217.4 L487.5,218.2 L481.6,214.5 L475.8,215.7 L470.8,213.3 L466.3,214.7 L458.6,222.1 L450.5,219.5 Z"/><path class="region reg-rest" d="M775.4,327.4 L771.7,323.9 L768.0,323.1 L766.4,317.4 L761.4,312.8 L756.3,310.2 L752.1,302.0 L745.1,302.2 L744.9,293.2 L741.0,289.0 L737.2,287.4 L729.2,289.0 L724.4,285.9 L720.1,288.7 L711.6,287.7 L701.3,277.2 L694.9,279.2 L683.7,273.9 L681.6,269.8 L676.0,269.3 L673.2,266.3 L674.2,256.9 L677.7,251.9 L673.0,244.6 L673.8,240.3 L681.1,229.3 L680.0,220.7 L682.0,212.9 L684.6,208.2 L694.8,202.1 L698.9,196.7 L701.6,197.8 L704.8,195.7 L705.8,192.7 L703.4,180.9 L706.2,183.1 L707.5,186.8 L710.2,186.7 L713.8,182.1 L719.9,181.3 L731.4,182.9 L736.5,180.1 L741.0,171.7 L744.0,171.9 L747.6,176.0 L746.2,185.4 L749.7,190.3 L748.7,193.5 L740.8,199.3 L729.9,201.9 L729.3,205.5 L735.8,213.1 L741.6,212.6 L748.7,214.9 L747.2,217.8 L750.3,221.7 L753.2,228.7 L763.4,238.6 L768.1,239.5 L772.7,237.8 L776.3,234.3 L783.8,233.2 L788.6,230.9 L787.3,227.6 L784.5,227.7 L783.8,223.2 L787.7,224.0 L795.5,228.6 L794.8,232.4 L796.6,234.2 L804.9,235.4 L811.1,239.8 L817.2,241.9 L819.6,247.4 L822.2,249.3 L831.9,244.1 L846.7,250.5 L849.8,250.3 L854.7,246.8 L856.6,247.9 L858.1,257.0 L861.6,258.7 L858.3,262.9 L858.6,268.3 L864.5,280.4 L866.0,286.1 L868.8,288.7 L874.6,289.3 L880.7,294.4 L886.6,292.7 L889.2,295.6 L895.8,317.9 L896.0,325.4 L888.3,326.8 L883.2,332.0 L879.6,332.4 L871.4,329.5 L866.0,331.7 L860.2,331.2 L857.6,332.9 L855.3,341.3 L851.1,343.8 L843.0,352.9 L839.2,352.2 L839.2,354.6 L836.3,353.8 L832.7,343.9 L828.7,340.6 L825.7,335.0 L822.8,333.6 L812.9,334.1 L806.7,330.8 L786.5,333.6 L784.5,333.0 L781.2,327.2 L775.4,327.4 Z"/><path class="region reg-rest" d="M178.3,216.1 L172.9,211.1 L176.3,205.8 L171.3,194.0 L171.0,172.3 L169.5,170.1 L157.0,166.9 L152.3,161.2 L144.0,160.0 L137.7,155.0 L142.4,150.2 L144.4,138.5 L146.6,137.6 L152.0,139.1 L156.8,137.6 L163.6,138.2 L168.7,132.6 L173.2,121.4 L179.8,124.2 L182.5,122.9 L184.7,117.6 L192.2,113.2 L195.4,118.1 L200.7,119.0 L207.2,112.8 L206.6,109.9 L210.5,106.2 L209.7,100.4 L214.9,97.4 L232.0,96.7 L239.3,94.5 L250.2,94.6 L256.3,90.9 L255.9,86.8 L257.6,83.5 L261.6,83.6 L266.2,79.2 L275.8,79.3 L295.6,70.4 L300.9,64.3 L305.5,63.3 L315.3,64.2 L319.0,61.1 L319.8,56.1 L311.9,52.8 L308.7,49.5 L310.1,46.2 L301.8,43.7 L305.1,35.9 L308.2,32.8 L312.2,32.3 L316.9,33.9 L322.0,37.7 L325.5,36.2 L330.1,36.4 L332.7,33.0 L334.1,37.1 L340.2,40.7 L344.2,45.4 L344.3,50.3 L341.1,58.1 L342.5,59.2 L349.5,56.3 L351.7,58.6 L348.4,69.9 L346.5,73.1 L341.8,74.5 L339.4,82.3 L336.3,83.0 L329.7,76.1 L327.6,76.9 L326.2,85.1 L323.3,89.2 L322.8,92.9 L319.4,96.2 L314.1,106.7 L321.0,129.2 L330.0,136.7 L331.0,141.3 L329.3,143.4 L328.0,150.3 L320.5,155.5 L316.5,154.3 L317.3,165.5 L314.7,170.2 L306.8,171.1 L300.4,174.8 L296.3,173.2 L286.2,174.8 L277.5,172.7 L269.6,173.6 L267.6,181.2 L262.6,182.0 L250.2,190.5 L246.4,189.1 L234.1,195.3 L226.5,195.3 L218.4,201.0 L209.3,204.7 L205.6,211.2 L193.1,220.7 L188.5,222.5 L181.6,220.3 L178.3,216.1 Z"/><path class="region reg-rest" d="M178.3,216.1 L181.6,220.3 L188.5,222.5 L193.1,220.7 L194.5,224.7 L193.0,230.1 L194.1,231.9 L200.9,230.1 L206.9,232.5 L213.0,238.6 L222.3,239.2 L227.2,241.3 L232.1,246.3 L236.3,247.7 L238.0,250.6 L244.8,254.2 L247.4,266.0 L244.2,266.8 L241.6,276.6 L242.0,280.9 L240.4,287.5 L242.9,291.5 L237.6,296.5 L230.7,298.9 L228.1,302.2 L230.5,304.9 L228.6,307.4 L230.6,309.8 L229.9,314.4 L234.5,319.5 L234.4,326.5 L237.2,331.6 L236.0,340.9 L239.4,351.5 L238.1,361.0 L239.0,370.1 L232.9,382.7 L228.7,385.8 L229.1,391.0 L227.4,395.1 L230.3,399.1 L225.8,402.9 L220.9,411.0 L215.7,413.3 L213.3,420.5 L213.6,426.6 L206.5,436.2 L203.7,444.2 L201.1,444.7 L198.3,450.3 L191.2,445.8 L185.6,439.0 L185.7,433.4 L184.3,429.9 L174.9,418.7 L170.8,416.2 L162.9,415.6 L159.3,413.4 L155.6,406.1 L143.7,389.1 L138.1,383.0 L136.8,377.5 L127.0,369.7 L122.0,368.3 L120.7,371.3 L110.6,370.3 L106.0,367.1 L102.0,357.4 L91.1,349.4 L89.2,343.2 L88.9,333.2 L85.2,332.1 L81.3,324.8 L80.4,318.1 L78.2,314.3 L73.9,310.8 L74.6,305.6 L73.5,300.8 L63.8,294.3 L59.4,285.7 L61.0,282.8 L68.6,278.7 L70.2,268.5 L72.8,269.3 L77.0,260.8 L78.7,254.0 L84.8,255.4 L90.5,251.3 L100.4,252.2 L105.3,247.2 L115.3,247.8 L119.5,251.1 L124.2,248.6 L129.7,251.0 L131.1,250.1 L134.3,240.2 L146.4,234.0 L151.1,230.1 L160.0,232.1 L164.5,237.4 L169.3,236.5 L167.9,230.5 L168.7,227.1 L176.2,225.6 L175.5,219.8 L178.3,216.1 Z"/></g><g class="spiders"><line class="spider" x1="324.1" y1="225.7" x2="124.5" y2="196.1"/><line class="spider" x1="324.1" y1="225.7" x2="190.2" y2="290.9"/><line class="spider" x1="324.1" y1="225.7" x2="275.2" y2="111.2"/><line class="spider" x1="324.1" y1="225.7" x2="406.5" y2="89.5"/><line class="spider" x1="324.1" y1="225.7" x2="505.7" y2="200.1"/><line class="spider" x1="324.1" y1="225.7" x2="606.2" y2="399.4"/><line class="spider" x1="324.1" y1="225.7" x2="688.6" y2="322.4"/><line class="spider" x1="324.1" y1="225.7" x2="822.6" y2="273.1"/><line class="spider" x1="324.1" y1="225.7" x2="330.6" y2="444.8"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="225.0" y2="70.0"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="30.0" y2="318.0"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="33.0" y2="520.0"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="470.0" y2="535.0"/></g><g class="cities"><g class="city"><circle cx="124.5" cy="196.1" r="4.5"/><text x="124.5" y="187.1" style="text-anchor:middle">Karlovy Vary</text></g><g class="city"><circle cx="190.2" cy="290.9" r="4.5"/><text x="190.2" y="281.9" style="text-anchor:middle">Plzeň</text></g><g class="city"><circle cx="275.2" cy="111.2" r="4.5"/><text x="275.2" y="102.2" style="text-anchor:middle">Ústí n.L.</text></g><g class="city"><circle cx="406.5" cy="89.5" r="4.5"/><text x="406.5" y="80.5" style="text-anchor:middle">Liberec</text></g><g class="city"><circle cx="505.7" cy="200.1" r="4.5"/><text x="505.7" y="191.1" style="text-anchor:middle">Hradec Kr.</text></g><g class="city"><circle cx="606.2" cy="399.4" r="4.5"/><text x="606.2" y="390.4" style="text-anchor:middle">Brno</text></g><g class="city"><circle cx="688.6" cy="322.4" r="4.5"/><text x="688.6" y="313.4" style="text-anchor:middle">Olomouc</text></g><g class="city"><circle cx="822.6" cy="273.1" r="4.5"/><text x="822.6" y="264.1" style="text-anchor:middle">Ostrava</text></g><g class="city"><circle cx="330.6" cy="444.8" r="4.5"/><text x="330.6" y="435.8" style="text-anchor:middle">Č. Budějovice</text></g><g class="city city-foreign"><circle cx="225.0" cy="70.0" r="4"/><text x="225.0" y="61.0" style="text-anchor:middle">Drážďany</text></g><g class="city city-foreign"><circle cx="30.0" cy="318.0" r="4"/><text x="38.0" y="309.0" style="text-anchor:start">Norimberk</text></g><g class="city city-foreign"><circle cx="33.0" cy="520.0" r="4"/><text x="41.0" y="511.0" style="text-anchor:start">Mnichov</text></g><g class="city city-foreign"><circle cx="470.0" cy="535.0" r="4"/><text x="470.0" y="526.0" style="text-anchor:middle">Vídeň</text></g></g><g class="praha-marker"><circle class="pulse" cx="324.1" cy="225.7" r="9"/><circle cx="324.1" cy="225.7" r="6.5"/><text x="324.1" y="212.7">Praha</text></g></svg>        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section reveal" id="reviews">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Referenzen</span>
-      <h2 class="section-title">Was Veranstalter sagen</h2>
-      <p class="section-lead">Stimmen von Menschen, für die wir gespielt haben.</p>
-    </div>
-    <div class="rev-slider">
-      <button type="button" class="rev-arrow prev" id="revPrev" aria-label="Předchozí recenze">‹</button>
-      <div class="rev-viewport"><div class="rev-track" id="revTrack"></div></div>
-      <button type="button" class="rev-arrow next" id="revNext" aria-label="Další recenze">›</button>
-    </div>
-    <div class="rev-dots" id="revDots"></div>
-    <p class="rev-verify"><a href="https://www.budemesvoji.cz/listing/david-klenha/#recenze" target="_blank" rel="noopener">Bewertungen prüfen auf budemesvoji.cz</a></p>
-  </div>
-</section>
-
 <section class="section reveal" id="poptavka">
   <div class="wrap">
     <div class="price-tile">
@@ -1067,7 +960,7 @@ main{position:relative;z-index:2}
       <div class="inner">
         <span class="eyebrow">Unverbindliche Anfrage</span>
         <h2 class="section-title">Was kostet es?</h2>
-        <p class="price-intro">Eine Pauschale nennen wir vorab nicht. Der Preis richtet sich nach Spieldauer, Besetzung, Ort und Art der Veranstaltung. Bei Anfahrten nach Deutschland oder ins Ausland kommt ein fairer Reisekostenanteil hinzu. Füllen Sie ein paar Angaben aus und wir senden Ihnen ein unverbindliches Angebot für Ihre Veranstaltung.</p>
+        <p class="price-intro">Der Preis richtet sich nach Spieldauer, Ort und gewählter Besetzung. Bei Anfahrten nach Deutschland oder ins Ausland kommt ein fairer Reisekostenanteil hinzu. Schreiben Sie uns die Details und wir senden Ihnen ein unverbindliches Angebot, genau passend zu Ihrer&nbsp;Veranstaltung.</p>
 
         <form class="calc" id="calcForm">
           <input type="hidden" name="access_key" value="56d249da-5d3a-4099-a406-4e51cd45daf1">
@@ -1135,6 +1028,87 @@ main{position:relative;z-index:2}
             <p class="form-status" id="formStatus"></p>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="map">
+  <div class="wrap">
+    <div class="map-tile">
+      <div class="map-wrap">
+        <div>
+          <span class="eyebrow">Wo wir spielen</span>
+          <h2 class="section-title">Wir kommen gern zu Ihnen</h2>
+          <p class="section-lead">Wir sind ein professionelles Jazz Duo aus Prag und reisen gern zu Ihnen — durch ganz Tschechien sowie nach Deutschland, ins Grenzgebiet und nach Österreich. Für Anfahrten ins Ausland kommt zum Honorar ein fairer Reisekostenanteil hinzu.</p>
+          <div class="legend">
+            <div class="legend-row"><span class="legend-dot" style="background:var(--emerald)"></span> Prag &amp; Mittelböhmen — unser Zuhause</div>
+            <div class="legend-row"><span class="legend-dot" style="background:#9dc2b6"></span> Übriges Tschechien — wir kommen gern</div>
+            <div class="legend-row"><span class="legend-dot" style="background:var(--gold)"></span> Deutschland, Österreich &amp; Grenzgebiet — nach Absprache</div>
+          </div>
+        </div>
+        <div>
+<svg class="cz-map" viewBox="0 0 920 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa působení – Praha a Středočeský kraj jako domov, dojezd po celé ČR i do zahraničí"><g class="regions"><path class="region reg-home" d="M350.9,216.9 L355.8,220.2 L357.0,224.1 L352.3,229.0 L353.4,238.3 L352.4,240.2 L337.7,240.5 L332.9,244.2 L312.4,249.7 L309.9,248.5 L309.6,242.5 L300.2,228.0 L301.0,224.7 L296.8,220.5 L299.7,217.9 L305.9,215.7 L311.2,217.2 L314.0,211.9 L330.8,207.1 L337.2,206.4 L340.1,207.5 L345.2,213.7 L350.9,216.9 Z"/><path class="region reg-rest" d="M746.4,465.4 L732.0,471.6 L727.1,471.1 L721.0,466.1 L710.8,471.0 L695.5,463.8 L689.1,462.4 L683.3,463.8 L676.4,469.1 L674.5,474.9 L668.2,481.4 L665.2,487.0 L659.0,506.4 L655.5,511.8 L655.3,515.6 L650.6,510.4 L648.4,497.3 L645.2,492.9 L635.4,495.1 L626.1,490.5 L621.1,490.8 L617.2,489.4 L614.5,481.8 L596.9,476.9 L589.4,477.5 L587.1,479.1 L580.7,490.7 L577.2,492.7 L553.3,489.2 L541.1,490.2 L534.1,487.2 L517.5,475.2 L514.6,470.8 L508.5,469.2 L505.6,464.8 L500.4,465.1 L493.6,468.3 L487.6,467.7 L469.5,459.1 L473.3,446.3 L477.9,446.2 L480.4,450.0 L482.7,449.7 L486.4,445.0 L489.0,445.0 L494.6,448.5 L504.0,439.8 L507.7,438.0 L512.2,438.4 L514.8,433.4 L517.9,432.7 L523.1,428.0 L525.7,431.5 L531.2,431.7 L534.9,429.4 L544.0,430.7 L549.6,424.8 L558.8,421.6 L562.6,414.3 L561.9,406.9 L564.5,402.6 L560.9,397.9 L561.0,390.9 L565.4,387.1 L564.1,379.8 L567.5,374.6 L578.8,367.4 L579.2,363.9 L576.3,354.8 L576.1,341.0 L579.9,340.2 L580.1,332.9 L576.1,327.5 L578.5,319.0 L596.9,317.4 L600.6,311.2 L607.5,311.1 L611.3,312.2 L618.9,312.0 L629.9,315.8 L627.4,320.8 L622.0,320.9 L624.5,326.5 L630.1,331.9 L628.9,337.5 L632.4,345.7 L630.9,354.6 L638.0,359.9 L641.5,358.4 L644.9,353.6 L641.2,338.5 L644.9,336.3 L650.1,338.3 L652.6,341.6 L656.0,351.2 L662.2,357.0 L664.3,365.5 L671.4,368.0 L674.2,370.5 L678.4,377.7 L678.4,381.5 L676.3,385.9 L677.4,392.8 L681.0,398.7 L684.6,400.6 L686.1,404.2 L680.2,408.6 L674.4,416.0 L678.7,420.5 L689.0,418.6 L689.4,427.2 L690.9,429.6 L704.6,433.4 L707.0,439.5 L711.7,441.3 L715.6,445.3 L718.5,445.6 L722.6,443.2 L729.6,444.7 L732.5,451.4 L740.6,453.8 L743.9,457.4 L746.4,465.4 Z"/><path class="region reg-rest" d="M839.2,354.6 L839.3,361.7 L831.7,368.2 L814.4,375.8 L807.8,384.8 L804.2,397.7 L803.8,417.6 L801.3,422.3 L797.6,426.1 L793.3,428.2 L786.3,427.9 L780.4,430.4 L777.3,443.2 L774.0,448.4 L765.5,449.0 L757.0,460.8 L746.4,465.4 L743.9,457.4 L740.6,453.8 L732.5,451.4 L729.6,444.7 L722.6,443.2 L718.5,445.6 L715.6,445.3 L711.7,441.3 L707.0,439.5 L704.6,433.4 L690.9,429.6 L689.4,427.2 L689.0,418.6 L678.7,420.5 L674.4,416.0 L680.2,408.6 L686.1,404.2 L684.6,400.6 L681.0,398.7 L677.4,392.8 L676.3,385.9 L678.4,381.5 L680.1,383.7 L682.1,381.9 L684.5,376.2 L694.4,375.4 L700.5,368.6 L702.0,365.6 L699.7,360.8 L700.2,354.1 L705.5,355.2 L708.8,357.8 L718.5,361.8 L721.4,361.0 L723.1,357.4 L729.2,353.7 L738.5,353.7 L741.3,350.2 L739.8,346.1 L745.5,344.2 L757.0,346.1 L760.4,344.4 L760.3,338.4 L765.5,331.0 L769.4,332.8 L773.7,332.7 L775.4,327.4 L781.2,327.2 L784.5,333.0 L786.5,333.6 L806.7,330.8 L812.9,334.1 L822.8,333.6 L825.7,335.0 L828.7,340.6 L832.7,343.9 L836.3,353.8 L839.2,354.6 Z"/><path class="region reg-rest" d="M775.4,327.4 L773.7,332.7 L769.4,332.8 L765.5,331.0 L760.3,338.4 L760.4,344.4 L757.0,346.1 L745.5,344.2 L739.8,346.1 L741.3,350.2 L738.5,353.7 L729.2,353.7 L723.1,357.4 L721.4,361.0 L718.5,361.8 L708.8,357.8 L705.5,355.2 L700.2,354.1 L699.7,360.8 L702.0,365.6 L700.5,368.6 L694.4,375.4 L684.5,376.2 L682.1,381.9 L680.1,383.7 L678.4,381.5 L678.4,377.7 L674.2,370.5 L671.4,368.0 L664.3,365.5 L662.2,357.0 L656.0,351.2 L652.6,341.6 L650.1,338.3 L644.9,336.3 L641.2,338.5 L644.9,353.6 L641.5,358.4 L638.0,359.9 L630.9,354.6 L632.4,345.7 L628.9,337.5 L630.1,331.9 L624.5,326.5 L622.0,320.9 L627.4,320.8 L631.2,314.4 L632.4,305.9 L636.3,301.7 L635.2,294.9 L630.5,290.5 L630.1,287.1 L621.6,271.9 L623.5,264.1 L623.1,253.9 L620.1,239.1 L630.5,230.6 L630.0,222.8 L637.5,199.4 L643.6,193.8 L648.3,194.4 L648.9,190.7 L651.5,191.2 L655.1,194.9 L655.6,190.6 L653.8,188.4 L652.1,180.0 L644.0,173.4 L640.1,161.7 L635.8,155.8 L635.8,153.0 L639.2,150.8 L642.1,151.0 L647.7,154.3 L650.6,153.8 L663.8,157.1 L668.3,160.4 L675.6,160.2 L680.3,169.0 L688.0,172.4 L694.0,172.1 L696.3,176.6 L696.5,181.7 L699.3,185.0 L700.5,181.3 L703.4,180.9 L705.8,192.7 L704.8,195.7 L701.6,197.8 L698.9,196.7 L694.8,202.1 L684.6,208.2 L682.0,212.9 L680.0,220.7 L681.1,229.3 L673.8,240.3 L673.0,244.6 L677.7,251.9 L674.2,256.9 L673.2,266.3 L676.0,269.3 L681.6,269.8 L683.7,273.9 L694.9,279.2 L701.3,277.2 L711.6,287.7 L720.1,288.7 L724.4,285.9 L729.2,289.0 L737.2,287.4 L741.0,289.0 L744.9,293.2 L745.1,302.2 L752.1,302.0 L756.3,310.2 L761.4,312.8 L766.4,317.4 L768.0,323.1 L771.7,323.9 L775.4,327.4 Z"/><path class="region reg-rest" d="M629.9,315.8 L618.9,312.0 L600.6,311.2 L596.9,317.4 L578.5,319.0 L564.5,312.3 L561.6,308.2 L554.9,303.7 L548.4,301.0 L542.3,301.3 L536.7,296.7 L526.5,293.0 L524.6,296.4 L517.5,300.9 L509.0,299.6 L506.9,295.5 L499.6,289.8 L495.5,283.9 L492.1,283.1 L483.9,278.0 L474.1,278.8 L466.0,268.5 L460.4,264.9 L463.1,249.9 L461.6,247.5 L457.0,245.1 L452.4,240.6 L444.0,236.7 L441.6,233.4 L448.3,230.6 L448.3,221.6 L450.5,219.5 L458.6,222.1 L466.3,214.7 L470.8,213.3 L475.8,215.7 L481.6,214.5 L487.5,218.2 L490.0,217.4 L493.0,209.7 L499.3,207.8 L501.7,213.8 L505.0,216.9 L513.0,208.8 L519.6,208.0 L523.2,209.0 L526.4,218.5 L533.8,219.8 L536.8,224.3 L550.7,234.6 L554.6,232.3 L566.0,231.1 L569.1,228.4 L571.4,223.3 L584.6,216.7 L587.5,208.6 L601.1,212.7 L611.1,219.4 L616.3,218.9 L622.9,211.2 L628.0,202.7 L630.8,200.2 L637.5,199.4 L630.0,222.8 L630.5,230.6 L620.1,239.1 L623.1,253.9 L623.5,264.1 L621.6,271.9 L630.1,287.1 L630.5,290.5 L635.2,294.9 L636.3,301.7 L632.4,305.9 L631.2,314.4 L629.9,315.8 Z"/><path class="region reg-rest" d="M78.7,254.0 L70.9,248.5 L71.9,240.7 L69.8,238.6 L65.1,237.9 L43.9,224.8 L42.4,217.6 L36.8,212.9 L35.8,209.9 L36.7,199.4 L31.4,191.2 L25.2,186.9 L24.0,184.5 L27.9,180.5 L27.9,175.0 L24.2,170.0 L33.5,171.1 L35.8,172.9 L36.8,179.8 L43.7,182.0 L43.5,187.3 L46.7,191.7 L49.5,201.5 L53.5,200.7 L52.6,194.3 L57.0,182.6 L61.0,178.6 L65.3,171.5 L74.6,165.8 L75.5,161.1 L80.1,157.4 L85.3,156.0 L94.9,155.6 L101.6,157.1 L104.8,155.6 L107.7,151.3 L111.5,149.0 L120.7,148.1 L132.3,155.6 L137.7,155.0 L144.0,160.0 L152.3,161.2 L157.0,166.9 L169.5,170.1 L171.0,172.3 L171.3,194.0 L176.3,205.8 L172.9,211.1 L178.3,216.1 L175.5,219.8 L176.2,225.6 L168.7,227.1 L167.9,230.5 L169.3,236.5 L164.5,237.4 L160.0,232.1 L151.1,230.1 L146.4,234.0 L134.3,240.2 L131.1,250.1 L129.7,251.0 L124.2,248.6 L119.5,251.1 L115.3,247.8 L105.3,247.2 L100.4,252.2 L90.5,251.3 L84.8,255.4 L78.7,254.0 Z"/><path class="region reg-rest" d="M473.3,446.3 L469.5,459.1 L459.9,452.4 L441.9,444.8 L435.8,444.7 L432.4,443.3 L429.1,449.7 L416.5,452.4 L417.4,446.8 L415.9,441.3 L395.5,438.3 L393.2,445.5 L393.7,462.8 L389.7,479.3 L391.4,483.7 L389.8,487.2 L387.2,487.5 L380.4,484.7 L371.5,484.4 L368.2,494.9 L361.2,501.0 L358.7,505.1 L357.5,521.7 L352.7,524.2 L349.5,519.1 L345.2,518.7 L342.1,515.4 L334.6,517.4 L329.3,514.6 L326.2,510.9 L324.3,512.1 L321.2,520.0 L319.1,522.1 L307.2,527.7 L294.1,522.9 L275.4,520.7 L270.9,518.7 L266.4,510.9 L270.0,508.0 L263.4,497.6 L246.9,486.8 L241.6,485.3 L239.1,482.6 L229.9,465.0 L220.7,461.8 L216.6,456.4 L215.0,449.0 L212.5,449.2 L203.7,444.2 L206.5,436.2 L213.6,426.6 L213.3,420.5 L215.7,413.3 L220.9,411.0 L225.8,402.9 L230.3,399.1 L227.4,395.1 L229.1,391.0 L228.7,385.8 L232.9,382.7 L239.0,370.1 L238.1,361.0 L239.4,351.5 L236.0,340.9 L243.6,336.5 L257.1,340.6 L267.4,336.5 L269.5,332.1 L273.8,330.7 L276.6,332.7 L285.0,333.9 L292.5,333.0 L297.5,329.6 L302.2,328.8 L310.8,336.0 L319.3,332.6 L328.3,334.3 L342.7,333.8 L344.4,336.1 L350.3,336.1 L355.4,332.2 L360.4,330.9 L363.1,328.2 L363.6,321.8 L368.1,317.4 L374.6,321.4 L375.9,324.6 L382.8,325.9 L385.8,330.8 L387.8,331.2 L390.6,335.0 L389.2,337.6 L383.5,340.2 L385.4,347.1 L385.7,354.1 L382.8,364.9 L386.6,372.8 L387.5,379.9 L394.8,386.0 L401.7,383.5 L419.3,398.0 L424.8,393.4 L433.7,397.8 L441.2,399.0 L444.2,408.9 L450.4,414.7 L462.4,415.7 L468.9,413.9 L476.2,422.3 L470.2,424.1 L468.4,429.8 L463.6,435.7 L463.4,439.4 L466.8,442.9 L471.3,443.7 L473.3,446.3 Z"/><path class="region reg-rest" d="M578.5,319.0 L576.1,327.5 L580.1,332.9 L579.9,340.2 L576.1,341.0 L576.3,354.8 L579.2,363.9 L578.8,367.4 L567.5,374.6 L564.1,379.8 L565.4,387.1 L561.0,390.9 L560.9,397.9 L564.5,402.6 L561.9,406.9 L562.6,414.3 L558.8,421.6 L549.6,424.8 L544.0,430.7 L534.9,429.4 L531.2,431.7 L525.7,431.5 L523.1,428.0 L517.9,432.7 L514.8,433.4 L512.2,438.4 L507.7,438.0 L504.0,439.8 L494.6,448.5 L489.0,445.0 L486.4,445.0 L482.7,449.7 L480.4,450.0 L477.9,446.2 L473.3,446.3 L471.3,443.7 L466.8,442.9 L463.4,439.4 L463.6,435.7 L468.4,429.8 L470.2,424.1 L476.2,422.3 L468.9,413.9 L462.4,415.7 L450.4,414.7 L444.2,408.9 L441.2,399.0 L433.7,397.8 L424.8,393.4 L419.3,398.0 L401.7,383.5 L394.8,386.0 L387.5,379.9 L386.6,372.8 L382.8,364.9 L385.7,354.1 L385.4,347.1 L383.5,340.2 L389.2,337.6 L390.6,335.0 L387.8,331.2 L392.3,325.7 L394.8,324.4 L395.5,320.5 L402.4,322.6 L418.2,322.0 L428.4,317.1 L428.7,314.6 L426.3,308.8 L420.5,304.5 L420.6,300.2 L424.6,295.3 L426.0,291.3 L428.8,289.8 L432.2,290.9 L442.0,286.0 L447.4,281.4 L454.2,280.3 L456.0,273.9 L459.8,270.2 L460.4,264.9 L466.0,268.5 L474.1,278.8 L483.9,278.0 L492.1,283.1 L495.5,283.9 L499.6,289.8 L506.9,295.5 L509.0,299.6 L517.5,300.9 L524.6,296.4 L526.5,293.0 L536.7,296.7 L542.3,301.3 L548.4,301.0 L554.9,303.7 L561.6,308.2 L564.5,312.3 L578.5,319.0 Z"/><path class="region reg-home" d="M450.5,219.5 L448.3,221.6 L448.3,230.6 L441.6,233.4 L444.0,236.7 L452.4,240.6 L457.0,245.1 L461.6,247.5 L463.1,249.9 L459.8,270.2 L456.0,273.9 L454.2,280.3 L447.4,281.4 L442.0,286.0 L432.2,290.9 L428.8,289.8 L426.0,291.3 L424.6,295.3 L420.6,300.2 L420.5,304.5 L426.3,308.8 L428.7,314.6 L428.4,317.1 L418.2,322.0 L402.4,322.6 L395.5,320.5 L394.8,324.4 L392.3,325.7 L387.8,331.2 L385.8,330.8 L382.8,325.9 L375.9,324.6 L374.6,321.4 L368.1,317.4 L363.6,321.8 L363.1,328.2 L360.4,330.9 L355.4,332.2 L350.3,336.1 L344.4,336.1 L342.7,333.8 L328.3,334.3 L319.3,332.6 L310.8,336.0 L302.2,328.8 L297.5,329.6 L292.5,333.0 L285.0,333.9 L276.6,332.7 L273.8,330.7 L269.5,332.1 L267.4,336.5 L257.1,340.6 L243.6,336.5 L236.0,340.9 L237.2,331.6 L234.4,326.5 L234.5,319.5 L229.9,314.4 L230.6,309.8 L228.6,307.4 L230.5,304.9 L228.1,302.2 L230.7,298.9 L237.6,296.5 L242.9,291.5 L240.4,287.5 L242.0,280.9 L241.6,276.6 L244.2,266.8 L247.4,266.0 L244.8,254.2 L238.0,250.6 L236.3,247.7 L232.1,246.3 L227.2,241.3 L222.3,239.2 L213.0,238.6 L206.9,232.5 L200.9,230.1 L194.1,231.9 L193.0,230.1 L194.5,224.7 L193.1,220.7 L205.6,211.2 L209.3,204.7 L218.4,201.0 L226.5,195.3 L234.1,195.3 L246.4,189.1 L250.2,190.5 L262.6,182.0 L267.6,181.2 L269.6,173.6 L277.5,172.7 L286.2,174.8 L296.3,173.2 L300.4,174.8 L306.8,171.1 L314.7,170.2 L317.3,165.5 L316.5,154.3 L320.5,155.5 L328.0,150.3 L329.3,143.4 L331.0,141.3 L343.9,141.6 L345.4,145.7 L360.2,142.7 L375.8,133.0 L386.3,120.1 L391.7,119.8 L399.2,121.9 L402.5,125.5 L407.5,125.2 L410.0,133.4 L414.5,137.5 L413.4,141.6 L415.2,147.7 L416.3,159.3 L413.7,164.0 L413.5,171.8 L419.9,174.5 L422.5,177.6 L423.8,182.5 L434.1,183.9 L439.3,183.2 L442.2,184.6 L446.8,203.5 L443.6,209.5 L448.6,214.4 L450.5,219.5 Z M350.9,216.9 L345.2,213.7 L340.1,207.5 L337.2,206.4 L330.8,207.1 L314.0,211.9 L311.2,217.2 L305.9,215.7 L299.7,217.9 L296.8,220.5 L301.0,224.7 L300.2,228.0 L309.6,242.5 L309.9,248.5 L312.4,249.7 L332.9,244.2 L337.7,240.5 L352.4,240.2 L353.4,238.3 L352.3,229.0 L357.0,224.1 L355.8,220.2 L350.9,216.9 Z"/><path class="region reg-rest" d="M414.5,137.5 L410.0,133.4 L407.5,125.2 L402.5,125.5 L399.2,121.9 L391.7,119.8 L386.3,120.1 L375.8,133.0 L360.2,142.7 L345.4,145.7 L343.9,141.6 L331.0,141.3 L330.0,136.7 L321.0,129.2 L314.1,106.7 L319.4,96.2 L322.8,92.9 L323.3,89.2 L326.2,85.1 L327.6,76.9 L329.7,76.1 L336.3,83.0 L339.4,82.3 L341.8,74.5 L346.5,73.1 L348.4,69.9 L359.9,77.4 L364.7,78.4 L369.4,77.9 L373.9,68.9 L381.2,67.7 L395.5,68.8 L397.4,48.8 L392.9,42.1 L397.4,39.1 L398.4,36.5 L400.8,38.7 L407.1,40.1 L411.5,44.4 L414.4,39.5 L417.5,39.1 L419.3,45.0 L426.5,45.1 L429.9,46.8 L431.9,50.0 L429.8,57.7 L431.4,64.1 L434.2,69.6 L441.0,74.1 L442.5,77.9 L442.1,83.7 L444.7,85.9 L448.5,80.8 L453.7,80.4 L463.9,83.9 L470.0,98.1 L469.2,105.2 L470.4,112.4 L472.5,115.4 L472.5,126.0 L477.0,135.9 L476.6,140.8 L475.0,141.6 L465.2,140.0 L461.1,136.1 L455.6,136.8 L454.1,144.9 L451.7,148.2 L447.9,146.1 L441.6,139.2 L436.1,136.9 L433.4,137.5 L427.9,143.7 L425.5,143.5 L418.4,137.5 L414.5,137.5 Z"/><path class="region reg-rest" d="M450.5,219.5 L448.6,214.4 L443.6,209.5 L446.8,203.5 L442.2,184.6 L439.3,183.2 L434.1,183.9 L423.8,182.5 L422.5,177.6 L419.9,174.5 L413.5,171.8 L413.7,164.0 L416.3,159.3 L415.2,147.7 L413.4,141.6 L414.5,137.5 L418.4,137.5 L425.5,143.5 L427.9,143.7 L433.4,137.5 L436.1,136.9 L441.6,139.2 L447.9,146.1 L451.7,148.2 L454.1,144.9 L455.6,136.8 L461.1,136.1 L465.2,140.0 L475.0,141.6 L476.6,140.8 L477.0,135.9 L472.5,126.0 L472.5,115.4 L470.4,112.4 L469.2,105.2 L470.0,98.1 L463.9,83.9 L479.1,89.1 L484.6,93.9 L498.2,91.5 L505.4,104.9 L509.7,105.0 L517.2,102.1 L521.1,104.0 L523.9,109.8 L524.4,115.0 L522.6,119.0 L528.0,117.9 L535.8,110.1 L541.1,110.6 L547.1,114.5 L550.8,112.0 L552.6,107.4 L558.8,107.1 L566.9,110.2 L577.9,121.5 L579.2,125.3 L575.2,126.9 L575.7,129.1 L573.8,136.0 L570.1,140.4 L563.8,139.8 L552.3,149.0 L549.6,154.4 L550.9,158.0 L555.1,158.6 L556.8,163.7 L559.1,166.2 L562.4,164.6 L568.2,164.6 L570.3,166.7 L570.7,172.1 L573.1,175.1 L581.7,179.0 L590.5,192.8 L594.5,196.8 L597.6,207.3 L601.1,212.7 L587.5,208.6 L584.6,216.7 L571.4,223.3 L569.1,228.4 L566.0,231.1 L554.6,232.3 L550.7,234.6 L536.8,224.3 L533.8,219.8 L526.4,218.5 L523.2,209.0 L519.6,208.0 L513.0,208.8 L505.0,216.9 L501.7,213.8 L499.3,207.8 L493.0,209.7 L490.0,217.4 L487.5,218.2 L481.6,214.5 L475.8,215.7 L470.8,213.3 L466.3,214.7 L458.6,222.1 L450.5,219.5 Z"/><path class="region reg-rest" d="M775.4,327.4 L771.7,323.9 L768.0,323.1 L766.4,317.4 L761.4,312.8 L756.3,310.2 L752.1,302.0 L745.1,302.2 L744.9,293.2 L741.0,289.0 L737.2,287.4 L729.2,289.0 L724.4,285.9 L720.1,288.7 L711.6,287.7 L701.3,277.2 L694.9,279.2 L683.7,273.9 L681.6,269.8 L676.0,269.3 L673.2,266.3 L674.2,256.9 L677.7,251.9 L673.0,244.6 L673.8,240.3 L681.1,229.3 L680.0,220.7 L682.0,212.9 L684.6,208.2 L694.8,202.1 L698.9,196.7 L701.6,197.8 L704.8,195.7 L705.8,192.7 L703.4,180.9 L706.2,183.1 L707.5,186.8 L710.2,186.7 L713.8,182.1 L719.9,181.3 L731.4,182.9 L736.5,180.1 L741.0,171.7 L744.0,171.9 L747.6,176.0 L746.2,185.4 L749.7,190.3 L748.7,193.5 L740.8,199.3 L729.9,201.9 L729.3,205.5 L735.8,213.1 L741.6,212.6 L748.7,214.9 L747.2,217.8 L750.3,221.7 L753.2,228.7 L763.4,238.6 L768.1,239.5 L772.7,237.8 L776.3,234.3 L783.8,233.2 L788.6,230.9 L787.3,227.6 L784.5,227.7 L783.8,223.2 L787.7,224.0 L795.5,228.6 L794.8,232.4 L796.6,234.2 L804.9,235.4 L811.1,239.8 L817.2,241.9 L819.6,247.4 L822.2,249.3 L831.9,244.1 L846.7,250.5 L849.8,250.3 L854.7,246.8 L856.6,247.9 L858.1,257.0 L861.6,258.7 L858.3,262.9 L858.6,268.3 L864.5,280.4 L866.0,286.1 L868.8,288.7 L874.6,289.3 L880.7,294.4 L886.6,292.7 L889.2,295.6 L895.8,317.9 L896.0,325.4 L888.3,326.8 L883.2,332.0 L879.6,332.4 L871.4,329.5 L866.0,331.7 L860.2,331.2 L857.6,332.9 L855.3,341.3 L851.1,343.8 L843.0,352.9 L839.2,352.2 L839.2,354.6 L836.3,353.8 L832.7,343.9 L828.7,340.6 L825.7,335.0 L822.8,333.6 L812.9,334.1 L806.7,330.8 L786.5,333.6 L784.5,333.0 L781.2,327.2 L775.4,327.4 Z"/><path class="region reg-rest" d="M178.3,216.1 L172.9,211.1 L176.3,205.8 L171.3,194.0 L171.0,172.3 L169.5,170.1 L157.0,166.9 L152.3,161.2 L144.0,160.0 L137.7,155.0 L142.4,150.2 L144.4,138.5 L146.6,137.6 L152.0,139.1 L156.8,137.6 L163.6,138.2 L168.7,132.6 L173.2,121.4 L179.8,124.2 L182.5,122.9 L184.7,117.6 L192.2,113.2 L195.4,118.1 L200.7,119.0 L207.2,112.8 L206.6,109.9 L210.5,106.2 L209.7,100.4 L214.9,97.4 L232.0,96.7 L239.3,94.5 L250.2,94.6 L256.3,90.9 L255.9,86.8 L257.6,83.5 L261.6,83.6 L266.2,79.2 L275.8,79.3 L295.6,70.4 L300.9,64.3 L305.5,63.3 L315.3,64.2 L319.0,61.1 L319.8,56.1 L311.9,52.8 L308.7,49.5 L310.1,46.2 L301.8,43.7 L305.1,35.9 L308.2,32.8 L312.2,32.3 L316.9,33.9 L322.0,37.7 L325.5,36.2 L330.1,36.4 L332.7,33.0 L334.1,37.1 L340.2,40.7 L344.2,45.4 L344.3,50.3 L341.1,58.1 L342.5,59.2 L349.5,56.3 L351.7,58.6 L348.4,69.9 L346.5,73.1 L341.8,74.5 L339.4,82.3 L336.3,83.0 L329.7,76.1 L327.6,76.9 L326.2,85.1 L323.3,89.2 L322.8,92.9 L319.4,96.2 L314.1,106.7 L321.0,129.2 L330.0,136.7 L331.0,141.3 L329.3,143.4 L328.0,150.3 L320.5,155.5 L316.5,154.3 L317.3,165.5 L314.7,170.2 L306.8,171.1 L300.4,174.8 L296.3,173.2 L286.2,174.8 L277.5,172.7 L269.6,173.6 L267.6,181.2 L262.6,182.0 L250.2,190.5 L246.4,189.1 L234.1,195.3 L226.5,195.3 L218.4,201.0 L209.3,204.7 L205.6,211.2 L193.1,220.7 L188.5,222.5 L181.6,220.3 L178.3,216.1 Z"/><path class="region reg-rest" d="M178.3,216.1 L181.6,220.3 L188.5,222.5 L193.1,220.7 L194.5,224.7 L193.0,230.1 L194.1,231.9 L200.9,230.1 L206.9,232.5 L213.0,238.6 L222.3,239.2 L227.2,241.3 L232.1,246.3 L236.3,247.7 L238.0,250.6 L244.8,254.2 L247.4,266.0 L244.2,266.8 L241.6,276.6 L242.0,280.9 L240.4,287.5 L242.9,291.5 L237.6,296.5 L230.7,298.9 L228.1,302.2 L230.5,304.9 L228.6,307.4 L230.6,309.8 L229.9,314.4 L234.5,319.5 L234.4,326.5 L237.2,331.6 L236.0,340.9 L239.4,351.5 L238.1,361.0 L239.0,370.1 L232.9,382.7 L228.7,385.8 L229.1,391.0 L227.4,395.1 L230.3,399.1 L225.8,402.9 L220.9,411.0 L215.7,413.3 L213.3,420.5 L213.6,426.6 L206.5,436.2 L203.7,444.2 L201.1,444.7 L198.3,450.3 L191.2,445.8 L185.6,439.0 L185.7,433.4 L184.3,429.9 L174.9,418.7 L170.8,416.2 L162.9,415.6 L159.3,413.4 L155.6,406.1 L143.7,389.1 L138.1,383.0 L136.8,377.5 L127.0,369.7 L122.0,368.3 L120.7,371.3 L110.6,370.3 L106.0,367.1 L102.0,357.4 L91.1,349.4 L89.2,343.2 L88.9,333.2 L85.2,332.1 L81.3,324.8 L80.4,318.1 L78.2,314.3 L73.9,310.8 L74.6,305.6 L73.5,300.8 L63.8,294.3 L59.4,285.7 L61.0,282.8 L68.6,278.7 L70.2,268.5 L72.8,269.3 L77.0,260.8 L78.7,254.0 L84.8,255.4 L90.5,251.3 L100.4,252.2 L105.3,247.2 L115.3,247.8 L119.5,251.1 L124.2,248.6 L129.7,251.0 L131.1,250.1 L134.3,240.2 L146.4,234.0 L151.1,230.1 L160.0,232.1 L164.5,237.4 L169.3,236.5 L167.9,230.5 L168.7,227.1 L176.2,225.6 L175.5,219.8 L178.3,216.1 Z"/></g><g class="spiders"><line class="spider" x1="324.1" y1="225.7" x2="124.5" y2="196.1"/><line class="spider" x1="324.1" y1="225.7" x2="190.2" y2="290.9"/><line class="spider" x1="324.1" y1="225.7" x2="275.2" y2="111.2"/><line class="spider" x1="324.1" y1="225.7" x2="406.5" y2="89.5"/><line class="spider" x1="324.1" y1="225.7" x2="505.7" y2="200.1"/><line class="spider" x1="324.1" y1="225.7" x2="606.2" y2="399.4"/><line class="spider" x1="324.1" y1="225.7" x2="688.6" y2="322.4"/><line class="spider" x1="324.1" y1="225.7" x2="822.6" y2="273.1"/><line class="spider" x1="324.1" y1="225.7" x2="330.6" y2="444.8"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="225.0" y2="70.0"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="30.0" y2="318.0"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="33.0" y2="520.0"/><line class="spider spider-foreign" x1="324.1" y1="225.7" x2="470.0" y2="535.0"/></g><g class="cities"><g class="city"><circle cx="124.5" cy="196.1" r="4.5"/><text x="124.5" y="187.1" style="text-anchor:middle">Karlovy Vary</text></g><g class="city"><circle cx="190.2" cy="290.9" r="4.5"/><text x="190.2" y="281.9" style="text-anchor:middle">Plzeň</text></g><g class="city"><circle cx="275.2" cy="111.2" r="4.5"/><text x="275.2" y="102.2" style="text-anchor:middle">Ústí n.L.</text></g><g class="city"><circle cx="406.5" cy="89.5" r="4.5"/><text x="406.5" y="80.5" style="text-anchor:middle">Liberec</text></g><g class="city"><circle cx="505.7" cy="200.1" r="4.5"/><text x="505.7" y="191.1" style="text-anchor:middle">Hradec Kr.</text></g><g class="city"><circle cx="606.2" cy="399.4" r="4.5"/><text x="606.2" y="390.4" style="text-anchor:middle">Brno</text></g><g class="city"><circle cx="688.6" cy="322.4" r="4.5"/><text x="688.6" y="313.4" style="text-anchor:middle">Olomouc</text></g><g class="city"><circle cx="822.6" cy="273.1" r="4.5"/><text x="822.6" y="264.1" style="text-anchor:middle">Ostrava</text></g><g class="city"><circle cx="330.6" cy="444.8" r="4.5"/><text x="330.6" y="435.8" style="text-anchor:middle">Č. Budějovice</text></g><g class="city city-foreign"><circle cx="225.0" cy="70.0" r="4"/><text x="225.0" y="61.0" style="text-anchor:middle">Drážďany</text></g><g class="city city-foreign"><circle cx="30.0" cy="318.0" r="4"/><text x="38.0" y="309.0" style="text-anchor:start">Norimberk</text></g><g class="city city-foreign"><circle cx="33.0" cy="520.0" r="4"/><text x="41.0" y="511.0" style="text-anchor:start">Mnichov</text></g><g class="city city-foreign"><circle cx="470.0" cy="535.0" r="4"/><text x="470.0" y="526.0" style="text-anchor:middle">Vídeň</text></g></g><g class="praha-marker"><circle class="pulse" cx="324.1" cy="225.7" r="9"/><circle cx="324.1" cy="225.7" r="6.5"/><text x="324.1" y="212.7">Praha</text></g></svg>        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="repertoire">
+  <div class="wrap">
+    <div class="tile-dark" style="padding:clamp(34px,5vw,64px) clamp(20px,4vw,52px)">
+      <div class="rep-head">
+        <div>
+          <span class="eyebrow on-dark">Repertoire-Auszug</span>
+          <h2 class="section-title" style="margin-bottom:0;color:#fff">Was Sie hören werden</h2>
+        </div>
+      </div>
+      <div class="cats" id="cats"></div>
+      <div class="rep-player">
+        <button type="button" class="rep-arrow" id="repPrev" aria-label="Vorherige Songs">‹</button>
+        <div class="songs-viewport"><div class="songs auto" id="songs"></div></div>
+        <button type="button" class="rep-arrow" id="repNext" aria-label="Nächste Songs">›</button>
+      </div>
+      <p class="rep-hint" style="display:none"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="reviews">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Referenzen</span>
+      <h2 class="section-title">Was Veranstalter sagen</h2>
+      <p class="section-lead">Stimmen von Menschen, für die wir gespielt haben.</p>
+    </div>
+    <div class="rev-slider">
+      <button type="button" class="rev-arrow prev" id="revPrev" aria-label="Předchozí recenze">‹</button>
+      <div class="rev-viewport"><div class="rev-track" id="revTrack"></div></div>
+      <button type="button" class="rev-arrow next" id="revNext" aria-label="Další recenze">›</button>
+    </div>
+    <div class="rev-dots" id="revDots"></div>
+    <p class="rev-verify"><a href="https://www.budemesvoji.cz/listing/david-klenha/#recenze" target="_blank" rel="noopener">Bewertungen prüfen auf budemesvoji.cz</a></p>
+  </div>
+</section>
+
+<section class="section reveal" id="koncerty">
+  <div class="wrap">
+    <div class="concerts-tile tilt-3d">
+      <div class="dots"></div>
+      <div class="concerts-inner">
+        <div>
+          <span class="eyebrow">Live</span>
+          <h2 class="section-title">Hören Sie uns live</h2>
+          <p class="section-lead">Am besten überzeugen Sie sich live von uns. Unsere öffentlichen Konzerttermine halten wir aktuell — schauen Sie, wann wir in Ihrer Nähe spielen.</p>
+          <a href="https://www.davidklenha.cz/en/#concerts" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:22px">Konzerttermine ansehen</a>
+        </div>
+        <div class="concerts-art" aria-hidden="true">
+          <div class="ticket">
+            <span class="ticket-top">JAZZ&nbsp;LIVE</span>
+            <span class="ticket-big">♪</span>
+            <span class="ticket-bot">David Kleňha &amp; band</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1239,23 +1213,6 @@ main{position:relative;z-index:2}
   </div>
 </div>
 
-<!-- UPGRADE: modal "Více o Davidu Kleňhovi" -->
-<div class="toast-overlay about-modal" id="aboutModal" aria-hidden="true">
-  <div class="about-card" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
-    <div class="about-vinyl" aria-hidden="true"></div>
-    <button type="button" class="about-close" id="aboutClose" aria-label="Zavřít">&times;</button>
-    <div class="about-card-inner">
-      <span class="eyebrow">Unser Sänger</span>
-      <h3 id="aboutTitle">David Kleňha</h3>
-      <p>David ist ein junger <strong>Jazzsänger</strong>, der den Jazz der jüngeren Generation näherbringt und beweist, dass auch junge Leute swingen können. Er tritt regelmäßig auf Theaterbühnen und in Clubs auf und leitet die Band als Sänger und Bandleader.</p>
-      <p>Er stand auf Prager Theaterbühnen und in legendären Clubs wie dem <strong>Reduta Jazz Club</strong> — wiederholt unter den TOP&nbsp;10 Jazzclubs der Welt. Sein Repertoire baut auf Evergreens von Sinatra, Nat King Cole und französischem Chanson, scheut aber auch Pop-Hits nicht.</p>
-      <p>Mit der Band bietet er <strong>Musik für Hochzeiten</strong>, Bälle und Firmenfeiern in Tschechien, Deutschland und Österreich — immer live, mit persönlicher Note und dem Wunsch, die Gäste zu unterhalten, statt sich in Szene zu setzen.</p>
-      <div class="about-card-cta">
-        <a href="https://www.davidklenha.cz/" target="_blank" rel="noopener" class="btn btn-primary">David Kleňhas Website besuchen</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- UPGRADE: modal s YouTube videoukázkou -->
 <div class="vid-modal" id="vidModal" aria-hidden="true">
@@ -1539,18 +1496,6 @@ main{position:relative;z-index:2}
     });
   })();
 
-  /* ---- 8. Modal "Více o Davidu Kleňhovi" ---- */
-  (function(){
-    var modal=$('aboutModal'),openBtn=$('aboutMoreBtn'),closeBtn=$('aboutClose');
-    if(!modal||!openBtn)return;
-    function open(){modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
-    function close(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
-    openBtn.addEventListener('click',open);
-    closeBtn.addEventListener('click',close);
-    modal.addEventListener('click',function(e){if(e.target===modal)close();});
-    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))close();});
-  })();
-
   /* ---- circular equalizer (from Efekt.html) ---- */
   (function(){
     var host=$('ceqHost');if(!host)return;
@@ -1790,14 +1735,14 @@ main{position:relative;z-index:2}
   /* ---- gallery (reálné fotky z /foto/, plynulá smyčka + klikací lightbox) ---- */
   (function(){
     var GAL_OPEN='Foto {n} von {total} in großer Ansicht öffnen';
-    var GAL_ALTS=["Jazz-Duo David Kleňha — Sänger, Bandleader und Musiker in festlicher Kleidung vor dem Auftritt", "Jazz-Duo David Kleňha bei einem Live-Auftritt auf der Bühne im Abendlicht", "Jazz-Duo David Kleňha singt ins Mikrofon, Pianist und Kontrabassist auf der Terrasse einer historischen Villa", "Jazz-Duo David Kleňha mit Gitarrist und Kontrabassist nach einem Open-Air-Abendkonzert", "Jazz-Duo David Kleňha mit Kontrabassist und Pianist in einem Saal mit historischem Spiegel", "Jazz-Duo David Kleňha mit Kontrabassist und Pianist im Klubambiente am Klavier", "Jazz-Duo David Kleňha mit Gitarrist und Kontrabassist beim Auftritt in einer Bibliothek", "Jazz-Duo David Kleňha mit Gitarrist und Kontrabassist auf einer weihnachtlich geschmückten Bühne", "Jazz-Duo David Kleňha mit Gitarrist und Bassist bei einer Gesellschaftsveranstaltung im Saal"];
+    var GAL_ALTS=["Jazz-Duo David Kleňha — Live-Musik bei einer Gesellschaftsveranstaltung", "David Kleňha bei einem Live-Auftritt mit seiner Band", "Kammermusikalischer Live-Jazz — David Kleňha mit seinen Musikern", "Jazz-Duo David Kleňha als musikalische Untermalung zum Dinner", "David Kleňha — Sänger und Bandleader live mit Band", "Live-Jazzmusik von David Kleňha bei einer Veranstaltung im kleinen Rahmen", "Jazz-Auftritt von David Kleňha mit Begleitband"];
     var GBASE='https://jazzduo.cz/foto/';
-    var files=['foto_1.webp','foto_2.webp','foto_3.webp','foto_4.webp','foto_5.webp','foto_6.webp','foto_7.webp','foto_8.webp','foto_9.webp'];
+    var files=['foto_1.webp','foto_2.webp','foto_3.webp','foto_4.webp','foto_5.webp','foto_6.webp','foto_7.webp'];
     var track=$('galTrack');if(!track)return;
     function build(){files.forEach(function(f,i){
       var d=el('button');d.className='gal-item';d.type='button';d.setAttribute('aria-label',GAL_OPEN.replace('{n}',i+1).replace('{total}',files.length));
       d.setAttribute('data-idx',i);
-      d.innerHTML='<img src="'+GBASE+f+'" alt="'+(GAL_ALTS[i]||'')+'" width="880" height="1129" loading="lazy" decoding="async">';
+      d.innerHTML='<img src="'+GBASE+f+'" alt="'+(GAL_ALTS[i]||'')+'" width="600" height="800" loading="lazy" decoding="async">';
       d.addEventListener('click',function(){openLB(i);});
       track.appendChild(d);});}
     build();
