@@ -163,7 +163,7 @@ img{max-width:100%;display:block}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .skip-link{position:absolute;left:-9999px;top:0;z-index:10000;background:var(--emerald);color:#fff;padding:12px 18px;border-radius:0 0 10px 0;font-family:var(--font-body);font-weight:600;font-size:14px;text-decoration:none}
 .skip-link:focus{left:0}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+:focus-visible{outline:3px solid var(--petrol);outline-offset:2px;box-shadow:0 0 0 6px var(--gold);border-radius:4px}
 .hero-slogans{display:grid;overflow:hidden}
 .slogan{grid-area:1/1;opacity:1;transform:translateY(0);
   transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
@@ -757,75 +757,6 @@ main{position:relative;z-index:2}
 }
 </script>
 <script type="application/ld+json">
-[
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Cheek to Cheek — jazzové duo Davida Kleňhy (živě)",
-    "description": "Živá ukázka skladby Cheek to Cheek v podání jazzového dua Davida Kleňhy.",
-    "thumbnailUrl": "https://jazzduo.cz/video/1.webp",
-    "embedUrl": "https://www.youtube-nocookie.com/embed/0OWzK3Rk-cw",
-    "contentUrl": "https://www.youtube.com/watch?v=0OWzK3Rk-cw",
-    "publisher": {
-      "@type": "Person",
-      "@id": "https://www.davidklenha.cz/#david"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Sunny — jazzové duo Davida Kleňhy (živě)",
-    "description": "Živá ukázka skladby Sunny v podání jazzového dua Davida Kleňhy.",
-    "thumbnailUrl": "https://jazzduo.cz/video/2.webp",
-    "embedUrl": "https://www.youtube-nocookie.com/embed/P6iJJ6s5KaI",
-    "contentUrl": "https://www.youtube.com/watch?v=P6iJJ6s5KaI",
-    "publisher": {
-      "@type": "Person",
-      "@id": "https://www.davidklenha.cz/#david"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Sway — jazzové duo Davida Kleňhy (živě)",
-    "description": "Živá ukázka skladby Sway v podání jazzového dua Davida Kleňhy.",
-    "thumbnailUrl": "https://jazzduo.cz/video/3.webp",
-    "embedUrl": "https://www.youtube-nocookie.com/embed/rfCD0AcGA-A",
-    "contentUrl": "https://www.youtube.com/watch?v=rfCD0AcGA-A",
-    "publisher": {
-      "@type": "Person",
-      "@id": "https://www.davidklenha.cz/#david"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "Don’t Get Around Much Anymore — jazzové duo Davida Kleňhy (živě)",
-    "description": "Živá ukázka skladby Don’t Get Around Much Anymore v podání jazzového dua Davida Kleňhy.",
-    "thumbnailUrl": "https://jazzduo.cz/video/4.webp",
-    "embedUrl": "https://www.youtube-nocookie.com/embed/hAwyRm_FjOc",
-    "contentUrl": "https://www.youtube.com/watch?v=hAwyRm_FjOc",
-    "publisher": {
-      "@type": "Person",
-      "@id": "https://www.davidklenha.cz/#david"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": "\\u017Divot je jen n\\u00e1hoda — jazzové duo Davida Kleňhy (živě)",
-    "description": "Živá ukázka skladby \\u017Divot je jen n\\u00e1hoda v podání jazzového dua Davida Kleňhy.",
-    "thumbnailUrl": "https://jazzduo.cz/video/5.webp",
-    "embedUrl": "https://www.youtube-nocookie.com/embed/iF4ShjZouG0",
-    "contentUrl": "https://www.youtube.com/watch?v=iF4ShjZouG0",
-    "publisher": {
-      "@type": "Person",
-      "@id": "https://www.davidklenha.cz/#david"
-    }
-  }
-]
-</script>
-<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -917,8 +848,8 @@ main{position:relative;z-index:2}
       </div>
       <div class="hero-tags">
         <span class="tag">100% živě</span>
-        <span class="tag">Plná rytmika</span>
-        <span class="tag">Zvuk pro taneční parket</span>
+        <span class="tag">Komorní obsazení</span>
+        <span class="tag">Obřad, recepce a večeře</span>
       </div>
     </div>
     <div class="hero-art">
@@ -1941,14 +1872,16 @@ main{position:relative;z-index:2}
       lbImg.src=GBASE+files[cur];
       lbImg.alt='Jazzové duo David Kleňha živě — fotka '+(cur+1);
     }
-    function openLB(i){jtTrap(lb);
+    function openLB(i){
       if(!lb)return;
       show(i);
       lb.classList.add('show');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+      requestAnimationFrame(function(){jtTrap(lb);});
     }
-    function closeLB(){jtRelease(lb);
+    function closeLB(){
       if(!lb)return;
       lb.classList.remove('show');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';
+      jtRelease(lb);
       setTimeout(function(){lbImg.src='';},260);
     }
     function next(){show(cur+1);}
