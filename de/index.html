@@ -1850,14 +1850,16 @@ main{position:relative;z-index:2}
       lbImg.src=GBASE+files[cur];
       lbImg.alt='Jazz Duo David Kleňha live — Foto '+(cur+1);
     }
-    function openLB(i){jtTrap(lb);
+    function openLB(i){
       if(!lb)return;
       show(i);
       lb.classList.add('show');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+      requestAnimationFrame(function(){jtTrap(lb);});
     }
-    function closeLB(){jtRelease(lb);
+    function closeLB(){
       if(!lb)return;
       lb.classList.remove('show');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';
+      jtRelease(lb);
       setTimeout(function(){lbImg.src='';},260);
     }
     function next(){show(cur+1);}
