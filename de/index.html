@@ -696,7 +696,7 @@ main{position:relative;z-index:2}
 .about-lead a strong{color:var(--emerald)}
 /* galerie vlozena primo do sekce "Kdo jsme" */
 /* galerie navazuje rovnou na uvodni odstavec — stejna mezera nad i pod sliderem */
-#kdo-jsme{--gal-gap:clamp(52px,6.5vw,86px)}
+#kdo-jsme{--gal-gap:clamp(106px,12.5vw,176px)}
 #kdo-jsme .gal-slider{margin-top:var(--gal-gap);scroll-margin-top:96px}
 #kdo-jsme .intro-after{margin-top:var(--gal-gap)}
 .roll-arrow-link{display:inline-flex;margin-top:22px;color:var(--emerald);transition:color .2s}
@@ -1321,7 +1321,7 @@ main{position:relative;z-index:2}
     var loaded = new Promise(function(res){ if(document.readyState==='complete'){res();} else {window.addEventListener('load',res,{once:true});} });
     // Minimalni doba, po kterou intro zustane videt — i kdyz se web nacte bleskove,
     // divak stihne zaregistrovat animaci ekvalizeru. Nacitani bezi mezitim na pozadi.
-    var MIN_SHOW=1700, HARD_STOP=4200;
+    var MIN_SHOW=1200, HARD_STOP=4200;
     var minTime = new Promise(function(res){ setTimeout(res, MIN_SHOW); });
     Promise.all([fontsReady, loaded, minTime]).then(function(){ setTimeout(finish, 260); });
     setTimeout(finish, HARD_STOP); // tvrda pojistka, kdyby se fonty nedotahly

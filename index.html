@@ -695,7 +695,7 @@ main{position:relative;z-index:2}
 .about-lead a strong{color:var(--emerald)}
 /* galerie vlozena primo do sekce "Kdo jsme" */
 /* galerie navazuje rovnou na úvodní odstavec — stejná mezera nad i pod sliderem */
-#kdo-jsme{--gal-gap:clamp(52px,6.5vw,86px)}
+#kdo-jsme{--gal-gap:clamp(106px,12.5vw,176px)}
 #kdo-jsme .gal-slider{margin-top:var(--gal-gap);scroll-margin-top:96px}
 #kdo-jsme .intro-after{margin-top:var(--gal-gap)}
 .roll-arrow-link{display:inline-flex;margin-top:22px;color:var(--emerald);transition:color .2s}
@@ -1332,7 +1332,7 @@ main{position:relative;z-index:2}
     // FOUT fix: intro odhalíme až po načtení fontů (Unbounded), aby nedošlo k přebliku.
     // Minimální doba, po kterou intro zůstane vidět — i když se web načte bleskově,
     // divák stihne zaregistrovat animaci ekvalizéru. Načítání běží mezitím na pozadí.
-    var MIN_SHOW=1700, HARD_STOP=4200;
+    var MIN_SHOW=1200, HARD_STOP=4200;
     var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
     var loaded = new Promise(function(res){ if(document.readyState==='complete'){res();} else {window.addEventListener('load',res,{once:true});} });
     var minTime = new Promise(function(res){ setTimeout(res, MIN_SHOW); });
