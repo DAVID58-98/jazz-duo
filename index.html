@@ -634,7 +634,8 @@ main{position:relative;z-index:2}
 .vid-play svg{width:20px;height:20px;margin-left:3px;fill:#fff}
 .vid-blob:hover .vid-play,.vid-blob:focus-visible .vid-play{opacity:1}
 .vid-blob:hover .vid-photo{transform:scale(1.02);transition:transform .22s}
-.vid-name{font-family:var(--font-head);font-weight:600;color:var(--emerald);margin-top:10px;font-size:16px;text-align:center}
+.vid-name{font-family:var(--font-head);font-weight:600;color:var(--emerald);margin-top:10px;font-size:16px;text-align:center;line-height:1.25}
+.vid-place{font-size:12.5px;color:var(--ink-soft);margin-top:3px;text-align:center;letter-spacing:.01em}
 .vid-dots{display:flex;justify-content:center;gap:9px;margin-top:24px}
 .vid-dots button{width:9px;height:9px;border-radius:50%;border:none;padding:0;background:var(--cream-3);cursor:pointer;transition:background .2s}
 .vid-dots button.on{background:var(--gold)}
@@ -652,6 +653,12 @@ main{position:relative;z-index:2}
   box-shadow:0 30px 80px -20px rgba(0,0,0,.7);transform:scale(.96);transition:transform .25s}
 .vid-modal.show .vid-modal-box{transform:scale(1)}
 .vid-modal-box iframe{width:100%;height:100%;border:0;display:block}
+/* videa na výšku (YouTube Shorts) — šířka se dopočítá z dostupné výšky, ať se vejde celé */
+.vid-modal-box.portrait{aspect-ratio:9/16;height:auto;width:min(100%,460px,calc((100vh - 32px) * 0.5625))}
+@supports (height:100dvh){
+  .vid-modal-box.portrait{width:min(100%,460px,calc((100dvh - 32px) * 0.5625))}
+}
+.vid-modal.is-portrait{padding:12px}
 .vid-modal-close{position:fixed;top:18px;right:18px;z-index:2;width:44px;height:44px;border-radius:50%;border:none;
   background:var(--cream);color:var(--petrol);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s}
@@ -1378,16 +1385,19 @@ main{position:relative;z-index:2}
   (function(){
     var track=$('vidTrack');if(!track)return;
 
-    // pořadí videí: náhledová fotka (video/1..5), název skladby, YouTube ID
+    // pořadí videí: náhledová fotka (video/1..7), název skladby, místo, YouTube ID
+    // vert:true = video na výšku (YouTube Shorts) → modal 9:16
     var VIDEOS=[
-      {img:'1', name:'Cheek to Cheek',                 yt:'0OWzK3Rk-cw'},
-      {img:'2', name:'Sunny',                          yt:'P6iJJ6s5KaI'},
-      {img:'3', name:'Sway',                           yt:'rfCD0AcGA-A'},
-      {img:'4', name:'Don\u2019t Get Around Much Anymore', yt:'hAwyRm_FjOc'},
-      {img:'5', name:'\u017Divot je jen n\u00e1hoda',   yt:'iF4ShjZouG0'}
+      {img:'1', name:'L-O-V-E',                            place:'Hotel Augustine Praha',     yt:'Z7Oo_03YVFE', vert:true},
+      {img:'2', name:'Jezd\u00edm bez nehod',              place:'Z\u00e1mek Zbraslav',       yt:'AqWGedkNigY', vert:true},
+      {img:'3', name:'Somethin\u2019 Stupid',              place:'Festival Karlovy Vary',     yt:'7k-exbOdKPE', vert:true},
+      {img:'4', name:'Sway',                               place:'Jazz Club Reduta',          yt:'rfCD0AcGA-A'},
+      {img:'5', name:'Sunny',                              place:'Festival Franti\u0161kovy L\u00e1zn\u011b', yt:'P6iJJ6s5KaI'},
+      {img:'6', name:'Don\u2019t Get Around Much Anymore', place:'Ob\u010dansk\u00e1 plov\u00e1rna Praha', yt:'hAwyRm_FjOc'},
+      {img:'7', name:'\u017Divot je jen n\u00e1hoda',       place:'Vini\u010dn\u00ed ve\u010der Mod\u0159any', yt:'iF4ShjZouG0'}
     ];
     var IMGBASE='https://jazzduo.cz/video/';
-    var IMGEXT={ '1':'.webp','2':'.webp','3':'.webp','4':'.webp','5':'.webp' };
+    var IMGEXT={ '1':'.webp','2':'.webp','3':'.webp','4':'.webp','5':'.webp','6':'.webp','7':'.webp' };
 
     // 5 odlišných tvarů blobů (z ladiče hudebníků)
     var BLOBS=[
@@ -1395,7 +1405,9 @@ main{position:relative;z-index:2}
       'M62,-35C77,-18,84,7,77,28C70,49,49,66,25,72C1,78,-25,73,-50,60C-75,47,-99,26,-99,2C-99,-22,-75,-46,-51,-60C-27,-74,-3,-78,16,-72C35,-66,47,-52,62,-35Z',
       'M58,-46C73,-32,81,-9,76,12C71,33,53,52,32,64C11,76,-14,81,-39,72C-64,63,-89,40,-91,15C-93,-10,-72,-37,-50,-54C-28,-71,-4,-78,17,-73C38,-68,43,-60,58,-46Z',
       'M48,-50C60,-38,64,-18,66,3C68,24,68,46,55,60C42,74,16,80,-8,78C-32,76,-54,66,-68,47C-82,28,-88,0,-80,-22C-72,-44,-50,-60,-27,-67C-4,-74,18,-72,48,-50Z',
-      'M44,-54C56,-44,62,-25,66,-4C70,17,72,40,60,56C48,72,22,81,-3,80C-28,79,-53,68,-69,49C-85,30,-92,3,-84,-19C-76,-41,-54,-58,-31,-66C-8,-74,16,-72,44,-54Z'
+      'M44,-54C56,-44,62,-25,66,-4C70,17,72,40,60,56C48,72,22,81,-3,80C-28,79,-53,68,-69,49C-85,30,-92,3,-84,-19C-76,-41,-54,-58,-31,-66C-8,-74,16,-72,44,-54Z',
+      'M52,-47C68,-33,80,-13,79,7C78,27,64,47,46,60C28,73,6,79,-17,77C-40,75,-64,65,-77,46C-90,27,-92,-1,-83,-24C-74,-47,-54,-65,-32,-71C-10,-77,13,-71,52,-47Z',
+      'M46,-52C61,-41,73,-25,77,-6C81,13,77,34,65,49C53,64,33,73,11,76C-11,79,-35,76,-55,64C-75,52,-86,31,-85,9C-84,-13,-71,-35,-53,-51C-35,-67,-13,-77,7,-74C27,-71,31,-63,46,-52Z'
     ];
 
 
@@ -1415,7 +1427,7 @@ main{position:relative;z-index:2}
       VIDEOS.forEach(function(v,i){
         var item=el('div');item.className='vid-item';
         var btn=el('button');btn.className='vid-blob';btn.type='button';
-        btn.setAttribute('aria-label','Přehrát video: '+v.name);
+        btn.setAttribute('aria-label','Přehrát video: '+v.name+(v.place?' – '+v.place:''));
         var src=IMGBASE+v.img+(IMGEXT[v.img]||'.webp');
         var cid='vidclip'+i;
         btn.innerHTML=
@@ -1432,6 +1444,7 @@ main{position:relative;z-index:2}
         item.appendChild(btn);
         var nm=el('div');nm.className='vid-name';nm.textContent=v.name;
         item.appendChild(nm);
+        if(v.place){var pl=el('div');pl.className='vid-place';pl.textContent=v.place;item.appendChild(pl);}
         track.appendChild(item);
       });
     }
@@ -1504,8 +1517,10 @@ main{position:relative;z-index:2}
     var modal=$('vidModal'),box=$('vidModalBox');
     function openModal(v){
       if(!modal||!box)return;
-      box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.yt+'?autoplay=1&rel=0" '+
-        'title="'+v.name+'" allow="accelerator;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
+      box.className='vid-modal-box'+(v.vert?' portrait':'');
+      modal.classList.toggle('is-portrait',!!v.vert);
+      box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.yt+'?autoplay=1&rel=0&playsinline=1" '+
+        'title="'+v.name+(v.place?' – '+v.place:'')+'" allow="accelerator;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
       var c=modal.querySelector('.vid-modal-close');
       if(!c){c=el('button');c.className='vid-modal-close';c.type='button';c.setAttribute('aria-label','Zavřít');c.innerHTML='✕';
         c.addEventListener('click',closeModal);modal.appendChild(c);}
