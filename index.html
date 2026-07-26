@@ -1414,17 +1414,46 @@ main{position:relative;z-index:2}
        po dojeti na klon se pas bez animace preskoci zpet na original */
     var NV=VIDEOS.length, CLONES=3;
 
-    /* nahledy videi se stahnou az kdyz se sekce bliz i do viewportu (usetri prenos) */
+    /* Nahledy se stahuji az kdyz se sekce bliz i do viewportu (usetri prenos).
+       Cely <svg> s <image href="..."> se vklada az v tu chvili pres innerHTML —
+       dodatecne dosazovani href na uz existujici SVG <image> se nechytalo. */
     function lazyThumbs(){
-      var imgs=track.querySelectorAll('image[data-href]');
-      function show(){Array.prototype.forEach.call(imgs,function(im){
-        var h=im.getAttribute('data-href');
-        if(h){im.setAttribute('href',h);im.removeAttribute('data-href');}});}
-      if(!window.IntersectionObserver){show();return;}
-      var io=new IntersectionObserver(function(es){
-        if(es[0].isIntersecting){show();io.disconnect();}
-      },{rootMargin:'600px 0px'});
-      io.observe(track);
+      var host=track.parentNode||track;            /* .vid-viewport — nehybny ramec slideru */
+      var spots=track.querySelectorAll('.vid-photo[data-src]');
+      var done=false;
+      function show(){
+        if(done)return;done=true;
+        Array.prototype.forEach.call(spots,function(sp){
+          var src=sp.getAttribute('data-src');if(!src)return;
+          var cid=sp.getAttribute('data-cid');
+          var bi=(parseInt(sp.getAttribute('data-i'),10)||0)%BLOBS.length;
+          sp.innerHTML=
+            '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
+              '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[bi]+'"/></clipPath></defs>'+
+              '<image href="'+src+'" x="-105" y="-105" width="210" height="210" '+
+              'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
+            '</svg>';
+          sp.removeAttribute('data-src');
+        });
+      }
+      function off(){window.removeEventListener('scroll',check);window.removeEventListener('resize',check);}
+      function check(){
+        if(done){off();return;}
+        var r=host.getBoundingClientRect();
+        var vh=window.innerHeight||document.documentElement.clientHeight||0;
+        if(r.top<vh+600&&r.bottom>-600){show();off();}
+      }
+      if(window.IntersectionObserver){
+        var io=new IntersectionObserver(function(es){
+          if(es[0].isIntersecting){show();io.disconnect();}
+        },{rootMargin:'600px 0px'});
+        io.observe(host);
+      }
+      /* pojistka, kdyby observer z jakehokoli duvodu nesepnul */
+      window.addEventListener('scroll',check,{passive:true});
+      window.addEventListener('resize',check,{passive:true});
+      window.addEventListener('load',check);
+      check();
     }
     function buildItem(v,key,src_i,isClone){
       var item=el('div');item.className='vid-item';
@@ -1434,13 +1463,7 @@ main{position:relative;z-index:2}
       var cid='vidclip'+key;
       btn.innerHTML=
         '<svg class="vid-eq" data-i="'+src_i+'" viewBox="0 0 200 200" aria-hidden="true"></svg>'+
-        '<span class="vid-photo">'+
-          '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
-            '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[src_i%BLOBS.length]+'"/></clipPath></defs>'+
-            '<image data-href="'+src+'" x="-105" y="-105" width="210" height="210" '+
-            'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
-          '</svg>'+
-        '</span>'+
+        '<span class="vid-photo" data-src="'+src+'" data-cid="'+cid+'" data-i="'+src_i+'"></span>'+
         '<span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
       btn.addEventListener('click',function(){openModal(v);});
       item.appendChild(btn);
