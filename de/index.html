@@ -139,7 +139,7 @@ img{max-width:100%;display:block}
   transform:translateX(100%);transition:transform .5s cubic-bezier(.7,0,.2,1);padding:32px 30px;display:flex;flex-direction:column;
   overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .drawer.open{transform:translateX(0)}
-.drawer:focus,.drawer:focus-visible{outline:none}
+.drawer:focus,.drawer:focus-visible{outline:none;box-shadow:none;border-radius:0}
 .drawer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
 .drawer .brand{color:#fff}
 .drawer-close{background:none;border:none;color:var(--mint);font-size:30px;cursor:pointer;line-height:1;width:40px;height:40px}
@@ -422,7 +422,7 @@ var(--gold);background:linear-gradient(155deg,rgba(224,169,60,.24),rgba(224,169,
 .field input[type=date]::-webkit-date-and-time-value{text-align:left}
 .field textarea{resize:vertical;min-height:84px}
 .field input::placeholder,.field textarea::placeholder{color:rgba(238,243,239,.45)}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--mint);background:rgba(255,255,255,.11)}
+.field input:focus,.field input:focus-visible,.field textarea:focus,.field textarea:focus-visible{outline:none;box-shadow:none;border-radius:14px;border-color:var(--mint);background:rgba(255,255,255,.11)}
 /* tile-style choice grids */
 .choice{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .choice .opt{font:inherit;width:100%;display:block;text-align:center;padding:16px 12px;border-radius:14px;border:1.5px solid rgba(157,194,182,.24);
@@ -975,7 +975,7 @@ main{position:relative;z-index:2}
           <input type="hidden" name="subject" value="Neue Anfrage von jazzduo.cz (DE)">
           <input type="hidden" name="from_name" value="jazzduo.cz">
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-          <input type="hidden" name="Sestava" id="hidSestava" value="Jazz Duo (4 Musiker)">
+          <input type="hidden" name="Sestava" id="hidSestava" value="Jazz Duo (2 Musiker)">
           <input type="hidden" name="Hudební bloky" id="hidBlocks" value="3 × 45 minut + pauzy">
           <input type="hidden" name="Typ akce" id="hidType" value="Svatba">
 
@@ -1627,7 +1627,7 @@ main{position:relative;z-index:2}
    {role:'Posaune',   file:'trombone.webp'}
   ];
   var lineup=MUS.map(function(m){return m.role;});
-  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Duo',5:'Jazz Quintett',6:'Jazz Sextett',7:'Jazz Septett'};
+  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartett',5:'Jazz Quintett',6:'Jazz Sextett',7:'Jazz Septett'};
   function musFigureHTML(m){
     return '<img src="'+BASE+m.file+'" alt="'+m.role+'" width="263" height="263" loading="lazy" decoding="async">';
   }
@@ -1690,7 +1690,7 @@ main{position:relative;z-index:2}
     }
   }
   function setCount(n){count=Math.max(MIN,Math.min(MAX,n));renderHead();renderMusicians();renderSteps();}
-  setCount(4);
+  setCount(2);
   // Překreslit jen když se změní ŠÍŘKA okna. Na mobilu scroll mění výšku (lišta prohlížeče
   // se skrývá/ukazuje) a spouští 'resize' — to ignorujeme, jinak by sestava problikávala.
   var lastW=window.innerWidth,bResize;
@@ -2039,7 +2039,7 @@ main{position:relative;z-index:2}
     fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)})
       .then(function(r){return r.json();})
       .then(function(j){
-        if(j.success){showToast();form.reset();setCount(4);
+        if(j.success){showToast();form.reset();setCount(2);
           $('blkChoice').querySelectorAll('.blk').forEach(function(x){x.classList.toggle('sel',x.dataset.n==='3');});
           $('hidBlocks').value='3 × 45 Minuten + Pausen';
           $('segType').querySelectorAll('.opt').forEach(function(x){x.classList.toggle('sel',x.dataset.v==='Svatba');});$('hidType').value='Svatba';
