@@ -1385,21 +1385,21 @@ main{position:relative;z-index:2}
   (function(){
     var track=$('vidTrack');if(!track)return;
 
-    // pořadí videí: náhledová fotka (video/1..7), název skladby, místo, YouTube ID
+    // pořadí videí: náhledová fotka (video/N), název skladby, místo, YouTube ID
     // vert:true = video na výšku (YouTube Shorts) → modal 9:16
     var VIDEOS=[
-      {img:'1', name:'L-O-V-E',                            place:'Hotel Augustine Praha',     yt:'Z7Oo_03YVFE', vert:true},
-      {img:'2', name:'Jezd\u00edm bez nehod',              place:'Z\u00e1mek Zbraslav',       yt:'AqWGedkNigY', vert:true},
-      {img:'3', name:'Somethin\u2019 Stupid',              place:'Festival Karlovy Vary',     yt:'7k-exbOdKPE', vert:true},
-      {img:'4', name:'Sway',                               place:'Jazz Club Reduta',          yt:'rfCD0AcGA-A'},
-      {img:'5', name:'Sunny',                              place:'Festival Franti\u0161kovy L\u00e1zn\u011b', yt:'P6iJJ6s5KaI'},
+      {img:'1', name:'L-O-V-E', place:'Hotel Augustine Praha', yt:'Z7Oo_03YVFE', vert:true},
+      {img:'2', name:'Jezd\u00edm bez nehod', place:'Z\u00e1mek Zbraslav', yt:'AqWGedkNigY', vert:true},
+      {img:'3', name:'Somethin\u2019 Stupid', place:'Festival Karlovy Vary', yt:'7k-exbOdKPE', vert:true},
+      {img:'4', name:'Sway', place:'Jazz Club Reduta', yt:'rfCD0AcGA-A'},
+      {img:'5', name:'Sunny', place:'Festival Franti\u0161kovy L\u00e1zn\u011b', yt:'P6iJJ6s5KaI'},
       {img:'6', name:'Don\u2019t Get Around Much Anymore', place:'Ob\u010dansk\u00e1 plov\u00e1rna Praha', yt:'hAwyRm_FjOc'},
-      {img:'7', name:'\u017Divot je jen n\u00e1hoda',       place:'Vini\u010dn\u00ed ve\u010der Mod\u0159any', yt:'iF4ShjZouG0'}
+      {img:'7', name:'\u017divot je jen n\u00e1hoda', place:'Vini\u010dn\u00ed ve\u010der Mod\u0159any', yt:'iF4ShjZouG0'}
     ];
     var IMGBASE='https://jazzduo.cz/video/';
     var IMGEXT={ '1':'.webp','2':'.webp','3':'.webp','4':'.webp','5':'.webp','6':'.webp','7':'.webp' };
 
-    // 5 odlišných tvarů blobů (z ladiče hudebníků)
+    // odlišné tvary blobů (z ladiče hudebníků)
     var BLOBS=[
       'M40,-58C54,-49,68,-40,74,-26C80,-12,78,8,70,24C62,40,48,52,31,62C14,72,-6,80,-26,76C-46,72,-66,56,-74,36C-82,16,-78,-8,-66,-27C-54,-46,-34,-60,-13,-67C8,-74,26,-67,40,-58Z',
       'M62,-35C77,-18,84,7,77,28C70,49,49,66,25,72C1,78,-25,73,-50,60C-75,47,-99,26,-99,2C-99,-22,-75,-46,-51,-60C-27,-74,-3,-78,16,-72C35,-66,47,-52,62,-35Z',
@@ -1410,8 +1410,11 @@ main{position:relative;z-index:2}
       'M46,-52C61,-41,73,-25,77,-6C81,13,77,34,65,49C53,64,33,73,11,76C-11,79,-35,76,-55,64C-75,52,-86,31,-85,9C-84,-13,-71,-35,-53,-51C-35,-67,-13,-77,7,-74C27,-71,31,-63,46,-52Z'
     ];
 
+    /* nekonecna smycka: na obou koncich pasu lezi klony krajnich polozek,
+       po dojeti na klon se pas bez animace preskoci zpet na original */
+    var NV=VIDEOS.length, CLONES=3;
 
-    /* nahledy videi se stahnou az kdyz se sekce bliz i do viewportu (usetri ~274 kB) */
+    /* nahledy videi se stahnou az kdyz se sekce bliz i do viewportu (usetri prenos) */
     function lazyThumbs(){
       var imgs=track.querySelectorAll('image[data-href]');
       function show(){Array.prototype.forEach.call(imgs,function(im){
@@ -1423,46 +1426,54 @@ main{position:relative;z-index:2}
       },{rootMargin:'600px 0px'});
       io.observe(track);
     }
+    function buildItem(v,key,src_i,isClone){
+      var item=el('div');item.className='vid-item';
+      var btn=el('button');btn.className='vid-blob';btn.type='button';
+      btn.setAttribute('aria-label','Přehrát video: '+v.name+(v.place?' – '+v.place:''));
+      var src=IMGBASE+v.img+(IMGEXT[v.img]||'.webp');
+      var cid='vidclip'+key;
+      btn.innerHTML=
+        '<svg class="vid-eq" data-i="'+src_i+'" viewBox="0 0 200 200" aria-hidden="true"></svg>'+
+        '<span class="vid-photo">'+
+          '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
+            '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[src_i%BLOBS.length]+'"/></clipPath></defs>'+
+            '<image data-href="'+src+'" x="-105" y="-105" width="210" height="210" '+
+            'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
+          '</svg>'+
+        '</span>'+
+        '<span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+      btn.addEventListener('click',function(){openModal(v);});
+      item.appendChild(btn);
+      var nm=el('div');nm.className='vid-name';nm.textContent=v.name;
+      item.appendChild(nm);
+      if(v.place){var pl=el('div');pl.className='vid-place';pl.textContent=v.place;item.appendChild(pl);}
+      if(isClone){item.setAttribute('aria-hidden','true');btn.tabIndex=-1;}
+      return item;
+    }
     function buildItems(){
-      VIDEOS.forEach(function(v,i){
-        var item=el('div');item.className='vid-item';
-        var btn=el('button');btn.className='vid-blob';btn.type='button';
-        btn.setAttribute('aria-label','Přehrát video: '+v.name+(v.place?' – '+v.place:''));
-        var src=IMGBASE+v.img+(IMGEXT[v.img]||'.webp');
-        var cid='vidclip'+i;
-        btn.innerHTML=
-          '<svg class="vid-eq" viewBox="0 0 200 200" aria-hidden="true"></svg>'+
-          '<span class="vid-photo">'+
-            '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
-              '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[i]+'"/></clipPath></defs>'+
-              '<image data-href="'+src+'" x="-105" y="-105" width="210" height="210" '+
-              'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
-            '</svg>'+
-          '</span>'+
-          '<span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
-        btn.addEventListener('click',function(){openModal(v);});
-        item.appendChild(btn);
-        var nm=el('div');nm.className='vid-name';nm.textContent=v.name;
-        item.appendChild(nm);
-        if(v.place){var pl=el('div');pl.className='vid-place';pl.textContent=v.place;item.appendChild(pl);}
-        track.appendChild(item);
-      });
+      var seq=[],i;
+      for(i=0;i<CLONES;i++)seq.push({i:((NV-CLONES+i)%NV+NV)%NV,c:true});
+      for(i=0;i<NV;i++)seq.push({i:i,c:false});
+      for(i=0;i<CLONES;i++)seq.push({i:i%NV,c:true});
+      seq.forEach(function(s,k){track.appendChild(buildItem(VIDEOS[s.i],k,s.i,s.c));});
     }
 
-    // rotující ekvalizér (stejný jako hero), každý blob jinak natočený
+    // rotující ekvalizér (stejný jako hero); klon se točí stejně jako jeho originál
     function buildEqs(){
       var N=110,R=31;
-      track.querySelectorAll('.vid-eq').forEach(function(host,idx){
+      track.querySelectorAll('.vid-eq').forEach(function(host,k){
+        var idx=parseInt(host.getAttribute('data-i'),10);if(isNaN(idx))idx=k;
         var wrap=el('div');wrap.className='vid-eq';wrap.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:1';
         host.parentNode.insertBefore(wrap,host);host.parentNode.removeChild(host);
-        var bars=[];
+        var bars=[],frag=document.createDocumentFragment();
         for(var i=0;i<N;i++){
           var bar=el('div');bar.className='bar';
           bar.style.cssText='position:absolute;top:50%;left:50%;width:2px;margin-left:-1px;transform-origin:50% 0;height:'+R+'%;transform:rotate('+(i*360/N)+'deg)';
           var seg=el('i');
           seg.style.cssText='position:absolute;top:31%;left:0;width:2.2px;border-radius:2px;background:var(--emerald-2)';
-          bar.appendChild(seg);wrap.appendChild(bar);bars.push(seg);
+          bar.appendChild(seg);frag.appendChild(bar);bars.push(seg);
         }
+        wrap.appendChild(frag);
         function wave(a,t){return 0.5+0.5*(0.55*Math.sin(a*2-t)+0.30*Math.sin(a*3-t*0.7)+0.15*Math.sin(a*5-t*1.3));}
         var base=14,amp=120;
         if(reduce){for(var j=0;j<N;j++){var a0=(j/N)*Math.PI*2;bars[j].style.height=(base+amp*wave(a0,idx*1.9))+'%';}return;}
@@ -1473,33 +1484,46 @@ main{position:relative;z-index:2}
 
     buildItems();buildEqs();lazyThumbs();
 
-    /* ---- slider (šipky + tečky + swipe) ---- */
+    /* ---- slider (šipky + tečky + swipe, nekonečná smyčka) ---- */
     var prevBtn=$('vidPrev'),nextBtn=$('vidNext'),dotsHost=$('vidDots');
-    function perView(){return window.innerWidth<=860?1:3;}
-    var pos=0;
-    function maxPos(){return Math.max(0,VIDEOS.length-perView());}
+    var pos=CLONES, tries=0;
+    function realIndex(){return ((pos-CLONES)%NV+NV)%NV;}
+    function markDots(){
+      var r=realIndex(),ds=dotsHost?dotsHost.querySelectorAll('button'):[];
+      Array.prototype.forEach.call(ds,function(d,i){d.className=(i===r?'on':'');});
+    }
     function buildDots(){
-      dotsHost.innerHTML='';var n=maxPos()+1;
-      for(var i=0;i<n;i++){(function(i){
+      if(!dotsHost)return;
+      dotsHost.innerHTML='';
+      for(var i=0;i<NV;i++){(function(i){
         var b=el('button');b.type='button';b.setAttribute('aria-label','Zobrazit ukázku '+(i+1));
-        if(i===pos)b.className='on';
-        b.addEventListener('click',function(){pos=i;update();});
+        b.addEventListener('click',function(){normalize();pos=CLONES+i;place(true);});
         dotsHost.appendChild(b);
       })(i);}
+      markDots();
     }
-    function update(){
-      pos=Math.max(0,Math.min(maxPos(),pos));
+    function place(animate){
       var first=track.querySelector('.vid-item');
-      var gap=parseFloat(getComputedStyle(track).gap)||10;
       var itemW=first?first.getBoundingClientRect().width:0;
+      if(!itemW){if(tries++<60)requestAnimationFrame(function(){place(false);});return;}
+      tries=0;
+      var gap=parseFloat(getComputedStyle(track).gap)||10;
+      if(!animate)track.style.transition='none';
       track.style.transform='translateX(-'+(pos*(itemW+gap))+'px)';
-      if(prevBtn)prevBtn.disabled=(pos<=0);
-      if(nextBtn)nextBtn.disabled=(pos>=maxPos());
-      var ds=dotsHost.querySelectorAll('button');
-      ds.forEach(function(d,i){d.className=(i===pos?'on':'');});
+      if(!animate){void track.offsetWidth;track.style.transition='';}
+      markDots();
     }
-    if(prevBtn)prevBtn.addEventListener('click',function(){pos--;update();});
-    if(nextBtn)nextBtn.addEventListener('click',function(){pos++;update();});
+    /* srovnani pozice zpet do rozsahu originalu — bez animace, divak si nevsimne */
+    function normalize(){
+      if(pos>=CLONES+NV){pos-=NV;place(false);}
+      else if(pos<CLONES){pos+=NV;place(false);}
+    }
+    function go(dir){normalize();pos+=dir;place(true);}
+    track.addEventListener('transitionend',function(e){
+      if(e.target===track&&e.propertyName==='transform')normalize();
+    });
+    if(prevBtn)prevBtn.addEventListener('click',function(){go(-1);});
+    if(nextBtn)nextBtn.addEventListener('click',function(){go(1);});
 
     // swipe na dotyku
     var startX=0,startY=0,touching=false;
@@ -1507,11 +1531,12 @@ main{position:relative;z-index:2}
     track.addEventListener('touchend',function(e){
       if(!touching)return;touching=false;
       var t=e.changedTouches[0];var dx=t.clientX-startX,dy=t.clientY-startY;
-      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){if(dx<0)pos++;else pos--;update();}
+      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){go(dx<0?1:-1);}
     },{passive:true});
 
-    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){buildDots();update();},150);});
-    buildDots();update();
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){normalize();place(false);},150);});
+    buildDots();place(false);
+    window.addEventListener('load',function(){place(false);});
 
     /* ---- YouTube modal ---- */
     var modal=$('vidModal'),box=$('vidModalBox');
@@ -1536,6 +1561,7 @@ main{position:relative;z-index:2}
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))closeModal();});
     }
   })();
+
 
   /* ---- 7. 3D tilt na dlaždici "Naživo" (desktop, motion-safe) ---- */
   (function(){

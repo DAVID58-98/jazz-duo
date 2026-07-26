@@ -635,7 +635,8 @@ main{position:relative;z-index:2}
 .vid-play svg{width:20px;height:20px;margin-left:3px;fill:#fff}
 .vid-blob:hover .vid-play,.vid-blob:focus-visible .vid-play{opacity:1}
 .vid-blob:hover .vid-photo{transform:scale(1.02);transition:transform .22s}
-.vid-name{font-family:var(--font-head);font-weight:600;color:var(--emerald);margin-top:10px;font-size:16px;text-align:center}
+.vid-name{font-family:var(--font-head);font-weight:600;color:var(--emerald);margin-top:10px;font-size:16px;text-align:center;line-height:1.25}
+.vid-place{font-size:12.5px;color:var(--ink-soft);margin-top:3px;text-align:center;letter-spacing:.01em}
 .vid-dots{display:flex;justify-content:center;gap:9px;margin-top:24px}
 .vid-dots button{width:9px;height:9px;border-radius:50%;border:none;padding:0;background:var(--cream-3);cursor:pointer;transition:background .2s}
 .vid-dots button.on{background:var(--gold)}
@@ -653,6 +654,12 @@ main{position:relative;z-index:2}
   box-shadow:0 30px 80px -20px rgba(0,0,0,.7);transform:scale(.96);transition:transform .25s}
 .vid-modal.show .vid-modal-box{transform:scale(1)}
 .vid-modal-box iframe{width:100%;height:100%;border:0;display:block}
+/* videa na výšku (YouTube Shorts) — šířka se dopočítá z dostupné výšky, ať se vejde celé */
+.vid-modal-box.portrait{aspect-ratio:9/16;height:auto;width:min(100%,460px,calc((100vh - 32px) * 0.5625))}
+@supports (height:100dvh){
+  .vid-modal-box.portrait{width:min(100%,460px,calc((100dvh - 32px) * 0.5625))}
+}
+.vid-modal.is-portrait{padding:12px}
 .vid-modal-close{position:fixed;top:18px;right:18px;z-index:2;width:44px;height:44px;border-radius:50%;border:none;
   background:var(--cream);color:var(--petrol);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s}
@@ -1365,28 +1372,36 @@ main{position:relative;z-index:2}
   (function(){
     var track=$('vidTrack');if(!track)return;
 
-    // pořadí videí: náhledová fotka (video/1..5), název skladby, YouTube ID
+    // pořadí videí: náhledová fotka (video/N), název skladby, místo, YouTube ID
+    // vert:true = video na výšku (YouTube Shorts) → modal 9:16
     var VIDEOS=[
-      {img:'1', name:'Cheek to Cheek',                 yt:'0OWzK3Rk-cw'},
-      {img:'2', name:'Sunny',                          yt:'P6iJJ6s5KaI'},
-      {img:'3', name:'Sway',                           yt:'rfCD0AcGA-A'},
-      {img:'4', name:'Don\u2019t Get Around Much Anymore', yt:'hAwyRm_FjOc'},
-      {img:'5', name:'\u017Divot je jen n\u00e1hoda',   yt:'iF4ShjZouG0'}
+      {img:'1', name:'L-O-V-E', place:'Hotel Augustine Prag', yt:'Z7Oo_03YVFE', vert:true},
+      {img:'2', name:'Jezd\u00edm bez nehod', place:'Schloss Zbraslav', yt:'AqWGedkNigY', vert:true},
+      {img:'3', name:'Somethin\u2019 Stupid', place:'Festival Karlovy Vary', yt:'7k-exbOdKPE', vert:true},
+      {img:'4', name:'Sway', place:'Jazz Club Reduta', yt:'rfCD0AcGA-A'},
+      {img:'5', name:'Sunny', place:'Festival Franti\u0161kovy L\u00e1zn\u011b', yt:'P6iJJ6s5KaI'},
+      {img:'6', name:'Don\u2019t Get Around Much Anymore', place:'Ob\u010dansk\u00e1 plov\u00e1rna, Prag', yt:'hAwyRm_FjOc'},
+      {img:'7', name:'\u017divot je jen n\u00e1hoda', place:'Weinabend Mod\u0159any', yt:'iF4ShjZouG0'}
     ];
     var IMGBASE='https://jazzduo.cz/video/';
-    var IMGEXT={ '1':'.webp','2':'.webp','3':'.webp','4':'.webp','5':'.webp' };
+    var IMGEXT={ '1':'.webp','2':'.webp','3':'.webp','4':'.webp','5':'.webp','6':'.webp','7':'.webp' };
 
-    // 5 odlišných tvarů blobů (z ladiče hudebníků)
+    // odlišné tvary blobů (z ladiče hudebníků)
     var BLOBS=[
       'M40,-58C54,-49,68,-40,74,-26C80,-12,78,8,70,24C62,40,48,52,31,62C14,72,-6,80,-26,76C-46,72,-66,56,-74,36C-82,16,-78,-8,-66,-27C-54,-46,-34,-60,-13,-67C8,-74,26,-67,40,-58Z',
       'M62,-35C77,-18,84,7,77,28C70,49,49,66,25,72C1,78,-25,73,-50,60C-75,47,-99,26,-99,2C-99,-22,-75,-46,-51,-60C-27,-74,-3,-78,16,-72C35,-66,47,-52,62,-35Z',
       'M58,-46C73,-32,81,-9,76,12C71,33,53,52,32,64C11,76,-14,81,-39,72C-64,63,-89,40,-91,15C-93,-10,-72,-37,-50,-54C-28,-71,-4,-78,17,-73C38,-68,43,-60,58,-46Z',
       'M48,-50C60,-38,64,-18,66,3C68,24,68,46,55,60C42,74,16,80,-8,78C-32,76,-54,66,-68,47C-82,28,-88,0,-80,-22C-72,-44,-50,-60,-27,-67C-4,-74,18,-72,48,-50Z',
-      'M44,-54C56,-44,62,-25,66,-4C70,17,72,40,60,56C48,72,22,81,-3,80C-28,79,-53,68,-69,49C-85,30,-92,3,-84,-19C-76,-41,-54,-58,-31,-66C-8,-74,16,-72,44,-54Z'
+      'M44,-54C56,-44,62,-25,66,-4C70,17,72,40,60,56C48,72,22,81,-3,80C-28,79,-53,68,-69,49C-85,30,-92,3,-84,-19C-76,-41,-54,-58,-31,-66C-8,-74,16,-72,44,-54Z',
+      'M52,-47C68,-33,80,-13,79,7C78,27,64,47,46,60C28,73,6,79,-17,77C-40,75,-64,65,-77,46C-90,27,-92,-1,-83,-24C-74,-47,-54,-65,-32,-71C-10,-77,13,-71,52,-47Z',
+      'M46,-52C61,-41,73,-25,77,-6C81,13,77,34,65,49C53,64,33,73,11,76C-11,79,-35,76,-55,64C-75,52,-86,31,-85,9C-84,-13,-71,-35,-53,-51C-35,-67,-13,-77,7,-74C27,-71,31,-63,46,-52Z'
     ];
 
+    /* nekonecna smycka: na obou koncich pasu lezi klony krajnich polozek,
+       po dojeti na klon se pas bez animace preskoci zpet na original */
+    var NV=VIDEOS.length, CLONES=3;
 
-    /* nahledy videi se stahnou az kdyz se sekce bliz i do viewportu (usetri ~274 kB) */
+    /* nahledy videi se stahnou az kdyz se sekce bliz i do viewportu (usetri prenos) */
     function lazyThumbs(){
       var imgs=track.querySelectorAll('image[data-href]');
       function show(){Array.prototype.forEach.call(imgs,function(im){
@@ -1398,45 +1413,54 @@ main{position:relative;z-index:2}
       },{rootMargin:'600px 0px'});
       io.observe(track);
     }
+    function buildItem(v,key,src_i,isClone){
+      var item=el('div');item.className='vid-item';
+      var btn=el('button');btn.className='vid-blob';btn.type='button';
+      btn.setAttribute('aria-label','Video abspielen: '+v.name+(v.place?' – '+v.place:''));
+      var src=IMGBASE+v.img+(IMGEXT[v.img]||'.webp');
+      var cid='vidclip'+key;
+      btn.innerHTML=
+        '<svg class="vid-eq" data-i="'+src_i+'" viewBox="0 0 200 200" aria-hidden="true"></svg>'+
+        '<span class="vid-photo">'+
+          '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
+            '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[src_i%BLOBS.length]+'"/></clipPath></defs>'+
+            '<image data-href="'+src+'" x="-105" y="-105" width="210" height="210" '+
+            'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
+          '</svg>'+
+        '</span>'+
+        '<span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+      btn.addEventListener('click',function(){openModal(v);});
+      item.appendChild(btn);
+      var nm=el('div');nm.className='vid-name';nm.textContent=v.name;
+      item.appendChild(nm);
+      if(v.place){var pl=el('div');pl.className='vid-place';pl.textContent=v.place;item.appendChild(pl);}
+      if(isClone){item.setAttribute('aria-hidden','true');btn.tabIndex=-1;}
+      return item;
+    }
     function buildItems(){
-      VIDEOS.forEach(function(v,i){
-        var item=el('div');item.className='vid-item';
-        var btn=el('button');btn.className='vid-blob';btn.type='button';
-        btn.setAttribute('aria-label','Video abspielen: '+v.name);
-        var src=IMGBASE+v.img+(IMGEXT[v.img]||'.webp');
-        var cid='vidclip'+i;
-        btn.innerHTML=
-          '<svg class="vid-eq" viewBox="0 0 200 200" aria-hidden="true"></svg>'+
-          '<span class="vid-photo">'+
-            '<svg viewBox="-105 -105 210 210" preserveAspectRatio="xMidYMid meet">'+
-              '<defs><clipPath id="'+cid+'"><path d="'+BLOBS[i]+'"/></clipPath></defs>'+
-              '<image data-href="'+src+'" x="-105" y="-105" width="210" height="210" '+
-              'preserveAspectRatio="xMidYMid slice" clip-path="url(#'+cid+')"/>'+
-            '</svg>'+
-          '</span>'+
-          '<span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
-        btn.addEventListener('click',function(){openModal(v);});
-        item.appendChild(btn);
-        var nm=el('div');nm.className='vid-name';nm.textContent=v.name;
-        item.appendChild(nm);
-        track.appendChild(item);
-      });
+      var seq=[],i;
+      for(i=0;i<CLONES;i++)seq.push({i:((NV-CLONES+i)%NV+NV)%NV,c:true});
+      for(i=0;i<NV;i++)seq.push({i:i,c:false});
+      for(i=0;i<CLONES;i++)seq.push({i:i%NV,c:true});
+      seq.forEach(function(s,k){track.appendChild(buildItem(VIDEOS[s.i],k,s.i,s.c));});
     }
 
-    // rotující ekvalizér (stejný jako hero), každý blob jinak natočený
+    // rotující ekvalizér (stejný jako hero); klon se točí stejně jako jeho originál
     function buildEqs(){
       var N=110,R=31;
-      track.querySelectorAll('.vid-eq').forEach(function(host,idx){
+      track.querySelectorAll('.vid-eq').forEach(function(host,k){
+        var idx=parseInt(host.getAttribute('data-i'),10);if(isNaN(idx))idx=k;
         var wrap=el('div');wrap.className='vid-eq';wrap.style.cssText='position:absolute;inset:0;pointer-events:none;z-index:1';
         host.parentNode.insertBefore(wrap,host);host.parentNode.removeChild(host);
-        var bars=[];
+        var bars=[],frag=document.createDocumentFragment();
         for(var i=0;i<N;i++){
           var bar=el('div');bar.className='bar';
           bar.style.cssText='position:absolute;top:50%;left:50%;width:2px;margin-left:-1px;transform-origin:50% 0;height:'+R+'%;transform:rotate('+(i*360/N)+'deg)';
           var seg=el('i');
           seg.style.cssText='position:absolute;top:31%;left:0;width:2.2px;border-radius:2px;background:var(--emerald-2)';
-          bar.appendChild(seg);wrap.appendChild(bar);bars.push(seg);
+          bar.appendChild(seg);frag.appendChild(bar);bars.push(seg);
         }
+        wrap.appendChild(frag);
         function wave(a,t){return 0.5+0.5*(0.55*Math.sin(a*2-t)+0.30*Math.sin(a*3-t*0.7)+0.15*Math.sin(a*5-t*1.3));}
         var base=14,amp=120;
         if(reduce){for(var j=0;j<N;j++){var a0=(j/N)*Math.PI*2;bars[j].style.height=(base+amp*wave(a0,idx*1.9))+'%';}return;}
@@ -1447,33 +1471,46 @@ main{position:relative;z-index:2}
 
     buildItems();buildEqs();lazyThumbs();
 
-    /* ---- slider (šipky + tečky + swipe) ---- */
+    /* ---- slider (šipky + tečky + swipe, nekonečná smyčka) ---- */
     var prevBtn=$('vidPrev'),nextBtn=$('vidNext'),dotsHost=$('vidDots');
-    function perView(){return window.innerWidth<=860?1:3;}
-    var pos=0;
-    function maxPos(){return Math.max(0,VIDEOS.length-perView());}
+    var pos=CLONES, tries=0;
+    function realIndex(){return ((pos-CLONES)%NV+NV)%NV;}
+    function markDots(){
+      var r=realIndex(),ds=dotsHost?dotsHost.querySelectorAll('button'):[];
+      Array.prototype.forEach.call(ds,function(d,i){d.className=(i===r?'on':'');});
+    }
     function buildDots(){
-      dotsHost.innerHTML='';var n=maxPos()+1;
-      for(var i=0;i<n;i++){(function(i){
+      if(!dotsHost)return;
+      dotsHost.innerHTML='';
+      for(var i=0;i<NV;i++){(function(i){
         var b=el('button');b.type='button';b.setAttribute('aria-label','Clip anzeigen '+(i+1));
-        if(i===pos)b.className='on';
-        b.addEventListener('click',function(){pos=i;update();});
+        b.addEventListener('click',function(){normalize();pos=CLONES+i;place(true);});
         dotsHost.appendChild(b);
       })(i);}
+      markDots();
     }
-    function update(){
-      pos=Math.max(0,Math.min(maxPos(),pos));
+    function place(animate){
       var first=track.querySelector('.vid-item');
-      var gap=parseFloat(getComputedStyle(track).gap)||10;
       var itemW=first?first.getBoundingClientRect().width:0;
+      if(!itemW){if(tries++<60)requestAnimationFrame(function(){place(false);});return;}
+      tries=0;
+      var gap=parseFloat(getComputedStyle(track).gap)||10;
+      if(!animate)track.style.transition='none';
       track.style.transform='translateX(-'+(pos*(itemW+gap))+'px)';
-      if(prevBtn)prevBtn.disabled=(pos<=0);
-      if(nextBtn)nextBtn.disabled=(pos>=maxPos());
-      var ds=dotsHost.querySelectorAll('button');
-      ds.forEach(function(d,i){d.className=(i===pos?'on':'');});
+      if(!animate){void track.offsetWidth;track.style.transition='';}
+      markDots();
     }
-    if(prevBtn)prevBtn.addEventListener('click',function(){pos--;update();});
-    if(nextBtn)nextBtn.addEventListener('click',function(){pos++;update();});
+    /* srovnani pozice zpet do rozsahu originalu — bez animace, divak si nevsimne */
+    function normalize(){
+      if(pos>=CLONES+NV){pos-=NV;place(false);}
+      else if(pos<CLONES){pos+=NV;place(false);}
+    }
+    function go(dir){normalize();pos+=dir;place(true);}
+    track.addEventListener('transitionend',function(e){
+      if(e.target===track&&e.propertyName==='transform')normalize();
+    });
+    if(prevBtn)prevBtn.addEventListener('click',function(){go(-1);});
+    if(nextBtn)nextBtn.addEventListener('click',function(){go(1);});
 
     // swipe na dotyku
     var startX=0,startY=0,touching=false;
@@ -1481,18 +1518,21 @@ main{position:relative;z-index:2}
     track.addEventListener('touchend',function(e){
       if(!touching)return;touching=false;
       var t=e.changedTouches[0];var dx=t.clientX-startX,dy=t.clientY-startY;
-      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){if(dx<0)pos++;else pos--;update();}
+      if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){go(dx<0?1:-1);}
     },{passive:true});
 
-    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){buildDots();update();},150);});
-    buildDots();update();
+    var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){normalize();place(false);},150);});
+    buildDots();place(false);
+    window.addEventListener('load',function(){place(false);});
 
     /* ---- YouTube modal ---- */
     var modal=$('vidModal'),box=$('vidModalBox');
     function openModal(v){
       if(!modal||!box)return;
-      box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.yt+'?autoplay=1&rel=0" '+
-        'title="'+v.name+'" allow="accelerator;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
+      box.className='vid-modal-box'+(v.vert?' portrait':'');
+      modal.classList.toggle('is-portrait',!!v.vert);
+      box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.yt+'?autoplay=1&rel=0&playsinline=1" '+
+        'title="'+v.name+(v.place?' – '+v.place:'')+'" allow="accelerator;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
       var c=modal.querySelector('.vid-modal-close');
       if(!c){c=el('button');c.className='vid-modal-close';c.type='button';c.setAttribute('aria-label','Schließen');c.innerHTML='✕';
         c.addEventListener('click',closeModal);modal.appendChild(c);}
@@ -1508,6 +1548,7 @@ main{position:relative;z-index:2}
       document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))closeModal();});
     }
   })();
+
 
   /* ---- 7. 3D tilt na dlaždici "Naživo" (desktop, motion-safe) ---- */
   (function(){
