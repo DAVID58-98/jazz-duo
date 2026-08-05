@@ -964,8 +964,14 @@ main{position:relative;z-index:2}
 
 <!-- ===== KDE JSME HRÁLI ===== -->
 <section class="section reveal" id="kdo-jsme">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Fotky</span>
+      <h2 class="section-title">Galerie</h2>
+    </div>
+  </div>
 
-  <!-- galerie: 7 fotek, slider + lightbox (bez nadpisu — navazuje rovnou na úvodní větu) -->
+  <!-- galerie: 7 fotek, slider + lightbox -->
   <div class="gal-slider" id="gallery">
     <button class="gal-arrow prev" id="galPrev" type="button" aria-label="Předchozí fotka">‹</button>
     <div class="gal-viewport">
@@ -993,7 +999,7 @@ main{position:relative;z-index:2}
     <div class="player-tile">
       <div class="center" style="margin-bottom:8px">
         <h2 class="section-title" style="margin-bottom:6px">Videoukázky</h2>
-        <p class="section-lead">Několik ukázek, jak naše produkce zní naživo. Pokaždé je to originál.</p>
+        <p class="section-lead">Několik ukázek, jak naše produkce zní naživo.<br>Pokaždé je to originál.</p>
       </div>
 
       <div class="vid-slider" id="vidSlider">
@@ -1184,7 +1190,7 @@ main{position:relative;z-index:2}
       <button type="button" class="ref-arrow" id="refNext" aria-label="Další reference">›</button>
     </div>
   </div>
-  <div class="wrap"><p class="refs-more">…a&nbsp;další.</p></div>
+  <div class="wrap"><p class="refs-more">…a&nbsp;mnoho dalších.</p></div>
 </section>
 <section class="section reveal" id="reviews">
   <div class="wrap">
@@ -1249,7 +1255,7 @@ main{position:relative;z-index:2}
 .ref-viewport{flex:1;min-width:0;overflow:hidden}
 .ref-track{display:grid;grid-auto-flow:column;grid-template-rows:repeat(var(--rows,1),auto);grid-auto-columns:var(--colw,220px);gap:var(--gap,14px);list-style:none;margin:0;padding:2px 0;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
 .ref-card{box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:clamp(13px,1.7vw,17px) clamp(15px,2vw,21px);background:linear-gradient(148deg,rgba(21,122,127,.09),rgba(157,194,182,.13));border:1px solid rgba(15,82,87,.14);border-radius:18px;transition:transform .3s ease,border-color .3s ease,background .3s ease}
-.ref-card:hover{transform:translateY(-3px);border-color:rgba(15,82,87,.3);background:linear-gradient(148deg,rgba(21,122,127,.15),rgba(157,194,182,.2))}
+.ref-card:hover{border-color:rgba(15,82,87,.42);background:linear-gradient(148deg,rgba(21,122,127,.2),rgba(157,194,182,.26));box-shadow:0 4px 16px rgba(15,82,87,.1)}
 .ref-name{font-family:var(--font-head);font-weight:600;color:var(--emerald);font-size:clamp(.94rem,1.4vw,1.04rem);line-height:1.3}
 .ref-occ{font-size:.8rem;opacity:.68;line-height:1.4}
 @media(max-width:640px){
@@ -1260,12 +1266,12 @@ main{position:relative;z-index:2}
   .ref-occ{font-size:.75rem}
 }
 .refs-more{text-align:center;margin:clamp(20px,2.6vw,28px) 0 0;font-size:.92rem;opacity:.66}
-.bio-modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,28,30,.62);overflow:auto}
+.bio-modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,28,30,.62);overflow:hidden}
 .bio-modal.open{display:flex}
-.bio-panel{background:#fdf9f0;border-radius:26px;max-width:580px;width:100%;max-height:82vh;overflow:auto;padding:clamp(30px,4.4vw,44px);position:relative;isolation:isolate;box-shadow:0 30px 70px rgba(8,28,30,.34)}
-.bio-panel::before{content:"";position:absolute;z-index:-1;top:-70px;right:-80px;width:250px;height:250px;background:radial-gradient(circle at 36% 36%,rgba(21,122,127,.10),rgba(21,122,127,0) 70%);border-radius:50%}
-.bio-panel::after{content:"";position:absolute;z-index:-1;bottom:-84px;left:-72px;width:270px;height:270px;background:radial-gradient(circle at 60% 42%,rgba(157,194,182,.13),rgba(157,194,182,0) 72%);border-radius:50%}
-.bio-deco{position:absolute;z-index:-1;top:-30px;right:-24px;width:158px;opacity:.06;pointer-events:none}
+.bio-panel{background:#fdf9f0;border-radius:26px;max-width:580px;width:100%;max-height:82vh;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:clamp(30px,4.4vw,44px);position:relative;isolation:isolate;box-shadow:0 30px 70px rgba(8,28,30,.34)}
+.bio-panel::before{content:"";position:absolute;z-index:-1;top:0;right:0;width:230px;height:230px;background:radial-gradient(circle at 36% 36%,rgba(21,122,127,.10),rgba(21,122,127,0) 70%);border-radius:50%}
+.bio-panel::after{content:"";position:absolute;z-index:-1;bottom:0;left:0;width:250px;height:250px;background:radial-gradient(circle at 60% 42%,rgba(157,194,182,.13),rgba(157,194,182,0) 72%);border-radius:50%}
+.bio-deco{position:absolute;z-index:-1;top:6px;right:6px;width:150px;opacity:.06;pointer-events:none}
 .bio-deco path{fill:#0f5257}
 .bio-panel h3{margin:0 0 3px;font-size:clamp(1.16rem,2.1vw,1.4rem)}
 
@@ -1304,6 +1310,18 @@ main{position:relative;z-index:2}
 html{overflow-x:hidden}
 body{overflow-x:hidden;max-width:100%}
 .shapes,.shapes svg{pointer-events:none}
+
+/* užší sekce referencí na PC */
+@media (min-width:861px){
+  #refs{padding-top:clamp(56px,6vw,84px);padding-bottom:clamp(56px,6vw,84px)}
+}
+/* galerie navazuje těsněji na hudebníky */
+#kdo-jsme{padding-top:clamp(40px,4.6vw,64px)}
+/* videoukázky — ještě větší blob na mobilu */
+@media (max-width:860px){
+  .vid-blob{max-width:min(86vw,480px)}
+  .vid-slider{gap:6px}
+}
 </style>
 <div class="wrap upsell-wrap"><div class="intro-about intro-after">
       <p class="about-lead">
