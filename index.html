@@ -999,7 +999,7 @@ main{position:relative;z-index:2}
     <div class="player-tile">
       <div class="center" style="margin-bottom:8px">
         <h2 class="section-title" style="margin-bottom:6px">Videoukázky</h2>
-        <p class="section-lead">Několik ukázek, jak naše produkce zní naživo.<br>Pokaždé je to originál.</p>
+        <p class="section-lead">Několik ukázek, jak naše produkce zní naživo. Pokaždé je to originál.</p>
       </div>
 
       <div class="vid-slider" id="vidSlider">
@@ -1322,6 +1322,10 @@ body{overflow-x:hidden;max-width:100%}
   .vid-blob{max-width:min(86vw,480px)}
   .vid-slider{gap:6px}
 }
+
+/* galerie: stejný odstup nadpis → obsah jako u ostatních sekcí */
+#kdo-jsme .gal-slider{margin-top:22px}
+@media (max-width:640px){#kdo-jsme .gal-slider{margin-top:18px}}
 </style>
 <div class="wrap upsell-wrap"><div class="intro-about intro-after">
       <p class="about-lead">
@@ -2269,10 +2273,23 @@ body{overflow-x:hidden;max-width:100%}
       modal.querySelector('h3').textContent=card.querySelector('.lineup-name').textContent;
       modal.querySelector('.bio-role').textContent=card.querySelector('.lineup-role').textContent;
       modal.querySelector('.bio-text').innerHTML=bio.innerHTML;
-      modal.classList.add('open');document.body.style.overflow='hidden';
+      lockScroll();
+      modal.classList.add('open');
       modal.querySelector('.bio-close').focus();
     }
-    function close(){modal.classList.remove('open');document.body.style.overflow='';if(last)last.focus();}
+    function close(){modal.classList.remove('open');unlockScroll();if(last)last.focus();}
+    var lockY=0;
+    function lockScroll(){
+      lockY=window.scrollY||document.documentElement.scrollTop||0;
+      var b=document.body;
+      b.style.position='fixed';b.style.top=(-lockY)+'px';
+      b.style.left='0';b.style.right='0';b.style.width='100%';b.style.overflow='hidden';
+    }
+    function unlockScroll(){
+      var b=document.body;
+      b.style.position='';b.style.top='';b.style.left='';b.style.right='';b.style.width='';b.style.overflow='';
+      window.scrollTo(0,lockY);
+    }
     btns.forEach(function(b){b.addEventListener('click',function(){last=b;open(b.closest('.lineup-card'),b.dataset.bio);});});
     // ---- reference: nekonečný slider po celých sloupcích ----
     (function(){
@@ -2339,6 +2356,10 @@ body{overflow-x:hidden;max-width:100%}
       layout();start();
     })();
     modal.addEventListener('click',function(e){if(e.target===modal||e.target.classList.contains('bio-close'))close();});
+    modal.addEventListener('touchmove',function(e){
+      var panel=modal.querySelector('.bio-panel');
+      if(!panel||!panel.contains(e.target))e.preventDefault();
+    },{passive:false});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
   })();
 
