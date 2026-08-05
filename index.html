@@ -1023,19 +1023,19 @@ main{position:relative;z-index:2}
     <div class="benefits-grid">
       <div class="benefit benefit-reveal">
         <svg class="bshape" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="26" cy="26" r="8" fill="#0f5257"/></svg>
-        <h3>100% živá hudba</h3><p>Žádné playbacky ani podklady z&nbsp;počítače. Každý tón vzniká na&nbsp;místě, před vašimi hosty. Chceme hosty bavit, ne se předvádět.</p>
+        <h3>100% živá hudba</h3><p>Hrajeme naživo bez playbacků — každý tón vzniká přímo na&nbsp;místě.</p>
       </div>
       <div class="benefit benefit-reveal">
         <svg class="bshape" viewBox="0 0 52 52"><path d="M26 4 L48 26 L26 48 L4 26 Z" fill="none" stroke="#0f5257" stroke-width="3"/><path d="M26 16 L36 26 L26 36 L16 26 Z" fill="#0f5257"/></svg>
-        <h3>Tiše a&nbsp;čistě</h3><p>Vlastní aparatura pokryje akce až do&nbsp;80–100 hostů. Hlasitost vždy přizpůsobíme komorní atmosféře vašich prostor a&nbsp;vašim hostům.</p>
+        <h3>Tiše a&nbsp;čistě</h3><p>Vlastní aparatura pro akce do&nbsp;80–100 hostů, hlasitost vždy přizpůsobíme.</p>
       </div>
       <div class="benefit benefit-reveal">
         <svg class="bshape" viewBox="0 0 52 52"><rect x="6" y="6" width="40" height="40" rx="14" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="26" cy="26" r="9" fill="#0f5257"/></svg>
-        <h3>Duo jako základ</h3><p>Zpěv a&nbsp;klavír utáhnou celý večer sami. Kdykoliv rozšíříme na&nbsp;trio, kvartet i&nbsp;na větší sestavu podle akce.</p>
+        <h3>Duo jako základ</h3><p>Zpěv a&nbsp;klavír utáhnou celý večer, kdykoli rozšíříme na&nbsp;větší sestavu.</p>
       </div>
       <div class="benefit benefit-reveal">
         <svg class="bshape" viewBox="0 0 52 52"><path d="M8 32 Q26 2 44 32" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="8" cy="36" r="6" fill="#0f5257"/><circle cx="44" cy="36" r="6" fill="#0f5257"/></svg>
-        <h3>Decentní repertoár</h3><p>Jemné jazzové standardy, bossa nova i&nbsp;šansony. Vaši srdcovku rádi nacvičíme na&nbsp;míru a&nbsp;zahrajeme na&nbsp;přání.</p>
+        <h3>Decentní repertoár</h3><p>Jazzové standardy, bossa nova i&nbsp;šansony — vaši srdcovku nacvičíme na&nbsp;míru.</p>
       </div>
     </div>
   </div>
@@ -1275,14 +1275,18 @@ main{position:relative;z-index:2}
 .bio-panel::after{content:"";position:absolute;z-index:-1;bottom:-84px;left:-72px;width:270px;height:270px;background:radial-gradient(circle at 60% 42%,rgba(157,194,182,.13),rgba(157,194,182,0) 72%);border-radius:50%}
 .bio-deco{position:absolute;z-index:-1;top:-30px;right:-24px;width:158px;opacity:.06;pointer-events:none}
 .bio-deco path{fill:#0f5257}
-.bio-panel{text-align:center;margin-top:clamp(46px,7vw,60px)}
-.bio-avatar{width:clamp(92px,15vw,116px);margin:0 auto;position:absolute;top:0;left:50%;transform:translate(-50%,-50%);z-index:3}
-.bio-avatar svg{width:100%;height:auto;display:block;filter:drop-shadow(0 10px 22px rgba(15,82,87,.2))}
-.bio-panel h3{margin:clamp(30px,4.4vw,40px) 0 3px;font-size:clamp(1.16rem,2.1vw,1.4rem)}
-.bio-panel .bio-text{text-align:left}
+.bio-panel h3{margin:0 0 3px;font-size:clamp(1.16rem,2.1vw,1.4rem)}
+
 .bio-panel .bio-role{margin:0 0 16px;opacity:.7;font-size:.92rem}
 .bio-panel p{line-height:1.72;margin:0 0 12px}
 .bio-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:#0f5257;padding:6px}
+
+/* rozestupy v dlaždicích "Proč právě my" — flex gap místo margin */
+#benefits .benefit{display:flex;flex-direction:column;align-items:flex-start;gap:13px}
+#benefits .benefit .bshape{margin:0}
+#benefits .benefit h3{margin:0;line-height:1.25}
+#benefits .benefit p{margin:0;padding:0;line-height:1.65}
+@media (max-width:560px){#benefits .benefit{gap:10px}}
 </style>
 <div class="wrap upsell-wrap"><div class="intro-about intro-after">
       <p class="about-lead">
@@ -2223,14 +2227,11 @@ main{position:relative;z-index:2}
     var modal=el('div');modal.className='bio-modal';modal.setAttribute('role','dialog');
     modal.setAttribute('aria-modal','true');modal.innerHTML='<div class="bio-panel">'+
       '<button type="button" class="bio-close" aria-label="Zavřít">&times;</button>'+
-      '<div class="bio-avatar"></div>'+
       '<h3></h3><p class="bio-role"></p><div class="bio-text"></div></div>';
     document.body.appendChild(modal);
     var last=null;
     function open(card,id){
       var bio=document.getElementById(id);if(!bio)return;
-      var pic=card.querySelector('.lineup-blob svg');
-      modal.querySelector('.bio-avatar').innerHTML=pic?pic.outerHTML:'';
       modal.querySelector('h3').textContent=card.querySelector('.lineup-name').textContent;
       modal.querySelector('.bio-role').textContent=card.querySelector('.lineup-role').textContent;
       modal.querySelector('.bio-text').innerHTML=bio.innerHTML;
