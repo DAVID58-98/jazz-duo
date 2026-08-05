@@ -964,6 +964,7 @@ main{position:relative;z-index:2}
 
 <!-- ===== KDE JSME HRÁLI ===== -->
 <section class="section reveal" id="kdo-jsme">
+  <span id="gallery" class="anchor" aria-hidden="true"></span>
   <div class="wrap">
     <div class="center">
       <span class="eyebrow">Fotky</span>
@@ -972,7 +973,7 @@ main{position:relative;z-index:2}
   </div>
 
   <!-- galerie: 7 fotek, slider + lightbox -->
-  <div class="gal-slider" id="gallery">
+  <div class="gal-slider" id="galSlider">
     <button class="gal-arrow prev" id="galPrev" type="button" aria-label="Předchozí fotka">‹</button>
     <div class="gal-viewport">
       <div class="gal-track" id="galTrack"></div>
@@ -1324,8 +1325,11 @@ body{overflow-x:hidden;max-width:100%}
 }
 
 /* galerie: stejný odstup nadpis → obsah jako u ostatních sekcí */
-#kdo-jsme .gal-slider{margin-top:22px}
-@media (max-width:640px){#kdo-jsme .gal-slider{margin-top:18px}}
+#kdo-jsme .gal-slider{margin-top:clamp(34px,4vw,52px)}
+
+/* neviditelná kotva — odkaz v menu míří nad nadpis sekce */
+.anchor{display:block;height:0;width:0;overflow:hidden;scroll-margin-top:0}
+#gallery.anchor{position:relative;top:calc(-1 * clamp(40px,4.6vw,64px) - 96px)}
 </style>
 <div class="wrap upsell-wrap"><div class="intro-about intro-after">
       <p class="about-lead">
