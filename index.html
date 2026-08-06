@@ -1291,7 +1291,7 @@ main{position:relative;z-index:2}
 /* tlačítka v úvodu vždy vedle sebe */
 @media (max-width:560px){
   .hero-cta{flex-wrap:nowrap;gap:8px;width:100%}
-  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-left:12px;padding-right:12px;font-size:13.5px;text-align:center}
+  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-left:12px;padding-right:12px;font-size:13.5px;text-align:center;justify-content:center}
 }
 /* interaktivní sestava — kompaktnější na mobilu */
 @media (max-width:640px){
@@ -1330,6 +1330,9 @@ body{overflow-x:hidden;max-width:100%}
 /* neviditelná kotva — odkaz v menu míří nad nadpis sekce */
 .anchor{display:block;height:0;width:0;overflow:hidden;scroll-margin-top:0}
 #gallery.anchor{position:relative;top:calc(-1 * clamp(40px,4.6vw,64px) - 96px)}
+
+/* text v tlačítkách úvodu vždy na střed */
+.hero-cta .btn{justify-content:center}
 </style>
 <div class="wrap upsell-wrap"><div class="intro-about intro-after">
       <p class="about-lead">
