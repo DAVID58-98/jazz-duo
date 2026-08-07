@@ -730,7 +730,7 @@ main{position:relative;z-index:2}
   "url": "https://jazzduo.cz/",
   "logo": "https://jazzduo.cz/favicon/favicon-512.png",
   "image": "https://jazzduo.cz/SEO/og-image.jpg",
-  "description": "Jazz-Duo — Gesang und Klavier für Firmenabende, Empfänge, Bankette, Vernissagen und Dinner-Jazz. Eigene Tontechnik für bis zu 80–100 Gäste, Repertoire von über 100 Titeln, komplett live ohne Playback. Prag und ganz Tschechien.",
+  "description": "Jazz-Duo — Gesang und Klavier für Firmenabende, Empfänge, Bankette, Vernissagen und Dinner-Jazz. Eigene Tontechnik für bis zu 80–100 Gäste, Repertoire von über 100 Titeln, komplett live ohne Playback. Prag und ganz Tschechien. Preis 12.000–16.000 CZK für einen Standardabend.",
   "genre": [
     "Jazz",
     "Swing",
@@ -786,24 +786,92 @@ main{position:relative;z-index:2}
     "https://jazzquintet.cz/",
     "https://jazzduo.cz/"
   ],
-  "makesOffer": {
-    "@type": "Offer",
-    "name": "Jazz-Duo — Live-Musik für Ihre Veranstaltung",
-    "priceCurrency": "CZK",
-    "price": "12000",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Jazz-Duo",
+      "category": "Live music",
       "priceCurrency": "CZK",
-      "minPrice": "12000",
-      "description": "Ab 12.000 CZK in Prag inklusive eigener Tontechnik und Anfahrt innerhalb Prags. Außerhalb Prags 8 CZK pro Kilometer."
+      "price": "12000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "12000",
+        "maxPrice": "16000",
+        "valueAddedTaxIncluded": true,
+        "description": "Preis für einen Standardabend von etwa drei Stunden mit Pausen, in Prag inklusive eigener Tontechnik. Außerhalb Prags 8 CZK pro Kilometer."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Tschechien"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzduo.cz/de/"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Czech Republic"
+    {
+      "@type": "Offer",
+      "name": "Jazz-Trio",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "18000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "18000",
+        "maxPrice": "22000",
+        "valueAddedTaxIncluded": true,
+        "description": "Preis für einen Standardabend von etwa drei Stunden mit Pausen, in Prag inklusive eigener Tontechnik. Außerhalb Prags 8 CZK pro Kilometer."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Tschechien"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazztrio.cz/de/"
     },
-    "availability": "https://schema.org/InStock",
-    "url": "https://jazzduo.cz/de/"
-  },
+    {
+      "@type": "Offer",
+      "name": "Jazz-Quartett",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "24000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "24000",
+        "maxPrice": "28000",
+        "valueAddedTaxIncluded": true,
+        "description": "Preis für einen Standardabend von etwa drei Stunden mit Pausen, in Prag inklusive eigener Tontechnik. Außerhalb Prags 8 CZK pro Kilometer."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Tschechien"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzquartet.cz/de/"
+    },
+    {
+      "@type": "Offer",
+      "name": "Jazz-Quintett",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "30000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "30000",
+        "maxPrice": "34000",
+        "valueAddedTaxIncluded": true,
+        "description": "Preis für einen Standardabend von etwa drei Stunden mit Pausen, in Prag inklusive eigener Tontechnik. Außerhalb Prags 8 CZK pro Kilometer."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Tschechien"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzquintet.cz/de/"
+    }
+  ],
   "knowsLanguage": [
     "cs",
     "en",
@@ -869,7 +937,7 @@ main{position:relative;z-index:2}
     <a href="https://jazztrio.cz/de/blog/" data-close>Blog</a>
   </nav>
   <div class="drawer-foot">
-    <a href="#poptavka" class="btn btn-light drawer-cta" data-close>Angebot anfordern</a>
+    <a href="#poptavka" class="btn btn-light drawer-cta" data-close>Angebot anfragen</a>
     <span class="drawer-sign">David Kleňha · Live-Jazzmusik</span>
   </div>
 </aside>
@@ -883,8 +951,8 @@ main{position:relative;z-index:2}
       <p class="sr-only">Live-Jazz Duo für Trauungen, Empfänge und Jazz zum Dinner — David Kleňha. Gesang und Klavier (auf Wunsch Gitarre), intimer Klang. Aus Prag, wir reisen gern nach Deutschland und ins Grenzgebiet.</p>
       <p class="hero-sub">Gesang und Klavier oder Gitarre — unsere intimste Besetzung, die Stimmung schafft, ohne die Gäste zu übertönen. Ideal als <strong>Trauungsmusik</strong> oder als Jazz im Hintergrund zum&nbsp;Dinner.</p>
       <div class="hero-cta">
-        <a href="#poptavka" class="btn btn-primary">Angebot anfordern</a>
-        <a href="#builder" class="btn btn-ghost">Stellen Sie Ihre Band zusammen</a>
+        <a href="#poptavka" class="btn btn-primary">Angebot anfragen</a>
+        <a href="#builder" class="btn btn-ghost">Band zusammenstellen</a>
       </div>
     </div>
     <div class="hero-art">
@@ -968,6 +1036,8 @@ main{position:relative;z-index:2}
 
   
 <!-- UPGRADE: pruh statistik vycentrovaný mezi sekcemi -->
+</section>
+
 <div class="stats-band reveal">
   <div class="wrap">
     <div class="stats-strip">
@@ -1207,7 +1277,7 @@ main{position:relative;z-index:2}
           <span class="eyebrow">Live</span>
           <h2 class="section-title">Hören Sie uns live</h2>
           <p class="section-lead">Am besten überzeugen Sie sich live von uns. Unsere öffentlichen Konzerttermine halten wir aktuell — schauen Sie, wann wir in Ihrer Nähe spielen.</p>
-          <a href="https://www.davidklenha.cz/en/#concerts" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:22px">Konzerttermine ansehen</a>
+          <a href="https://www.davidklenha.cz/en/#concerts" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:22px">Termine ansehen</a>
         </div>
         <div class="concerts-art" aria-hidden="true">
           <div class="ticket">
@@ -1273,7 +1343,7 @@ main{position:relative;z-index:2}
 /* tlačítka v úvodu vždy vedle sebe */
 @media (max-width:560px){
   .hero-cta{flex-wrap:nowrap;gap:8px;width:100%}
-  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-left:12px;padding-right:12px;font-size:13.5px;text-align:center;justify-content:center}
+  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:normal;overflow-wrap:break-word;hyphens:auto;padding-left:10px;padding-right:10px;font-size:13px;line-height:1.25;text-align:center;justify-content:center}
 }
 /* interaktivní sestava — kompaktnější na mobilu */
 @media (max-width:640px){
@@ -1332,7 +1402,7 @@ body{overflow-x:hidden;max-width:100%}
       </a>
     </div>
   </div>
-</section>
+
 <section class="section reveal" id="builder">
   <div class="wrap">
     <div class="tile-dark">
@@ -1354,7 +1424,9 @@ body{overflow-x:hidden;max-width:100%}
     <span class="eyebrow">FAQ</span>
     <h2 class="section-title">Häufige Fragen</h2>
     <div class="faq-wrap">
-        <details class="faq-item"><summary>Was kostet das Jazz-Duo ungefähr?</summary><div class="faq-a">Das Jazz-Duo in Prag beginnt bei 12.000 CZK inklusive eigener Tontechnik und Anfahrt innerhalb Prags. Außerhalb Prags berechnen wir 8 CZK pro Kilometer. Ein genaues Angebot senden wir innerhalb von 24 Stunden.</div></details>
+        <details class="faq-item"><summary>Was kostet das Jazz-Duo ungefähr?</summary><div class="faq-a">Das Jazz-Duo in Prag kostet zwischen 12.000 und 16.000 CZK, je nach Programmlänge und Veranstaltungsort. Der Preis gilt für einen Standardabend von etwa drei Stunden mit Pausen; längere Programme vereinbaren wir individuell. Enthalten sind eigene Tontechnik und Anfahrt innerhalb Prags, außerhalb Prags berechnen wir 8 CZK pro Kilometer. Ein genaues Angebot senden wir innerhalb von 24 Stunden.</div></details>
+        <details class="faq-item"><summary>Was kostet eine größere Besetzung — Trio, Quartett oder Quintett?</summary><div class="faq-a">Das Jazz-Trio (Gesang, Klavier, Kontrabass) kostet 18.000–22.000 CZK, das Jazz-Quartett mit Schlagzeug 24.000–28.000 CZK und das Jazz-Quintett mit Bläsersektion 30.000–34.000 CZK. Die Preise gelten für einen Standardabend in Prag inklusive eigener Tontechnik.</div></details>
+        <details class="faq-item"><summary>Gibt es etwas Günstigeres als das Duo?</summary><div class="faq-a">Das Duo ist unsere kammermusikalischste und zugleich günstigste Besetzung — Gesang und Klavier ab 12.000 CZK. Eine kleinere Besetzung bieten wir nicht an, da wir die Qualität von Live-Jazz ohne Playback nicht halten könnten.</div></details>
         <details class="faq-item"><summary>Für welche Anlässe eignet sich das Duo am besten?</summary><div class="faq-a">Das Duo ist unsere intimste Besetzung — wir spielen vor allem bei Firmenabenden, Empfängen, Banketten und Vernissagen sowie als Dinner-Jazz in Restaurants und Hotels. Es klingt kultiviert, ohne Gespräche zu übertönen. Gern spielen wir auch bei einer Trauung.</div></details>
         <details class="faq-item"><summary>Bringen Sie eigene Tontechnik mit?</summary><div class="faq-a">Ja. Wir bringen unsere eigene professionelle Aktivanlage mit, die Veranstaltungen bis 80–100 Gäste zuverlässig abdeckt. Für Säle über 100 Personen und große Open-Air-Produktionen benötigen wir einen Tontechniker des Veranstalters.</div></details>
         <details class="faq-item"><summary>Welche technischen Anforderungen gibt es?</summary><div class="faq-a">Das Duo benötigt mindestens 3 × 2,5 Meter Fläche auf ebenem, sauberem und trockenem Untergrund sowie eine normale Steckdose mit 230 V / 16 A. Die Gesamtleistung überschreitet 1,5 kW nicht. Wir treffen 60 Minuten vor Beginn ein, Auf- und Abbau dauern je 30 Minuten. Für Auftritte im Freien benötigen wir eine feste Überdachung.</div></details>
@@ -2263,20 +2335,22 @@ body{overflow-x:hidden;max-width:100%}
       modal.querySelector('.bio-text').innerHTML=bio.innerHTML;
       lockScroll();
       modal.classList.add('open');
-      modal.querySelector('.bio-close').focus();
+      modal.querySelector('.bio-close').focus({preventScroll:true});
     }
-    function close(){modal.classList.remove('open');unlockScroll();if(last)last.focus();}
+    function close(){modal.classList.remove('open');unlockScroll();if(last)last.focus({preventScroll:true});}
     var lockY=0;
     function lockScroll(){
-      lockY=window.scrollY||document.documentElement.scrollTop||0;
-      var b=document.body;
-      b.style.position='fixed';b.style.top=(-lockY)+'px';
-      b.style.left='0';b.style.right='0';b.style.width='100%';b.style.overflow='hidden';
+      // NEMĚNÍME pozici stránky — jen zamkneme rolování. Nic se tedy nemůže posunout.
+      var r=document.documentElement;
+      var sw=window.innerWidth-r.clientWidth;
+      if(sw>0)document.body.style.paddingRight=sw+'px';
+      r.style.overflow='hidden';
+      document.body.style.overflow='hidden';
     }
     function unlockScroll(){
-      var b=document.body;
-      b.style.position='';b.style.top='';b.style.left='';b.style.right='';b.style.width='';b.style.overflow='';
-      window.scrollTo(0,lockY);
+      document.documentElement.style.overflow='';
+      document.body.style.overflow='';
+      document.body.style.paddingRight='';
     }
     btns.forEach(function(b){b.addEventListener('click',function(){last=b;open(b.closest('.lineup-card'),b.dataset.bio);});});
     // ---- reference: nekonečný slider po celých sloupcích ----
@@ -2534,10 +2608,26 @@ document.addEventListener('click',function(e){
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Was kostet ein Jazz-Duo für eine Hochzeit oder einen Empfang?",
+      "name": "Was kostet das Jazz-Duo ungefähr?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Wir haben keine feste Preisliste — der Preis hängt von der Dauer des Auftritts, dem Veranstaltungsort und der gewählten Besetzung ab. Schicken Sie uns Datum und Ort der Veranstaltung, und wir senden Ihnen innerhalb von 24 Stunden ein unverbindliches Angebot."
+        "text": "Das Jazz-Duo in Prag kostet zwischen 12.000 und 16.000 CZK, je nach Programmlänge und Veranstaltungsort. Der Preis gilt für einen Standardabend von etwa drei Stunden mit Pausen; längere Programme vereinbaren wir individuell. Enthalten sind eigene Tontechnik und Anfahrt innerhalb Prags, außerhalb Prags berechnen wir 8 CZK pro Kilometer. Ein genaues Angebot senden wir innerhalb von 24 Stunden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet eine größere Besetzung — Trio, Quartett oder Quintett?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Jazz-Trio (Gesang, Klavier, Kontrabass) kostet 18.000–22.000 CZK, das Jazz-Quartett mit Schlagzeug 24.000–28.000 CZK und das Jazz-Quintett mit Bläsersektion 30.000–34.000 CZK. Die Preise gelten für einen Standardabend in Prag inklusive eigener Tontechnik."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es etwas Günstigeres als das Duo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Duo ist unsere kammermusikalischste und zugleich günstigste Besetzung — Gesang und Klavier ab 12.000 CZK. Eine kleinere Besetzung bieten wir nicht an, da wir die Qualität von Live-Jazz ohne Playback nicht halten könnten."
       }
     },
     {
@@ -2545,7 +2635,7 @@ document.addEventListener('click',function(e){
       "name": "Für welche Anlässe eignet sich das Duo am besten?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Das Duo ist unsere intimste Besetzung — ideal als dezente musikalische Kulisse für eine Trauung, einen Empfang oder Jazz zum Dinner. Es klingt kultiviert, ohne die Gespräche zu übertönen."
+        "text": "Das Duo ist unsere intimste Besetzung — wir spielen vor allem bei Firmenabenden, Empfängen, Banketten und Vernissagen sowie als Dinner-Jazz in Restaurants und Hotels. Es klingt kultiviert, ohne Gespräche zu übertönen. Gern spielen wir auch bei einer Trauung."
       }
     },
     {
@@ -2553,7 +2643,15 @@ document.addEventListener('click',function(e){
       "name": "Bringen Sie eigene Tontechnik mit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja. Für kleinere Räume bringen wir unsere eigene Anlage mit und kümmern uns selbst um den Ton. In großen Sälen arbeiten wir gern mit Ihrem Tontechniker zusammen."
+        "text": "Ja. Wir bringen unsere eigene professionelle Aktivanlage mit, die Veranstaltungen bis 80–100 Gäste zuverlässig abdeckt. Für Säle über 100 Personen und große Open-Air-Produktionen benötigen wir einen Tontechniker des Veranstalters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche technischen Anforderungen gibt es?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Duo benötigt mindestens 3 × 2,5 Meter Fläche auf ebenem, sauberem und trockenem Untergrund sowie eine normale Steckdose mit 230 V / 16 A. Die Gesamtleistung überschreitet 1,5 kW nicht. Wir treffen 60 Minuten vor Beginn ein, Auf- und Abbau dauern je 30 Minuten. Für Auftritte im Freien benötigen wir eine feste Überdachung."
       }
     },
     {

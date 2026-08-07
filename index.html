@@ -732,7 +732,7 @@ main{position:relative;z-index:2}
   "url": "https://jazzduo.cz/",
   "logo": "https://jazzduo.cz/favicon/favicon-512.png",
   "image": "https://jazzduo.cz/SEO/og-image.jpg",
-  "description": "Jazzové duo — zpěv a klavír na firemní večery, recepce, rauty, vernisáže a jazz k večeři. Vlastní ozvučení pro akce do 80–100 hostů, repertoár přes 100 skladeb, hraní bez playbacků. Praha a celá ČR.",
+  "description": "Jazzové duo — zpěv a klavír na firemní večery, recepce, rauty, vernisáže a jazz k večeři. Vlastní ozvučení pro akce do 80–100 hostů, repertoár přes 100 skladeb, hraní bez playbacků. Praha a celá ČR. Cena 12 000–16 000 Kč za standardní večer.",
   "genre": [
     "Jazz",
     "Swing",
@@ -781,24 +781,92 @@ main{position:relative;z-index:2}
     "https://jazzquartet.cz/",
     "https://jazzquintet.cz/"
   ],
-  "makesOffer": {
-    "@type": "Offer",
-    "name": "Jazzové duo — živá hudba na akci",
-    "priceCurrency": "CZK",
-    "price": "12000",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Jazzové duo",
+      "category": "Live music",
       "priceCurrency": "CZK",
-      "minPrice": "12000",
-      "description": "Cena v Praze od 12 000 Kč včetně vlastního ozvučení a dopravy po Praze. Mimo Prahu doprava 8 Kč/km."
+      "price": "12000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "12000",
+        "maxPrice": "16000",
+        "valueAddedTaxIncluded": true,
+        "description": "Cena za standardní večer, přibližně tři hodiny s pauzami, v Praze včetně vlastního ozvučení. Mimo Prahu doprava 8 Kč/km."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Česká republika"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzduo.cz/"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Česká republika"
+    {
+      "@type": "Offer",
+      "name": "Jazzové trio",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "18000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "18000",
+        "maxPrice": "22000",
+        "valueAddedTaxIncluded": true,
+        "description": "Cena za standardní večer, přibližně tři hodiny s pauzami, v Praze včetně vlastního ozvučení. Mimo Prahu doprava 8 Kč/km."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Česká republika"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazztrio.cz/"
     },
-    "availability": "https://schema.org/InStock",
-    "url": "https://jazzduo.cz/"
-  },
+    {
+      "@type": "Offer",
+      "name": "Jazzový kvartet",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "24000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "24000",
+        "maxPrice": "28000",
+        "valueAddedTaxIncluded": true,
+        "description": "Cena za standardní večer, přibližně tři hodiny s pauzami, v Praze včetně vlastního ozvučení. Mimo Prahu doprava 8 Kč/km."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Česká republika"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzquartet.cz/"
+    },
+    {
+      "@type": "Offer",
+      "name": "Jazzový kvintet",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "30000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "30000",
+        "maxPrice": "34000",
+        "valueAddedTaxIncluded": true,
+        "description": "Cena za standardní večer, přibližně tři hodiny s pauzami, v Praze včetně vlastního ozvučení. Mimo Prahu doprava 8 Kč/km."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Česká republika"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzquintet.cz/"
+    }
+  ],
   "knowsLanguage": [
     "cs",
     "en"
@@ -1291,7 +1359,7 @@ main{position:relative;z-index:2}
 /* tlačítka v úvodu vždy vedle sebe */
 @media (max-width:560px){
   .hero-cta{flex-wrap:nowrap;gap:8px;width:100%}
-  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-left:12px;padding-right:12px;font-size:13.5px;text-align:center;justify-content:center}
+  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:normal;overflow-wrap:break-word;hyphens:auto;padding-left:10px;padding-right:10px;font-size:13px;line-height:1.25;text-align:center;justify-content:center}
 }
 /* interaktivní sestava — kompaktnější na mobilu */
 @media (max-width:640px){
@@ -1369,7 +1437,9 @@ body{overflow-x:hidden;max-width:100%}
     <span class="eyebrow">FAQ</span>
     <h2 class="section-title">Časté dotazy</h2>
     <div class="faq-wrap">
-        <details class="faq-item"><summary>Jaká je orientační cena jazzového dua?</summary><div class="faq-a">Cena jazzového dua v Praze začíná na 12 000 Kč včetně vlastního ozvučení a dopravy po Praze. Mimo Prahu připočítáváme dopravu 8 Kč/km. Přesnou nabídku pošleme do 24 hodin od poptávky.</div></details>
+        <details class="faq-item"><summary>Jaká je orientační cena jazzového dua?</summary><div class="faq-a">Cena jazzového dua v Praze se pohybuje mezi 12 000 a 16 000 Kč podle délky programu a místa konání. Uvedená cena platí pro standardní večer, tedy přibližně tři hodiny s pauzami. Delší program domlouváme individuálně. V ceně je vlastní ozvučení a doprava po Praze, mimo Prahu připočítáváme 8 Kč/km. Přesnou nabídku pošleme do 24 hodin od poptávky.</div></details>
+        <details class="faq-item"><summary>Kolik stojí větší sestava — trio, kvartet nebo kvintet?</summary><div class="faq-a">Jazzové trio (zpěv, klavír, kontrabas) stojí 18 000 až 22 000 Kč, jazzový kvartet s bicími 24 000 až 28 000 Kč a jazzový kvintet s dechovou sekcí 30 000 až 34 000 Kč. Ceny platí pro standardní večer v Praze včetně vlastního ozvučení. Sestavu doporučíme podle velikosti akce a prostoru.</div></details>
+        <details class="faq-item"><summary>Máte i levnější variantu než duo?</summary><div class="faq-a">Duo je naše nejkomornější a zároveň cenově nejdostupnější obsazení — zpěv a klavír od 12 000 Kč. Menší sestavu už nenabízíme, protože bychom nedokázali udržet kvalitu živého jazzu bez playbacků.</div></details>
         <details class="faq-item"><summary>Pro jaké akce se duo hodí nejvíc?</summary><div class="faq-a">Duo je naše nejkomornější obsazení — hrajeme nejčastěji na firemních večerech, recepcích, rautech a vernisážích a jako jazz k večeři v restauracích a hotelech. Zní kultivovaně, ale nepřehluší konverzaci. Rádi zahrajeme i na svatebním obřadu.</div></details>
         <details class="faq-item"><summary>Vozíte vlastní ozvučení?</summary><div class="faq-a">Ano. Vozíme vlastní profesionální aktivní aparaturu, která spolehlivě pokryje komornější až středně velké akce do 80 až 100 hostů. Pro sály nad 100 osob a velké venkovní produkce vyžadujeme zvukaře ze strany pořadatele.</div></details>
         <details class="faq-item"><summary>Jaké jsou technické požadavky kapely?</summary><div class="faq-a">Duo potřebuje plochu minimálně 3 × 2,5 metru na rovném, čistém a suchém povrchu a jednu běžnou zásuvku 230 V / 16 A. Celkový příkon aparatury nepřesahuje 1,5 kW. Na místo přijíždíme 60 minut před začátkem, stavba i úklid trvají 30 minut. Pro venkovní produkci potřebujeme pevné zastřešení kapely i techniky.</div></details>
@@ -2282,20 +2352,22 @@ body{overflow-x:hidden;max-width:100%}
       modal.querySelector('.bio-text').innerHTML=bio.innerHTML;
       lockScroll();
       modal.classList.add('open');
-      modal.querySelector('.bio-close').focus();
+      modal.querySelector('.bio-close').focus({preventScroll:true});
     }
-    function close(){modal.classList.remove('open');unlockScroll();if(last)last.focus();}
+    function close(){modal.classList.remove('open');unlockScroll();if(last)last.focus({preventScroll:true});}
     var lockY=0;
     function lockScroll(){
-      lockY=window.scrollY||document.documentElement.scrollTop||0;
-      var b=document.body;
-      b.style.position='fixed';b.style.top=(-lockY)+'px';
-      b.style.left='0';b.style.right='0';b.style.width='100%';b.style.overflow='hidden';
+      // NEMĚNÍME pozici stránky — jen zamkneme rolování. Nic se tedy nemůže posunout.
+      var r=document.documentElement;
+      var sw=window.innerWidth-r.clientWidth;
+      if(sw>0)document.body.style.paddingRight=sw+'px';
+      r.style.overflow='hidden';
+      document.body.style.overflow='hidden';
     }
     function unlockScroll(){
-      var b=document.body;
-      b.style.position='';b.style.top='';b.style.left='';b.style.right='';b.style.width='';b.style.overflow='';
-      window.scrollTo(0,lockY);
+      document.documentElement.style.overflow='';
+      document.body.style.overflow='';
+      document.body.style.paddingRight='';
     }
     btns.forEach(function(b){b.addEventListener('click',function(){last=b;open(b.closest('.lineup-card'),b.dataset.bio);});});
     // ---- reference: nekonečný slider po celých sloupcích ----
@@ -2556,7 +2628,23 @@ document.addEventListener('click',function(e){
       "name": "Jaká je orientační cena jazzového dua?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cena jazzového dua v Praze začíná na 12 000 Kč včetně vlastního ozvučení a dopravy po Praze. Mimo Prahu připočítáváme dopravu 8 Kč/km. Přesnou nabídku pošleme do 24 hodin od poptávky."
+        "text": "Cena jazzového dua v Praze se pohybuje mezi 12 000 a 16 000 Kč podle délky programu a místa konání. Uvedená cena platí pro standardní večer, tedy přibližně tři hodiny s pauzami. Delší program domlouváme individuálně. V ceně je vlastní ozvučení a doprava po Praze, mimo Prahu připočítáváme 8 Kč/km. Přesnou nabídku pošleme do 24 hodin od poptávky."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kolik stojí větší sestava — trio, kvartet nebo kvintet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jazzové trio (zpěv, klavír, kontrabas) stojí 18 000 až 22 000 Kč, jazzový kvartet s bicími 24 000 až 28 000 Kč a jazzový kvintet s dechovou sekcí 30 000 až 34 000 Kč. Ceny platí pro standardní večer v Praze včetně vlastního ozvučení. Sestavu doporučíme podle velikosti akce a prostoru."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Máte i levnější variantu než duo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Duo je naše nejkomornější a zároveň cenově nejdostupnější obsazení — zpěv a klavír od 12 000 Kč. Menší sestavu už nenabízíme, protože bychom nedokázali udržet kvalitu živého jazzu bez playbacků."
       }
     },
     {

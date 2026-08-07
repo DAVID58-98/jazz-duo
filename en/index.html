@@ -730,7 +730,7 @@ main{position:relative;z-index:2}
   "url": "https://jazzduo.cz/",
   "logo": "https://jazzduo.cz/favicon/favicon-512.png",
   "image": "https://jazzduo.cz/SEO/og-image.jpg",
-  "description": "Jazz duo — voice and piano for corporate evenings, receptions, standing dinners, gallery openings and dinner jazz. Own PA for events up to 80–100 guests, a repertoire of over 100 songs, fully live with no backing tracks. Prague and the whole Czech Republic.",
+  "description": "Jazz duo — voice and piano for corporate evenings, receptions, standing dinners, gallery openings and dinner jazz. Own PA for events up to 80–100 guests, a repertoire of over 100 songs, fully live with no backing tracks. Prague and the whole Czech Republic. Price CZK 12,000–16,000 for a standard evening.",
   "genre": [
     "Jazz",
     "Swing",
@@ -786,24 +786,92 @@ main{position:relative;z-index:2}
     "https://jazzquintet.cz/",
     "https://jazzduo.cz/"
   ],
-  "makesOffer": {
-    "@type": "Offer",
-    "name": "Jazz duo — live music for your event",
-    "priceCurrency": "CZK",
-    "price": "12000",
-    "priceSpecification": {
-      "@type": "PriceSpecification",
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "Jazz duo",
+      "category": "Live music",
       "priceCurrency": "CZK",
-      "minPrice": "12000",
-      "description": "From CZK 12,000 in Prague, including our own PA system and travel within Prague. Outside Prague CZK 8 per kilometre."
+      "price": "12000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "12000",
+        "maxPrice": "16000",
+        "valueAddedTaxIncluded": true,
+        "description": "Price for a standard evening of roughly three hours with breaks, in Prague including our own PA system. Outside Prague CZK 8 per kilometre."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Czech Republic"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzduo.cz/en/"
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Czech Republic"
+    {
+      "@type": "Offer",
+      "name": "Jazz trio",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "18000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "18000",
+        "maxPrice": "22000",
+        "valueAddedTaxIncluded": true,
+        "description": "Price for a standard evening of roughly three hours with breaks, in Prague including our own PA system. Outside Prague CZK 8 per kilometre."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Czech Republic"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazztrio.cz/en/"
     },
-    "availability": "https://schema.org/InStock",
-    "url": "https://jazzduo.cz/en/"
-  },
+    {
+      "@type": "Offer",
+      "name": "Jazz quartet",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "24000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "24000",
+        "maxPrice": "28000",
+        "valueAddedTaxIncluded": true,
+        "description": "Price for a standard evening of roughly three hours with breaks, in Prague including our own PA system. Outside Prague CZK 8 per kilometre."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Czech Republic"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzquartet.cz/en/"
+    },
+    {
+      "@type": "Offer",
+      "name": "Jazz quintet",
+      "category": "Live music",
+      "priceCurrency": "CZK",
+      "price": "30000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "CZK",
+        "minPrice": "30000",
+        "maxPrice": "34000",
+        "valueAddedTaxIncluded": true,
+        "description": "Price for a standard evening of roughly three hours with breaks, in Prague including our own PA system. Outside Prague CZK 8 per kilometre."
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Czech Republic"
+      },
+      "availability": "https://schema.org/InStock",
+      "url": "https://jazzquintet.cz/en/"
+    }
+  ],
   "knowsLanguage": [
     "cs",
     "en",
@@ -968,6 +1036,8 @@ main{position:relative;z-index:2}
 
   
 <!-- UPGRADE: pruh statistik vycentrovaný mezi sekcemi -->
+</section>
+
 <div class="stats-band reveal">
   <div class="wrap">
     <div class="stats-strip">
@@ -1273,7 +1343,7 @@ main{position:relative;z-index:2}
 /* tlačítka v úvodu vždy vedle sebe */
 @media (max-width:560px){
   .hero-cta{flex-wrap:nowrap;gap:8px;width:100%}
-  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:nowrap;padding-left:12px;padding-right:12px;font-size:13.5px;text-align:center;justify-content:center}
+  .hero-cta .btn{flex:1 1 0;min-width:0;white-space:normal;overflow-wrap:break-word;hyphens:auto;padding-left:10px;padding-right:10px;font-size:13px;line-height:1.25;text-align:center;justify-content:center}
 }
 /* interaktivní sestava — kompaktnější na mobilu */
 @media (max-width:640px){
@@ -1332,7 +1402,7 @@ body{overflow-x:hidden;max-width:100%}
       </a>
     </div>
   </div>
-</section>
+
 <section class="section reveal" id="builder">
   <div class="wrap">
     <div class="tile-dark">
@@ -1354,7 +1424,9 @@ body{overflow-x:hidden;max-width:100%}
     <span class="eyebrow">FAQ</span>
     <h2 class="section-title">Frequently asked questions</h2>
     <div class="faq-wrap">
-        <details class="faq-item"><summary>What is the approximate price of the jazz duo?</summary><div class="faq-a">The jazz duo in Prague starts at CZK 12,000, including our own PA system and travel within Prague. Outside Prague we add CZK 8 per kilometre. We send an exact quote within 24 hours of your enquiry.</div></details>
+        <details class="faq-item"><summary>What is the approximate price of the jazz duo?</summary><div class="faq-a">The jazz duo in Prague costs between CZK 12,000 and 16,000 depending on the length of the programme and the venue. The price covers a standard evening of roughly three hours with breaks; longer programmes are arranged individually. It includes our own PA system and travel within Prague; outside Prague we add CZK 8 per kilometre. We send an exact quote within 24 hours.</div></details>
+        <details class="faq-item"><summary>How much does a larger line-up cost — trio, quartet or quintet?</summary><div class="faq-a">The jazz trio (voice, piano, double bass) costs CZK 18,000–22,000, the jazz quartet with drums CZK 24,000–28,000 and the jazz quintet with a horn section CZK 30,000–34,000. Prices are for a standard evening in Prague including our own PA system.</div></details>
+        <details class="faq-item"><summary>Do you offer anything cheaper than the duo?</summary><div class="faq-a">The duo is our most intimate and most affordable line-up — voice and piano from CZK 12,000. We do not offer a smaller line-up, as we could not maintain the quality of live jazz without backing tracks.</div></details>
         <details class="faq-item"><summary>What kind of events is the duo best suited to?</summary><div class="faq-a">The duo is our most intimate line-up — we play most often at corporate evenings, receptions, standing dinners and gallery openings, and as dinner jazz in restaurants and hotels. It sounds refined without drowning out conversation. We are also happy to play at a wedding ceremony.</div></details>
         <details class="faq-item"><summary>Do you bring your own PA system?</summary><div class="faq-a">Yes. We bring our own professional active PA system, which comfortably covers intimate to mid-sized events of up to 80–100 guests. For halls above 100 people and large outdoor productions we require a sound engineer provided by the organiser.</div></details>
         <details class="faq-item"><summary>What are the technical requirements?</summary><div class="faq-a">The duo needs a minimum area of 3 × 2.5 metres on a level, clean and dry surface, and one standard 230 V / 16 A socket. Total power draw does not exceed 1.5 kW. We arrive 60 minutes before the start; set-up and pack-down take 30 minutes each. Outdoor performances require solid cover for the band and equipment.</div></details>
@@ -2263,20 +2335,22 @@ body{overflow-x:hidden;max-width:100%}
       modal.querySelector('.bio-text').innerHTML=bio.innerHTML;
       lockScroll();
       modal.classList.add('open');
-      modal.querySelector('.bio-close').focus();
+      modal.querySelector('.bio-close').focus({preventScroll:true});
     }
-    function close(){modal.classList.remove('open');unlockScroll();if(last)last.focus();}
+    function close(){modal.classList.remove('open');unlockScroll();if(last)last.focus({preventScroll:true});}
     var lockY=0;
     function lockScroll(){
-      lockY=window.scrollY||document.documentElement.scrollTop||0;
-      var b=document.body;
-      b.style.position='fixed';b.style.top=(-lockY)+'px';
-      b.style.left='0';b.style.right='0';b.style.width='100%';b.style.overflow='hidden';
+      // NEMĚNÍME pozici stránky — jen zamkneme rolování. Nic se tedy nemůže posunout.
+      var r=document.documentElement;
+      var sw=window.innerWidth-r.clientWidth;
+      if(sw>0)document.body.style.paddingRight=sw+'px';
+      r.style.overflow='hidden';
+      document.body.style.overflow='hidden';
     }
     function unlockScroll(){
-      var b=document.body;
-      b.style.position='';b.style.top='';b.style.left='';b.style.right='';b.style.width='';b.style.overflow='';
-      window.scrollTo(0,lockY);
+      document.documentElement.style.overflow='';
+      document.body.style.overflow='';
+      document.body.style.paddingRight='';
     }
     btns.forEach(function(b){b.addEventListener('click',function(){last=b;open(b.closest('.lineup-card'),b.dataset.bio);});});
     // ---- reference: nekonečný slider po celých sloupcích ----
@@ -2534,10 +2608,26 @@ document.addEventListener('click',function(e){
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How much does a jazz duo cost for a wedding or a reception?",
+      "name": "What is the approximate price of the jazz duo?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We do not work with a fixed price list — the price depends on the length of the performance, the venue and the line-up you choose. Send us the date and place of your event and we will send a free, non-binding quote within 24 hours."
+        "text": "The jazz duo in Prague costs between CZK 12,000 and 16,000 depending on the length of the programme and the venue. The price covers a standard evening of roughly three hours with breaks; longer programmes are arranged individually. It includes our own PA system and travel within Prague; outside Prague we add CZK 8 per kilometre. We send an exact quote within 24 hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a larger line-up cost — trio, quartet or quintet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The jazz trio (voice, piano, double bass) costs CZK 18,000–22,000, the jazz quartet with drums CZK 24,000–28,000 and the jazz quintet with a horn section CZK 30,000–34,000. Prices are for a standard evening in Prague including our own PA system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer anything cheaper than the duo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The duo is our most intimate and most affordable line-up — voice and piano from CZK 12,000. We do not offer a smaller line-up, as we could not maintain the quality of live jazz without backing tracks."
       }
     },
     {
@@ -2545,7 +2635,7 @@ document.addEventListener('click',function(e){
       "name": "What kind of events is the duo best suited to?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The duo is our most intimate line-up — ideal as discreet background music for a wedding ceremony, a reception or jazz over dinner. It sounds refined without drowning out the conversation."
+        "text": "The duo is our most intimate line-up — we play most often at corporate evenings, receptions, standing dinners and gallery openings, and as dinner jazz in restaurants and hotels. It sounds refined without drowning out conversation. We are also happy to play at a wedding ceremony."
       }
     },
     {
@@ -2553,7 +2643,15 @@ document.addEventListener('click',function(e){
       "name": "Do you bring your own PA system?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. For smaller venues we bring our own equipment and take care of the sound ourselves. In large halls we are happy to work with your sound engineer."
+        "text": "Yes. We bring our own professional active PA system, which comfortably covers intimate to mid-sized events of up to 80–100 guests. For halls above 100 people and large outdoor productions we require a sound engineer provided by the organiser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the technical requirements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The duo needs a minimum area of 3 × 2.5 metres on a level, clean and dry surface, and one standard 230 V / 16 A socket. Total power draw does not exceed 1.5 kW. We arrive 60 minutes before the start; set-up and pack-down take 30 minutes each. Outdoor performances require solid cover for the band and equipment."
       }
     },
     {
