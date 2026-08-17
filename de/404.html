@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stránka nenalezena (404) | jazzduo.cz</title>
+<title>Seite nicht gefunden (404) | jazzduo.cz</title>
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg">
@@ -54,36 +54,15 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #14302f;outline-offset:2px;
 <body>
 <main class="box">
   <div class="code">404</div>
-  <h1>Tuhle stránku jsme nenašli</h1>
-  <p>Možná se přesunula nebo jste zadali adresu s překlepem. Zkuste to prosím z úvodní stránky —
-  nebo mi rovnou napište, s čím potřebujete pomoct.</p>
+  <h1>Diese Seite haben wir nicht gefunden</h1>
+  <p>Möglicherweise wurde sie verschoben oder die Adresse enthält einen Tippfehler. Versuchen Sie es bitte von der Startseite aus — oder schreiben Sie mir einfach, was Sie brauchen.</p>
   <div class="links">
-    <a class="btn primary" href="/">Zpět na úvod</a>
-    <a class="btn ghost" href="/#poptavka">Nezávazná poptávka</a>
+    <a class="btn primary" href="/de/">Zur Startseite</a>
+    <a class="btn ghost" href="/de/#poptavka">Unverbindliche Anfrage</a>
   </div>
-  <p class="sister">Hledáte jinou sestavu? <a href="https://jazzduo.cz">duo</a> ·
-  <a href="https://jazztrio.cz">trio</a> · <a href="https://jazzquartet.cz">kvartet</a> ·
-  <a href="https://jazzquintet.cz">kvintet</a></p>
+  <p class="sister">Suchen Sie eine andere Besetzung? <a href="https://jazzduo.cz/de/">Duo</a> ·
+  <a href="https://jazztrio.cz/de/">Trio</a> · <a href="https://jazzquartet.cz/de/">Quartett</a> ·
+  <a href="https://jazzquintet.cz/de/">Quintett</a></p>
 </main>
-<script>
-/* GitHub Pages umí jen jednu 404 stránku v kořeni. Podle cesty chybné URL
-   (/en/… nebo /de/…) tady přepneme jazyk textu na této stránce. */
-(function(){
-  var p=location.pathname,l=p.indexOf("/de/")===0?"de":(p.indexOf("/en/")===0?"en":"cs");
-  if(l==="cs")return;
-  var T={"en": {"title": "Page not found (404) | jazzduo.cz", "h1": "We couldn't find that page", "p": "It may have moved, or the address contains a typo. Please try again from the home page — or simply write to me and tell me what you need.", "b1": "Back to home", "b2": "Request a quote", "sis": "Looking for a different line-up?", "sites": [["https://jazzduo.cz/en/", "duo"], ["https://jazztrio.cz/en/", "trio"], ["https://jazzquartet.cz/en/", "quartet"], ["https://jazzquintet.cz/en/", "quintet"]]}, "de": {"title": "Seite nicht gefunden (404) | jazzduo.cz", "h1": "Diese Seite haben wir nicht gefunden", "p": "Möglicherweise wurde sie verschoben oder die Adresse enthält einen Tippfehler. Versuchen Sie es bitte von der Startseite aus — oder schreiben Sie mir einfach, was Sie brauchen.", "b1": "Zur Startseite", "b2": "Unverbindliche Anfrage", "sis": "Suchen Sie eine andere Besetzung?", "sites": [["https://jazzduo.cz/de/", "Duo"], ["https://jazztrio.cz/de/", "Trio"], ["https://jazzquartet.cz/de/", "Quartett"], ["https://jazzquintet.cz/de/", "Quintett"]]}};
-  var t=T[l],q=function(s){return document.querySelector(s);};
-  document.documentElement.lang=l;
-  document.title=t.title;
-  q(".box h1").textContent=t.h1;
-  q(".box > p").textContent=t.p;
-  var a1=q(".links .primary"),a2=q(".links .ghost");
-  a1.textContent=t.b1;a1.href="/"+l+"/";
-  a2.textContent=t.b2;a2.href="/"+l+"/#poptavka";
-  var s=q("p.sister"),out=t.sis+" ";
-  for(var i=0;i<t.sites.length;i++){out+=(i?" · ":"")+'<a href="'+t.sites[i][0]+'">'+t.sites[i][1]+"</a>";}
-  s.innerHTML=out;
-})();
-</script>
 </body>
 </html>
