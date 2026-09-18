@@ -53,10 +53,8 @@
 </script>
 
 <noscript><style>#jtIntro{display:none!important}html.fonts-loading .hero-copy{visibility:visible!important}.hero-copy>*{opacity:1!important;transform:none!important}html.fonts-loading #jtIntro .intro-brand{opacity:1!important}</style></noscript>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link id="gfonts" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;family=Poppins:wght@400;500;600&amp;display=swap"></noscript>
+<link id="gfonts" rel="preload" as="style" href="/fonts/fonts.css">
+<noscript><link rel="stylesheet" href="/fonts/fonts.css"></noscript>
 <script>(function(){
   var d=document.documentElement,l=document.getElementById('gfonts'),done=false;
   function ok(){if(done)return;done=true;d.classList.remove('fonts-loading');d.classList.add('fonts-loaded');}
@@ -2028,7 +2026,7 @@ body{overflow-x:hidden;max-width:100%}
       box.className='vid-modal-box'+(v.vert?' portrait':'');
       modal.classList.toggle('is-portrait',!!v.vert);
       box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+v.yt+'?autoplay=1&rel=0&playsinline=1" '+
-        'title="'+v.name+(v.place?' – '+v.place:'')+'" allow="accelerator;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe>';
+        'title="'+v.name+(v.place?' – '+v.place:'')+'" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';
       var c=modal.querySelector('.vid-modal-close');
       if(!c){c=el('button');c.className='vid-modal-close';c.type='button';c.setAttribute('aria-label','Close');c.innerHTML='✕';
         c.addEventListener('click',closeModal);modal.appendChild(c);}
