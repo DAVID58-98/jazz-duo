@@ -1290,7 +1290,7 @@ main{position:relative;z-index:2}
           <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <input type="hidden" name="Sestava" id="hidSestava" value="Jazz Duo (2 musicians)">
           <input type="hidden" name="Hudební bloky" id="hidBlocks" value="3 × 45 minutes + breaks">
-          <input type="hidden" name="Typ akce" id="hidType" value="Svatba">
+          <input type="hidden" name="Typ akce" id="hidType" value="Wedding">
 
           <div class="calc-grid">
             <div class="field full">
@@ -2720,11 +2720,11 @@ body{overflow-x:hidden;max-width:100%}
         if(j.success){showToast();form.reset();setCount(2);
           $('blkChoice').querySelectorAll('.blk').forEach(function(x){x.classList.toggle('sel',x.dataset.n==='3');});
           $('hidBlocks').value='3 × 45 minutes + breaks';
-          $('segType').querySelectorAll('.opt').forEach(function(x){x.classList.toggle('sel',x.dataset.v==='Svatba');});$('hidType').value='Svatba';
+          $('segType').querySelectorAll('.opt').forEach(function(x){x.classList.toggle('sel',x.dataset.v==='Wedding');});$('hidType').value='Wedding';
           if(window.hcaptcha){try{hcaptcha.reset();}catch(_){}}}
-        else{status.className='form-status err';status.textContent='Něco se nepovedlo. Zkuste to prosím znovu, nebo napište na info@davidklenha.cz.';}
+        else{status.className='form-status err';status.textContent='Something went wrong. Please try again, or write to us at info@davidklenha.cz.';}
       })
-      .catch(function(){status.className='form-status err';status.textContent='Spojení selhalo. Napište nám prosím na info@davidklenha.cz.';})
+      .catch(function(){status.className='form-status err';status.textContent='Connection failed. Please write to us at info@davidklenha.cz.';})
       .finally(function(){btn.disabled=false;btn.innerHTML='Send enquiry';});
   });
 })();
