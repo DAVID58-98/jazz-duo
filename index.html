@@ -2241,8 +2241,13 @@ body{overflow-x:hidden;max-width:100%}
     var GAL_OPEN='Otevřít fotku {n} z {total} ve velkém zobrazení';
     var GAL_ALTS=["Jazzový zpěvák David Kleňha při živém vystoupení na svatbě", "Jazzové duo David Kleňha — živá hudba na společenské akci", "David Kleňha se svou kapelou při živém vystoupení", "Komorní jazz naživo — zpěv a klavír Davida Kleňhy s kapelou", "Jazzové duo David Kleňha jako hudební kulisa k večeři", "David Kleňha — zpěvák a bandleader s kapelou naživo", "Živá jazzová hudba Davida Kleňhy na komorní akci", "Jazzové vystoupení Davida Kleňhy s doprovodnou kapelou"];
     var GBASE='https://jazzduo.cz/foto/';
-    var files=['foto_0.webp','foto_1.webp','foto_2.webp','foto_3.webp','foto_4.webp','foto_5.webp','foto_6.webp','foto_7.webp'];
+    // Seznam fotek se načítá z /foto/galerie.json (generuje GitHub Action, seřazeno od nejnovější).
+    // Když se JSON nepodaří načíst, použije se tento záložní seznam.
+    var GAL_FALLBACK=['20-12-2025.webp','13-12-2025.webp','06-12-2025.webp','29-11-2025.webp','22-11-2025.webp','15-11-2025.webp','08-11-2025.webp','01-11-2025.webp'];
     var track=$('galTrack');if(!track)return;
+    // alt texty: původní fotky mají vlastní popis, nové fotky obecný
+    function galAlt(name,i){var k=GAL_FALLBACK.indexOf(name);return k>=0?(GAL_ALTS[k]||''):'Jazzové duo David Kleňha živě — fotka '+(i+1);}
+    function start(files){
     var N=files.length;
     var CLONES=4;               // = max. počet fotek ve výřezu (desktop), stačí pro plynulé přetočení
     var GAL_DUR=450;            // musí sedět s transition v .gal-track
@@ -2250,7 +2255,7 @@ body{overflow-x:hidden;max-width:100%}
     function makeItem(i,isClone){
       var d=el('button');d.className='gal-item';d.type='button';
       d.setAttribute('data-idx',i);
-      d.innerHTML='<img src="'+GBASE+files[i]+'" alt="'+(isClone?'':(GAL_ALTS[i]||''))+'" width="600" height="800" loading="lazy" decoding="async">';
+      d.innerHTML='<img src="'+GBASE+files[i]+'" alt="'+(isClone?'':galAlt(files[i],i))+'" width="600" height="800" loading="lazy" decoding="async">';
       if(isClone){d.setAttribute('aria-hidden','true');d.tabIndex=-1;}
       else{d.setAttribute('aria-label',GAL_OPEN.replace('{n}',i+1).replace('{total}',N));}
       d.addEventListener('click',function(){openLB(i);});
@@ -2371,6 +2376,15 @@ body{overflow-x:hidden;max-width:100%}
         if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){if(dx<0)next();else prev();}
       },{passive:true});
     }
+    } // konec start()
+
+    var gStarted=false;
+    function go(list){if(gStarted)return;gStarted=true;start(list&&list.length?list:GAL_FALLBACK);}
+    if(window.fetch){
+      fetch(GBASE+'galerie.json',{cache:'no-cache'})
+        .then(function(r){if(!r.ok)throw 0;return r.json();})
+        .then(function(d){go(d&&d.files);},function(){go(null);});
+    }else go(null);
   })();
 
 
