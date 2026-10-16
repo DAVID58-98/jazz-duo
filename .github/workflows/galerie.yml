@@ -1,0 +1,124 @@
+name: Galerie
+
+# Po nahrání / smazání fotky ve složce foto/ vygeneruje foto/galerie.json
+# (seznam fotek seřazený od nejnovější) a web si ho při načtení přečte.
+# Název fotky = datum akce DD-MM-RRRR (např. 27-10-2026.webp, další ze stejného dne 27-10-2026-2.webp).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'foto/**'
+      - '!foto/galerie.json'
+      - '!foto/README.md'
+      - '.github/workflows/galerie.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: galerie
+  cancel-in-progress: false
+
+jobs:
+  seznam:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main          # vždy nejnovější stav (i když se fotky nahrávají rychle po sobě)
+          fetch-depth: 0
+
+      - name: Vygenerovat foto/galerie.json
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          import json
+          import re
+          import subprocess
+          from pathlib import Path
+
+          FOTO = Path("foto")
+          OBRAZKY = {".webp", ".jpg", ".jpeg", ".png", ".avif"}
+          BEZPECNY_NAZEV = re.compile(r"^[A-Za-z0-9._-]+$")
+          DATUM_EU = re.compile(r"^(\d{2})-(\d{2})-(\d{4})")    # 27-10-2026.webp, 27-10-2026-2.webp
+          DATUM_ISO = re.compile(r"^(\d{4})-(\d{2})-(\d{2})")   # 2026-10-27-… (pro jistotu taky)
+          MAX_KB = 400
+
+          def datum_nahrani(path):
+              # datum prvního commitu, ve kterém se soubor objevil
+              out = subprocess.check_output(
+                  ["git", "log", "--diff-filter=A", "--follow", "--format=%cs", "--", str(path)]
+              ).decode().split()
+              return out[-1] if out else "0000-00-00"
+
+          def prirozene(nazev):
+              # podle názvu bez přípony: 27-10-2026 → 27-10-2026-2 → … → 27-10-2026-10
+              stem = nazev.rsplit(".", 1)[0]
+              return [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", stem)]
+
+          polozky = []
+          for p in FOTO.iterdir():
+              if not p.is_file() or p.suffix.lower() not in OBRAZKY:
+                  continue
+              if not BEZPECNY_NAZEV.match(p.name):
+                  print(f"::warning file={p}::Název obsahuje mezery, diakritiku nebo zvláštní znaky – fotka se do galerie NEPŘIDÁ. Přejmenuj ji podle foto/README.md.")
+                  continue
+              if p.suffix.lower() != ".webp":
+                  print(f"::warning file={p}::Fotka není ve formátu WebP. Funguje, ale je zbytečně velká – viz foto/README.md.")
+              kb = p.stat().st_size / 1024
+              if kb > MAX_KB:
+                  print(f"::warning file={p}::Fotka má {kb:.0f} kB (doporučeno max. {MAX_KB} kB) – zpomaluje web.")
+              m_eu, m_iso = DATUM_EU.match(p.name), DATUM_ISO.match(p.name)
+              if m_eu:
+                  den, mesic, rok = m_eu.groups()
+                  datum = f"{rok}-{mesic}-{den}"   # interně RRRR-MM-DD kvůli řazení
+              elif m_iso:
+                  datum = "-".join(m_iso.groups())
+              else:
+                  print(f"::notice file={p}::V názvu není datum (DD-MM-RRRR), použije se datum nahrání.")
+                  datum = datum_nahrani(p)
+              polozky.append((datum, p.name))
+
+          # nejnovější první; při stejném datu: bez čísla, pak -2, -3 …
+          polozky.sort(key=lambda x: prirozene(x[1]))
+          polozky.sort(key=lambda x: x[0], reverse=True)
+
+          data = {"files": [n for _, n in polozky]}
+          (FOTO / "galerie.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print("Pořadí v galerii:")
+          for d, n in polozky:
+              r, mm, dd = d.split("-")
+              print(f"  {dd}.{mm}.{r}  {n}")
+          PYTHON
+
+      - name: Uložit, pokud se seznam změnil
+        id: commit
+        shell: bash
+        run: |
+          if git diff --quiet -- foto/galerie.json && git ls-files --error-unmatch foto/galerie.json >/dev/null 2>&1; then
+            echo "Seznam fotek se nezměnil."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add foto/galerie.json
+          git commit -m "Galerie: aktualizace seznamu fotek"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Znovu publikovat web
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          # commit od github-actions nemusí sám spustit publikování GitHub Pages
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" >/dev/null \
+            && echo "Publikování spuštěno." \
+            || echo "::notice::Publikování se nepodařilo spustit ručně – web se aktualizuje při příštím pushi."
