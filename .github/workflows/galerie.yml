@@ -2,7 +2,8 @@ name: Galerie
 
 # Po nahrání / smazání fotky ve složce foto/ vygeneruje foto/galerie.json
 # (seznam fotek seřazený od nejnovější) a web si ho při načtení přečte.
-# Název fotky = datum akce DD-MM-RRRR (např. 27-10-2026.webp, další ze stejného dne 27-10-2026-2.webp).
+# Název fotky = datum akce RRRR-MM-DD (např. 2026-10-27.webp, další ze stejného dne 2026-10-27-2.webp).
+# Fotku pojmenovanou evropsky (27-10-2026.webp) Action sama přejmenuje na 2026-10-27.webp.
 
 on:
   push:
@@ -32,7 +33,7 @@ jobs:
           ref: main          # vždy nejnovější stav (i když se fotky nahrávají rychle po sobě)
           fetch-depth: 0
 
-      - name: Vygenerovat foto/galerie.json
+      - name: Přejmenovat fotky a vygenerovat foto/galerie.json
         shell: bash
         run: |
           python3 - <<'PYTHON'
@@ -44,9 +45,43 @@ jobs:
           FOTO = Path("foto")
           OBRAZKY = {".webp", ".jpg", ".jpeg", ".png", ".avif"}
           BEZPECNY_NAZEV = re.compile(r"^[A-Za-z0-9._-]+$")
-          DATUM_EU = re.compile(r"^(\d{2})-(\d{2})-(\d{4})")    # 27-10-2026.webp, 27-10-2026-2.webp
-          DATUM_ISO = re.compile(r"^(\d{4})-(\d{2})-(\d{2})")   # 2026-10-27-… (pro jistotu taky)
+          DATUM_ISO = re.compile(r"^(\d{4})-(\d{2})-(\d{2})")            # 2026-10-27.webp, 2026-10-27-2.webp
+          DATUM_EU = re.compile(r"^(\d{2})-(\d{2})-(\d{4})(.*)$")        # 27-10-2026.webp → přejmenuje se
           MAX_KB = 400
+
+          # 0) hromadné přejmenování podle foto/prejmenovat.txt (řádky "stary.webp -> novy.webp"); soubor se pak smaže
+          seznam = FOTO / "prejmenovat.txt"
+          if seznam.exists():
+              for radek in seznam.read_text(encoding="utf-8").splitlines():
+                  if "->" not in radek or radek.strip().startswith("#"):
+                      continue
+                  stary, novy = (FOTO / s.strip() for s in radek.split("->", 1))
+                  m = DATUM_EU.match(stary.name)
+                  if not stary.exists() and m:
+                      # mezitím už mohla být přejmenovaná z DD-MM-RRRR na RRRR-MM-DD
+                      den, mesic, rok, zbytek = m.groups()
+                      stary = FOTO / f"{rok}-{mesic}-{den}{zbytek}"
+                  if not stary.exists():
+                      print(f"::warning::Přejmenování: {stary.name} neexistuje – přeskočeno.")
+                  elif novy.exists():
+                      print(f"::warning::Přejmenování: {novy.name} už existuje – {stary.name} přeskočeno.")
+                  else:
+                      stary.rename(novy)
+                      print(f"Přejmenováno: {stary.name} → {novy.name}")
+              seznam.unlink()   # změny uloží krok níže (git add -A foto)
+
+          # 1) evropský tvar DD-MM-RRRR → RRRR-MM-DD (aby se fotky řadily podle data i ve složce na GitHubu)
+          for p in sorted(FOTO.iterdir()):
+              m = DATUM_EU.match(p.name)
+              if not p.is_file() or p.suffix.lower() not in OBRAZKY or not m:
+                  continue
+              den, mesic, rok, zbytek = m.groups()
+              cil = FOTO / f"{rok}-{mesic}-{den}{zbytek}"
+              if cil.exists():
+                  print(f"::warning file={p}::Nelze přejmenovat na {cil.name} – takový soubor už existuje. Přidej na konec -2, -3 …")
+                  continue
+              p.rename(cil)
+              print(f"Přejmenováno: {p.name} → {cil.name}")
 
           def datum_nahrani(path):
               # datum prvního commitu, ve kterém se soubor objevil
@@ -56,10 +91,11 @@ jobs:
               return out[-1] if out else "0000-00-00"
 
           def prirozene(nazev):
-              # podle názvu bez přípony: 27-10-2026 → 27-10-2026-2 → … → 27-10-2026-10
+              # podle názvu bez přípony: 2026-10-27 → 2026-10-27-2 → … → 2026-10-27-10
               stem = nazev.rsplit(".", 1)[0]
               return [int(t) if t.isdigit() else t.lower() for t in re.split(r"(\d+)", stem)]
 
+          # 2) seznam pro galerii
           polozky = []
           for p in FOTO.iterdir():
               if not p.is_file() or p.suffix.lower() not in OBRAZKY:
@@ -72,14 +108,11 @@ jobs:
               kb = p.stat().st_size / 1024
               if kb > MAX_KB:
                   print(f"::warning file={p}::Fotka má {kb:.0f} kB (doporučeno max. {MAX_KB} kB) – zpomaluje web.")
-              m_eu, m_iso = DATUM_EU.match(p.name), DATUM_ISO.match(p.name)
-              if m_eu:
-                  den, mesic, rok = m_eu.groups()
-                  datum = f"{rok}-{mesic}-{den}"   # interně RRRR-MM-DD kvůli řazení
-              elif m_iso:
-                  datum = "-".join(m_iso.groups())
+              m = DATUM_ISO.match(p.name)
+              if m:
+                  datum = "-".join(m.groups())
               else:
-                  print(f"::notice file={p}::V názvu není datum (DD-MM-RRRR), použije se datum nahrání.")
+                  print(f"::notice file={p}::V názvu není datum (RRRR-MM-DD), použije se datum nahrání.")
                   datum = datum_nahrani(p)
               polozky.append((datum, p.name))
 
@@ -95,18 +128,18 @@ jobs:
               print(f"  {dd}.{mm}.{r}  {n}")
           PYTHON
 
-      - name: Uložit, pokud se seznam změnil
+      - name: Uložit, pokud se něco změnilo
         id: commit
         shell: bash
         run: |
-          if git diff --quiet -- foto/galerie.json && git ls-files --error-unmatch foto/galerie.json >/dev/null 2>&1; then
+          git add -A foto
+          if git diff --cached --quiet; then
             echo "Seznam fotek se nezměnil."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add foto/galerie.json
           git commit -m "Galerie: aktualizace seznamu fotek"
           git pull --rebase origin main
           git push origin HEAD:main
