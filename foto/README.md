@@ -12,22 +12,33 @@ Galerie na webu se řadí sama **od nejnovější fotky**. Stačí fotku správn
 | **Velikost souboru** | ideálně do **300 kB** (nad 400 kB GitHub upozorní) |
 
 - Fotka na šířku se v náhledu ořízne na střed – proto ji radši rovnou ořízni na výšku 3 : 4.
-- Původních 8 fotek (`01-11-2025.webp` až `20-12-2025.webp`) má 600 × 800 px, to je také v pořádku. Data v jejich názvech jsou jen pro seřazení.
+- Fotky `2026-01-17` až `2026-09-19` mají data vymyšlená, jen pro seřazení. Některé z nich mají 600 × 800 px, to je také v pořádku.
 
 ## Název souboru
 
 ```
-DD-MM-RRRR.webp
+RRRR-MM-DD.webp
 ```
 
-Příklad: `27-10-2026.webp`
+Příklad: `2026-10-27.webp` (= 27. 10. 2026)
 
-Víc fotek ze stejného dne: `27-10-2026.webp`, `27-10-2026-2.webp`, `27-10-2026-3.webp` …
+Víc fotek ze stejného dne: `2026-10-27.webp`, `2026-10-27-2.webp`, `2026-10-27-3.webp` …
 
-- **Datum = den akce, ve tvaru DD-MM-RRRR** (vždy dvě číslice: `05-03-2026`, ne `5-3-2026`). Podle něj se galerie řadí (nejnovější první). Fotky ze stejného dne jdou v pořadí: bez čísla, -2, -3 …
-- Ve složce na GitHubu se fotky seřadí podle dne v měsíci, ne chronologicky – to nevadí, na webu je pořadí správně.
+- **Datum = den akce, ve tvaru RRRR-MM-DD** – rok, měsíc, den (vždy dvě číslice: `2026-03-05`, ne `2026-3-5`). Podle něj se galerie řadí (nejnovější první). Fotky ze stejného dne jdou v pořadí: bez čísla, -2, -3 …
+- Díky tomu jsou fotky seřazené podle data i ve složce na GitHubu (nejstarší nahoře, nejnovější dole).
+- Když fotku omylem pojmenuješ evropsky (`27-10-2026.webp`), GitHub ji sám přejmenuje na `2026-10-27.webp`.
 - Žádné mezery, háčky ani čárky – fotka s mezerou nebo diakritikou v názvu se do galerie **nepřidá**.
 - Když datum v názvu chybí, použije se datum nahrání.
+
+## Přejmenování fotky
+
+GitHub na webu neumí přejmenovat obrázek. Vytvoř ve složce `foto` soubor `prejmenovat.txt` (Add file → Create new file) a napiš do něj řádky:
+
+```
+stary-nazev.webp -> 2026-10-27.webp
+```
+
+Po uložení GitHub fotky přejmenuje a soubor `prejmenovat.txt` sám smaže.
 
 ## Jak fotku připravit (nejrychleji)
 
