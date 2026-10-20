@@ -1134,13 +1134,12 @@ html #kontakt{padding-top:clamp(16px,3vw,44px);padding-bottom:clamp(96px,13vw,18
 .back-to-top{bottom:calc(26px + var(--mo-foot,0px))}
 @media (max-width:540px){.back-to-top{bottom:calc(20px + var(--mo-foot,0px))}}
 #segType .opt,#blkChoice .blk{min-height:50px;padding:9px 8px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;line-height:1.25}
-#blkChoice .blk b{display:inline;font-size:15px}
-#blkChoice .blk span{font-size:12.5px}
+#blkChoice .blk b{display:inline;font-family:inherit;font-weight:600;font-size:14px}
+#blkChoice .blk span{font-size:14px;font-weight:600}
 @media (max-width:560px){
 html .choice,html .blocks-choice{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 #segType .opt,#blkChoice .blk{min-height:52px;padding:6px 3px;font-size:12px;border-radius:12px;flex-direction:column;gap:1px;overflow-wrap:anywhere;hyphens:auto}
-#blkChoice .blk b{font-size:14px}
-#blkChoice .blk span{font-size:10.5px}
+#blkChoice .blk b,#blkChoice .blk span{font-size:12px}
 #segType .lq span,#blkChoice .lq span{border-radius:12px}
 }
 #koncerty .concerts-tile{background:radial-gradient(120% 90% at 85% 40%,rgba(127,181,168,.32),rgba(127,181,168,0) 60%),var(--cream-2)}
@@ -1159,8 +1158,35 @@ html .choice,html .blocks-choice{grid-template-columns:repeat(4,minmax(0,1fr));g
 #koncerty .tk-bar{display:block;width:34px;flex:1;min-height:52px;background:repeating-linear-gradient(180deg,var(--petrol) 0 2px,transparent 2px 4px,var(--petrol) 4px 5px,transparent 5px 8px,var(--petrol) 8px 11px,transparent 11px 12px,var(--petrol) 12px 13px,transparent 13px 16px);opacity:.85}
 #koncerty .ticket.torn .ticket-stub{transform:translate(18px,10px) rotate(9deg)}
 @media (max-width:680px){#koncerty .ticket-main{padding:24px 24px 22px 28px}#koncerty .ticket-big{font-size:48px}#koncerty .ticket-stub{width:62px}}
-#builder .builder-head{margin-bottom:clamp(22px,3vw,34px)}
-#builder .builder-head .section-title{margin-bottom:0}
+#builder .builder-head{margin-bottom:clamp(28px,3.6vw,42px)}
+#builder .builder-head .section-lead{margin:0 auto}
+html #builder .builder-eyebrow{display:none}
+@media (min-width:861px){
+html #builder .musicians{flex:0 1 auto;flex-wrap:nowrap;min-width:0}
+html #builder .mcard{flex:0 1 112px;width:auto;min-width:0}
+}
+@media (min-width:641px) and (max-width:860px){
+html #builder .musicians{flex:1 1 0;gap:8px}
+html #builder .mcard{width:calc((100% - 16px)/3);max-width:110px}
+html #builder .mcard:first-child:nth-last-child(-n+4),html #builder .mcard:first-child:nth-last-child(-n+4)~.mcard{width:calc((100% - 24px)/4)}
+html #builder .mcard:first-child:nth-last-child(n+7),html #builder .mcard:first-child:nth-last-child(n+7)~.mcard{width:calc((100% - 24px)/4)}
+}
+@media (min-width:1101px){.foot-row{display:flex;justify-content:space-between}.foot-row .foot-blog{flex:1;justify-content:center}}
+#koncerty .ticket-main{gap:4px;padding:26px 34px 24px 36px;min-width:220px}
+#koncerty .ticket-top{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--mint);opacity:.9;margin-bottom:8px}
+#koncerty .tk-name{font-family:var(--font-hero);font-weight:800;font-size:19px;letter-spacing:-.01em;color:var(--cream);line-height:1.1}
+#koncerty .tk-live{display:flex;align-items:flex-end;gap:10px;font-family:var(--font-hero);font-weight:800;font-size:40px;line-height:1;letter-spacing:.02em;color:var(--mint)}
+#koncerty .tk-eq{display:flex;align-items:flex-end;gap:3px;height:26px;margin-bottom:5px}
+#koncerty .tk-eq b{width:4px;height:100%;border-radius:2px;background:var(--gold);transform-origin:50% 100%;transform:scaleY(.35);animation:moTk 1.1s ease-in-out infinite alternate;animation-play-state:paused}
+#koncerty .tk-eq b:nth-child(2){animation-delay:-.4s;animation-duration:.9s}
+#koncerty .tk-eq b:nth-child(3){animation-delay:-.75s;animation-duration:1.25s}
+#koncerty .tk-eq b:nth-child(4){animation-delay:-.2s;animation-duration:.8s}
+#koncerty .ticket.torn .tk-eq b{animation-play-state:running}
+@keyframes moTk{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+#koncerty .tk-row{display:flex;align-items:center;gap:10px;width:100%;margin-top:12px;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--mint-soft)}
+#koncerty .tk-row::before,#koncerty .tk-row::after{content:"";flex:1;height:1px;background:rgba(127,181,168,.35)}
+@media (prefers-reduced-motion:reduce){#koncerty .tk-eq b{animation:none;transform:scaleY(.7)}}
+@media (max-width:680px){#koncerty .ticket-main{min-width:0;padding:22px 26px 20px 30px}#koncerty .tk-name{font-size:17px}#koncerty .tk-live{font-size:34px}}
 </style>
 <style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
@@ -1534,7 +1560,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
         <h3>Duo jako základ</h3><p>Zpěv a&nbsp;klavír utáhnou celý večer, kdykoli rozšíříme na&nbsp;větší sestavu.</p>
       </div>
       <div class="benefit benefit-reveal">
-        <svg class="bshape" data-ic="vinyl" viewBox="0 0 52 52" aria-hidden="true"><g class="disc"><circle cx="23" cy="28" r="20" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="23" cy="28" r="13.5" fill="none" stroke="#0f5257" stroke-width="1.3" opacity=".45"/><path d="M10.5 19a15.5 15.5 0 0 1 7.5-6" fill="none" stroke="#7fb5a8" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="28" r="6.5" fill="#0f5257"/><circle cx="23" cy="28" r="1.6" fill="#f4f0e4"/></g><g class="arm"><path d="M45 8V23.5L37.2 31.3" fill="none" stroke="#0f5257" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="33.6" y="30.4" width="6.4" height="4.2" rx="1.2" transform="rotate(-45 36.8 32.5)" fill="#0f5257"/><rect x="42.6" y="1" width="4.8" height="4" rx="1.2" fill="#0f5257"/></g><circle cx="45" cy="8" r="3.4" fill="#f4f0e4" stroke="#0f5257" stroke-width="2.2"/></svg>
+        <svg class="bshape" data-ic="vinyl" viewBox="0 0 52 52" aria-hidden="true"><g class="disc"><circle cx="23" cy="28" r="20" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="23" cy="28" r="13.5" fill="none" stroke="#0f5257" stroke-width="1.3" opacity=".45"/><path d="M10.5 19a15.5 15.5 0 0 1 7.5-6" fill="none" stroke="#7fb5a8" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="28" r="6.5" fill="#0f5257"/><circle cx="23" cy="28" r="1.6" fill="#f4f0e4"/></g><g class="arm"><path d="M45 8V23.5L37.2 31.3" fill="none" stroke="#0f5257" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M33.05 33.28L37.58 28.75L40.55 31.72L36.02 36.25Z" fill="#0f5257" stroke="#0f5257" stroke-width="1.2" stroke-linejoin="round"/><rect x="42.6" y="1" width="4.8" height="4" rx="1.2" fill="#0f5257"/></g><circle cx="45" cy="8" r="3.4" fill="#f4f0e4" stroke="#0f5257" stroke-width="2.2"/></svg>
         <h3>Decentní repertoár</h3><p>Jazzové standardy, bossa nova i&nbsp;šansony — vaši srdcovku nacvičíme na&nbsp;míru.</p>
       </div>
     </div>
@@ -1696,8 +1722,8 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
               <input type="text" id="misto" name="Místo" placeholder="např. Praha, Karlovy Vary…">
             </div>
             <div class="field full">
-              <label>Délka produkce — hudební bloky</label>
-              <div class="blocks-choice" id="blkChoice" role="radiogroup" aria-label="Délka produkce — hudební bloky">
+              <label>Délka produkce</label>
+              <div class="blocks-choice" id="blkChoice" role="radiogroup" aria-label="Délka produkce">
                 <button type="button" class="blk" data-n="1" role="radio" aria-checked="false"><b>1×</b><span>45 minut</span></button>
                 <button type="button" class="blk" data-n="2" role="radio" aria-checked="false"><b>2×</b><span>45 minut</span></button>
                 <button type="button" class="blk sel" data-n="3" role="radio" aria-checked="true"><b>3×</b><span>45 minut</span></button>
@@ -1806,9 +1832,10 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
         <div class="concerts-art" aria-hidden="true">
           <div class="ticket">
             <div class="ticket-main">
-            <span class="ticket-top">JAZZ&nbsp;LIVE</span>
-            <span class="ticket-big">♪</span>
-            <span class="ticket-bot">David Kleňha &amp; band</span>
+              <span class="ticket-top">Vstupenka</span>
+              <span class="tk-name">David Kleňha</span>
+              <span class="tk-live">Live<i class="tk-eq"><b></b><b></b><b></b><b></b></i></span>
+              <span class="tk-row">Jazz Duo</span>
             </div>
             <div class="ticket-stub"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" rx="22"/><circle cx="36" cy="36" r="14.5" style="--d:0s"/><circle cx="64" cy="64" r="14.5" style="--d:.09s"/></svg></span><i class="tk-bar"></i></div>
           </div>
@@ -1917,6 +1944,7 @@ body{overflow-x:hidden;max-width:100%}
   <div class="wrap">
     <div class="center builder-head">
       <h2 class="section-title">Potřebujete plnější zvuk?</h2>
+      <p class="section-lead">Využijte naši interaktivní sestavu.</p>
     </div>
     <div class="tile-dark">
       <div class="vinyl"></div>
@@ -1945,7 +1973,7 @@ body{overflow-x:hidden;max-width:100%}
         <details class="faq-item" name="faq"><summary>Kam dojíždíte?</summary><div class="faq-a">Hrajeme po celé České republice, sídlíme v Praze. Vystoupení v Praze a okolí řešíme operativně, vzdálenější akce po domluvě.</div></details>
         <details class="faq-item" name="faq"><summary>Můžeme zvolit větší sestavu?</summary><div class="faq-a">Ano, kromě dua hrajeme i jako trio, kvartet a kvintet — podle prostoru a charakteru akce vám doporučíme ideální obsazení.</div></details>
         </div>
-        <button type="button" class="faq-toggle" id="faqToggle" aria-expanded="false" aria-controls="faqMore" data-more="Zobrazit další dotazy" data-less="Skrýt další dotazy">Zobrazit další dotazy</button>
+        <button type="button" class="faq-toggle" id="faqToggle" aria-expanded="false" aria-controls="faqMore" data-more="Další dotazy" data-less="Skrýt další dotazy">Další dotazy</button>
     </div>
   </div>
 </section>
@@ -1954,7 +1982,7 @@ body{overflow-x:hidden;max-width:100%}
     <div class="cta-tile">
       <div class="dots"></div>
       <div class="inner">
-        <h2>Plánujete obřad<br>nebo komorní večer?</h2>
+        <h2>Plánujete komorní večer<br>nebo obřad?</h2>
         <p>Pošlete nám datum, místo a&nbsp;představu o&nbsp;akci. Do&nbsp;24&nbsp;hodin se ozveme s&nbsp;dostupností dua a&nbsp;orientační cenou.</p>
         <div class="cta-methods">
           <a href="mailto:info@davidklenha.cz" class="btn btn-primary"><svg class="cta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> info@davidklenha.cz</a>
@@ -3023,6 +3051,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
-<script src="/motion.js?v=6" defer></script>
+<script src="/motion.js?v=7" defer></script>
 </body>
 </html>
