@@ -1025,7 +1025,7 @@ html.mo-lock,html.mo-lock body{overflow:hidden!important;overscroll-behavior:non
 .rstack .review{padding:18px 16px;gap:9px}
 .rstack .review p{font-size:13.5px;line-height:1.55}
 }
-html #builder .tile-dark{max-width:none;background:var(--emerald);border:0;color:var(--cream);padding:clamp(22px,3vw,34px) clamp(16px,4vw,48px)}
+html #builder .tile-dark{max-width:none;background:var(--emerald);border:0;color:var(--cream);padding:clamp(24px,3vw,36px) clamp(16px,4vw,48px) clamp(26px,3.2vw,38px)}
 html #builder .vinyl{display:none}
 html #builder .builder-inner{gap:clamp(14px,2vw,20px)}
 html #builder .builder-top{gap:6px}
@@ -1033,9 +1033,11 @@ html #builder .builder-eyebrow{color:var(--mint)}
 html #builder .builder-name{font-size:clamp(26px,3.6vw,40px);color:var(--cream)}
 html #builder .builder-sub{color:var(--mint-soft);font-size:clamp(13px,1.3vw,15px)}
 html #builder .b-row{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2.2vw,28px);width:100%}
-html #builder .musicians{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:clamp(6px,1vw,12px);flex:0 1 auto;min-width:0;width:auto;margin:0}
-html #builder .mcard{width:clamp(84px,8.6vw,126px);max-width:none;margin:0;gap:0;padding:0;filter:drop-shadow(0 10px 16px rgba(4,24,26,.35))}
-html #builder .mlabel{display:none}
+html #builder .musicians{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(6px,.8vw,10px);flex:0 1 auto;min-width:0;width:auto;margin:0}
+html #builder .mcard{width:clamp(76px,7.4vw,112px);max-width:none;margin:0;gap:7px;padding:0}
+html #builder .mfig{filter:drop-shadow(0 10px 16px rgba(4,24,26,.35))}
+html #builder .mcard.flip .mfig img{transform:scaleX(-1)}
+html #builder .mlabel{display:block;font-size:12px;font-weight:500;line-height:1.25;letter-spacing:.01em;color:var(--mint-soft);text-align:center;min-height:2.5em}
 html #builder .b-row .cb{flex:none;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:24px;font-weight:600;line-height:1;display:flex;align-items:center;justify-content:center;transition:transform .2s,opacity .2s,background .2s;-webkit-tap-highlight-color:transparent}
 html #builder .b-row .cb.add{background:var(--cream);color:var(--petrol);border:0;box-shadow:0 10px 22px -12px rgba(0,0,0,.5)}
 html #builder .b-row .cb.rem{background:transparent;color:var(--cream);border:1.5px solid rgba(244,240,228,.45)}
@@ -1043,6 +1045,7 @@ html #builder .b-row .cb.rem{background:transparent;color:var(--cream);border:1.
 html #builder .b-row .cb:disabled{opacity:.32;cursor:not-allowed;box-shadow:none}
 html #builder .b-row .cb:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 @media (max-width:640px){
+html #builder .mlabel{font-size:11px}
 html #builder .tile-dark{padding:22px 14px 24px}
 html #builder .builder-inner{gap:14px}
 html #builder .b-row{gap:8px}
@@ -1053,6 +1056,7 @@ html #builder .mcard:first-child:nth-last-child(-n+2),html #builder .mcard:first
 html #builder .mcard:first-child:nth-last-child(4),html #builder .mcard:first-child:nth-last-child(4)~.mcard{width:calc((100% - 6px)/2)}
 html #builder .mcard:first-child:nth-last-child(4),html #builder .mcard:first-child:nth-last-child(4)~.mcard{max-width:92px}
 html #builder .mcard:first-child:nth-last-child(n+7),html #builder .mcard:first-child:nth-last-child(n+7)~.mcard{width:calc((100% - 18px)/4)}
+html #builder .mlabel{font-size:10px;letter-spacing:0}
 }
 #builder .mcard.mc-in{animation:moMcIn .45s cubic-bezier(.34,1.56,.64,1)}
 @keyframes moMcIn{from{transform:translateY(10px) scale(.5);opacity:0}}
@@ -1125,6 +1129,43 @@ html #kontakt .cta-tile .dots{display:none}
 .foot-blog a:hover{color:var(--mint);opacity:1}
 @media (min-width:1101px){.foot-row{display:grid;grid-template-columns:1fr auto 1fr}.foot-row .foot-links{justify-content:flex-end}}
 @media (max-width:1100px){.foot-row{flex-direction:column;justify-content:center;text-align:center}.foot-blog{font-size:12px;gap:4px 12px}.foot-links{justify-content:center}.foot-blog{order:2}.foot-row .foot-links{order:3}}
+html #kontakt{padding-top:clamp(16px,3vw,44px);padding-bottom:clamp(96px,13vw,180px)}
+.foot-blog{gap:8px}
+.foot-blog a{display:inline-flex;align-items:center;padding:7px 14px;border:1px solid rgba(157,194,182,.38);border-radius:100px;line-height:1.2;opacity:1;color:var(--mint-soft);transition:border-color .2s,color .2s,background .2s}
+.foot-blog a:hover{border-color:var(--mint);color:var(--cream);background:rgba(127,181,168,.1)}
+.foot-blog a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (min-width:1101px){.foot-row{gap:20px}.foot-row .fb{justify-self:start}.foot-row{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px}.foot-row .foot-links{flex-wrap:nowrap;white-space:nowrap;gap:12px}.foot-blog{gap:6px}.foot-blog a{padding:7px 12px}}
+@media (max-width:1100px){html footer{padding-top:28px;padding-bottom:28px}.foot-row{gap:18px}.foot-blog{font-size:12px;gap:8px}.foot-blog a{padding:7px 12px}}
+.back-to-top{bottom:calc(26px + var(--mo-foot,0px))}
+@media (max-width:540px){.back-to-top{bottom:calc(20px + var(--mo-foot,0px))}}
+#segType .opt,#blkChoice .blk{min-height:50px;padding:9px 8px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;line-height:1.25}
+#blkChoice .blk b{display:inline;font-size:15px}
+#blkChoice .blk span{font-size:12.5px}
+@media (max-width:560px){
+html .choice,html .blocks-choice{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+#segType .opt,#blkChoice .blk{min-height:52px;padding:6px 3px;font-size:12px;border-radius:12px;flex-direction:column;gap:1px;overflow-wrap:anywhere;hyphens:auto}
+#blkChoice .blk b{font-size:14px}
+#blkChoice .blk span{font-size:10.5px}
+#segType .lq span,#blkChoice .lq span{border-radius:12px}
+}
+#koncerty .concerts-tile{background:radial-gradient(120% 90% at 85% 40%,rgba(127,181,168,.32),rgba(127,181,168,0) 60%),var(--cream-2)}
+#koncerty .ticket{display:flex;flex-direction:row;align-items:stretch;padding:0;background:none;box-shadow:none;border-radius:0;gap:0;filter:drop-shadow(0 18px 22px rgba(15,82,87,.28));transform:rotate(-5deg)}
+#koncerty .ticket::before,#koncerty .ticket::after{display:none}
+#koncerty .ticket-main{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:30px 30px 28px 34px;background:linear-gradient(150deg,#1a4544,var(--petrol) 60%);color:var(--cream);border-radius:18px 4px 4px 18px;position:relative;
+-webkit-mask:radial-gradient(circle at 100% 50%,transparent 3.6px,#000 4.2px) 0 0/100% 13px;mask:radial-gradient(circle at 100% 50%,transparent 3.6px,#000 4.2px) 0 0/100% 13px}
+#koncerty .ticket-main::after{content:"";position:absolute;inset:9px 12px 9px 9px;border:1px dashed rgba(127,181,168,.35);border-radius:12px 2px 2px 12px;pointer-events:none}
+#koncerty .ticket-big{font-size:58px}
+#koncerty .ticket-stub{flex:none;width:74px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 16px;background:var(--mint);border-radius:4px 18px 18px 4px;transform-origin:0 0;
+-webkit-mask:radial-gradient(circle at 0 50%,transparent 3.6px,#000 4.2px) 0 0/100% 13px;mask:radial-gradient(circle at 0 50%,transparent 3.6px,#000 4.2px) 0 0/100% 13px}
+#koncerty .ticket-stub .brand-mark{display:block;width:34px;height:34px}
+#koncerty .ticket-stub .brand-mark svg{width:100%;height:100%;display:block}
+#koncerty .ticket-stub .brand-mark rect{fill:var(--petrol)}
+#koncerty .ticket-stub .brand-mark circle{fill:var(--mint)}
+#koncerty .tk-bar{display:block;width:34px;flex:1;min-height:52px;background:repeating-linear-gradient(180deg,var(--petrol) 0 2px,transparent 2px 4px,var(--petrol) 4px 5px,transparent 5px 8px,var(--petrol) 8px 11px,transparent 11px 12px,var(--petrol) 12px 13px,transparent 13px 16px);opacity:.85}
+#koncerty .ticket.torn .ticket-stub{transform:translate(18px,10px) rotate(9deg)}
+@media (max-width:680px){#koncerty .ticket-main{padding:24px 24px 22px 28px}#koncerty .ticket-big{font-size:48px}#koncerty .ticket-stub{width:62px}}
+#builder .builder-head{margin-bottom:clamp(22px,3vw,34px)}
+#builder .builder-head .section-title{margin-bottom:0}
 </style>
 <style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
@@ -1355,7 +1396,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
       <span class="eyebrow">Live jazz duo</span>
       <h1 class="hero-slogans" id="heroSlogans"><span class="sr-only">Jazz duo from Prague for wedding ceremonies, receptions and jazz over dinner — David Kleňha</span></h1>
       <p class="sr-only">Live jazz duo for wedding ceremonies, receptions and jazz over dinner — David Kleňha. Vocals and piano (guitar on request), an intimate sound, based in Prague and available across the Czech Republic and abroad.</p>
-      <p class="hero-sub">Vocals and piano or guitar — our most intimate line-up that sets the mood without drowning out the room. Ideal as <strong>ceremony music</strong> or background jazz over&nbsp;dinner.</p>
+      <p class="hero-sub">Vocals and piano — our most intimate line-up that sets the mood without drowning out the room. Ideal as background jazz <strong>over&nbsp;dinner</strong> or as <strong>ceremony music</strong>.</p>
       <div class="hero-cta">
         <a href="#poptavka" class="btn btn-primary">Request a quote</a>
       </div>
@@ -1412,8 +1453,8 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
     </div>
     <p class="lineup-alt">Other professional musicians we perform with as a duo include pianists <strong>Luděk Havel</strong>, <strong>Jindřich Volf</strong> and <strong>Mikuláš Pokorný</strong>, or guitarists <strong>Jan Horych</strong> and <strong>Jaroslav Šindler</strong>.</p>
     <div class="bio-store" hidden>
-      <div id="bio-klenha" class="bio-body"><p>Together with pianist Jaroslav Bárta, David Kleňha forms the jazz duo — the most intimate of his line-ups. They play where music should create the atmosphere rather than be the main attraction: at corporate evenings, receptions and standing dinners, at gallery openings, and as dinner jazz in Prague hotels and restaurants.</p><p>David Kleňha is a jazz singer. He performs regularly with his own line-ups from duo to quintet and works as a soloist with jazz big bands and orchestras, including theatre performances. His repertoire is built on jazz and swing standards, ballads and Czech classics.</p></div>
-      <div id="bio-barta" class="bio-body"><p>Jaroslav Bárta accompanies David Kleňha in the jazz duo — voice and piano, the most intimate line-up for corporate evenings, receptions, gallery openings and dinner jazz. The same line-up also performs as a trio, quartet or quintet.</p><p>A graduate of musicology at Masaryk University and of piano and composition at the Jaroslav Ježek Conservatory in Prague, where he now teaches jazz interpretation. A versatile pianist and composer who has worked with artists such as Lenka Filipová, Žentour, Madfinger, Zatrestband, Chantal Poullain and the Felix Slováček Big Band.</p></div>
+      <div id="bio-klenha" class="bio-body"><p>Together with pianist Jaroslav Bárta, David Kleňha forms the jazz duo — the most intimate of his line-ups. They play where music should create the atmosphere rather than be the main attraction: at <strong>corporate evenings, receptions and standing dinners</strong>, at gallery openings, and as dinner jazz in Prague hotels and restaurants.</p><p>David Kleňha is <strong>a jazz singer</strong>. He performs regularly with his own line-ups <strong>from duo to quintet</strong> and works as a soloist with <strong>jazz big bands and orchestras</strong>, including theatre performances. His repertoire is built on <strong>jazz and swing standards, ballads and Czech classics</strong>.</p></div>
+      <div id="bio-barta" class="bio-body"><p>Jaroslav Bárta accompanies David Kleňha in the jazz duo — <strong>voice and piano</strong>, the most intimate line-up for corporate evenings, receptions, gallery openings and dinner jazz. The same line-up also performs as a trio, quartet or quintet.</p><p>A graduate of musicology at <strong>Masaryk University</strong> and of piano and composition at the <strong>Jaroslav Ježek Conservatory</strong> in Prague, where he now teaches jazz interpretation. A versatile pianist and composer who has worked with artists such as <strong>Lenka Filipová</strong>, <strong>Žentour</strong>, <strong>Madfinger</strong>, <strong>Zatrestband</strong>, <strong>Chantal Poullain</strong> and the <strong>Felix Slováček</strong> Big Band.</p></div>
     </div>
   </div>
 </section>
@@ -1480,11 +1521,11 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
     </div>
     <div class="benefits-grid">
       <div class="benefit benefit-reveal">
-        <svg class="bshape" viewBox="0 0 52 52"><path d="M26 4a22 22 0 1 1 0 44a22 22 0 1 1 0-44z" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="26" cy="26" r="8" fill="#0f5257"/></svg>
+        <svg class="bshape" data-ic="mic" viewBox="0 0 52 52" aria-hidden="true"><g class="cap"><rect x="17" y="4" width="18" height="26" rx="9" fill="none" stroke="#0f5257" stroke-width="3"/><rect x="21" y="11" width="10" height="2.6" rx="1.3" fill="#0f5257"/><rect x="21" y="15.7" width="10" height="2.6" rx="1.3" fill="#0f5257"/><rect x="21" y="20.4" width="10" height="2.6" rx="1.3" fill="#0f5257"/></g><path d="M10 21v2a16 16 0 0 0 32 0v-2" fill="none" stroke="#0f5257" stroke-width="3" stroke-linecap="round"/><path d="M26 39v8M18 47h16" fill="none" stroke="#0f5257" stroke-width="3" stroke-linecap="round"/><path class="sl" d="M7 9q-4 6 0 12" fill="none" stroke="#7fb5a8" stroke-width="2.6" stroke-linecap="round" opacity="0"/><path class="sr" d="M45 9q4 6 0 12" fill="none" stroke="#7fb5a8" stroke-width="2.6" stroke-linecap="round" opacity="0"/></svg>
         <h3>100% live music</h3><p>We play live with no backing tracks — every note is created on the spot.</p>
       </div>
       <div class="benefit benefit-reveal">
-        <svg class="bshape" viewBox="0 0 52 52"><path d="M26 4 L48 26 L26 48 L4 26 Z" fill="none" stroke="#0f5257" stroke-width="3"/><path d="M26 16 L36 26 L26 36 L16 26 Z" fill="#0f5257"/></svg>
+        <svg class="bshape" data-ic="knob" viewBox="0 0 52 52" aria-hidden="true"><g class="ticks"><circle cx="11.5" cy="42.5" r="1.6" fill="#0f5257"/><circle cx="5.9" cy="32" r="1.6" fill="#0f5257"/><circle cx="7.1" cy="20.2" r="1.6" fill="#0f5257"/><circle cx="14.6" cy="11" r="1.6" fill="#0f5257"/><circle cx="26" cy="7.5" r="1.6" fill="#0f5257"/><circle cx="37.4" cy="11" r="1.6" fill="#0f5257" opacity=".28"/><circle cx="44.9" cy="20.2" r="1.6" fill="#0f5257" opacity=".28"/><circle cx="46.1" cy="32" r="1.6" fill="#0f5257" opacity=".28"/><circle cx="40.5" cy="42.5" r="1.6" fill="#0f5257" opacity=".28"/></g><circle cx="26" cy="28" r="13" fill="none" stroke="#0f5257" stroke-width="3"/><g class="ptr"><rect x="24.6" y="17" width="2.8" height="8.5" rx="1.4" fill="#0f5257"/></g></svg>
         <h3>Own PA system</h3><p>Our own PA covers events of 80–100 guests; we always adjust the volume.</p>
       </div>
       <div class="benefit benefit-reveal">
@@ -1492,7 +1533,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
         <h3>The duo as your base</h3><p>Voice and piano carry a whole evening; we can grow to a larger line-up.</p>
       </div>
       <div class="benefit benefit-reveal">
-        <svg class="bshape" viewBox="0 0 52 52"><path d="M8 32 Q26 2 44 32" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="8" cy="36" r="6" fill="#0f5257"/><circle cx="44" cy="36" r="6" fill="#0f5257"/></svg>
+        <svg class="bshape" data-ic="vinyl" viewBox="0 0 52 52" aria-hidden="true"><g class="disc"><circle cx="23" cy="28" r="20" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="23" cy="28" r="13.5" fill="none" stroke="#0f5257" stroke-width="1.3" opacity=".45"/><path d="M10.5 19a15.5 15.5 0 0 1 7.5-6" fill="none" stroke="#7fb5a8" stroke-width="2.2" stroke-linecap="round"/><circle cx="23" cy="28" r="6.5" fill="#0f5257"/><circle cx="23" cy="28" r="1.6" fill="#f4f0e4"/></g><g class="arm"><path d="M45 8V23.5L37.2 31.3" fill="none" stroke="#0f5257" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="33.6" y="30.4" width="6.4" height="4.2" rx="1.2" transform="rotate(-45 36.8 32.5)" fill="#0f5257"/><rect x="42.6" y="1" width="4.8" height="4" rx="1.2" fill="#0f5257"/></g><circle cx="45" cy="8" r="3.4" fill="#f4f0e4" stroke="#0f5257" stroke-width="2.2"/></svg>
         <h3>Songs on request</h3><p>Jazz standards, bossa nova and chansons — we learn your favourite song.</p>
       </div>
     </div>
@@ -1763,9 +1804,12 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
         </div>
         <div class="concerts-art" aria-hidden="true">
           <div class="ticket">
+            <div class="ticket-main">
             <span class="ticket-top">JAZZ&nbsp;LIVE</span>
             <span class="ticket-big">♪</span>
             <span class="ticket-bot">David Kleňha &amp; band</span>
+            </div>
+            <div class="ticket-stub"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" rx="22"/><circle cx="36" cy="36" r="14.5" style="--d:0s"/><circle cx="64" cy="64" r="14.5" style="--d:.09s"/></svg></span><i class="tk-bar"></i></div>
           </div>
         </div>
       </div>
@@ -1868,25 +1912,11 @@ body{overflow-x:hidden;max-width:100%}
 /* text v tlačítkách úvodu vždy na střed */
 .hero-cta .btn{justify-content:center}
 </style>
-<div class="wrap">
-    <div class="intro-about intro-after">
-      <p class="about-lead">
-        Need a fuller sound? Go for a
-        <a href="https://jazztrio.cz/en/" target="_blank" rel="noopener"><strong>jazz trio</strong></a>,
-        a livelier <a href="https://jazzquartet.cz/en/" target="_blank" rel="noopener"><strong>quartet</strong></a>
-        with drums, or a refined
-        <a href="https://jazzquintet.cz/en/" target="_blank" rel="noopener"><strong>quintet</strong></a>.
-        Pick the line-up size&nbsp;below.</p>
-      <a href="#builder" class="roll-arrow-link" aria-label="Go to band builder">
-        <span class="roll-arrow-big" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M19 12l-7 7-7-7"/></svg>
-        </span>
-      </a>
-    </div>
-  </div>
-
 <section class="section reveal" id="builder">
   <div class="wrap">
+    <div class="center builder-head">
+      <h2 class="section-title">Need a fuller sound?</h2>
+    </div>
     <div class="tile-dark">
       <div class="vinyl"></div>
       <div class="builder-inner">
@@ -2446,20 +2476,21 @@ body{overflow-x:hidden;max-width:100%}
   var BASE='https://jazzduo.cz/hudebnici/';
   // pořadí + soubor (fotky už mají blob v sobě)
   var MUS=[
-   {role:'Vocals',     file:'vocal.webp'},
-   {role:'Piano',   file:'piano.webp'},
-   {role:'Double bass',file:'bass.webp'},
-   {role:'Drums',     file:'drums.webp'},
-   {role:'Saxophone',  file:'saxophone.webp'},
+   {role:'Vocals', file:'vocal.webp'},
+   {role:'Piano', file:'piano.webp'},
+   {role:'Double bass', file:'bass.webp'},
+   {role:'Drums', file:'drums.webp'},
+   {role:'Tenor sax', file:'saxophone.webp'},
    {role:'Trumpet', file:'trumpet.webp'},
-   {role:'Trombone',   file:'trombone.webp'}
+   {role:'Trombone', file:'trombone.webp'},
+   {role:'Alto sax', file:'saxophone.webp', flip:1}
   ];
   var lineup=MUS.map(function(m){return m.role;});
-  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartet',5:'Jazz Quintet',6:'Jazz Combo',7:'Jazz Combo'};
+  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartet',5:'Jazz Quintet',6:'Jazz Combo',7:'Jazz Combo',8:'Jazz Combo'};
   function musFigureHTML(m){
     return '<img src="'+BASE+m.file+'" alt="'+m.role+'" width="263" height="263" loading="lazy" decoding="async">';
   }
-  var count=2,MIN=2,MAX=7;
+  var count=2,MIN=2,MAX=8;
   // balanced columns incl. the control slot (count+1 items) on desktop
   function colsFor(total){
     if(window.innerWidth<=560) return 2;
@@ -2475,8 +2506,9 @@ body{overflow-x:hidden;max-width:100%}
   function renderMusicians(){
     var box=$('musicians');
     for(var i=box.children.length;i<count;i++){
-      var card=el('div');card.className='mcard'+(box.children.length?' mc-in':'');card.title=lineup[i];
-      var fig=el('div');fig.className='mfig';fig.innerHTML=musFigureHTML(MUS[i]);card.appendChild(fig);box.appendChild(card);
+      var card=el('div');card.className='mcard'+(box.children.length?' mc-in':'')+(MUS[i].flip?' flip':'');
+      var fig=el('div');fig.className='mfig';fig.innerHTML=musFigureHTML(MUS[i]);card.appendChild(fig);
+      var lb=el('div');lb.className='mlabel';lb.textContent=lineup[i];card.appendChild(lb);box.appendChild(card);
     }
     while(box.children.length>count)box.removeChild(box.lastChild);
     var add=document.querySelector('#builder .b-row .add'),rem=document.querySelector('#builder .b-row .rem');
@@ -2989,6 +3021,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
-<script src="/motion.js?v=4" defer></script>
+<script src="/motion.js?v=6" defer></script>
 </body>
 </html>
