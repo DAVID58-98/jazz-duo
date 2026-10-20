@@ -1,5 +1,5 @@
 /* =========================================================
-   motion.js — pohybové efekty a vylepšení webů souborů (verze 2)
+   motion.js — pohybové efekty a vylepšení webů souborů (verze 3)
    Načítá se s defer. Vše je nadstavba nad hotovým HTML:
    když skript chybí, web funguje a vypadá jako dřív.
    ========================================================= */
@@ -10,13 +10,13 @@ var NS='http://www.w3.org/2000/svg';
 var LANG=(document.documentElement.lang||'cs').slice(0,2);
 var TX={
   cs:{thanks:'Děkujeme!',next:'Další recenze',prev:'Předchozí recenze',songs:function(n){return n+(n>=5||n===0?' skladeb':n>1?' skladby':' skladba')},
-      kTitle:'Termíny koncertů',kAll:'Všechny termíny na davidklenha.cz',kLoad:'Načítám termíny…',kErr:'Termíny se teď nepodařilo načíst.',kNone:'Momentálně nejsou vypsané žádné veřejné termíny.',kOurs:'tato sestava',close:'Zavřít'},
+      kTitle:'Termíny koncertů',kAll:'Všechny termíny na davidklenha.cz',kLoad:'Načítám termíny…',kErr:'Termíny se teď nepodařilo načíst.',kNone:'Momentálně nejsou vypsané žádné veřejné termíny.',kOurs:'tato sestava',close:'Zavřít',kCount:function(n){return n+(n===1?' nadcházející termín':n>1&&n<5?' nadcházející termíny':' nadcházejících termínů')}},
   en:{thanks:'Thank you!',next:'Next review',prev:'Previous review',songs:function(n){return n+(n===1?' song':' songs')},
-      kTitle:'Concert dates',kAll:'All dates on davidklenha.cz',kLoad:'Loading dates…',kErr:'The dates could not be loaded right now.',kNone:'No public dates are listed at the moment.',kOurs:'this line-up',close:'Close'},
+      kTitle:'Concert dates',kAll:'All dates on davidklenha.cz',kLoad:'Loading dates…',kErr:'The dates could not be loaded right now.',kNone:'No public dates are listed at the moment.',kOurs:'this line-up',close:'Close',kCount:function(n){return n+(n===1?' upcoming date':' upcoming dates')}},
   de:{thanks:'Vielen Dank!',next:'Nächste Bewertung',prev:'Vorherige Bewertung',songs:function(n){return n+' Titel'},
-      kTitle:'Konzerttermine',kAll:'Alle Termine auf davidklenha.cz',kLoad:'Termine werden geladen…',kErr:'Die Termine konnten gerade nicht geladen werden.',kNone:'Derzeit sind keine öffentlichen Termine eingetragen.',kOurs:'diese Besetzung',close:'Schließen'}
+      kTitle:'Konzerttermine',kAll:'Alle Termine auf davidklenha.cz',kLoad:'Termine werden geladen…',kErr:'Die Termine konnten gerade nicht geladen werden.',kNone:'Derzeit sind keine öffentlichen Termine eingetragen.',kOurs:'diese Besetzung',close:'Schließen',kCount:function(n){return n+(n===1?' anstehender Termin':' anstehende Termine')}}
 }[LANG]||null;
-if(!TX)TX={thanks:'Děkujeme!',next:'Další recenze',prev:'Předchozí recenze',songs:function(n){return n+' skladeb'},kTitle:'Termíny koncertů',kAll:'Všechny termíny',kLoad:'…',kErr:'Termíny se nepodařilo načíst.',kNone:'Žádné termíny.',kOurs:'tato sestava',close:'Zavřít'};
+if(!TX)TX={thanks:'Děkujeme!',next:'Další recenze',prev:'Předchozí recenze',songs:function(n){return n+' skladeb'},kTitle:'Termíny koncertů',kAll:'Všechny termíny',kLoad:'…',kErr:'Termíny se nepodařilo načíst.',kNone:'Žádné termíny.',kOurs:'tato sestava',close:'Zavřít',kCount:function(n){return n+''}};
 /* počet teček loga podle sestavy */
 var HOST=location.hostname,ENSK=/quintet/.test(HOST)?'quintet':/quartet/.test(HOST)?'quartet':/trio/.test(HOST)?'trio':'duo',DOTS={duo:2,trio:3,quartet:4,quintet:5}[ENSK];
 var ENSNAME='Jazz '+ENSK.charAt(0).toUpperCase()+ENSK.slice(1);
@@ -284,7 +284,7 @@ later('faq',function(){
 /* ================= Zámek stránky pod menu a okny (mobil) ================= */
 safe('lock',function(){
   var html=document.documentElement,drawer=$('#drawer');
-  var SCROLLERS='.drawer,.bio-panel,.mk-panel,.toast-card';
+  var SCROLLERS='.drawer,.bio-panel,.mk-body,.toast-card';
   function anyOpen(){return (drawer&&drawer.classList.contains('open'))||!!$('.bio-modal.open')||!!$('.mk.open')||!!$('.toast-overlay.show')}
   function sync(){html.classList.toggle('mo-lock',anyOpen())}
   var mo=new MutationObserver(sync);
@@ -301,25 +301,116 @@ safe('lock',function(){
     if(sc.scrollHeight<=sc.clientHeight||(dy>0&&top)||(dy<0&&bot))e.preventDefault()},{passive:false});
 });
 
+/* ================= Vlny za bloby videoukázek (v3, podle hero bigband-kv) =================
+   Jemné kruhové „spektrum“ kolem každého blobu: swingové frázování, měkký nástup a dozvuk.
+   Kreslí se jen u blobů, které jsou opravdu vidět (ve slideru 3 na PC, 1 na mobilu),
+   na mobilu 30 snímků/s, při skryté záložce, otevřeném videu a „omezení pohybu“ stojí. */
+later('vidwaves',function(){
+  var track=$('#vidTrack');if(!track)return;
+  var probe=document.createElement('canvas');if(!probe.getContext||!probe.getContext('2d'))return;
+  var TAU=Math.PI*2,N=132,mqMob=matchMedia('(max-width:860px)'),fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var COS=new Float32Array(N),SIN=new Float32Array(N);
+  for(var i=0;i<N;i++){var an=i/N*TAU-Math.PI/2;COS[i]=Math.cos(an);SIN[i]=Math.sin(an)}
+  function fract(n){return n-Math.floor(n)}
+  function hash(n){return fract(Math.sin(n*127.1+311.7)*43758.5453)}
+  function ringD(a,b){var n=Math.abs(a-b)%1;return Math.min(n,1-n)}
+  function bell(x,w){return Math.exp(-x*x/(2*w*w))}
+  function env(age,dec){return age<0?0:(1-Math.exp(-age*34))*Math.exp(-age*dec)}
+  /* dekorativní pohyb, ne analýza zvuku: swingový offbeat, krátké fráze, nezávislé doznění */
+  function notes(t,seed){var period=60/(84+seed%5*2),beat=Math.floor(t/period),ev=[];
+    for(var k=0;k<4;k++){var b=beat-k,ph=Math.floor(b/8),age=t-b*period,g=.56+.25*hash(ph+70+seed*13);
+      ev.push({at:hash(b+11+seed*7),w:.018+hash(b+41)*.024,v:env(age,3.8)*g*(b%4===0?1.12:.86)});
+      ev.push({at:fract(hash(b+11+seed*7)+.43),w:.022+hash(b+53)*.018,v:env(age-.08,4.7)*g*.65});
+      ev.push({at:hash(b+101+seed*3),w:.014+hash(b+71)*.018,v:env(age-period*2/3,5.6)*g*.66})}
+    return ev}
+  var items=[],active=[],frame=0,last=0,time=0,modal=$('#vidModal');
+  $$('.vid-blob',track).forEach(function(blob){
+    var old=$('.vid-eq',blob),seed=parseInt(old&&old.getAttribute('data-i'),10)||0;
+    var cv=document.createElement('canvas');cv.className='vid-wave';cv.setAttribute('aria-hidden','true');
+    if(old)blob.replaceChild(cv,old);else blob.insertBefore(cv,blob.firstChild);
+    var it={blob:blob,cv:cv,ctx:cv.getContext('2d'),seed:seed,lv:new Float32Array(N),pk:new Float32Array(N),jit:new Float32Array(N),S:0,B:0,on:false,hov:0,hovT:0};
+    for(var j=0;j<N;j++)it.jit[j]=.72+hash(j+3+seed*17)*.48;
+    if(fine){blob.addEventListener('pointerenter',function(){it.hovT=1});blob.addEventListener('pointerleave',function(){it.hovT=0})}
+    items.push(it)});
+  if(!items.length)return;
+  var css=getComputedStyle(document.documentElement);
+  function rgb(v,f){var h=(css.getPropertyValue(v)||'').trim().replace('#','');if(h.length!==6)return f;return parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16)}
+  var CBAR=rgb('--emerald-2','21,122,127'),CGOLD=rgb('--gold','224,169,60'),CMINT=rgb('--mint','127,181,168');
+  /* poloměr vlnění kopíruje tvar blobu: nejvzdálenější bod jeho obrysu (viewBox 210) */
+  function pathR(it){var ph=$('.vid-photo',it.blob),pa=ph&&$('clipPath path',ph);if(!pa)return 0;
+    var m=0;try{var tl=pa.getTotalLength();for(var k=0;k<96;k++){var q=pa.getPointAtLength(tl*k/96);m=Math.max(m,Math.hypot(q.x,q.y))}}catch(e){m=0}
+    return m?m/210*ph.getBoundingClientRect().width:0}
+  function size(it){var B=it.blob.getBoundingClientRect().width;if(!B)return;var mob=mqMob.matches,E=mob?Math.round(Math.min(34,B*.17)):0,S=B+2*E,dpr=Math.min(window.devicePixelRatio||1,2);
+    var pr=pathR(it);it.rb=(pr||B*(mob?.47:.42))+(mob?5:4);
+    it.B=B;it.S=S;it.mob=mob;it.cv.style.width=it.cv.style.height=S+'px';it.cv.style.marginLeft=it.cv.style.marginTop=(-S/2)+'px';
+    it.cv.width=Math.round(S*dpr);it.cv.height=Math.round(S*dpr);it.ctx.setTransform(dpr,0,0,dpr,0,0);paint(it,time,.016,RM)}
+  function paint(it,t,dt,still){var S=it.S,B=it.B,c=S/2,g=it.ctx;if(!S)return;
+    g.clearRect(0,0,S,S);
+    var rb=Math.min(it.rb,c-8),maxL=Math.max(6,c-rb-3),ev=notes(still?3.42:t+3.42+it.seed*1.7,it.seed);
+    it.hov+=(it.hovT-it.hov)*(1-Math.exp(-Math.max(dt,.016)*3.5));
+    var gl=g.createRadialGradient(c,c,rb*.9,c,c,c);gl.addColorStop(0,'rgba('+CMINT+',0)');gl.addColorStop(.3,'rgba('+CMINT+',.11)');gl.addColorStop(1,'rgba('+CMINT+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(c,c,c,0,TAU);g.fill();
+    /* jemné notové tečky pod vlnami */
+    g.fillStyle='rgba('+CBAR+',.38)';
+    for(var n=0;n<72;n++){var a=n/72*TAU,r=rb-B*.014;g.beginPath();g.arc(c+Math.cos(a)*r,c+Math.sin(a)*r,n%6===0?.95:.6,0,TAU);g.fill()}
+    g.lineCap='round';g.lineWidth=Math.max(1,B*.0068);
+    for(var i=0;i<N;i++){var x=i/N,ax=x*TAU;
+      var tg=.03+.014*(1+Math.sin(ax*5+t*.44+it.seed))+.012*(1+Math.sin(ax*11-t*.31));
+      for(var e=0;e<ev.length;e++)tg+=ev[e].v*bell(ringD(x,ev[e].at),ev[e].w);
+      tg=Math.min(.92,tg*it.jit[i]*1.5);if(still)tg*=.62;
+      var sp=tg>it.lv[i]?19:5.5;it.lv[i]=still?tg:it.lv[i]+(tg-it.lv[i])*(1-Math.exp(-dt*sp));
+      var v=it.lv[i];it.pk[i]=still?v:Math.max(v,it.pk[i]-dt*.34);
+      var L=(2+maxL*.86*v*(1+it.hov*.1)),r1=rb+L;
+      g.strokeStyle='rgba('+CBAR+','+(.34+v*.5).toFixed(3)+')';
+      g.beginPath();g.moveTo(c+COS[i]*rb,c+SIN[i]*rb);g.lineTo(c+COS[i]*r1,c+SIN[i]*r1);g.stroke();
+      if(it.pk[i]>.34&&i%2===0){var pr=Math.min(c-2,rb+2+maxL*.86*it.pk[i]*(1+it.hov*.1)+B*.012);
+        g.fillStyle='rgba('+CGOLD+','+Math.min(.7,(it.pk[i]-.28)*1.6).toFixed(3)+')';
+        g.beginPath();g.arc(c+COS[i]*pr,c+SIN[i]*pr,Math.max(.7,B*.0038),0,TAU);g.fill()}}}
+  function running(){return !RM&&!document.hidden&&active.length&&!(modal&&modal.classList.contains('show'))}
+  function loop(now){frame=0;if(!running()){last=0;return}
+    var iv=mqMob.matches?1000/30:1000/60;if(!last)last=now-iv;
+    if(now-last>=iv-.6){var dt=Math.min(.05,(now-last)/1000);last=now;time+=dt;for(var k=0;k<active.length;k++)paint(active[k],time,dt,false)}
+    frame=requestAnimationFrame(loop)}
+  function sync(){if(running()){if(!frame){last=0;frame=requestAnimationFrame(loop)}}else if(frame){cancelAnimationFrame(frame);frame=0;last=0}}
+  items.forEach(size);
+  if(window.MutationObserver){var mt=new MutationObserver(function(){resize()});items.forEach(function(it){var ph=$('.vid-photo',it.blob);if(ph)mt.observe(ph,{childList:true})})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){var it=null;for(var k=0;k<items.length;k++)if(items[k].cv===e.target)it=items[k];if(!it)return;
+      it.on=e.isIntersecting;var ix=active.indexOf(it);if(it.on&&ix<0)active.push(it);else if(!it.on&&ix>=0)active.splice(ix,1)});sync()},{threshold:0});
+    items.forEach(function(it){io.observe(it.cv)})}
+  else{active=items.slice();sync()}
+  var rt=0;function resize(){clearTimeout(rt);rt=setTimeout(function(){items.forEach(size);sync()},120)}
+  window.addEventListener('resize',resize,{passive:true});if(mqMob.addEventListener)mqMob.addEventListener('change',resize);
+  document.addEventListener('visibilitychange',sync);
+  if(modal)new MutationObserver(sync).observe(modal,{attributes:true,attributeFilter:['class']});
+  track.classList.add('mo-waves');
+});
+
 /* ================= Termíny koncertů ve vyskakovacím okně ================= */
 later('concerts',function(){
   var a=$('#koncerty a.btn[href*="davidklenha.cz"]');if(!a||!window.fetch)return;
   var mk=document.createElement('div');mk.className='mk';mk.setAttribute('role','dialog');mk.setAttribute('aria-modal','true');mk.setAttribute('aria-labelledby','mkTitle');
-  mk.innerHTML='<div class="mk-panel"><button type="button" class="mk-x" aria-label="'+TX.close+'">&times;</button><h3 id="mkTitle">'+TX.kTitle+'</h3><div class="mk-list" aria-live="polite"></div><a class="mk-all" href="'+a.href+'" target="_blank" rel="noopener">'+TX.kAll+' ↗</a></div>';
+  mk.innerHTML='<div class="mk-panel"><div class="mk-head"><div><h3 id="mkTitle">'+TX.kTitle+'</h3><span class="mk-sub"></span></div>'+
+    '<button type="button" class="mk-x" aria-label="'+TX.close+'"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg></button></div>'+
+    '<div class="mk-body"><div class="mk-list" aria-live="polite"></div></div>'+
+    '<div class="mk-foot"><a class="mk-all" href="'+a.href+'" target="_blank" rel="noopener">'+TX.kAll+' <span aria-hidden="true">↗</span></a></div></div>';
   document.body.appendChild(mk);
-  var list=$('.mk-list',mk),loaded=false,last=null;
-  var fd=new Intl.DateTimeFormat(LANG,{day:'numeric'}),fm=new Intl.DateTimeFormat(LANG,{month:'short'}),fw=new Intl.DateTimeFormat(LANG,{weekday:'short'});
+  var list=$('.mk-list',mk),sub=$('.mk-sub',mk),body=$('.mk-body',mk),loaded=false,last=null;
+  var fd=new Intl.DateTimeFormat(LANG,{day:'numeric'}),fm=new Intl.DateTimeFormat(LANG,{month:'short'}),fw=new Intl.DateTimeFormat(LANG,{weekday:'short'}),fmy=new Intl.DateTimeFormat(LANG,{month:'long',year:'numeric'});
   function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function render(d){var today=new Date();today.setHours(0,0,0,0);
     var up=(d||[]).filter(function(x){var t=new Date(x.date+'T00:00:00');return !isNaN(t)&&t>=today}).sort(function(p,q){return (p.date+p.time).localeCompare(q.date+q.time)});
-    if(!up.length){list.innerHTML='<p class="mk-msg">'+TX.kNone+'</p>';return}
-    list.innerHTML=up.slice(0,30).map(function(x){var t=new Date(x.date+'T12:00:00'),ours=x.band&&x.band.toLowerCase()===ENSNAME.toLowerCase();
-      return '<div class="mk-row'+(ours?' ours':'')+'"><div class="mk-d"><b>'+esc(fd.format(t))+'</b><span>'+esc(fm.format(t))+'</span><i>'+esc(fw.format(t))+'</i></div>'+
-        '<div class="mk-t"><strong>'+esc(x.title)+'</strong><span>'+esc([x.time,x.place].filter(Boolean).join(' · '))+'</span>'+(x.band?'<em>'+esc(x.band)+(ours?' · '+TX.kOurs:'')+'</em>':'')+'</div></div>'}).join('');
-    if(!RM)$$('.mk-row',list).slice(0,10).forEach(function(r,k){A(r,[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:360,delay:k*40,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'})})}
+    if(!up.length){sub.textContent='';list.innerHTML='<p class="mk-msg">'+TX.kNone+'</p>';return}
+    up=up.slice(0,30);sub.textContent=TX.kCount(up.length);
+    var mon='';
+    list.innerHTML=up.map(function(x){var t=new Date(x.date+'T12:00:00'),ours=x.band&&x.band.toLowerCase()===ENSNAME.toLowerCase(),m=x.date.slice(0,7),h='';
+      if(m!==mon){mon=m;h='<div class="mk-m">'+esc(fmy.format(t))+'</div>'}
+      return h+'<div class="mk-row'+(ours?' ours':'')+'"><div class="mk-d" aria-label="'+esc(t.toLocaleDateString(LANG))+'"><b>'+esc(fd.format(t))+'</b><span>'+esc(fw.format(t))+'</span></div>'+
+        '<div class="mk-t"><strong>'+esc(x.title)+'</strong><span>'+esc([x.time,x.place].filter(Boolean).join(' · '))+'</span>'+(x.band?'<em>'+esc(x.band)+(ours?' <u>'+TX.kOurs+'</u>':'')+'</em>':'')+'</div></div>'}).join('');
+    if(!RM)$$('.mk-row',list).slice(0,8).forEach(function(r,k){A(r,[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:380,delay:80+k*45,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'})})}
   function load(){if(loaded)return;loaded=true;list.innerHTML='<p class="mk-msg">'+TX.kLoad+'</p>';
     fetch('/koncerty.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){render(j&&j.items?j.items:j)},function(){loaded=false;list.innerHTML='<p class="mk-msg">'+TX.kErr+'</p>'})}
-  function open(){last=document.activeElement;mk.classList.add('open');load();setTimeout(function(){$('.mk-x',mk).focus({preventScroll:true})},30)}
+  function open(){last=document.activeElement;body.scrollTop=0;mk.classList.add('open');load();setTimeout(function(){$('.mk-x',mk).focus({preventScroll:true})},30)}
   function close(){mk.classList.remove('open');if(last&&last.focus)last.focus({preventScroll:true})}
   a.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey)return;e.preventDefault();open()});
   $('.mk-x',mk).addEventListener('click',close);
