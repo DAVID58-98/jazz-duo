@@ -47,7 +47,10 @@ padding:13px 24px;border-radius:100px;transition:.2s;display:inline-block}
 a:focus-visible,.btn:focus-visible{outline:3px solid #14302f;outline-offset:2px;box-shadow:0 0 0 6px #e0a93c}
 .sister{margin-top:30px;font-size:14px;color:var(--ink-soft)}
 .sister a{color:var(--emerald);font-weight:600}
+.k404{margin:34px auto 0;max-width:380px}.k404 .k-hint{font-size:14px;margin-bottom:12px}.keys{position:relative;display:flex;height:120px;touch-action:none;user-select:none;-webkit-user-select:none}.key{flex:1;background:#fff;border:1px solid #e3dcc6;border-radius:0 0 8px 8px;margin:0 1px;transition:transform .08s,background .08s;transform-origin:50% 0;box-shadow:0 4px 0 #e3dcc6}.key.down{background:#ece6d6;transform:scaleY(.97);box-shadow:0 1px 0 #e3dcc6}.bk{position:absolute;top:0;width:8.4%;height:62%;background:var(--petrol);border-radius:0 0 6px 6px;z-index:2;transition:transform .08s,background .08s;transform-origin:50% 0}.bk.down{background:var(--emerald);transform:scaleY(.96)}.k-play{margin-top:16px;font-family:var(--font-head);font-weight:600;font-size:14px;padding:9px 18px;border-radius:100px;border:1.5px solid var(--emerald);background:transparent;color:var(--emerald);cursor:pointer}.k-play:hover{background:var(--emerald);color:#fff}.fnote{position:fixed;pointer-events:none;z-index:5;width:18px;height:24px}.fnote svg{width:100%;height:100%;display:block}
 </style>
+<style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
+
 </head>
 <body>
 <main class="box">
@@ -59,6 +62,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #14302f;outline-offset:2px;
     <a class="btn primary" href="/">Zpět na úvod</a>
     <a class="btn ghost" href="/#poptavka">Nezávazná poptávka</a>
   </div>
+  <div class="k404"><p class="k-hint">Tady hraje jen ticho, zkuste si zahrát.</p><div class="keys" id="keys404" role="group" aria-label="Klaviatura"></div><button type="button" class="k-play" id="kPlay">▶ Zahrát ukázku</button></div>
   <p class="sister">Hledáte jinou sestavu? <a href="https://jazzduo.cz">duo</a> ·
   <a href="https://jazztrio.cz">trio</a> · <a href="https://jazzquartet.cz">kvartet</a> ·
   <a href="https://jazzquintet.cz">kvintet</a></p>
@@ -81,6 +85,37 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #14302f;outline-offset:2px;
   var s=q("p.sister"),out=t.sis+" ";
   for(var i=0;i<t.sites.length;i++){out+=(i?" · ":"")+'<a href="'+t.sites[i][0]+'">'+t.sites[i][1]+"</a>";}
   s.innerHTML=out;
+})();
+</script>
+<script>
+/* Klaviatura na 404: zvuk vzniká v prohlížeči až po ťuknutí */
+(function(){
+  var p=location.pathname,l=p.indexOf("/de/")===0?"de":(p.indexOf("/en/")===0?"en":"cs");
+  var T={en:["Only silence plays here. Try playing something.","▶ Play a short phrase","Keyboard"],de:["Hier spielt nur die Stille. Spielen Sie doch selbst.","▶ Kurze Phrase abspielen","Klaviatur"]}[l];
+  if(T){document.querySelector('.k-hint').textContent=T[0];document.getElementById('kPlay').textContent=T[1];document.getElementById('keys404').setAttribute('aria-label',T[2]);}
+  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var K=document.getElementById('keys404'),ctx=null,last=null,down=false;
+  var W=[261.63,293.66,329.63,349.23,392,440,493.88,523.25,587.33,659.25],B=[[0,277.18],[1,311.13],[3,369.99],[4,415.3],[5,466.16],[7,554.37],[8,622.25]];
+  var h=W.map(function(f){return '<div class="key" data-f="'+f+'"></div>'}).join('');
+  B.forEach(function(b){h+='<div class="bk" data-f="'+b[1]+'" style="left:calc('+((b[0]+1)*10)+'% - 4.2%)"></div>'});K.innerHTML=h;
+  var NOTE='<svg viewBox="0 0 24 32"><ellipse cx="8" cy="25.5" rx="6.2" ry="4.4" transform="rotate(-22 8 25.5)" fill="currentColor"/><rect x="12.4" y="3" width="2.2" height="23" fill="currentColor"/><path d="M14.6 3c.6 5 7.6 6.8 5.6 15.5-.6-5-3.2-7-5.6-7.6z" fill="currentColor"/></svg>';
+  function tone(f,len){try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume();
+    var o=ctx.createOscillator(),g=ctx.createGain(),o2=ctx.createOscillator(),g2=ctx.createGain(),t=ctx.currentTime,L=len||1.1;
+    o.type='triangle';o.frequency.value=f;o2.type='sine';o2.frequency.value=f*2;g2.gain.value=.22;
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.16,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+L);
+    o.connect(g);o2.connect(g2);g2.connect(g);g.connect(ctx.destination);o.start(t);o2.start(t);o.stop(t+L+.05);o2.stop(t+L+.05)}catch(e){}}
+  function note(k){if(RM||!document.body.animate)return;var r=k.getBoundingClientRect(),n=document.createElement('span');n.className='fnote';n.innerHTML=NOTE;
+    n.style.left=(r.left+r.width/2-9)+'px';n.style.top=(r.top+6)+'px';n.style.color=['#e0a93c','#7fb5a8','#157a7f'][Math.random()*3|0];document.body.appendChild(n);
+    var dx=(Math.random()-.5)*40,rot=(Math.random()-.5)*40,f=[];for(var i=0;i<=20;i++){var t=i/20,e=1-Math.pow(1-t,3);f.push({offset:t,transform:'translate('+(dx*t+Math.sin(t*6)*5)+'px,'+(-80*e)+'px) rotate('+(rot*t)+'deg) scale('+(t<.15?t/.15:1)+')',opacity:t<.6?1:1-(t-.6)/.4})}
+    n.animate(f,{duration:1200}).onfinish=function(){n.remove()}}
+  function press(k,len){if(!k)return;k.classList.add('down');setTimeout(function(){k.classList.remove('down')},170);tone(+k.dataset.f,len);note(k)}
+  function keyAt(x,y){var e=document.elementFromPoint(x,y);return e&&(e.classList.contains('key')||e.classList.contains('bk'))&&K.contains(e)?e:null}
+  K.addEventListener('pointerdown',function(e){down=true;var k=keyAt(e.clientX,e.clientY);last=k;press(k)});
+  K.addEventListener('pointermove',function(e){if(!down)return;var k=keyAt(e.clientX,e.clientY);if(k&&k!==last){last=k;press(k)}});
+  window.addEventListener('pointerup',function(){down=false;last=null});
+  var Ln=.27,S=.135,Q=.4,Hf=.9,LICK=[[261.63,Ln],[329.63,S],[392,Ln],[440,S],[466.16,Ln],[440,S],[392,Ln],[329.63,S],[311.13,Ln],[293.66,S],[261.63,Q],[392,Q],[523.25,Hf]],playing=false;
+  document.getElementById('kPlay').addEventListener('click',function(){if(playing)return;playing=true;var t=0;
+    LICK.forEach(function(n){setTimeout(function(){press(K.querySelector('[data-f="'+n[0]+'"]'),n[1]+.5)},t*1000);t+=n[1]});setTimeout(function(){playing=false},t*1000+300)});
 })();
 </script>
 </body>

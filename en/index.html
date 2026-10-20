@@ -52,7 +52,7 @@
   });
 </script>
 
-<noscript><style>#jtIntro{display:none!important}html.fonts-loading .hero-copy{visibility:visible!important}.hero-copy>*{opacity:1!important;transform:none!important}html.fonts-loading #jtIntro .intro-brand{opacity:1!important}</style></noscript>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}#jtIntro{display:none!important}html.fonts-loading .hero-copy{visibility:visible!important}.hero-copy>*{opacity:1!important;transform:none!important}html.fonts-loading #jtIntro .intro-brand{opacity:1!important}</style></noscript>
 <link id="gfonts" rel="preload" as="style" href="/fonts/fonts.css">
 <noscript><link rel="stylesheet" href="/fonts/fonts.css"></noscript>
 <script>(function(){
@@ -538,7 +538,7 @@ footer{background:var(--petrol);color:var(--mint-soft);padding:22px clamp(18px,4
 /* reveal — DESKTOP ONLY (disabled on mobile to avoid layout/overlap issues) */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
-@media (max-width:860px){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+@media (max-width:860px){.reveal{transform:translateY(16px);transition:opacity .45s ease,transform .5s cubic-bezier(.2,.8,.2,1)}}
 
 @media (max-width:560px){.songs{grid-template-columns:1fr}
 .benefits-grid{grid-template-columns:1fr 1fr;gap:12px}
@@ -881,6 +881,142 @@ main{position:relative;z-index:2}
   }
 }
 </script>
+<style id="motion-css">
+.mo-title .mw{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.16em .03em .07em;margin:-.16em 0 -.07em}
+.mo-title .mw>span{display:inline-block;transform:translateY(115%);transition:transform .66s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.mo-title.mo-in .mw>span{transform:none}
+.mo-eb::before{width:0!important;transition:width .5s cubic-bezier(.2,.8,.2,1) .1s}
+.mo-eb.mo-in::before{width:24px!important}
+.mo-lead{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,.6s)}
+.mo-lead.mo-in{opacity:1;transform:none}
+.mo-goo-defs{position:absolute;width:0;height:0;overflow:hidden}
+.lq-host{position:relative;isolation:isolate}
+.lq{position:absolute;inset:0;pointer-events:none;z-index:0;filter:url(#mo-goo);transition:opacity .3s}
+.lq.off{opacity:0}
+.lq span{position:absolute;left:0;top:0;border-radius:999px;background:var(--emerald);will-change:transform,width}
+.lq .b1{transition:transform .3s cubic-bezier(.5,0,.2,1),width .3s cubic-bezier(.5,0,.2,1),height .3s cubic-bezier(.5,0,.2,1)}
+.lq .b2{transition:transform .62s cubic-bezier(.3,.1,.15,1),width .62s cubic-bezier(.3,.1,.15,1),height .62s cubic-bezier(.3,.1,.15,1)}
+.lq-host>a,.lq-host>button,.lq-host>span{position:relative;z-index:1}
+.topnav>a.mo-active:not(.cta){color:var(--cream)}
+.topnav>a:not(.cta){transition:color .25s}
+.drawer nav .lq span{background:var(--mint);border-radius:14px}
+.drawer nav a.mo-active{color:var(--petrol)!important}
+#segType .lq span{background:var(--mint);border-radius:14px}
+#blkChoice .lq span{background:var(--emerald);border-radius:14px}
+#segType.lq-on .opt.sel,#blkChoice.lq-on .blk.sel{background:transparent;border-color:transparent}
+.brand-mark{display:inline-block;width:1.45em;height:1.45em;flex:none}
+.brand-mark svg{display:block;width:100%;height:100%;overflow:visible}
+.brand-mark rect{fill:var(--emerald)}
+.brand-mark circle{fill:var(--cream);transform-box:fill-box;transform-origin:50% 50%}
+.foot-row .brand-mark rect{fill:var(--mint)}
+.foot-row .brand-mark circle{fill:var(--petrol)}
+.topbar .brand,.foot-row .fb{display:inline-flex;align-items:center;gap:.45em}
+.brand-mark.hop circle{animation:moDotHop .62s cubic-bezier(.34,1.56,.64,1) both;animation-delay:var(--d)}
+@keyframes moDotHop{0%{transform:none}30%{transform:translateY(-22%) scale(.92,1.08)}55%{transform:translateY(4%) scale(1.12,.88)}75%{transform:scale(.97,1.03)}100%{transform:none}}
+#benefits .bshape{overflow:visible}
+#benefits .bshape *{transform-box:fill-box;transform-origin:center}
+#benefits .benefit{-webkit-tap-highlight-color:transparent}
+.jb-wrap{container-type:inline-size;margin-top:26px}
+.jb{display:grid;grid-template-columns:minmax(0,1fr);border-radius:18px;overflow:hidden;background:#e9e2d1;color:var(--ink)}
+@container (min-width:720px){.jb{grid-template-columns:.95fr 1.25fr}}
+.jb-stage{position:relative;min-height:320px;background:var(--emerald);color:var(--cream);overflow:hidden}
+@container (min-width:720px){.jb-stage{min-height:420px}}
+.jb-top{position:absolute;z-index:3;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;color:var(--mint-soft);font-size:10.5px;letter-spacing:.17em;font-weight:600}
+.jb-top span:last-child{font-family:var(--font-head);font-size:13px;letter-spacing:-.03em}
+.jb-tt{position:absolute;top:44px;bottom:46px;left:0;right:0;display:grid;place-items:center}
+.jb-spin{width:min(240px,62cqi);aspect-ratio:1;position:relative}
+@container (min-width:720px){.jb-spin{width:min(290px,31cqi)}}
+.jb-vinyl{position:absolute;inset:0;border-radius:50%;background:#0b1c1b;transform:rotate(-8deg);box-shadow:0 18px 40px -20px rgba(0,0,0,.55)}
+.jb-vinyl svg{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:rgba(157,194,182,.13);stroke-width:.9}
+.jb-vinyl::after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 30deg,transparent 0 9%,rgba(255,255,255,.06) 13%,transparent 18% 58%,rgba(255,255,255,.045) 62%,transparent 67%)}
+.jb-label{position:absolute;left:50%;top:50%;width:46%;height:46%;transform:translate(-50%,-50%);border-radius:50%;background:var(--gold);color:#0b1c1b;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;padding:9% 11% 13%;transition:background .5s,color .5s;z-index:2}
+@container (min-width:720px){.jb-label{width:42%;height:42%}}
+.jb-label>*{flex:none}
+.jb-label .g{font-size:7px;font-weight:600;letter-spacing:.18em}
+.jb-label strong{font-family:var(--font-head);font-weight:600;font-size:clamp(9.5px,3cqi,13px);letter-spacing:-.03em;line-height:1.18;max-width:100%;overflow-wrap:break-word;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@container (min-width:720px){.jb-label strong{font-size:12.5px}}
+.jb-label .a{font-size:7.5px;opacity:.85}
+.jb-label i{position:absolute;bottom:7%;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#0b1c1b}
+.jb-label[data-g="pop"]{background:var(--mint)}
+.jb-label[data-g="ballads"]{background:var(--cream-3)}
+.jb-label[data-g="czech"]{background:var(--emerald-2);color:var(--cream)}
+.jb-label[data-g="czech"] i{background:var(--cream)}
+.jb-arm{position:absolute;z-index:3;top:-6%;right:-4%;width:12px;height:52%;border:1px solid rgba(157,194,182,.5);border-radius:9px;background:var(--mint-soft);transform-origin:50% 10px;transform:rotate(18deg)}
+.jb-arm::before{content:"";position:absolute;top:-6px;left:-8px;width:26px;height:26px;border:6px solid #0b1c1b;border-radius:50%;background:var(--mint)}
+.jb-arm i{position:absolute;left:-4px;bottom:-10px;width:19px;height:24px;border:1px solid var(--mint);border-radius:4px;background:#0b1c1b}
+.jb-bot{position:absolute;left:20px;right:20px;bottom:16px;color:var(--mint-soft);font-size:10.5px;letter-spacing:.12em;font-weight:600;text-transform:uppercase}
+.jb-set{display:flex;flex-direction:column;min-width:0;padding:16px 14px 12px}
+@container (min-width:720px){.jb-set{padding:24px 26px 18px}}
+.jb-tabs{display:flex;gap:4px;padding:3px;margin-bottom:10px}
+.jb-tabs button{flex:1;min-width:0;min-height:40px;padding:6px 8px;border:0;border-radius:999px;background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:color .25s;-webkit-tap-highlight-color:transparent}
+.jb-tabs button[aria-selected="true"]{color:var(--emerald)}
+.jb-tabs .lq span{background:var(--cream);box-shadow:inset 0 0 0 1px rgba(20,48,47,.18)}
+.jb-sep{height:1px;background:rgba(20,48,47,.1);margin-bottom:4px}
+.jb-list{position:relative;height:340px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(20,48,47,.25) transparent;-webkit-mask-image:linear-gradient(transparent 0,#000 12px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(transparent 0,#000 12px,#000 calc(100% - 28px),transparent);padding-bottom:20px;outline-offset:-2px}
+@container (min-width:720px){.jb-list{height:330px}}
+.jb-row{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 2px;border:0;border-bottom:1px solid rgba(20,48,47,.09);background:transparent;font:inherit;color:var(--ink);text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.jb-row[hidden]{display:none}
+.jb-row .n{flex:none;width:20px;color:var(--ink-soft);font-family:var(--font-head);font-size:10.5px}
+.jb-row .c{min-width:0;flex:1}
+.jb-row .c strong{display:block;font-family:var(--font-head);font-weight:500;font-size:14.5px;line-height:1.4;letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .2s}
+.jb-row .c span{display:block;color:var(--ink-soft);font-size:11.5px;line-height:1.4}
+.jb-row .m{flex:none;display:flex;align-items:center;justify-content:center;gap:2px;width:26px;height:26px;border:1px solid rgba(20,48,47,.17);border-radius:50%;transition:background .25s,border-color .25s}
+.jb-row .m i{width:2px;height:3px;border-radius:2px;background:var(--emerald);transition:height .25s,background .25s}
+@media (hover:hover){.jb-row:hover .c strong{color:var(--emerald-2)}}
+.jb-row[aria-selected="true"] .c strong{color:var(--emerald-2)}
+.jb-row[aria-selected="true"] .m{background:var(--emerald);border-color:var(--emerald)}
+.jb-row[aria-selected="true"] .m i{background:var(--cream);height:6px;animation:moEq .9s ease-in-out infinite alternate}
+.jb-row[aria-selected="true"] .m i:nth-child(2){height:11px;animation-delay:-.3s}
+.jb-row[aria-selected="true"] .m i:nth-child(3){animation-delay:-.6s}
+#jukebox:not(.mo-vis) .jb-row .m i{animation-play-state:paused}
+@keyframes moEq{from{transform:scaleY(.5)}to{transform:scaleY(1.25)}}
+.jb-row:focus-visible{outline:2px solid var(--gold);outline-offset:-2px;border-radius:8px}
+.jb-tabs button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.cz-map.mo .spider{animation:none;opacity:0;transition:opacity .6s}
+.cz-map.mo.done .spider{opacity:.5}
+.cz-map.mo.done .spider-foreign{opacity:.55}
+.cz-map .route{fill:none;stroke:var(--emerald);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:.9}
+.cz-map .route.fr{stroke:var(--gold)}
+.cz-map.mo.play .route{animation:moDraw .7s cubic-bezier(.2,.8,.2,1) forwards,moFade .6s ease forwards;animation-delay:var(--d),var(--e)}
+@keyframes moDraw{to{stroke-dashoffset:0}}
+@keyframes moFade{to{opacity:0}}
+.cz-map.mo .city{opacity:.3;transition:opacity .3s}
+.cz-map.mo .city.lit{opacity:1}
+.cz-map.mo .city circle{transform-box:fill-box;transform-origin:center}
+.cz-map.mo .city.lit circle{animation:moCity .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes moCity{50%{transform:scale(2)}}
+#submitBtn.mo-btn{position:relative;overflow:hidden;justify-content:center;transition:width .4s cubic-bezier(.2,.8,.2,1),background .3s,padding .3s,transform .25s,box-shadow .25s}
+#submitBtn .mo-lb{display:inline-block;transition:opacity .2s,transform .2s}
+#submitBtn .mo-dots{position:absolute;inset:0;display:flex;gap:5px;align-items:center;justify-content:center;opacity:0;pointer-events:none}
+#submitBtn .mo-dots i{width:7px;height:7px;border-radius:50%;background:var(--emerald)}
+#submitBtn .mo-chk{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;opacity:0;pointer-events:none}
+#submitBtn .mo-chk path{fill:none;stroke:var(--cream);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+#submitBtn.sending,#submitBtn.sent{padding-left:0;padding-right:0}
+#submitBtn.sending .mo-lb,#submitBtn.sent .mo-lb{opacity:0;transform:translateY(-8px)}
+#submitBtn.sending .mo-dots{opacity:1}
+#submitBtn.sending .mo-dots i{animation:moJump .7s ease-in-out infinite;animation-delay:calc(var(--i) * .12s)}
+@keyframes moJump{0%,100%{transform:none}40%{transform:translateY(-7px)}}
+#submitBtn.sent{background:var(--mint)}
+#submitBtn.sent .mo-chk{opacity:1}
+#submitBtn.sent .mo-dots{opacity:0;transition:opacity .15s}
+#submitBtn.sent .mo-chk path{animation:moDraw .4s cubic-bezier(.2,.8,.2,1) forwards}
+#submitBtn.thanks{background:var(--mint);color:var(--petrol)}
+.rstack{position:relative;width:min(440px,100%);margin:38px auto 0;touch-action:pan-y}
+.rstack .review{position:absolute;left:0;right:0;top:0;width:100%;box-shadow:0 18px 40px -22px rgba(0,0,0,.55);transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .5s;user-select:none;-webkit-user-select:none;cursor:grab}
+.rstack .review .stars{display:flex;gap:3px;letter-spacing:0;font-size:17px;line-height:1}
+.rstack .review .stars span{display:inline-block;color:rgba(244,240,228,.22)}
+.rstack .review .stars span.on{color:#f0c163}
+.rstack .review p span{display:inline-block;white-space:pre}
+.rev-ctl{display:flex;justify-content:center;margin-top:18px}
+#faq .faq-item .mo-ans{overflow:hidden}
+#faq .faq-item summary::after{transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+#faq .faq-item.mo-closing summary::after{transform:none}
+@media (prefers-reduced-motion:reduce){
+.mo-title .mw>span,.mo-lead{transform:none!important;opacity:1!important;transition:none!important}
+.cz-map.mo .spider{opacity:.5}.cz-map.mo .city{opacity:1}
+}
+</style>
+<style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
 <body>
 
@@ -901,7 +1037,7 @@ main{position:relative;z-index:2}
 </div>
 
 <header class="topbar" id="topbar">
-  <a href="#hero" class="brand">jazz<b>duo</b>.cz</a>
+  <a href="#hero" class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" rx="22"/><circle cx="36" cy="36" r="14.5" style="--d:0s"/><circle cx="64" cy="64" r="14.5" style="--d:.09s"/></svg></span><span>jazz<b>duo</b>.cz</span></a>
   <nav class="topnav">
     <a href="#poslech">Videos</a>
     <a href="#repertoire">Repertoire</a>
@@ -1077,7 +1213,7 @@ main{position:relative;z-index:2}
     </div>
     <div class="benefits-grid">
       <div class="benefit benefit-reveal">
-        <svg class="bshape" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="26" cy="26" r="8" fill="#0f5257"/></svg>
+        <svg class="bshape" viewBox="0 0 52 52"><path d="M26 4a22 22 0 1 1 0 44a22 22 0 1 1 0-44z" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="26" cy="26" r="8" fill="#0f5257"/></svg>
         <h3>100% live music</h3><p>We play live with no backing tracks — every note is created on the spot.</p>
       </div>
       <div class="benefit benefit-reveal">
@@ -1085,7 +1221,7 @@ main{position:relative;z-index:2}
         <h3>Own PA system</h3><p>Our own PA covers events of 80–100 guests; we always adjust the volume.</p>
       </div>
       <div class="benefit benefit-reveal">
-        <svg class="bshape" viewBox="0 0 52 52"><rect x="6" y="6" width="40" height="40" rx="14" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="26" cy="26" r="9" fill="#0f5257"/></svg>
+        <svg class="bshape" viewBox="0 0 52 52"><path d="M20 6h12a14 14 0 0 1 14 14v12a14 14 0 0 1-14 14H20A14 14 0 0 1 6 32V20A14 14 0 0 1 20 6z" fill="none" stroke="#0f5257" stroke-width="3"/><circle cx="20.4" cy="20.4" r="5.8" fill="#0f5257"/><circle cx="31.6" cy="31.6" r="5.8" fill="#0f5257"/></svg>
         <h3>The duo as your base</h3><p>Voice and piano carry a whole evening; we can grow to a larger line-up.</p>
       </div>
       <div class="benefit benefit-reveal">
@@ -1105,12 +1241,94 @@ main{position:relative;z-index:2}
           <p class="rep-hint" style="text-align:left;margin-top:10px">Repertoire sample — 83 of&nbsp;more than 100 songs we have learned.</p>
         </div>
       </div>
-      <div class="cats" id="cats"></div>
-      <div class="rep-player">
-        <button type="button" class="rep-arrow" id="repPrev" aria-label="Previous songs">‹</button>
-        <div class="songs-viewport"><div class="songs auto" id="songs"><div class="song-tile" data-cat="standards"><span class="t">'S Wonderful</span><span class="a">G. Gershwin</span></div><div class="song-tile" data-cat="standards"><span class="t">A Foggy Day</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">Almost Like Being In Love</span><span class="a">N. K. Cole</span></div><div class="song-tile" data-cat="standards"><span class="t">Blue Moon</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">Cheek to Cheek</span><span class="a">Ella &amp; Armstrong</span></div><div class="song-tile" data-cat="standards"><span class="t">Don't Get Around Much Anymore</span><span class="a">D. Ellington</span></div><div class="song-tile" data-cat="standards"><span class="t">Feeling Good</span><span class="a">N. Simone</span></div><div class="song-tile" data-cat="standards"><span class="t">Fly Me to the Moon</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">How Insensitive</span><span class="a">A. C. Jobim</span></div><div class="song-tile" data-cat="standards"><span class="t">I Can't Give You Anything But Love</span><span class="a">E. Fitzgerald</span></div><div class="song-tile" data-cat="standards"><span class="t">I've Got You Under My Skin</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">It Don't Mean a Thing</span><span class="a">D. Ellington</span></div><div class="song-tile" data-cat="standards"><span class="t">It's A Lovely Day Today</span><span class="a">E. Fitzgerald</span></div><div class="song-tile" data-cat="standards"><span class="t">It's Only a Paper Moon</span><span class="a">N. K. Cole</span></div><div class="song-tile" data-cat="standards"><span class="t">La Vie en Rose</span><span class="a">É. Piaf</span></div><div class="song-tile" data-cat="standards"><span class="t">Lady Is a Tramp</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">Let's Call the Whole Thing Off</span><span class="a">Ella &amp; Armstrong</span></div><div class="song-tile" data-cat="standards"><span class="t">Let's Fall In Love</span><span class="a">D. Krall</span></div><div class="song-tile" data-cat="standards"><span class="t">L-O-V-E</span><span class="a">N. K. Cole</span></div><div class="song-tile" data-cat="standards"><span class="t">Lullaby of Birdland</span><span class="a">E. Fitzgerald</span></div><div class="song-tile" data-cat="standards"><span class="t">Oh, Lady Be Good!</span><span class="a">E. Fitzgerald</span></div><div class="song-tile" data-cat="standards"><span class="t">On The Sunny Side Of The Street</span><span class="a">L. Armstrong</span></div><div class="song-tile" data-cat="standards"><span class="t">Orange Colored Sky</span><span class="a">N. K. Cole</span></div><div class="song-tile" data-cat="standards"><span class="t">Perhaps, Perhaps, Perhaps</span><span class="a">D. Day</span></div><div class="song-tile" data-cat="standards"><span class="t">Quando, Quando, Quando</span><span class="a">E. Humperdinck</span></div><div class="song-tile" data-cat="standards"><span class="t">Route 66</span><span class="a">N. K. Cole</span></div><div class="song-tile" data-cat="standards"><span class="t">Something Stupid</span><span class="a">F. &amp; N. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">Strangers In The Night</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">Summertime</span><span class="a">E. Fitzgerald</span></div><div class="song-tile" data-cat="standards"><span class="t">Sunny</span><span class="a">B. Hebb</span></div><div class="song-tile" data-cat="standards"><span class="t">Sway</span><span class="a">D. Martin</span></div><div class="song-tile" data-cat="standards"><span class="t">That's All</span><span class="a">M. Bublé</span></div><div class="song-tile" data-cat="standards"><span class="t">The Girl From Ipanema</span><span class="a">Getz &amp; Gilberto</span></div><div class="song-tile" data-cat="standards"><span class="t">The Way You Look Tonight</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">Theme from New York, New York</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="standards"><span class="t">Unchain My Heart</span><span class="a">R. Charles</span></div><div class="song-tile" data-cat="standards"><span class="t">You Make Me Feel So Young</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="pop"><span class="t">All About That Bass</span><span class="a">M. Trainor</span></div><div class="song-tile" data-cat="pop"><span class="t">Blue Suede Shoes</span><span class="a">E. Presley</span></div><div class="song-tile" data-cat="pop"><span class="t">Crazy Little Thing Called Love</span><span class="a">Queen</span></div><div class="song-tile" data-cat="pop"><span class="t">Hey Jude</span><span class="a">The Beatles</span></div><div class="song-tile" data-cat="pop"><span class="t">How Deep Is Your Love</span><span class="a">Bee Gees</span></div><div class="song-tile" data-cat="pop"><span class="t">I Got You (I Feel Good)</span><span class="a">J. Brown</span></div><div class="song-tile" data-cat="pop"><span class="t">I Wish</span><span class="a">S. Wonder</span></div><div class="song-tile" data-cat="pop"><span class="t">If I Ain't Got You</span><span class="a">A. Keys</span></div><div class="song-tile" data-cat="pop"><span class="t">Isn't She Lovely</span><span class="a">S. Wonder</span></div><div class="song-tile" data-cat="pop"><span class="t">Just The Two of Us</span><span class="a">B. Withers</span></div><div class="song-tile" data-cat="pop"><span class="t">Knockin' on Heaven's Door</span><span class="a">B. Dylan</span></div><div class="song-tile" data-cat="pop"><span class="t">Let It Be</span><span class="a">The Beatles</span></div><div class="song-tile" data-cat="pop"><span class="t">Mamma Mia</span><span class="a">ABBA</span></div><div class="song-tile" data-cat="pop"><span class="t">Mercy</span><span class="a">Duffy</span></div><div class="song-tile" data-cat="pop"><span class="t">Pretty Woman</span><span class="a">R. Orbison</span></div><div class="song-tile" data-cat="pop"><span class="t">Rome Wasn't Built In A Day</span><span class="a">Morcheeba</span></div><div class="song-tile" data-cat="pop"><span class="t">Sweet Home Alabama</span><span class="a">Lynyrd Skynyrd</span></div><div class="song-tile" data-cat="pop"><span class="t">Valerie</span><span class="a">A. Winehouse</span></div><div class="song-tile" data-cat="ballads"><span class="t">At Last</span><span class="a">E. James</span></div><div class="song-tile" data-cat="ballads"><span class="t">But Beautiful</span><span class="a">B. Holiday</span></div><div class="song-tile" data-cat="ballads"><span class="t">Don't Know Why</span><span class="a">N. Jones</span></div><div class="song-tile" data-cat="ballads"><span class="t">Georgia on My Mind</span><span class="a">R. Charles</span></div><div class="song-tile" data-cat="ballads"><span class="t">Hallelujah</span><span class="a">L. Cohen</span></div><div class="song-tile" data-cat="ballads"><span class="t">Home</span><span class="a">M. Bublé</span></div><div class="song-tile" data-cat="ballads"><span class="t">Killing Me Softly</span><span class="a">R. Flack</span></div><div class="song-tile" data-cat="ballads"><span class="t">Moon River</span><span class="a">A. Williams</span></div><div class="song-tile" data-cat="ballads"><span class="t">My Way</span><span class="a">F. Sinatra</span></div><div class="song-tile" data-cat="ballads"><span class="t">Smile</span><span class="a">N. K. Cole</span></div><div class="song-tile" data-cat="ballads"><span class="t">Tears in Heaven</span><span class="a">E. Clapton</span></div><div class="song-tile" data-cat="ballads"><span class="t">Thinking Out Loud</span><span class="a">E. Sheeran</span></div><div class="song-tile" data-cat="ballads"><span class="t">What A Wonderful World</span><span class="a">L. Armstrong</span></div><div class="song-tile" data-cat="ballads"><span class="t">When I Fall In Love</span><span class="a">N. K. Cole</span></div><div class="song-tile" data-cat="ballads"><span class="t">Yesterday</span><span class="a">The Beatles</span></div><div class="song-tile" data-cat="ballads"><span class="t">You Don't Know Me</span><span class="a">M. Bublé</span></div><div class="song-tile" data-cat="ballads"><span class="t">You'll Never Find Another Love Like Mine</span><span class="a">L. Rawls</span></div><div class="song-tile" data-cat="czech"><span class="t">Dva roky jezdím bez nehod</span><span class="a">M. Chladil</span></div><div class="song-tile" data-cat="czech"><span class="t">Ezop a brabenec</span><span class="a">Ježek, V+W</span></div><div class="song-tile" data-cat="czech"><span class="t">Já s tebou žít nebudu</span><span class="a">Nerez</span></div><div class="song-tile" data-cat="czech"><span class="t">Jen pro ten dnešní den</span><span class="a">O. Nový</span></div><div class="song-tile" data-cat="czech"><span class="t">Klobouk ve křoví</span><span class="a">Ježek, V+W</span></div><div class="song-tile" data-cat="czech"><span class="t">Lady Carneval</span><span class="a">K. Gott</span></div><div class="song-tile" data-cat="czech"><span class="t">Loudá se půlměsíc</span><span class="a">M. Kubišová</span></div><div class="song-tile" data-cat="czech"><span class="t">Pramínek vlasů</span><span class="a">J. Suchý</span></div><div class="song-tile" data-cat="czech"><span class="t">Sladké mámení</span><span class="a">H. Vondráčková</span></div><div class="song-tile" data-cat="czech"><span class="t">Víno</span><span class="a">Chinaski</span></div><div class="song-tile" data-cat="czech"><span class="t">Život je jen náhoda</span><span class="a">Ježek, V+W</span></div></div></div>
-        <button type="button" class="rep-arrow" id="repNext" aria-label="Next songs">›</button>
-      </div>
+      <div class="jb-wrap"><div class="jb" id="jukebox">
+        <div class="jb-stage" aria-hidden="true"><div class="jb-top"><span>JAZZ DUO</span><span>33⅓</span></div><div class="jb-tt"><div class="jb-spin"><div class="jb-vinyl"><svg viewBox="0 0 320 320"><circle cx="160" cy="160" r="151"/><circle cx="160" cy="160" r="143"/><circle cx="160" cy="160" r="135"/><circle cx="160" cy="160" r="127"/><circle cx="160" cy="160" r="119"/><circle cx="160" cy="160" r="111"/><circle cx="160" cy="160" r="103"/><circle cx="160" cy="160" r="95"/></svg><div class="jb-label" data-g="standards"><span class="g">JAZZ</span><strong>'S Wonderful</strong><span class="a">G. Gershwin</span><i></i></div></div><div class="jb-arm"><i></i></div></div></div><div class="jb-bot"><span class="jb-count">37 songs</span></div></div>
+        <div class="jb-set"><div class="jb-tabs" role="tablist" aria-label="Genre"><button type="button" role="tab" data-cat="standards" aria-selected="true">Jazz</button><button type="button" role="tab" data-cat="pop" aria-selected="false">Pop</button><button type="button" role="tab" data-cat="ballads" aria-selected="false">Ballads</button><button type="button" role="tab" data-cat="czech" aria-selected="false">Czech</button></div><div class="jb-sep"></div><div class="jb-list" role="listbox" aria-label="Songs" tabindex="0">
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">01</span><span class="c"><strong>'S Wonderful</strong><span>G. Gershwin</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">02</span><span class="c"><strong>A Foggy Day</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">03</span><span class="c"><strong>Almost Like Being In Love</strong><span>N. K. Cole</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">04</span><span class="c"><strong>Blue Moon</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">05</span><span class="c"><strong>Cheek to Cheek</strong><span>Ella &amp; Armstrong</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">06</span><span class="c"><strong>Don't Get Around Much Anymore</strong><span>D. Ellington</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">07</span><span class="c"><strong>Feeling Good</strong><span>N. Simone</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">08</span><span class="c"><strong>Fly Me to the Moon</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">09</span><span class="c"><strong>How Insensitive</strong><span>A. C. Jobim</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">10</span><span class="c"><strong>I Can't Give You Anything But Love</strong><span>E. Fitzgerald</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">11</span><span class="c"><strong>I've Got You Under My Skin</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">12</span><span class="c"><strong>It Don't Mean a Thing</strong><span>D. Ellington</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">13</span><span class="c"><strong>It's A Lovely Day Today</strong><span>E. Fitzgerald</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">14</span><span class="c"><strong>It's Only a Paper Moon</strong><span>N. K. Cole</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">15</span><span class="c"><strong>La Vie en Rose</strong><span>É. Piaf</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">16</span><span class="c"><strong>Lady Is a Tramp</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">17</span><span class="c"><strong>Let's Call the Whole Thing Off</strong><span>Ella &amp; Armstrong</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">18</span><span class="c"><strong>Let's Fall In Love</strong><span>D. Krall</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">19</span><span class="c"><strong>L-O-V-E</strong><span>N. K. Cole</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">20</span><span class="c"><strong>Lullaby of Birdland</strong><span>E. Fitzgerald</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">21</span><span class="c"><strong>Oh, Lady Be Good!</strong><span>E. Fitzgerald</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">22</span><span class="c"><strong>On The Sunny Side Of The Street</strong><span>L. Armstrong</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">23</span><span class="c"><strong>Orange Colored Sky</strong><span>N. K. Cole</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">24</span><span class="c"><strong>Perhaps, Perhaps, Perhaps</strong><span>D. Day</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">25</span><span class="c"><strong>Quando, Quando, Quando</strong><span>E. Humperdinck</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">26</span><span class="c"><strong>Route 66</strong><span>N. K. Cole</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">27</span><span class="c"><strong>Something Stupid</strong><span>F. &amp; N. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">28</span><span class="c"><strong>Strangers In The Night</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">29</span><span class="c"><strong>Summertime</strong><span>E. Fitzgerald</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">30</span><span class="c"><strong>Sunny</strong><span>B. Hebb</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">31</span><span class="c"><strong>Sway</strong><span>D. Martin</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">32</span><span class="c"><strong>That's All</strong><span>M. Bublé</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">33</span><span class="c"><strong>The Girl From Ipanema</strong><span>Getz &amp; Gilberto</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">34</span><span class="c"><strong>The Way You Look Tonight</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">35</span><span class="c"><strong>Theme from New York, New York</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">36</span><span class="c"><strong>Unchain My Heart</strong><span>R. Charles</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="standards"><span class="n">37</span><span class="c"><strong>You Make Me Feel So Young</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">01</span><span class="c"><strong>All About That Bass</strong><span>M. Trainor</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">02</span><span class="c"><strong>Blue Suede Shoes</strong><span>E. Presley</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">03</span><span class="c"><strong>Crazy Little Thing Called Love</strong><span>Queen</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">04</span><span class="c"><strong>Hey Jude</strong><span>The Beatles</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">05</span><span class="c"><strong>How Deep Is Your Love</strong><span>Bee Gees</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">06</span><span class="c"><strong>I Got You (I Feel Good)</strong><span>J. Brown</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">07</span><span class="c"><strong>I Wish</strong><span>S. Wonder</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">08</span><span class="c"><strong>If I Ain't Got You</strong><span>A. Keys</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">09</span><span class="c"><strong>Isn't She Lovely</strong><span>S. Wonder</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">10</span><span class="c"><strong>Just The Two of Us</strong><span>B. Withers</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">11</span><span class="c"><strong>Knockin' on Heaven's Door</strong><span>B. Dylan</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">12</span><span class="c"><strong>Let It Be</strong><span>The Beatles</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">13</span><span class="c"><strong>Mamma Mia</strong><span>ABBA</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">14</span><span class="c"><strong>Mercy</strong><span>Duffy</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">15</span><span class="c"><strong>Pretty Woman</strong><span>R. Orbison</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">16</span><span class="c"><strong>Rome Wasn't Built In A Day</strong><span>Morcheeba</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">17</span><span class="c"><strong>Sweet Home Alabama</strong><span>Lynyrd Skynyrd</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="pop"><span class="n">18</span><span class="c"><strong>Valerie</strong><span>A. Winehouse</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">01</span><span class="c"><strong>At Last</strong><span>E. James</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">02</span><span class="c"><strong>But Beautiful</strong><span>B. Holiday</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">03</span><span class="c"><strong>Don't Know Why</strong><span>N. Jones</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">04</span><span class="c"><strong>Georgia on My Mind</strong><span>R. Charles</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">05</span><span class="c"><strong>Hallelujah</strong><span>L. Cohen</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">06</span><span class="c"><strong>Home</strong><span>M. Bublé</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">07</span><span class="c"><strong>Killing Me Softly</strong><span>R. Flack</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">08</span><span class="c"><strong>Moon River</strong><span>A. Williams</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">09</span><span class="c"><strong>My Way</strong><span>F. Sinatra</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">10</span><span class="c"><strong>Smile</strong><span>N. K. Cole</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">11</span><span class="c"><strong>Tears in Heaven</strong><span>E. Clapton</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">12</span><span class="c"><strong>Thinking Out Loud</strong><span>E. Sheeran</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">13</span><span class="c"><strong>What A Wonderful World</strong><span>L. Armstrong</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">14</span><span class="c"><strong>When I Fall In Love</strong><span>N. K. Cole</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">15</span><span class="c"><strong>Yesterday</strong><span>The Beatles</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">16</span><span class="c"><strong>You Don't Know Me</strong><span>M. Bublé</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="ballads"><span class="n">17</span><span class="c"><strong>You'll Never Find Another Love Like Mine</strong><span>L. Rawls</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">01</span><span class="c"><strong>Dva roky jezdím bez nehod</strong><span>M. Chladil</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">02</span><span class="c"><strong>Ezop a brabenec</strong><span>Ježek, V+W</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">03</span><span class="c"><strong>Já s tebou žít nebudu</strong><span>Nerez</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">04</span><span class="c"><strong>Jen pro ten dnešní den</strong><span>O. Nový</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">05</span><span class="c"><strong>Klobouk ve křoví</strong><span>Ježek, V+W</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">06</span><span class="c"><strong>Lady Carneval</strong><span>K. Gott</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">07</span><span class="c"><strong>Loudá se půlměsíc</strong><span>M. Kubišová</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">08</span><span class="c"><strong>Pramínek vlasů</strong><span>J. Suchý</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">09</span><span class="c"><strong>Sladké mámení</strong><span>H. Vondráčková</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">10</span><span class="c"><strong>Víno</strong><span>Chinaski</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+<button type="button" class="jb-row" role="option" data-cat="czech"><span class="n">11</span><span class="c"><strong>Život je jen náhoda</strong><span>Ježek, V+W</span></span><span class="m" aria-hidden="true"><i></i><i></i><i></i></span></button>
+</div></div>
+      </div></div>
       <p class="rep-hint" style="display:none"></p>
     </div>
   </div>
@@ -1255,19 +1473,15 @@ main{position:relative;z-index:2}
       <h2 class="section-title">What organisers say</h2>
       <p class="section-lead">What the people we played for have to say.</p>
     </div>
-    <div class="rev-slider">
-      <button type="button" class="rev-arrow prev" id="revPrev" aria-label="Previous review">‹</button>
-      <div class="rev-viewport"><div class="rev-track" id="revTrack">
+    <div class="rstack" id="revStack">
         <figure class="review"><div class="stars" role="img" aria-label="5/5">★★★★★</div><p>As a wedding coordinator I chose the very best for my own wedding. They read the atmosphere perfectly and I will book them again without hesitation.</p><figcaption class="who"><b>Martina B.</b><span>wedding party · jazz sextet</span><span class="when">29 Jun 2026</span></figcaption></figure>
         <figure class="review"><div class="stars" role="img" aria-label="5/5">★★★★★</div><p>Absolutely brilliant. We booked them for a birthday party and it was flawless — a proper live show from start to finish.</p><figcaption class="who"><b>Karel T.</b><span>birthday party · jazz quartet</span><span class="when">19 May 2026</span></figcaption></figure>
         <figure class="review"><div class="stars" role="img" aria-label="5/5">★★★★★</div><p>We were worried about the volume, but they judged it perfectly. The acoustic set for afternoon drinks was superb.</p><figcaption class="who"><b>Veronika K.</b><span>wedding party · jazz quintet</span><span class="when">8 Mar 2026</span></figcaption></figure>
         <figure class="review"><div class="stars" role="img" aria-label="5/5">★★★★★</div><p>Great people, great sound and easy to deal with. They play from the heart and it shows. If you want a band that really can play, do not hesitate.</p><figcaption class="who"><b>Marek D.</b><span>corporate event · jazz trio</span><span class="when">16 Feb 2026</span></figcaption></figure>
         <figure class="review"><div class="stars" role="img" aria-label="5/5">★★★★★</div><p>You were wonderful! Thank you for the atmosphere and the choice of songs. You are true professionals.</p><figcaption class="who"><b>Klára V.</b><span>hotel brunch · jazz duo</span><span class="when">10 Jul 2025</span></figcaption></figure>
         <figure class="review"><div class="stars" role="img" aria-label="5/5">★★★★★</div><p>Professional and helpful from the start. They helped us choose music for the ceremony and the evening. Guests and family praised them.</p><figcaption class="who"><b>Petr M.</b><span>wedding · jazz quintet</span><span class="when">17 Jun 2025</span></figcaption></figure>
-      </div></div>
-      <button type="button" class="rev-arrow next" id="revNext" aria-label="Next review">›</button>
     </div>
-    <div class="rev-dots" id="revDots"></div>
+    <div class="rev-ctl"><button type="button" class="btn btn-ghost" id="revNextBtn">Next review</button></div>
     <p class="rev-verify"><a href="https://www.budemesvoji.cz/listing/david-klenha-jazz-band/#recenze" target="_blank" rel="noopener">Verify the reviews on budemesvoji.cz</a></p>
   </div>
 </section>
@@ -1464,7 +1678,7 @@ body{overflow-x:hidden;max-width:100%}
 
 <footer>
   <div class="foot-row">
-    <span class="fb">jazz<b>duo</b>.cz</span>
+    <span class="fb"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" rx="22"/><circle cx="36" cy="36" r="14.5" style="--d:0s"/><circle cx="64" cy="64" r="14.5" style="--d:.09s"/></svg></span><span>jazz<b>duo</b>.cz</span></span>
     <div class="foot-links">
       <a href="#">© <span id="year"></span> David Kleňha</a>
       <a href="https://jazztrio.cz/en/blog/">Blog</a>
@@ -2005,7 +2219,7 @@ body{overflow-x:hidden;max-width:100%}
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
   /* ---- reveal (desktop only) ---- */
-  if(window.innerWidth>860 && !reduce){
+  if(!reduce){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
     document.querySelectorAll('.reveal').forEach(function(x){io.observe(x);});
   } else {
@@ -2097,141 +2311,6 @@ body{overflow-x:hidden;max-width:100%}
     lastW=window.innerWidth;
     clearTimeout(bResize);bResize=setTimeout(renderMusicians,180);
   });
-
-  /* ---- repertoire ---- */
-  var catDefs=[{k:'all',l:"All"},{k:'standards',l:"Jazz standards"},{k:'ballads',l:"Ballads"},{k:'czech',l:"Czech classics"},{k:'pop',l:"Popular songs in jazz arrangements"}];
-  var curCat='all';
-  function flatList(cat){var arr=[];Object.keys(SONGS).forEach(function(k){if(cat==='all'||cat===k)SONGS[k].forEach(function(s){arr.push(s);});});return arr;}
-  var catsOpen=false;
-  function renderCats(){
-    var box=$('cats');box.innerHTML='';
-    var all=catDefs[0], rest=catDefs.slice(1);
-    var active=rest.filter(function(c){return c.k===curCat;})[0];
-
-    var bar=el('div');bar.className='cats-bar';
-
-    var bAll=el('button',null,all.l);bAll.type='button';
-    bAll.className='catbtn'+(curCat==='all'?' active':'');
-    bAll.onclick=function(){curCat='all';catsOpen=false;renderSongs();};
-    bar.appendChild(bAll);
-
-    var bFilter=el('button');bFilter.type='button';
-    bFilter.className='catbtn filter-toggle'+(active?' active':'');
-    bFilter.setAttribute('aria-expanded',catsOpen?'true':'false');
-    bFilter.setAttribute('aria-controls','catsPanel');
-    bFilter.innerHTML='<span>'+(active?active.l:'Filter')+'</span><span class="chev" aria-hidden="true"></span>';
-    bFilter.onclick=function(){catsOpen=!catsOpen;syncPanel();};
-    bar.appendChild(bFilter);
-    box.appendChild(bar);
-
-    var panel=el('div');panel.className='cats-panel';panel.id='catsPanel';
-    var innerWrap=el('div');var list=el('div');list.className='cats-list';
-    rest.forEach(function(c){
-      var b=el('button',null,c.l);b.type='button';
-      b.className='catbtn'+(c.k===curCat?' active':'');
-      b.onclick=function(){curCat=c.k;catsOpen=false;renderSongs();};
-      list.appendChild(b);
-    });
-    innerWrap.appendChild(list);panel.appendChild(innerWrap);box.appendChild(panel);
-
-    function syncPanel(){
-      panel.classList.toggle('open',catsOpen);
-      bFilter.setAttribute('aria-expanded',catsOpen?'true':'false');
-    }
-    syncPanel();
-  }
-  var repPaused=false,repHalf=0;
-  var repMobile=window.matchMedia('(max-width:1024px)');
-  // jemný samovolný posun seznamu skladeb na mobilu
-  var driftRAF=null, driftHold=0;
-  function startMobileDrift(vp){
-    if(driftRAF)cancelAnimationFrame(driftRAF);
-    if(reduce)return;
-    var last=null;
-    function tick(ts){
-      if(last===null)last=ts;
-      var dt=ts-last; last=ts;
-      if(Date.now()>driftHold && vp.scrollHeight>vp.clientHeight+4){
-        vp.scrollTop += dt*0.018;                       // ~18 px za sekundu
-        if(vp.scrollTop+vp.clientHeight>=vp.scrollHeight-1)vp.scrollTop=0;
-      }
-      driftRAF=requestAnimationFrame(tick);
-    }
-    function hold(){driftHold=Date.now()+4000;}
-    vp.addEventListener('touchstart',hold,{passive:true});
-    vp.addEventListener('touchmove',hold,{passive:true});
-    vp.addEventListener('wheel',hold,{passive:true});
-    driftRAF=requestAnimationFrame(tick);
-  }
-
-  // Skladby jsou vyrenderované staticky v HTML (kvůli crawlerům bez JS).
-  // JS si je jen jednou zapamatuje a dál s hotovými dlaždicemi pracuje — nevytváří je.
-  var songMasterTiles=null;
-  function songMaster(){
-    if(!songMasterTiles){
-      songMasterTiles=[];
-      var kids=$('songs').querySelectorAll('.song-tile');
-      for(var q=0;q<kids.length;q++)songMasterTiles.push(kids[q]);
-    }
-    return songMasterTiles;
-  }
-  function renderSongs(){
-    var box=$('songs');
-    var master=songMaster();
-    var list=[];
-    for(var m=0;m<master.length;m++){
-      if(curCat==='all'||master[m].getAttribute('data-cat')===curCat)list.push(master[m]);
-    }
-    box.innerHTML='';
-    if(repMobile.matches){
-      // mobil: jednoduchý svisle scrollovatelný seznam, listování prstem
-      box.classList.remove('auto');box.style.transform='';box.style.removeProperty('--dur');
-      for(var j=0;j<list.length;j++)box.appendChild(list[j]);
-      var vpm=document.querySelector('.songs-viewport');
-      if(vpm){vpm.scrollTop=0;startMobileDrift(vpm);}
-      renderCats();
-      return;
-    }
-    // původní dlaždice + jejich kopie pro plynulou smyčku -50 %
-    for(var i=0;i<list.length;i++)box.appendChild(list[i]);
-    for(var c=0;c<list.length;c++){
-      var cp=list[c].cloneNode(true);cp.setAttribute('aria-hidden','true');box.appendChild(cp);
-    }
-    renderCats();
-    // constant slow speed: duration proportional to number of rows, so 'All' isn't faster than a small category
-    requestAnimationFrame(function(){
-      var cols=getComputedStyle(box).gridTemplateColumns.split(' ').length;
-      var rows=Math.ceil(list.length/cols);
-      var dur=Math.max(28,rows*7); // ~7s per row, constant feel
-      box.style.setProperty('--dur',dur+'s');
-      repHalf=box.scrollHeight/2;
-      // reset to auto mode
-      box.classList.add('auto');box.style.transform='';repPaused=false;repOffset=0;
-    });
-  }
-  // překreslit při změně orientace/velikosti (přechod mobil <-> desktop)
-  repMobile.addEventListener('change',renderSongs);
-  // arrow paging: switch to manual, step by ~viewport height
-  var repOffset=0;
-  function pageSongs(dir){
-    var box=$('songs');var vp=document.querySelector('.songs-viewport');
-    box.classList.remove('auto');
-    // capture current animated position on first manual interaction
-    if(repOffset===0){
-      var m=getComputedStyle(box).transform;
-      if(m&&m!=='none'){var ty=parseFloat(m.split(',')[5]);if(!isNaN(ty))repOffset=ty;}
-    }
-    var step=vp.clientHeight*0.8;
-    repHalf=box.scrollHeight/2;
-    repOffset+= dir>0 ? -step : step;
-    // wrap within first half
-    if(repOffset<=-repHalf)repOffset+=repHalf;
-    if(repOffset>0)repOffset-=repHalf;
-    box.style.transform='translateY('+repOffset+'px)';
-  }
-  $('repNext').addEventListener('click',function(){pageSongs(1);});
-  $('repPrev').addEventListener('click',function(){pageSongs(-1);});
-  renderSongs();
 
   /* ---- gallery (reálné fotky z /foto/, plynulá smyčka + klikací lightbox) ---- */
   (function(){
@@ -2490,43 +2569,6 @@ body{overflow-x:hidden;max-width:100%}
     document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
   })();
 
-  /* ---- reviews slider (2 up / 1 mobile) ---- */
-  (function(){
-    var revs=[
-      {p:"As a wedding coordinator I chose the very best for my own wedding. They read the atmosphere perfectly and I will book them again without hesitation.",w:"Martina B.",e:"wedding party · jazz sextet",d:"29 Jun 2026"},
-      {p:"Absolutely brilliant. We booked them for a birthday party and it was flawless — a proper live show from start to finish.",w:"Karel T.",e:"birthday party · jazz quartet",d:"19 May 2026"},
-      {p:"We were worried about the volume, but they judged it perfectly. The acoustic set for afternoon drinks was superb.",w:"Veronika K.",e:"wedding party · jazz quintet",d:"8 Mar 2026"},
-      {p:"Great people, great sound and easy to deal with. They play from the heart and it shows. If you want a band that really can play, do not hesitate.",w:"Marek D.",e:"corporate event · jazz trio",d:"16 Feb 2026"},
-      {p:"You were wonderful! Thank you for the atmosphere and the choice of songs. You are true professionals.",w:"Klára V.",e:"hotel brunch · jazz duo",d:"10 Jul 2025"},
-      {p:"Professional and helpful from the start. They helped us choose music for the ceremony and the evening. Guests and family praised them.",w:"Petr M.",e:"wedding · jazz quintet",d:"17 Jun 2025"}
-    ];
-    var track=$('revTrack');if(!track)return;
-    if(track.children.length===0) revs.forEach(function(r){
-      var f=el('figure');f.className='review';
-      f.innerHTML='<div class="stars" role="img" aria-label="Rating 5 out of 5 stars">★★★★★</div><p>'+r.p+'</p><figcaption class="who"><b>'+r.w+'</b><span>'+r.e+'</span><span class="when">'+r.d+'</span></figcaption>';
-      track.appendChild(f);
-    });
-    function perView(){return window.innerWidth<=680?1:2;}
-    var pos=0;
-    function maxPos(){return Math.max(0,revs.length-perView());}
-    var dots=$('revDots');
-    function buildDots(){
-      dots.innerHTML='';var n=maxPos()+1;
-      for(var i=0;i<n;i++){(function(i){var b=el('button');b.type='button';b.setAttribute('aria-label','Go to review '+(i+1));if(i===pos){b.className='on';b.setAttribute('aria-current','true');}b.onclick=function(){pos=i;update();};dots.appendChild(b);})(i);}
-    }
-    function update(){
-      pos=Math.max(0,Math.min(maxPos(),pos));
-      var first=track.querySelector('.review');
-      var gap=parseFloat(getComputedStyle(track).gap)||18;
-      var cardW=first?first.getBoundingClientRect().width:0;
-      track.style.transform='translateX(-'+(pos*(cardW+gap))+'px)';
-      Array.prototype.forEach.call(dots.children,function(d,i){if(i===pos){d.className='on';d.setAttribute('aria-current','true');}else{d.className='';d.removeAttribute('aria-current');}});
-    }
-    $('revPrev').onclick=function(){pos--;update();};
-    $('revNext').onclick=function(){pos++;update();};
-    buildDots();update();
-    var rResize;window.addEventListener('resize',function(){clearTimeout(rResize);rResize=setTimeout(function(){buildDots();update();},180);});
-  })();
   (function(){
     var seg=$('segType');
     seg.addEventListener('click',function(e){
@@ -2590,11 +2632,11 @@ body{overflow-x:hidden;max-width:100%}
     if(!$('consent').checked){status.className='form-status err';status.textContent='Please confirm your consent to the processing of personal data.';return;}
     var hc=form.querySelector('textarea[name=h-captcha-response],input[name=h-captcha-response]');
     if(!hc||!hc.value){status.className='form-status err';status.textContent='Please confirm you are not a robot (verification may take a moment to load).';return;}
-    btn.disabled=true;btn.textContent='Sending…';
+    btn.disabled=true;if(window.jtSend)jtSend('sending');else btn.textContent='Sending…';
     fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)})
       .then(function(r){return r.json();})
       .then(function(j){
-        if(j.success){showToast();form.reset();setCount(2);
+        if(j.success){if(window.jtSend)jtSend('ok',showToast);else showToast();form.reset();setCount(2);
           $('blkChoice').querySelectorAll('.blk').forEach(function(x){x.classList.toggle('sel',x.dataset.n==='3');});
           $('hidBlocks').value='3 × 45 minutes + breaks';
           $('segType').querySelectorAll('.opt').forEach(function(x){x.classList.toggle('sel',x.dataset.v==='Wedding');});$('hidType').value='Wedding';
@@ -2602,7 +2644,7 @@ body{overflow-x:hidden;max-width:100%}
         else{status.className='form-status err';status.textContent='Something went wrong. Please try again, or write to us at info@davidklenha.cz.';}
       })
       .catch(function(){status.className='form-status err';status.textContent='Connection failed. Please write to us at info@davidklenha.cz.';})
-      .finally(function(){btn.disabled=false;btn.innerHTML='Send enquiry';});
+      .finally(function(){btn.disabled=false;if(window.jtSend)jtSend('done');else btn.innerHTML='Send enquiry';});
   });
 })();
 </script>
@@ -2735,12 +2777,6 @@ document.addEventListener('click',function(e){
 (function(){
   var wrap=document.querySelector('#faq .faq-wrap');if(!wrap)return;
   var items=wrap.querySelectorAll('details.faq-item');
-  Array.prototype.forEach.call(items,function(d){
-    d.addEventListener('toggle',function(){
-      if(!d.open)return;
-      Array.prototype.forEach.call(items,function(o){if(o!==d&&o.open)o.open=false;});
-    });
-  });
   var btn=document.getElementById('faqToggle'),more=document.getElementById('faqMore');
   if(btn&&more){btn.addEventListener('click',function(){
     var show=more.hidden;more.hidden=!show;
@@ -2750,5 +2786,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
+<script src="/motion.js?v=1" defer></script>
 </body>
 </html>
