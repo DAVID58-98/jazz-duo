@@ -1,0 +1,125 @@
+name: Termíny koncertů
+
+# Každé 3 hodiny stáhne aktuální termíny z https://www.davidklenha.cz/#koncerty do koncerty.json.
+# Web je ukazuje ve vyskakovacím okně po kliknutí na „Zobrazit termíny koncertů“.
+# Ručně: záložka Actions → Termíny koncertů → Run workflow.
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: koncerty
+  cancel-in-progress: false
+
+jobs:
+  terminy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Stáhnout termíny z davidklenha.cz
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          import json, re, sys, html, urllib.request, datetime
+
+          URL = 'https://www.davidklenha.cz/'
+          OUT = 'koncerty.json'
+
+
+          def text(s):
+              return html.unescape(re.sub(r'<[^>]+>', ' ', s)).replace('\xa0', ' ').strip()
+
+
+          def parse(page):
+              m = re.search(r'<section class="schedule">(.*?)</section>', page, re.S)
+              if not m:
+                  return []
+              items = []
+              for it in re.split(r'<div class="item">', m.group(1))[1:]:
+                  d = re.search(r'<div class="date-inner">\s*([\d\s.]+?)\s*<span class="year">\s*(\d{4})\s*</span>', it)
+                  title = re.search(r'<h3[^>]*>(.*?)</h3>', it, re.S)
+                  band = re.search(r'<div class="band">(.*?)</div>', it, re.S)
+                  tm = re.search(r'<div class="time">(.*?)</div>', it, re.S)
+                  if not (d and title):
+                      continue
+                  dm = [x for x in re.split(r'[.\s]+', d.group(1)) if x]
+                  if len(dm) < 2:
+                      continue
+                  try:
+                      date = datetime.date(int(d.group(2)), int(dm[1]), int(dm[0])).isoformat()
+                  except ValueError:
+                      continue
+                  t = text(tm.group(1)) if tm else ''
+                  mt = re.match(r'^(\d{1,2}:\d{2})\s*-\s*(.*)$', t)
+                  items.append({'date': date, 'time': mt.group(1) if mt else '', 'place': (mt.group(2) if mt else t).strip(),
+                                'title': text(title.group(1)), 'band': text(band.group(1)) if band else ''})
+              items.sort(key=lambda x: (x['date'], x['time']))
+              return items
+
+
+          def main():
+              req = urllib.request.Request(URL, headers={'User-Agent': 'jazz-sites-koncerty/1.0 (+https://jazzduo.cz)'})
+              try:
+                  page = urllib.request.urlopen(req, timeout=30).read().decode('utf-8', 'replace')
+              except Exception as e:
+                  print('Nepodařilo se načíst stránku:', e)
+                  return 0
+              items = parse(page)
+              if not items:
+                  print('Na stránce jsem nenašel žádné termíny, soubor nechávám beze změny.')
+                  return 0
+              data = {'source': URL + '#koncerty', 'items': items}
+              try:
+                  old = json.load(open(OUT, encoding='utf-8'))
+              except Exception:
+                  old = None
+              if old and old.get('items') == items:
+                  print('Beze změny.')
+                  return 0
+              data['updated'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%MZ')
+              with open(OUT, 'w', encoding='utf-8') as f:
+                  json.dump(data, f, ensure_ascii=False, indent=1)
+                  f.write('\n')
+              print('Uloženo', len(items), 'termínů.')
+              return 0
+
+
+          if __name__ == '__main__':
+              sys.exit(main())
+          PYTHON
+
+      - name: Uložit, pokud se něco změnilo
+        id: commit
+        shell: bash
+        run: |
+          git add koncerty.json
+          if git diff --cached --quiet; then
+            echo "Termíny se nezměnily."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Termíny koncertů: aktualizace"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Znovu publikovat web
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" >/dev/null \
+            && echo "Publikování spuštěno." \
+            || echo "::notice::Publikování se nepodařilo spustit ručně – web se aktualizuje při příštím pushi."
