@@ -1,5 +1,5 @@
 /* =========================================================
-   motion.js — pohybové efekty a vylepšení webů souborů (verze 7)
+   motion.js — pohybové efekty a vylepšení webů souborů (verze 8)
    Načítá se s defer. Vše je nadstavba nad hotovým HTML:
    když skript chybí, web funguje a vypadá jako dřív.
    ========================================================= */
@@ -424,6 +424,33 @@ later('ticket',function(){
   onView(tk,function(){setTimeout(tear,450)},.6);
   if(matchMedia('(hover:hover) and (pointer:fine)').matches){tk.addEventListener('pointerenter',mend);tk.addEventListener('pointerleave',function(){setTimeout(tear,120)})}
   tk.style.cursor='pointer';tk.addEventListener('click',function(){if(btn)btn.click()});
+});
+
+/* ================= Interaktivní sestava: plynulé přidávání a ubírání (v8) =================
+   Obrázky hudebníků se načtou dopředu (žádné čekání), stávající bloby se posunou plynule
+   (FLIP), nový blob naskočí pružně, odebraný se rozplyne a dlaždice změní výšku plynule. */
+later('builderFx',function(){
+  var box=$('#musicians'),row=box&&box.closest('.b-row'),tile=box&&box.closest('.tile-dark');if(!box||!row)return;
+  /* předem načíst obrázky všech nástrojů */
+  var first=$('img',box),base=first?first.src.replace(/[^\/]*$/,''):'';
+  if(base)onView(tile||box,function(){['vocal','piano','bass','drums','saxophone','trumpet','trombone'].forEach(function(n){var im=new Image();im.decoding='async';im.src=base+n+'.webp'})},0);
+  if(RM||!window.MutationObserver)return;
+  var before=null,ghost=null,h0=0;
+  row.addEventListener('click',function(e){var b=e.target.closest('.cb');if(!b||b.disabled)return;
+    before=$$('.mcard',box).map(function(c){return c.getBoundingClientRect()});h0=tile?tile.getBoundingClientRect().height:0;
+    var last=box.lastElementChild;ghost=null;
+    if(b.classList.contains('rem')&&last){var r=last.getBoundingClientRect(),g=last.cloneNode(true);g.classList.remove('mc-in');g.setAttribute('aria-hidden','true');
+      ghost={el:g,r:r}}},true);
+  new MutationObserver(function(){if(!before)return;var cards=$$('.mcard',box),old=before;before=null;
+    cards.forEach(function(c,i){var o=old[i];if(!o)return;var n=c.getBoundingClientRect(),dx=o.left-n.left,dy=o.top-n.top,sc=o.width/n.width;
+      if(Math.abs(dx)<.5&&Math.abs(dy)<.5&&Math.abs(sc-1)<.01)return;
+      A(c,[{transform:'translate('+dx+'px,'+dy+'px) scale('+sc+')',transformOrigin:'0 0'},{transform:'none',transformOrigin:'0 0'}],{duration:480,easing:'cubic-bezier(.2,.8,.2,1)'})});
+    if(ghost&&tile){var tr=tile.getBoundingClientRect(),g=ghost.el;
+      g.style.cssText='position:absolute;margin:0;animation:none;pointer-events:none;z-index:3;left:'+(ghost.r.left-tr.left)+'px;top:'+(ghost.r.top-tr.top)+'px;width:'+ghost.r.width+'px';
+      tile.appendChild(g);var a=A(g,[{opacity:1,transform:'none'},{opacity:0,transform:'translateY(8px) scale(.6)'}],{duration:320,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'});
+      if(a)a.onfinish=function(){g.remove()};else g.remove();ghost=null}
+    if(tile&&h0){var h1=tile.getBoundingClientRect().height;if(Math.abs(h1-h0)>1)A(tile,[{height:h0+'px'},{height:h1+'px'}],{duration:480,easing:'cubic-bezier(.2,.8,.2,1)'})}
+  }).observe(box,{childList:true});
 });
 
 /* ================= Termíny koncertů ve vyskakovacím okně ================= */

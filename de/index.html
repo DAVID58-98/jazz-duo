@@ -928,8 +928,8 @@ main{position:relative;z-index:2}
 @container (min-width:720px){.jb-set{padding:24px 26px 18px}}
 .jb-tabs{display:flex;gap:4px;padding:3px;margin-bottom:10px}
 .jb-tabs button{flex:1;min-width:0;min-height:40px;padding:6px 8px;border:0;border-radius:999px;background:transparent;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:color .25s;-webkit-tap-highlight-color:transparent}
-.jb-tabs button[aria-selected="true"]{color:var(--emerald)}
-.jb-tabs .lq span{background:var(--cream);box-shadow:inset 0 0 0 1px rgba(20,48,47,.18)}
+.jb-tabs button[aria-selected="true"]{color:var(--cream)}
+.jb-tabs .lq span{background:var(--emerald);box-shadow:0 6px 14px -8px rgba(15,82,87,.6)}
 .jb-sep{height:1px;background:rgba(20,48,47,.1);margin-bottom:4px}
 .jb-list{position:relative;height:340px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:rgba(20,48,47,.25) transparent;-webkit-mask-image:linear-gradient(transparent 0,#000 12px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(transparent 0,#000 12px,#000 calc(100% - 28px),transparent);padding-bottom:20px;outline-offset:-2px}
 @container (min-width:720px){.jb-list{height:330px}}
@@ -1192,6 +1192,8 @@ html #builder .mcard:first-child:nth-last-child(n+7),html #builder .mcard:first-
 #koncerty .tk-row::before,#koncerty .tk-row::after{content:"";flex:1;height:1px;background:rgba(127,181,168,.35)}
 @media (prefers-reduced-motion:reduce){#koncerty .tk-eq b{animation:none;transform:scaleY(.7)}}
 @media (max-width:680px){#koncerty .ticket-main{min-width:0;padding:22px 26px 20px 30px}#koncerty .tk-name{font-size:17px}#koncerty .tk-live{font-size:34px}}
+html #builder .builder-sub{display:none}
+html #builder .builder-inner{gap:clamp(16px,2.2vw,24px)}
 </style>
 <style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
@@ -1942,8 +1944,9 @@ body{overflow-x:hidden;max-width:100%}
 <section class="section reveal" id="builder">
   <div class="wrap">
     <div class="center builder-head">
+      <span class="eyebrow">Interaktive Besetzung</span>
       <h2 class="section-title">Brauchen Sie mehr Klang?</h2>
-      <p class="section-lead">Nutzen Sie unseren interaktiven Besetzungs-Konfigurator.</p>
+      <p class="section-lead">Fügen Sie Musiker nach Ihren Vorstellungen hinzu.</p>
     </div>
     <div class="tile-dark">
       <div class="vinyl"></div>
@@ -3049,6 +3052,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
-<script src="/motion.js?v=7" defer></script>
+<script src="/motion.js?v=8" defer></script>
 </body>
 </html>
