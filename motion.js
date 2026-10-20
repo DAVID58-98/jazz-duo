@@ -1,5 +1,5 @@
 /* =========================================================
-   motion.js — pohybové efekty a vylepšení webů souborů (verze 3)
+   motion.js — pohybové efekty a vylepšení webů souborů (verze 4)
    Načítá se s defer. Vše je nadstavba nad hotovým HTML:
    když skript chybí, web funguje a vypadá jako dřív.
    ========================================================= */
@@ -308,7 +308,7 @@ safe('lock',function(){
 later('vidwaves',function(){
   var track=$('#vidTrack');if(!track)return;
   var probe=document.createElement('canvas');if(!probe.getContext||!probe.getContext('2d'))return;
-  var TAU=Math.PI*2,N=132,mqMob=matchMedia('(max-width:860px)'),fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var TAU=Math.PI*2,N=120,mqMob=matchMedia('(max-width:860px)'),fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
   var COS=new Float32Array(N),SIN=new Float32Array(N);
   for(var i=0;i<N;i++){var an=i/N*TAU-Math.PI/2;COS[i]=Math.cos(an);SIN[i]=Math.sin(an)}
   function fract(n){return n-Math.floor(n)}
@@ -335,37 +335,37 @@ later('vidwaves',function(){
   if(!items.length)return;
   var css=getComputedStyle(document.documentElement);
   function rgb(v,f){var h=(css.getPropertyValue(v)||'').trim().replace('#','');if(h.length!==6)return f;return parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16)}
-  var CBAR=rgb('--emerald-2','21,122,127'),CGOLD=rgb('--gold','224,169,60'),CMINT=rgb('--mint','127,181,168');
-  /* poloměr vlnění kopíruje tvar blobu: nejvzdálenější bod jeho obrysu (viewBox 210) */
-  function pathR(it){var ph=$('.vid-photo',it.blob),pa=ph&&$('clipPath path',ph);if(!pa)return 0;
-    var m=0;try{var tl=pa.getTotalLength();for(var k=0;k<96;k++){var q=pa.getPointAtLength(tl*k/96);m=Math.max(m,Math.hypot(q.x,q.y))}}catch(e){m=0}
-    return m?m/210*ph.getBoundingClientRect().width:0}
-  function size(it){var B=it.blob.getBoundingClientRect().width;if(!B)return;var mob=mqMob.matches,E=mob?Math.round(Math.min(34,B*.17)):0,S=B+2*E,dpr=Math.min(window.devicePixelRatio||1,2);
-    var pr=pathR(it);it.rb=(pr||B*(mob?.47:.42))+(mob?5:4);
+  var CBAR=rgb('--emerald-2','21,122,127'),CGOLD=rgb('--gold','224,169,60');
+  /* vlny vyrůstají přímo zpoza blobu: pro každý paprsek se zjistí, kde má blob okraj (viewBox 210) */
+  function outline(it,fallback){var ro=new Float32Array(N),ph=$('.vid-photo',it.blob),pa=ph&&$('clipPath path',ph),i;
+    for(i=0;i<N;i++)ro[i]=0;
+    if(pa){try{var sc=ph.getBoundingClientRect().width/210,tl=pa.getTotalLength();
+      for(var k=0;k<360;k++){var q=pa.getPointAtLength(tl*k/360),th=Math.atan2(q.y,q.x),ix=Math.round(((th+Math.PI/2)/TAU*N)%N+N)%N,r=Math.hypot(q.x,q.y)*sc;if(r>ro[ix])ro[ix]=r}}catch(e){}}
+    var any=false;for(i=0;i<N;i++)if(ro[i])any=true;
+    if(!any){for(i=0;i<N;i++)ro[i]=fallback;return ro}
+    for(i=0;i<N;i++)if(!ro[i]){var l=i,r2=i;while(!ro[(l+N)%N])l--;while(!ro[r2%N])r2++;var f=(i-l)/(r2-l);ro[i]=ro[(l+N)%N]*(1-f)+ro[r2%N]*f}
+    var sm=new Float32Array(N);for(i=0;i<N;i++)sm[i]=(ro[(i+N-1)%N]+2*ro[i]+ro[(i+1)%N])/4;return sm}
+  function size(it){var B=it.blob.getBoundingClientRect().width;if(!B)return;var mob=mqMob.matches,E=mob?Math.round(Math.min(40,B*.2)):0,S=B+2*E,dpr=Math.min(window.devicePixelRatio||1,2);
+    it.ro=outline(it,B*(mob?.47:.4));
     it.B=B;it.S=S;it.mob=mob;it.cv.style.width=it.cv.style.height=S+'px';it.cv.style.marginLeft=it.cv.style.marginTop=(-S/2)+'px';
     it.cv.width=Math.round(S*dpr);it.cv.height=Math.round(S*dpr);it.ctx.setTransform(dpr,0,0,dpr,0,0);paint(it,time,.016,RM)}
-  function paint(it,t,dt,still){var S=it.S,B=it.B,c=S/2,g=it.ctx;if(!S)return;
+  function paint(it,t,dt,still){var S=it.S,B=it.B,c=S/2,g=it.ctx,ro=it.ro;if(!S||!ro)return;
     g.clearRect(0,0,S,S);
-    var rb=Math.min(it.rb,c-8),maxL=Math.max(6,c-rb-3),ev=notes(still?3.42:t+3.42+it.seed*1.7,it.seed);
+    var ev=notes(still?3.42:t+3.42+it.seed*1.7,it.seed),edge=c-3,grow=1+it.hov*.12;
     it.hov+=(it.hovT-it.hov)*(1-Math.exp(-Math.max(dt,.016)*3.5));
-    var gl=g.createRadialGradient(c,c,rb*.9,c,c,c);gl.addColorStop(0,'rgba('+CMINT+',0)');gl.addColorStop(.3,'rgba('+CMINT+',.11)');gl.addColorStop(1,'rgba('+CMINT+',0)');
-    g.fillStyle=gl;g.beginPath();g.arc(c,c,c,0,TAU);g.fill();
-    /* jemné notové tečky pod vlnami */
-    g.fillStyle='rgba('+CBAR+',.38)';
-    for(var n=0;n<72;n++){var a=n/72*TAU,r=rb-B*.014;g.beginPath();g.arc(c+Math.cos(a)*r,c+Math.sin(a)*r,n%6===0?.95:.6,0,TAU);g.fill()}
-    g.lineCap='round';g.lineWidth=Math.max(1,B*.0068);
+    g.lineCap='round';g.lineWidth=Math.max(1.4,B*.0095);
     for(var i=0;i<N;i++){var x=i/N,ax=x*TAU;
-      var tg=.03+.014*(1+Math.sin(ax*5+t*.44+it.seed))+.012*(1+Math.sin(ax*11-t*.31));
+      var tg=.05+.02*(1+Math.sin(ax*5+t*.44+it.seed))+.016*(1+Math.sin(ax*11-t*.31));
       for(var e=0;e<ev.length;e++)tg+=ev[e].v*bell(ringD(x,ev[e].at),ev[e].w);
-      tg=Math.min(.92,tg*it.jit[i]*1.5);if(still)tg*=.62;
+      tg=Math.min(1,tg*it.jit[i]*1.65);if(still)tg*=.62;
       var sp=tg>it.lv[i]?19:5.5;it.lv[i]=still?tg:it.lv[i]+(tg-it.lv[i])*(1-Math.exp(-dt*sp));
       var v=it.lv[i];it.pk[i]=still?v:Math.max(v,it.pk[i]-dt*.34);
-      var L=(2+maxL*.86*v*(1+it.hov*.1)),r1=rb+L;
-      g.strokeStyle='rgba('+CBAR+','+(.34+v*.5).toFixed(3)+')';
-      g.beginPath();g.moveTo(c+COS[i]*rb,c+SIN[i]*rb);g.lineTo(c+COS[i]*r1,c+SIN[i]*r1);g.stroke();
-      if(it.pk[i]>.34&&i%2===0){var pr=Math.min(c-2,rb+2+maxL*.86*it.pk[i]*(1+it.hov*.1)+B*.012);
-        g.fillStyle='rgba('+CGOLD+','+Math.min(.7,(it.pk[i]-.28)*1.6).toFixed(3)+')';
-        g.beginPath();g.arc(c+COS[i]*pr,c+SIN[i]*pr,Math.max(.7,B*.0038),0,TAU);g.fill()}}}
+      var r0=ro[i]-4,room=Math.max(6,edge-ro[i]),r1=Math.min(edge,ro[i]+3+room*.9*v*grow);
+      g.strokeStyle='rgba('+CBAR+','+(.5+v*.5).toFixed(3)+')';
+      g.beginPath();g.moveTo(c+COS[i]*r0,c+SIN[i]*r0);g.lineTo(c+COS[i]*r1,c+SIN[i]*r1);g.stroke();
+      if(it.pk[i]>.3&&i%2===0){var pr=Math.min(edge,ro[i]+3+room*.9*it.pk[i]*grow+B*.016);
+        g.fillStyle='rgba('+CGOLD+','+Math.min(.85,(it.pk[i]-.24)*1.8).toFixed(3)+')';
+        g.beginPath();g.arc(c+COS[i]*pr,c+SIN[i]*pr,Math.max(.9,B*.0048),0,TAU);g.fill()}}}
   function running(){return !RM&&!document.hidden&&active.length&&!(modal&&modal.classList.contains('show'))}
   function loop(now){frame=0;if(!running()){last=0;return}
     var iv=mqMob.matches?1000/30:1000/60;if(!last)last=now-iv;
@@ -403,10 +403,10 @@ later('concerts',function(){
     if(!up.length){sub.textContent='';list.innerHTML='<p class="mk-msg">'+TX.kNone+'</p>';return}
     up=up.slice(0,30);sub.textContent=TX.kCount(up.length);
     var mon='';
-    list.innerHTML=up.map(function(x){var t=new Date(x.date+'T12:00:00'),ours=x.band&&x.band.toLowerCase()===ENSNAME.toLowerCase(),m=x.date.slice(0,7),h='';
+    list.innerHTML=up.map(function(x){var t=new Date(x.date+'T12:00:00'),m=x.date.slice(0,7),h='';
       if(m!==mon){mon=m;h='<div class="mk-m">'+esc(fmy.format(t))+'</div>'}
-      return h+'<div class="mk-row'+(ours?' ours':'')+'"><div class="mk-d" aria-label="'+esc(t.toLocaleDateString(LANG))+'"><b>'+esc(fd.format(t))+'</b><span>'+esc(fw.format(t))+'</span></div>'+
-        '<div class="mk-t"><strong>'+esc(x.title)+'</strong><span>'+esc([x.time,x.place].filter(Boolean).join(' · '))+'</span>'+(x.band?'<em>'+esc(x.band)+(ours?' <u>'+TX.kOurs+'</u>':'')+'</em>':'')+'</div></div>'}).join('');
+      return h+'<div class="mk-row"><div class="mk-d" aria-label="'+esc(t.toLocaleDateString(LANG))+'"><b>'+esc(fd.format(t))+'</b><span>'+esc(fw.format(t))+'</span></div>'+
+        '<div class="mk-t"><strong>'+esc(x.title)+'</strong><span>'+esc([x.time,x.place].filter(Boolean).join(' · '))+'</span>'+(x.band?'<em>'+esc(x.band)+'</em>':'')+'</div></div>'}).join('');
     if(!RM)$$('.mk-row',list).slice(0,8).forEach(function(r,k){A(r,[{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:380,delay:80+k*45,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'})})}
   function load(){if(loaded)return;loaded=true;list.innerHTML='<p class="mk-msg">'+TX.kLoad+'</p>';
     fetch('/koncerty.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){render(j&&j.items?j.items:j)},function(){loaded=false;list.innerHTML='<p class="mk-msg">'+TX.kErr+'</p>'})}
