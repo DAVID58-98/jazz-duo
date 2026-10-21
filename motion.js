@@ -1,5 +1,5 @@
 /* =========================================================
-   motion.js — pohybové efekty a vylepšení webů souborů (verze 8)
+   motion.js — pohybové efekty a vylepšení webů souborů (verze 9)
    Načítá se s defer. Vše je nadstavba nad hotovým HTML:
    když skript chybí, web funguje a vypadá jako dřív.
    ========================================================= */
@@ -434,6 +434,12 @@ later('builderFx',function(){
   /* předem načíst obrázky všech nástrojů */
   var first=$('img',box),base=first?first.src.replace(/[^\/]*$/,''):'';
   if(base)onView(tile||box,function(){['vocal','piano','bass','drums','saxophone','trumpet','trombone'].forEach(function(n){var im=new Image();im.decoding='async';im.src=base+n+'.webp'})},0);
+  /* pevná výška: řada hudebníků si drží místo pro plnou sestavu, spodní hrana dlaždice nikam necestuje */
+  function fix(reset){if(reset)box.style.minHeight='';var c=$('.mcard',box);if(!c)return;var mob=matchMedia('(max-width:860px)').matches,
+      h=c.offsetHeight,g=parseFloat(getComputedStyle(box).rowGap)||6,need=Math.ceil(mob?h*2+g:h);
+    if(need>(parseFloat(box.style.minHeight)||0))box.style.minHeight=need+'px'}
+  var rt=0;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fix(true)},150)},{passive:true});
+  box.addEventListener('load',function(){fix()},true);addEventListener('load',function(){fix()});fix();
   if(RM||!window.MutationObserver)return;
   var before=null,ghost=null,h0=0;
   row.addEventListener('click',function(e){var b=e.target.closest('.cb');if(!b||b.disabled)return;
@@ -449,7 +455,6 @@ later('builderFx',function(){
       g.style.cssText='position:absolute;margin:0;animation:none;pointer-events:none;z-index:3;left:'+(ghost.r.left-tr.left)+'px;top:'+(ghost.r.top-tr.top)+'px;width:'+ghost.r.width+'px';
       tile.appendChild(g);var a=A(g,[{opacity:1,transform:'none'},{opacity:0,transform:'translateY(8px) scale(.6)'}],{duration:320,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'});
       if(a)a.onfinish=function(){g.remove()};else g.remove();ghost=null}
-    if(tile&&h0){var h1=tile.getBoundingClientRect().height;if(Math.abs(h1-h0)>1)A(tile,[{height:h0+'px'},{height:h1+'px'}],{duration:480,easing:'cubic-bezier(.2,.8,.2,1)'})}
   }).observe(box,{childList:true});
 });
 
@@ -483,6 +488,23 @@ later('concerts',function(){
   $('.mk-x',mk).addEventListener('click',close);
   mk.addEventListener('click',function(e){if(e.target===mk)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mk.classList.contains('open'))close()});
+});
+
+/* ================= Menu: sekce dojede doprostřed obrazovky (v9) =================
+   Ukázky, Repertoár, Reference, Kontakt: obsah sekce se zastaví uprostřed viditelné plochy
+   (pod lištou). Cena a vše, co je vyšší než obrazovka: začátek těsně pod lištou. */
+safe('navscroll',function(){
+  var bar=$('.topbar')||$('header');
+  function go(id){var sec=document.getElementById(id);if(!sec)return false;
+    var el=sec.querySelector(':scope > .wrap')||sec,r=el.getBoundingClientRect(),hb=bar?bar.getBoundingClientRect().height:70,
+        free=innerHeight-hb,y;
+    if(id==='poptavka'||r.height>free-24){var t=sec.querySelector(':scope > .wrap > *')||el;y=scrollY+t.getBoundingClientRect().top-hb-18}
+    else y=scrollY+r.top-hb-(free-r.height)/2;
+    scrollTo({top:Math.max(0,Math.round(y)),behavior:RM?'auto':'smooth'});return true}
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.topnav a[href^="#"],.drawer nav a[href^="#"],.drawer-foot a[href^="#"]');
+    if(!a||e.ctrlKey||e.metaKey)return;var id=a.getAttribute('href').slice(1);if(!id||!document.getElementById(id))return;
+    e.preventDefault();var inDrawer=!!a.closest('.drawer');
+    if(inDrawer)setTimeout(function(){go(id)},80);else go(id)});
 });
 
 /* ================= 03 Přechody: nadpis jen když je vidět ================= */

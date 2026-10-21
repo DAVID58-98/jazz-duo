@@ -1047,10 +1047,6 @@ html #builder .b-row{gap:8px}
 html #builder .b-row .cb{width:40px;height:40px;font-size:22px}
 html #builder .musicians{flex:1 1 0;gap:6px}
 html #builder .mcard{width:calc((100% - 12px)/3);max-width:104px}
-html #builder .mcard:first-child:nth-last-child(-n+2),html #builder .mcard:first-child:nth-last-child(-n+2)~.mcard,
-html #builder .mcard:first-child:nth-last-child(4),html #builder .mcard:first-child:nth-last-child(4)~.mcard{width:calc((100% - 6px)/2)}
-html #builder .mcard:first-child:nth-last-child(4),html #builder .mcard:first-child:nth-last-child(4)~.mcard{max-width:92px}
-html #builder .mcard:first-child:nth-last-child(n+7),html #builder .mcard:first-child:nth-last-child(n+7)~.mcard{width:calc((100% - 18px)/4)}
 html #builder .mlabel{font-size:10px;letter-spacing:0}
 }
 #builder .mcard.mc-in{animation:moMcIn .45s cubic-bezier(.34,1.56,.64,1)}
@@ -1165,12 +1161,6 @@ html #builder .builder-eyebrow{display:none}
 html #builder .musicians{flex:0 1 auto;flex-wrap:nowrap;min-width:0}
 html #builder .mcard{flex:0 1 112px;width:auto;min-width:0}
 }
-@media (min-width:641px) and (max-width:860px){
-html #builder .musicians{flex:1 1 0;gap:8px}
-html #builder .mcard{width:calc((100% - 16px)/3);max-width:110px}
-html #builder .mcard:first-child:nth-last-child(-n+4),html #builder .mcard:first-child:nth-last-child(-n+4)~.mcard{width:calc((100% - 24px)/4)}
-html #builder .mcard:first-child:nth-last-child(n+7),html #builder .mcard:first-child:nth-last-child(n+7)~.mcard{width:calc((100% - 24px)/4)}
-}
 @media (min-width:1101px){.foot-row{display:flex;justify-content:space-between}.foot-row .foot-blog{flex:1;justify-content:center}}
 #koncerty .ticket-main{gap:4px;padding:26px 34px 24px 36px;min-width:220px}
 #koncerty .ticket-top{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--mint);opacity:.9;margin-bottom:8px}
@@ -1189,6 +1179,19 @@ html #builder .mcard:first-child:nth-last-child(n+7),html #builder .mcard:first-
 @media (max-width:680px){#koncerty .ticket-main{min-width:0;padding:22px 26px 20px 30px}#koncerty .tk-name{font-size:17px}#koncerty .tk-live{font-size:34px}}
 html #builder .builder-sub{display:none}
 html #builder .builder-inner{gap:clamp(16px,2.2vw,24px)}
+html #builder .musicians{align-content:center}
+@media (max-width:860px){
+html #builder .musicians{flex:1 1 0;gap:6px}
+html #builder .musicians .mcard{width:calc((100% - 18px)/4);max-width:96px}
+html #builder .mlabel{font-size:10.5px;letter-spacing:0}
+}
+.foot-blog a.fb-main{background:var(--mint);border-color:var(--mint);color:var(--petrol);font-weight:600}
+.foot-blog a.fb-main:hover{background:var(--cream);border-color:var(--cream);color:var(--petrol)}
+@media (max-width:1100px){
+.foot-blog{flex-wrap:nowrap;gap:6px;max-width:100%}
+.foot-blog a{padding:7px 10px;font-size:11.5px;white-space:nowrap;min-width:0}
+}
+@media (max-width:400px){.foot-blog{gap:5px}.foot-blog a{padding:6px 8px;font-size:10.5px}}
 </style>
 <style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
@@ -1373,8 +1376,8 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
   <nav class="topnav">
     <a href="#poslech">Ukázky</a>
     <a href="#repertoire">Repertoár</a>
+    <a href="#poptavka">Cena</a>
     <a href="#reviews">Reference</a>
-    <a href="https://jazztrio.cz/blog/">Blog</a>
     <a href="#kontakt">Kontakt</a>
     <span class="lang-switch" aria-label="Jazyk / Language / Sprache">
       <a href="/" class="active" hreflang="cs" title="Čeština" aria-current="true">CS</a>
@@ -1402,8 +1405,8 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
   <nav>
     <a href="#poslech" data-close>Ukázky</a>
     <a href="#repertoire" data-close>Repertoár</a>
+    <a href="#poptavka" data-close>Cena</a>
     <a href="#reviews" data-close>Reference</a>
-    <a href="https://jazztrio.cz/blog/" data-close>Blog</a>
     <a href="#kontakt" data-close>Kontakt</a>
   </nav>
   <div class="drawer-foot">
@@ -1529,7 +1532,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
     <div class="player-tile">
       <div class="center" style="margin-bottom:8px">
         <h2 class="section-title" style="margin-bottom:6px">Videoukázky</h2>
-        <p class="section-lead">Několik ukázek, jak naše produkce zní naživo. Pokaždé je to originál.</p>
+        <p class="section-lead">Ukázky, jak naše produkce zní naživo. Pokaždé je to originál.</p>
       </div>
 
       <div class="vid-slider" id="vidSlider">
@@ -1720,8 +1723,8 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
               <input type="date" id="datum" name="Datum">
             </div>
             <div class="field">
-              <label for="misto">Místo konání (město)</label>
-              <input type="text" id="misto" name="Místo" placeholder="např. Praha, Karlovy Vary…">
+              <label for="misto">Místo konání</label>
+              <input type="text" id="misto" name="Místo" placeholder="např. Praha">
             </div>
             <div class="field full">
               <label>Délka produkce</label>
@@ -1746,7 +1749,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
               <input type="tel" id="kontakt-tel" name="Telefon" placeholder="+420…">
             </div>
             <div class="field full">
-              <label for="zprava">Poznámka (nepovinné)</label>
+              <label for="zprava">Poznámka</label>
               <textarea id="zprava" name="message" placeholder="Skladby na přání, počet hostů, prostor…"></textarea>
             </div>
             <div class="field full">
@@ -2000,10 +2003,9 @@ body{overflow-x:hidden;max-width:100%}
 <footer>
   <div class="foot-row">
     <span class="fb"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" rx="22"/><circle cx="36" cy="36" r="14.5" style="--d:0s"/><circle cx="64" cy="64" r="14.5" style="--d:.09s"/></svg></span><span>jazz<b>duo</b>.cz</span></span>
-    <nav class="foot-blog" aria-label="Články"><a href="https://jazztrio.cz/blog/ceny-jazzove-kapely-na-firemni-akci.html" title="Ceny podle sestavy a výpočet dopravy">Kolik stojí jazzová kapela</a><a href="https://jazztrio.cz/blog/jak-vybrat-kapelu-na-firemni-vecer.html" title="Dvanáct otázek před objednáním">Jak vybrat kapelu</a><a href="https://jazztrio.cz/blog/co-kapela-potrebuje-na-miste.html" title="Plocha, elektřina, čas na stavbu">Co kapela potřebuje</a></nav>
+    <nav class="foot-blog" aria-label="Články"><a href="https://jazztrio.cz/blog/ceny-jazzove-kapely-na-firemni-akci.html" title="Ceny podle sestavy a výpočet dopravy">Kolik stojí jazzová kapela</a><a class="fb-main" href="https://jazztrio.cz/blog/">Blog</a><a href="https://jazztrio.cz/blog/jak-vybrat-kapelu-na-firemni-vecer.html" title="Dvanáct otázek před objednáním">Jak vybrat kapelu</a></nav>
     <div class="foot-links">
       <a href="#">© <span id="year"></span> David Kleňha</a>
-      <a href="https://jazztrio.cz/blog/">Blog</a>
       <a href="vop.html">VOP</a>
       <a href="gdpr.html">GDPR</a>
       <a href="#" id="cookieSettings">Cookies</a>
@@ -2556,17 +2558,7 @@ body{overflow-x:hidden;max-width:100%}
     syncMsgLineup();
   }
   // keep a single auto-line about the lineup at the top of the message; user can edit/delete it
-  function syncMsgLineup(){
-    var ta=$('zprava');if(!ta)return;
-    var roles=lineup.slice(0,count).join(', ');
-    var auto='Mám zájem o sestavu: '+names[count]+' ('+count+(count<5?' členové':' členů')+' — '+roles+').';
-    var lines=ta.value.split('\n');
-    if(lines.length && lines[0].indexOf('Mám zájem o sestavu:')===0){
-      lines[0]=auto;ta.value=lines.join('\n');
-    } else {
-      ta.value=auto+(ta.value?'\n'+ta.value:'\n');
-    }
-  }
+  function syncMsgLineup(){}   /* v9: poznámku nevyplňujeme, sestava jde ve skrytém poli */
   function setCount(n){count=Math.max(MIN,Math.min(MAX,n));renderHead();renderMusicians();renderSteps();}
   setCount(2);
   // Překreslit jen když se změní ŠÍŘKA okna. Na mobilu scroll mění výšku (lišta prohlížeče
@@ -3054,6 +3046,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
-<script src="/motion.js?v=8" defer></script>
+<script src="/motion.js?v=9" defer></script>
 </body>
 </html>
