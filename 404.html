@@ -64,8 +64,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #14302f;outline-offset:2px;
   </div>
   <div class="k404"><p class="k-hint">Tady hraje jen ticho, zkuste si zahrát.</p><div class="keys" id="keys404" role="group" aria-label="Klaviatura"></div><button type="button" class="k-play" id="kPlay">▶ Zahrát ukázku</button></div>
   <p class="sister">Hledáte jinou sestavu? <a href="https://jazzduo.cz">duo</a> ·
-  <a href="https://jazztrio.cz">trio</a> · <a href="https://jazzquartet.cz">kvartet</a> ·
-  <a href="https://jazzquintet.cz">kvintet</a></p>
+  <a href="https://jazztrio.cz">trio</a> · <a href="https://jazzquartet.cz">kvartet</a></p>
 </main>
 <script>
 /* GitHub Pages umí jen jednu 404 stránku v kořeni. Podle cesty chybné URL
@@ -73,7 +72,7 @@ a:focus-visible,.btn:focus-visible{outline:3px solid #14302f;outline-offset:2px;
 (function(){
   var p=location.pathname,l=p.indexOf("/de/")===0?"de":(p.indexOf("/en/")===0?"en":"cs");
   if(l==="cs")return;
-  var T={"en": {"title": "Page not found (404) | jazzduo.cz", "h1": "We couldn't find that page", "p": "It may have moved, or the address contains a typo. Please try again from the home page — or simply write to me and tell me what you need.", "b1": "Back to home", "b2": "Request a quote", "sis": "Looking for a different line-up?", "sites": [["https://jazzduo.cz/en/", "duo"], ["https://jazztrio.cz/en/", "trio"], ["https://jazzquartet.cz/en/", "quartet"], ["https://jazzquintet.cz/en/", "quintet"]]}, "de": {"title": "Seite nicht gefunden (404) | jazzduo.cz", "h1": "Diese Seite haben wir nicht gefunden", "p": "Möglicherweise wurde sie verschoben oder die Adresse enthält einen Tippfehler. Versuchen Sie es bitte von der Startseite aus — oder schreiben Sie mir einfach, was Sie brauchen.", "b1": "Zur Startseite", "b2": "Unverbindliche Anfrage", "sis": "Suchen Sie eine andere Besetzung?", "sites": [["https://jazzduo.cz/de/", "Duo"], ["https://jazztrio.cz/de/", "Trio"], ["https://jazzquartet.cz/de/", "Quartett"], ["https://jazzquintet.cz/de/", "Quintett"]]}};
+  var T={"en": {"title": "Page not found (404) | jazzduo.cz", "h1": "We couldn't find that page", "p": "It may have moved, or the address contains a typo. Please try again from the home page — or simply write to me and tell me what you need.", "b1": "Back to home", "b2": "Request a quote", "sis": "Looking for a different line-up?", "sites": [["https://jazzduo.cz/en/", "duo"], ["https://jazztrio.cz/en/", "trio"], ["https://jazzquartet.cz/en/", "quartet"]]}, "de": {"title": "Seite nicht gefunden (404) | jazzduo.cz", "h1": "Diese Seite haben wir nicht gefunden", "p": "Möglicherweise wurde sie verschoben oder die Adresse enthält einen Tippfehler. Versuchen Sie es bitte von der Startseite aus — oder schreiben Sie mir einfach, was Sie brauchen.", "b1": "Zur Startseite", "b2": "Unverbindliche Anfrage", "sis": "Suchen Sie eine andere Besetzung?", "sites": [["https://jazzduo.cz/de/", "Duo"], ["https://jazztrio.cz/de/", "Trio"], ["https://jazzquartet.cz/de/", "Quartett"]]}};
   var t=T[l],q=function(s){return document.querySelector(s);};
   document.documentElement.lang=l;
   document.title=t.title;

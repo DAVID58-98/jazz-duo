@@ -762,7 +762,6 @@ main{position:relative;z-index:2}
     "https://www.davidklenha.cz/",
     "https://jazztrio.cz/",
     "https://jazzquartet.cz/",
-    "https://jazzquintet.cz/",
     "https://jazzduo.cz/"
   ],
   "makesOffer": [
@@ -819,24 +818,6 @@ main{position:relative;z-index:2}
       },
       "availability": "https://schema.org/InStock",
       "url": "https://jazzquartet.cz/en/"
-    },
-    {
-      "@type": "Offer",
-      "name": "Jazz quintet",
-      "category": "Live music",
-      "priceCurrency": "CZK",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "priceCurrency": "CZK",
-        "minPrice": "33000",
-        "description": "Starting price for a standard evening of roughly three hours with breaks, in Prague including our own professional BOSE stereo PA system. The final price depends on programme length, date, venue and type of event. Outside Prague CZK 14 per kilometre (we travel in two vehicles)."
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Czech Republic"
-      },
-      "availability": "https://schema.org/InStock",
-      "url": "https://jazzquintet.cz/en/"
     }
   ],
   "knowsLanguage": [
@@ -1208,6 +1189,10 @@ html #builder .musicians .mcard{width:calc((100% - 18px)/4);max-width:none}
 html #builder .builder-name{font-size:clamp(22px,7vw,30px);white-space:nowrap}
 html #builder .mlabel{font-size:11px}
 }
+.mo-also{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;margin:clamp(18px,2.4vw,26px) auto 0;font-size:14px;color:var(--ink-soft);text-align:center}
+.mo-also a{display:inline-flex;align-items:center;padding:7px 15px;border:1.5px solid rgba(15,82,87,.3);border-radius:100px;font-weight:600;font-size:13.5px;color:var(--emerald);text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.mo-also a:hover{background:var(--emerald);border-color:var(--emerald);color:#fff}
+.mo-also a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 </style>
 <style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
@@ -1495,8 +1480,8 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
     </div>
     <p class="lineup-alt">Other professional musicians we perform with as a duo include pianists <strong>Luděk Havel</strong>, <strong>Jindřich Volf</strong> and <strong>Mikuláš Pokorný</strong>, or guitarists <strong>Jan Horych</strong> and <strong>Jaroslav Šindler</strong>.</p>
     <div class="bio-store" hidden>
-      <div id="bio-klenha" class="bio-body"><p>Together with pianist Jaroslav Bárta, David Kleňha forms the jazz duo — the most intimate of his line-ups. They play where music should create the atmosphere rather than be the main attraction: at <strong>corporate evenings, receptions and standing dinners</strong>, at gallery openings, and as dinner jazz in Prague hotels and restaurants.</p><p>David Kleňha is <strong>a jazz singer</strong>. He performs regularly with his own line-ups <strong>from duo to quintet</strong> and works as a soloist with <strong>jazz big bands and orchestras</strong>, including theatre performances. His repertoire is built on <strong>jazz and swing standards, ballads and Czech classics</strong>.</p></div>
-      <div id="bio-barta" class="bio-body"><p>Jaroslav Bárta accompanies David Kleňha in the jazz duo — <strong>voice and piano</strong>, the most intimate line-up for corporate evenings, receptions, gallery openings and dinner jazz. The same line-up also performs as a trio, quartet or quintet.</p><p>A graduate of musicology at <strong>Masaryk University</strong> and of piano and composition at the <strong>Jaroslav Ježek Conservatory</strong> in Prague, where he now teaches jazz interpretation. A versatile pianist and composer who has worked with artists such as <strong>Lenka Filipová</strong>, <strong>Žentour</strong>, <strong>Madfinger</strong>, <strong>Zatrestband</strong>, <strong>Chantal Poullain</strong> and the <strong>Felix Slováček</strong> Big Band.</p></div>
+      <div id="bio-klenha" class="bio-body"><p>Together with pianist Jaroslav Bárta, David Kleňha forms the jazz duo — the most intimate of his line-ups. They play where music should create the atmosphere rather than be the main attraction: at <strong>corporate evenings, receptions and standing dinners</strong>, at gallery openings, and as dinner jazz in Prague hotels and restaurants.</p><p>David Kleňha is <strong>a jazz singer</strong>. He performs regularly with his own line-ups <strong>from duo to larger bands</strong> and works as a soloist with <strong>jazz big bands and orchestras</strong>, including theatre performances. His repertoire is built on <strong>jazz and swing standards, ballads and Czech classics</strong>.</p></div>
+      <div id="bio-barta" class="bio-body"><p>Jaroslav Bárta accompanies David Kleňha in the jazz duo — <strong>voice and piano</strong>, the most intimate line-up for corporate evenings, receptions, gallery openings and dinner jazz. The same line-up also performs as a trio or quartet.</p><p>A graduate of musicology at <strong>Masaryk University</strong> and of piano and composition at the <strong>Jaroslav Ježek Conservatory</strong> in Prague, where he now teaches jazz interpretation. A versatile pianist and composer who has worked with artists such as <strong>Lenka Filipová</strong>, <strong>Žentour</strong>, <strong>Madfinger</strong>, <strong>Zatrestband</strong>, <strong>Chantal Poullain</strong> and the <strong>Felix Slováček</strong> Big Band.</p></div>
     </div>
   </div>
 </section>
@@ -1552,7 +1537,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
         </div>
         <button class="vid-arrow next" id="vidNext" type="button" aria-label="Next video">›</button>
       </div>
-      <div class="vid-dots" id="vidDots" aria-hidden="true"></div>
+      <div class="vid-dots" id="vidDots"></div>
     </div>
   </div>
 </section>
@@ -1760,7 +1745,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
             </div>
             <div class="field full">
               <label for="zprava">Note</label>
-              <textarea id="zprava" name="message" placeholder="Song requests, number of guests, venue…"></textarea>
+              <textarea id="zprava" name="message" placeholder="Location, size of the venue, number of guests, company ID"></textarea>
             </div>
             <div class="field full">
               <label class="consent"><input type="checkbox" id="consent" required>
@@ -1973,6 +1958,7 @@ body{overflow-x:hidden;max-width:100%}
         <div class="b-row"><button type="button" class="cb rem" aria-label="Remove musician">&minus;</button><div class="musicians" id="musicians"></div><button type="button" class="cb add" aria-label="Add musician">+</button></div>
       </div>
     </div>
+    <p class="mo-also"><span>Looking for a different line-up?</span><a href="https://jazztrio.cz/en/">Jazz trio</a><a href="https://jazzquartet.cz/en/">Jazz quartet</a></p>
   </div>
 </section>
 <section class="section reveal" id="faq">
@@ -1981,13 +1967,13 @@ body{overflow-x:hidden;max-width:100%}
     <h2 class="section-title">Frequently asked questions</h2>
     <div class="faq-wrap">
         <details class="faq-item" name="faq"><summary>What is the approximate price of the jazz duo?</summary><div class="faq-a">The jazz duo starts at <strong>CZK 15,000</strong> for a standard evening (3 × 45 minutes), including the BOSE PA system and travel within Prague; outside Prague we charge <strong>CZK 7 per kilometre</strong>. The final price depends on the date, length and type of event — weekdays and early bookings work out better. We send an exact quote within 24 hours; details are in the <a href="https://jazztrio.cz/en/blog/jazz-band-prices-corporate-events.html" rel="noopener" style="color:#0f5257;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px">price list</a>.</div></details>
-        <details class="faq-item" name="faq"><summary>How much does a larger line-up cost — trio, quartet or quintet?</summary><div class="faq-a">The jazz trio (voice, piano, double bass) costs from <strong>CZK 20,000</strong>, the jazz quartet with drums from <strong>CZK 27,000</strong> and the jazz quintet with a horn section from <strong>CZK 33,000</strong>. Prices are for a standard evening in Prague including our own professional BOSE stereo PA system.</div></details>
+        <details class="faq-item" name="faq"><summary>How much does a larger line-up cost — trio or quartet?</summary><div class="faq-a">The jazz trio (voice, piano, double bass) costs from <strong>CZK 20,000</strong> and the jazz quartet with drums from <strong>CZK 27,000</strong>. Prices are for a standard evening in Prague including our own professional BOSE stereo PA system.</div></details>
         <details class="faq-item" name="faq"><summary>What kind of events is the duo best suited to?</summary><div class="faq-a">The duo is our most intimate line-up — we play most often at corporate evenings, receptions, standing dinners and gallery openings, and as dinner jazz in restaurants and hotels. It sounds refined without drowning out conversation. We are also happy to play at a wedding ceremony.</div></details>
         <details class="faq-item" name="faq"><summary>Do you bring your own PA system?</summary><div class="faq-a">Yes, we bring our own professional BOSE PA system for events of up to 80–100 guests. For larger halls and big outdoor events the organiser provides a sound engineer. More in the article <a href="https://jazztrio.cz/en/blog/how-many-musicians-per-guests.html" rel="noopener" style="color:#0f5257;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px">how many musicians for how many guests</a>.</div></details>
         <div class="faq-more" id="faqMore" hidden>
         <details class="faq-item" name="faq"><summary>What are the technical requirements?</summary><div class="faq-a">The duo needs at least 3 × 2.5 m of floor space and one standard 230 V socket; we arrive an hour before the start. Outdoors, solid cover for the band and equipment is required. The full rider is in the article <a href="https://jazztrio.cz/en/blog/what-the-band-needs-on-site.html" rel="noopener" style="color:#0f5257;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px">what the band needs on site</a>.</div></details>
         <details class="faq-item" name="faq"><summary>How far do you travel?</summary><div class="faq-a">We are based in Prague and play all over the Czech Republic. Events in Prague and the surrounding area we arrange flexibly; more distant bookings, including abroad, by agreement.</div></details>
-        <details class="faq-item" name="faq"><summary>Can we choose a larger line-up?</summary><div class="faq-a">Yes, besides the duo we also play as a trio, quartet and quintet — we will recommend the ideal line-up for your space and the character of your event.</div></details>
+        <details class="faq-item" name="faq"><summary>Can we choose a larger line-up?</summary><div class="faq-a">Yes, besides the duo we also play as a trio and quartet — we will recommend the ideal line-up for your space and the character of your event.</div></details>
         </div>
         <button type="button" class="faq-toggle" id="faqToggle" aria-expanded="false" aria-controls="faqMore" data-more="More questions" data-less="Show fewer questions">More questions</button>
     </div>
@@ -2498,7 +2484,7 @@ body{overflow-x:hidden;max-width:100%}
   function bttSync(){
     var docH=document.documentElement.scrollHeight-window.innerHeight;
     var pct=docH>40?(window.scrollY/docH):0;
-    btt.classList.toggle('visible',pct>=BTT_AT);
+    btt.classList.toggle('visible',docH>40&&docH-window.scrollY<=Math.max(320,window.innerHeight*.6));
   }
   window.addEventListener('scroll',function(){
     topbar.classList.toggle('scrolled',window.scrollY>30);
@@ -2530,7 +2516,7 @@ body{overflow-x:hidden;max-width:100%}
    {role:'Alto sax', file:'saxophone.webp', flip:1}
   ];
   var lineup=MUS.map(function(m){return m.role;});
-  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartet',5:'Jazz Quintet',6:'Jazz Combo',7:'Jazz Combo',8:'Jazz Combo'};
+  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartet',5:'Jazz Combo',6:'Jazz Combo',7:'Jazz Combo',8:'Jazz Combo'};
   function musFigureHTML(m){
     return '<img src="'+BASE+m.file+'" alt="'+m.role+'" width="263" height="263" loading="lazy" decoding="async">';
   }
@@ -2992,10 +2978,10 @@ document.addEventListener('click',function(e){
     },
     {
       "@type": "Question",
-      "name": "How much does a larger line-up cost — trio, quartet or quintet?",
+      "name": "How much does a larger line-up cost — trio or quartet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The jazz trio (voice, piano, double bass) costs from CZK 20,000, the jazz quartet with drums from CZK 27,000 and the jazz quintet with a horn section from CZK 33,000. Prices are for a standard evening in Prague including our own professional BOSE stereo PA system."
+        "text": "The jazz trio (voice, piano, double bass) costs from CZK 20,000 and the jazz quartet with drums from CZK 27,000. Prices are for a standard evening in Prague including our own professional BOSE stereo PA system."
       }
     },
     {
@@ -3035,7 +3021,7 @@ document.addEventListener('click',function(e){
       "name": "Can we choose a larger line-up?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, besides the duo we also play as a trio, quartet and quintet — we will recommend the ideal line-up for your space and the character of your event."
+        "text": "Yes, besides the duo we also play as a trio and quartet — we will recommend the ideal line-up for your space and the character of your event."
       }
     }
   ]
@@ -3055,6 +3041,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
-<script src="/motion.js?v=10" defer></script>
+<script src="/motion.js?v=11" defer></script>
 </body>
 </html>

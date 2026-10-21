@@ -739,7 +739,7 @@ main{position:relative;z-index:2}
       "name": "David Kleňha",
       "jobTitle": "Jazzový zpěvák a bandleader",
       "roleName": "zpěv, vedoucí souboru",
-      "description": "David Kleňha je jazzový zpěvák. Pravidelně vystupuje s vlastními sestavami od jazzového dua po kvintet a sólově spolupracuje s jazzovými big bandy a orchestry, se kterými hraje i v divadlech. Repertoár staví na jazzových a swingových standardech, baladách a českých klasikách.",
+      "description": "David Kleňha je jazzový zpěvák. Pravidelně vystupuje s vlastními sestavami od jazzového dua po větší kapely a sólově spolupracuje s jazzovými big bandy a orchestry, se kterými hraje i v divadlech. Repertoár staví na jazzových a swingových standardech, baladách a českých klasikách.",
       "url": "https://www.davidklenha.cz/"
     },
     {
@@ -757,7 +757,6 @@ main{position:relative;z-index:2}
     "https://www.davidklenha.cz/",
     "https://jazztrio.cz/",
     "https://jazzquartet.cz/",
-    "https://jazzquintet.cz/",
     "https://jazzduo.cz/"
   ],
   "makesOffer": [
@@ -814,24 +813,6 @@ main{position:relative;z-index:2}
       },
       "availability": "https://schema.org/InStock",
       "url": "https://jazzquartet.cz/"
-    },
-    {
-      "@type": "Offer",
-      "name": "Jazzový kvintet",
-      "category": "Live music",
-      "priceCurrency": "CZK",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "priceCurrency": "CZK",
-        "minPrice": "33000",
-        "description": "Cena od, za standardní večer, přibližně tři hodiny s pauzami, v Praze včetně vlastního profesionálního stereo ozvučení BOSE. Konečná cena podle délky programu, termínu, místa a typu akce. Mimo Prahu doprava 14 Kč/km (jedeme dvěma vozy)."
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Česká republika"
-      },
-      "availability": "https://schema.org/InStock",
-      "url": "https://jazzquintet.cz/"
     }
   ],
   "knowsLanguage": [
@@ -1203,6 +1184,10 @@ html #builder .musicians .mcard{width:calc((100% - 18px)/4);max-width:none}
 html #builder .builder-name{font-size:clamp(22px,7vw,30px);white-space:nowrap}
 html #builder .mlabel{font-size:11px}
 }
+.mo-also{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;margin:clamp(18px,2.4vw,26px) auto 0;font-size:14px;color:var(--ink-soft);text-align:center}
+.mo-also a{display:inline-flex;align-items:center;padding:7px 15px;border:1.5px solid rgba(15,82,87,.3);border-radius:100px;font-weight:600;font-size:13.5px;color:var(--emerald);text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.mo-also a:hover{background:var(--emerald);border-color:var(--emerald);color:#fff}
+.mo-also a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 </style>
 <style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
@@ -1495,10 +1480,10 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
     <div class="bio-store" hidden>
       <div id="bio-klenha" class="bio-body">
         <p>David Kleňha tvoří společně s klavíristou Jaroslavem Bártou <strong>jazzové duo</strong> — nejintimnější z jeho sestav. Hrají tam, kde má hudba vytvářet atmosféru, ne být hlavní hvězdou: na <strong>firemních večerech, recepcích a rautech</strong>, při vernisážích a jako jazz k večeři v pražských hotelech a restauracích.</p>
-        <p>David Kleňha je <strong>jazzový zpěvák</strong>. Pravidelně vystupuje s vlastními sestavami <strong>od jazzového dua po kvintet</strong> a sólově spolupracuje s jazzovými <strong>big bandy a orchestry</strong>, se kterými hraje i v divadlech. Repertoár staví na <strong>jazzových a swingových standardech, baladách a českých klasikách</strong>.</p>
+        <p>David Kleňha je <strong>jazzový zpěvák</strong>. Pravidelně vystupuje s vlastními sestavami <strong>od jazzového dua po větší kapely</strong> a sólově spolupracuje s jazzovými <strong>big bandy a orchestry</strong>, se kterými hraje i v divadlech. Repertoár staví na <strong>jazzových a swingových standardech, baladách a českých klasikách</strong>.</p>
       </div>
       <div id="bio-barta" class="bio-body">
-        <p>Jaroslav Bárta doprovází Davida Kleňhu v jazzovém duu — <strong>zpěv a klavír</strong>, nejkomornější obsazení pro firemní večery, recepce, vernisáže a jazz k večeři. Stejnou sestavu hrají i v rozšířené podobě jako trio, kvartet nebo kvintet.</p>
+        <p>Jaroslav Bárta doprovází Davida Kleňhu v jazzovém duu — <strong>zpěv a klavír</strong>, nejkomornější obsazení pro firemní večery, recepce, vernisáže a jazz k večeři. Stejnou sestavu hrají i v rozšířené podobě jako trio nebo kvartet.</p>
         <p>Absolvent <strong>hudební vědy na Masarykově univerzitě</strong> a klavíru a skladby na <strong>Konzervatoři Jaroslava Ježka v Praze</strong>, kde dnes sám vyučuje <strong>jazzovou interpretaci</strong>. Všestranný klavírista a skladatel, který během své kariéry spolupracoval s interprety jako <strong>Lenka Filipová</strong>, <strong>Žentour</strong>, <strong>Madfinger</strong>, <strong>Zatrestband</strong>, <strong>Chantal Poullain</strong> nebo <strong>Big Band Felixe Slováčka</strong>.</p>
       </div>
     </div>
@@ -1553,7 +1538,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
         </div>
         <button class="vid-arrow next" id="vidNext" type="button" aria-label="Další video">›</button>
       </div>
-      <div class="vid-dots" id="vidDots" aria-hidden="true"></div>
+      <div class="vid-dots" id="vidDots"></div>
     </div>
   </div>
 </section>
@@ -1761,7 +1746,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
             </div>
             <div class="field full">
               <label for="zprava">Poznámka</label>
-              <textarea id="zprava" name="message" placeholder="Skladby na přání, počet hostů, prostor…"></textarea>
+              <textarea id="zprava" name="message" placeholder="Lokalita, velikost prostoru, počet hostů, IČO společnosti"></textarea>
             </div>
             <div class="field full">
               <label class="consent"><input type="checkbox" id="consent" required>
@@ -1974,6 +1959,7 @@ body{overflow-x:hidden;max-width:100%}
         <div class="b-row"><button type="button" class="cb rem" aria-label="Ubrat hudebníka">&minus;</button><div class="musicians" id="musicians"></div><button type="button" class="cb add" aria-label="Přidat hudebníka">+</button></div>
       </div>
     </div>
+    <p class="mo-also"><span>Hledáte jinou sestavu?</span><a href="https://jazztrio.cz/">Jazzové trio</a><a href="https://jazzquartet.cz/">Jazzový kvartet</a></p>
   </div>
 </section>
 <section class="section reveal" id="faq">
@@ -1982,13 +1968,13 @@ body{overflow-x:hidden;max-width:100%}
     <h2 class="section-title">Časté dotazy</h2>
     <div class="faq-wrap">
         <details class="faq-item" name="faq"><summary>Jaká je orientační cena jazzového dua?</summary><div class="faq-a">Cena jazzového dua začíná na <strong>15 000 Kč</strong> za standardní večer (3 × 45 minut) včetně ozvučení BOSE a dopravy po Praze; mimo Prahu účtujeme <strong>7 Kč/km</strong>. Konečná cena závisí na termínu, délce a typu akce — výhodnější je všední den nebo rezervace s předstihem. Přesnou nabídku pošleme do 24 hodin, podrobnosti najdete v <a href="https://jazztrio.cz/blog/ceny-jazzove-kapely-na-firemni-akci.html" rel="noopener" style="color:#0f5257;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px">ceníku</a>.</div></details>
-        <details class="faq-item" name="faq"><summary>Kolik stojí větší sestava — trio, kvartet nebo kvintet?</summary><div class="faq-a">Jazzové trio (zpěv, klavír, kontrabas) stojí od <strong>20 000 Kč</strong>, jazzový kvartet s bicími od <strong>27 000 Kč</strong> a jazzový kvintet s dechovou sekcí od <strong>33 000 Kč</strong>. Ceny platí pro standardní večer v Praze včetně vlastního profesionálního stereo ozvučení BOSE. Sestavu rádi doporučíme podle velikosti akce a prostoru.</div></details>
+        <details class="faq-item" name="faq"><summary>Kolik stojí větší sestava — trio nebo kvartet?</summary><div class="faq-a">Jazzové trio (zpěv, klavír, kontrabas) stojí od <strong>20 000 Kč</strong> a jazzový kvartet s bicími od <strong>27 000 Kč</strong>. Ceny platí pro standardní večer v Praze včetně vlastního profesionálního stereo ozvučení BOSE. Sestavu rádi doporučíme podle velikosti akce a prostoru.</div></details>
         <details class="faq-item" name="faq"><summary>Pro jaké akce se duo hodí nejvíc?</summary><div class="faq-a">Duo je naše nejkomornější obsazení — hrajeme nejčastěji na firemních večerech, recepcích, rautech a vernisážích a jako jazz k večeři v restauracích a hotelech. Zní kultivovaně, ale nepřehluší konverzaci. Rádi zahrajeme i na svatebním obřadu.</div></details>
         <details class="faq-item" name="faq"><summary>Vozíte vlastní ozvučení?</summary><div class="faq-a">Ano, vozíme vlastní profesionální ozvučení BOSE pro akce do 80–100 hostů. Pro větší sály a velké venkovní akce zajišťuje zvukaře pořadatel. Více v článku <a href="https://jazztrio.cz/blog/kolik-hudebniku-na-kolik-hostu.html" rel="noopener" style="color:#0f5257;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px">kolik hudebníků na kolik hostů</a>.</div></details>
         <div class="faq-more" id="faqMore" hidden>
         <details class="faq-item" name="faq"><summary>Jaké jsou technické požadavky kapely?</summary><div class="faq-a">Duo potřebuje plochu alespoň 3 × 2,5 m a jednu běžnou zásuvku 230 V; přijíždíme hodinu před začátkem. Venku je nutné pevné zastřešení kapely i techniky. Kompletní rider najdete v článku <a href="https://jazztrio.cz/blog/co-kapela-potrebuje-na-miste.html" rel="noopener" style="color:#0f5257;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px">co kapela potřebuje na místě</a>.</div></details>
         <details class="faq-item" name="faq"><summary>Kam dojíždíte?</summary><div class="faq-a">Hrajeme po celé České republice, sídlíme v Praze. Vystoupení v Praze a okolí řešíme operativně, vzdálenější akce po domluvě.</div></details>
-        <details class="faq-item" name="faq"><summary>Můžeme zvolit větší sestavu?</summary><div class="faq-a">Ano, kromě dua hrajeme i jako trio, kvartet a kvintet — podle prostoru a charakteru akce vám doporučíme ideální obsazení.</div></details>
+        <details class="faq-item" name="faq"><summary>Můžeme zvolit větší sestavu?</summary><div class="faq-a">Ano, kromě dua hrajeme i jako trio nebo kvartet — podle prostoru a charakteru akce vám doporučíme ideální obsazení.</div></details>
         </div>
         <button type="button" class="faq-toggle" id="faqToggle" aria-expanded="false" aria-controls="faqMore" data-more="Další dotazy" data-less="Skrýt další dotazy">Další dotazy</button>
     </div>
@@ -2499,7 +2485,7 @@ body{overflow-x:hidden;max-width:100%}
   function bttSync(){
     var docH=document.documentElement.scrollHeight-window.innerHeight;
     var pct=docH>40?(window.scrollY/docH):0;
-    btt.classList.toggle('visible',pct>=BTT_AT);
+    btt.classList.toggle('visible',docH>40&&docH-window.scrollY<=Math.max(320,window.innerHeight*.6));
   }
   window.addEventListener('scroll',function(){
     topbar.classList.toggle('scrolled',window.scrollY>30);
@@ -2531,7 +2517,7 @@ body{overflow-x:hidden;max-width:100%}
    {role:'Alt saxofon', file:'saxophone.webp', flip:1}
   ];
   var lineup=MUS.map(function(m){return m.role;});
-  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartet',5:'Jazz Quintet',6:'Jazz Combo',7:'Jazz Combo',8:'Jazz Combo'};
+  var names={2:'Jazz Duo',3:'Jazz Trio',4:'Jazz Quartet',5:'Jazz Combo',6:'Jazz Combo',7:'Jazz Combo',8:'Jazz Combo'};
   function musFigureHTML(m){
     return '<img src="'+BASE+m.file+'" alt="'+m.role+'" width="263" height="263" loading="lazy" decoding="async">';
   }
@@ -2994,10 +2980,10 @@ document.addEventListener('click',function(e){
     },
     {
       "@type": "Question",
-      "name": "Kolik stojí větší sestava — trio, kvartet nebo kvintet?",
+      "name": "Kolik stojí větší sestava — trio nebo kvartet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Jazzové trio (zpěv, klavír, kontrabas) stojí od 20 000 Kč, jazzový kvartet s bicími od 27 000 Kč a jazzový kvintet s dechovou sekcí od 33 000 Kč. Ceny platí pro standardní večer v Praze včetně vlastního profesionálního stereo ozvučení BOSE. Sestavu rádi doporučíme podle velikosti akce a prostoru."
+        "text": "Jazzové trio (zpěv, klavír, kontrabas) stojí od 20 000 Kč a jazzový kvartet s bicími od 27 000 Kč. Ceny platí pro standardní večer v Praze včetně vlastního profesionálního stereo ozvučení BOSE. Sestavu rádi doporučíme podle velikosti akce a prostoru."
       }
     },
     {
@@ -3037,7 +3023,7 @@ document.addEventListener('click',function(e){
       "name": "Můžeme zvolit větší sestavu?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ano, kromě dua hrajeme i jako trio, kvartet a kvintet — podle prostoru a charakteru akce vám doporučíme ideální obsazení."
+        "text": "Ano, kromě dua hrajeme i jako trio nebo kvartet — podle prostoru a charakteru akce vám doporučíme ideální obsazení."
       }
     }
   ]
@@ -3057,6 +3043,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
-<script src="/motion.js?v=10" defer></script>
+<script src="/motion.js?v=11" defer></script>
 </body>
 </html>
