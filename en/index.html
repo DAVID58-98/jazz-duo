@@ -438,6 +438,7 @@ var(--gold);background:linear-gradient(155deg,rgba(224,169,60,.24),rgba(224,169,
 .blk b{display:block;font-family:var(--font-head);font-weight:700;font-size:17px}
 .blk span{font-size:13px;opacity:1}
 .price-note{margin:-4px 0 20px;font-size:14.5px;line-height:1.55;color:var(--cream);opacity:.85;max-width:600px}
+@media (max-width:560px){#blkChoice .blk-sep{display:none}}
 .blocks-warn{font-size:13px;color:#ffe0b0;background:rgba(224,169,60,.16);border:1px solid rgba(224,169,60,.4);border-radius:12px;padding:11px 14px;margin-top:12px;display:none}
 .blocks-warn.show{display:block}
 .consent{display:flex;gap:10px;align-items:flex-start;margin-top:8px;font-size:13.5px;color:var(--mint-soft);cursor:pointer;line-height:1.5}
@@ -1527,9 +1528,9 @@ html #builder .mlabel{font-size:11px}
             <div class="field full">
               <label>Performance length</label>
               <div class="blocks-choice" id="blkChoice" role="radiogroup" aria-label="Performance length" style="grid-template-columns:repeat(3,minmax(0,1fr))">
-                <button type="button" class="blk" data-n="1" role="radio" aria-checked="false"><b>1 hour</b><span>no break</span></button>
-                <button type="button" class="blk sel" data-n="2" role="radio" aria-checked="true"><b>2 hours</b><span>1 break</span></button>
-                <button type="button" class="blk" data-n="3" role="radio" aria-checked="false"><b>3 hours</b><span>2 breaks</span></button>
+                <button type="button" class="blk" data-n="1" role="radio" aria-checked="false"><b>1&nbsp;hour</b><span class="blk-sep" aria-hidden="true">/</span><span>no&nbsp;break</span></button>
+                <button type="button" class="blk sel" data-n="2" role="radio" aria-checked="true"><b>2&nbsp;hours</b><span class="blk-sep" aria-hidden="true">/</span><span>1&nbsp;break</span></button>
+                <button type="button" class="blk" data-n="3" role="radio" aria-checked="false"><b>3&nbsp;hours</b><span class="blk-sep" aria-hidden="true">/</span><span>2&nbsp;breaks</span></button>
               </div>
             </div>
             <div class="field full">
