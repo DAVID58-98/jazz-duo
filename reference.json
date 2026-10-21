@@ -1,0 +1,45 @@
+{
+  "_navod": "Návod je v souboru NAVOD-recenze-a-reference.md",
+  "reference": [
+    {
+      "nazev": {
+        "cs": "Notářská komora ČR",
+        "en": "Chamber of Notaries of the CR",
+        "de": "Notarkammer der Tschechischen Republik"
+      },
+      "popis": {
+        "cs": "reprezentativní večer prezidia",
+        "en": "presidium evening",
+        "de": "Präsidiumsabend"
+      }
+    },
+    {
+      "nazev": "Hotel Augustine",
+      "popis": {
+        "cs": "Praha",
+        "en": "Prague",
+        "de": "Prag"
+      }
+    },
+    {
+      "nazev": "Fairmont Golden Prague",
+      "popis": {
+        "cs": "Praha · hotelový večer",
+        "en": "Prague · hotel evening",
+        "de": "Prag · Hotelabend"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Firemní večery",
+        "en": "Corporate evenings",
+        "de": "Firmenabende"
+      },
+      "popis": {
+        "cs": "pro firmy a jejich hosty",
+        "en": "for companies and their guests",
+        "de": "für Unternehmen und ihre Gäste"
+      }
+    }
+  ]
+}

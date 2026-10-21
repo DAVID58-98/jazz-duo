@@ -1,0 +1,21 @@
+{
+  "_navod": "Návod je v souboru NAVOD-recenze-a-reference.md",
+  "recenze": [
+    {
+      "jmeno": "Klára V.",
+      "datum": "2024-07-10",
+      "akce": {
+        "cs": "hotelový brunch",
+        "en": "hotel brunch",
+        "de": "Hotel-Brunch"
+      },
+      "text": {
+        "cs": "Byli jste parádní! Děkujeme za nádhernou atmosféru a skvělý výběr písniček. Těšíme se, až si vás zase někde poslechneme. Jste fakt profíci.",
+        "en": "You were wonderful! Thank you for the atmosphere and the choice of songs. You are true professionals.",
+        "de": "Ihr wart wunderbar! Danke für die Atmosphäre und die Songauswahl. Ihr seid echte Profis."
+      },
+      "hvezdy": 5,
+      "zdroj": "https://www.budemesvoji.cz/listing/david-klenha-jazz-band/"
+    }
+  ]
+}
