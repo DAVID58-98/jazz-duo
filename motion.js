@@ -18,7 +18,7 @@ var TX={
 }[LANG]||null;
 if(!TX)TX={thanks:'Děkujeme!',next:'Další recenze',prev:'Předchozí recenze',songs:function(n){return n+' skladeb'},kTitle:'Termíny koncertů',kAll:'Všechny termíny',kLoad:'…',kErr:'Termíny se nepodařilo načíst.',kNone:'Žádné termíny.',kOurs:'tato sestava',close:'Zavřít',kCount:function(n){return n+''}};
 /* počet teček loga podle sestavy */
-var HOST=location.hostname,ENSK=/quintet/.test(HOST)?'quintet':/quartet/.test(HOST)?'quartet':/trio/.test(HOST)?'trio':'duo',DOTS={duo:2,trio:3,quartet:4,quintet:5}[ENSK];
+var HOST=location.hostname,ENSK=/quartet/.test(HOST)?'quartet':/trio/.test(HOST)?'trio':'duo',DOTS={duo:2,trio:3,quartet:4}[ENSK];
 var ENSNAME='Jazz '+ENSK.charAt(0).toUpperCase()+ENSK.slice(1);
 
 function $(s,r){return (r||document).querySelector(s)}
@@ -262,6 +262,7 @@ later('reviews',function(){
     last.style.transition='transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s';layout();show(last);
     setTimeout(function(){last.style.transition='';last._out=0},RM?0:470)}
   var nb=$('#revNextBtn'),pb=$('#revPrevBtn');
+  if(cards.length<2){if(nb)nb.style.display='none';if(pb)pb.style.display='none';return}  /* jediná recenze: bez šipek a swipu */
   if(nb)nb.addEventListener('click',function(){next(1)});
   if(pb)pb.addEventListener('click',prev);
   st.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();next(1)}else if(e.key==='ArrowLeft'){e.preventDefault();prev()}});
