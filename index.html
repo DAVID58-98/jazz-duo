@@ -1192,6 +1192,17 @@ html #builder .mlabel{font-size:10.5px;letter-spacing:0}
 .foot-blog a{padding:7px 10px;font-size:11.5px;white-space:nowrap;min-width:0}
 }
 @media (max-width:400px){.foot-blog{gap:5px}.foot-blog a{padding:6px 8px;font-size:10.5px}}
+@media (max-width:640px){
+html #builder .builder-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:10px;row-gap:16px}
+html #builder .builder-top{grid-column:2;grid-row:1;min-width:0}
+html #builder .b-row{display:contents}
+html #builder .b-row .rem{grid-column:1;grid-row:1}
+html #builder .b-row .add{grid-column:3;grid-row:1}
+html #builder .musicians{grid-column:1/-1;grid-row:2;width:100%;gap:8px 6px}
+html #builder .musicians .mcard{width:calc((100% - 18px)/4);max-width:none}
+html #builder .builder-name{font-size:clamp(22px,7vw,30px);white-space:nowrap}
+html #builder .mlabel{font-size:11px}
+}
 </style>
 <style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
 </head>
@@ -2438,7 +2449,7 @@ body{overflow-x:hidden;max-width:100%}
       ['Zpěv a klavír','naživo.'],
       ['Hudba k večeři,','ne přes ni.'],
       ['Komorní zvuk','pro obřad i raut.'],
-      ['Nejintimnější','obsazení.']
+      ['Dva hudebníci,','jeden večer.']
     ];
     var host=$('heroSlogans');if(!host)return;
     /* pozor: NEMAZAT innerHTML - uvnitr je sr-only H1 text pro SEO a ctecky */
@@ -3046,6 +3057,6 @@ document.addEventListener('click',function(e){
   });}
 })();
 </script>
-<script src="/motion.js?v=9" defer></script>
+<script src="/motion.js?v=10" defer></script>
 </body>
 </html>
