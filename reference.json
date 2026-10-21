@@ -1,3 +1,4 @@
+
 {
   "_navod": "Návod je v souboru NAVOD-recenze-a-reference.md",
   "reference": [
@@ -39,6 +40,186 @@
         "cs": "pro firmy a jejich hosty",
         "en": "for companies and their guests",
         "de": "für Unternehmen und ihre Gäste"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Restaurace · Vinohrady",
+        "en": "Restaurant · Vinohrady",
+        "de": "Restaurant · Vinohrady"
+      },
+      "popis": {
+        "cs": "Praha 2 · soukromá oslava",
+        "en": "Prague 2 · private celebration",
+        "de": "Prag 2 · private Feier"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Kavárna · Letná",
+        "en": "Café · Letná",
+        "de": "Café · Letná"
+      },
+      "popis": {
+        "cs": "Praha 7 · jazzový večer",
+        "en": "Prague 7 · jazz evening",
+        "de": "Prag 7 · Jazzabend"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Vinárna · Žižkov",
+        "en": "Wine Bar · Žižkov",
+        "de": "Weinbar · Žižkov"
+      },
+      "popis": {
+        "cs": "Praha 3 · živá hudba",
+        "en": "Prague 3 · live music",
+        "de": "Prag 3 · Livemusik"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Restaurace · Dejvice",
+        "en": "Restaurant · Dejvice",
+        "de": "Restaurant · Dejvice"
+      },
+      "popis": {
+        "cs": "Praha 6 · firemní večer",
+        "en": "Prague 6 · corporate evening",
+        "de": "Prag 6 · Firmenabend"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Soukromá zahrada · Braník",
+        "en": "Private Garden · Braník",
+        "de": "Privatgarten · Braník"
+      },
+      "popis": {
+        "cs": "Praha 4 · letní oslava",
+        "en": "Prague 4 · summer party",
+        "de": "Prag 4 · Sommerfest"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Hotelový salonek · Smíchov",
+        "en": "Hotel Lounge · Smíchov",
+        "de": "Hotelsalon · Smíchov"
+      },
+      "popis": {
+        "cs": "Praha 5 · firemní setkání",
+        "en": "Prague 5 · corporate gathering",
+        "de": "Prag 5 · Firmentreffen"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Galerie · Staré Město",
+        "en": "Gallery · Old Town",
+        "de": "Galerie · Altstadt"
+      },
+      "popis": {
+        "cs": "Praha 1 · vernisáž",
+        "en": "Prague 1 · exhibition opening",
+        "de": "Prag 1 · Vernissage"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Restaurace · Karlín",
+        "en": "Restaurant · Karlín",
+        "de": "Restaurant · Karlín"
+      },
+      "popis": {
+        "cs": "Praha 8 · vánoční večírek",
+        "en": "Prague 8 · Christmas party",
+        "de": "Prag 8 · Weihnachtsfeier"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Kavárna · Vršovice",
+        "en": "Café · Vršovice",
+        "de": "Café · Vršovice"
+      },
+      "popis": {
+        "cs": "Praha 10 · jazzový podvečer",
+        "en": "Prague 10 · early evening jazz",
+        "de": "Prag 10 · Jazz am frühen Abend"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Restaurace · Vysočany",
+        "en": "Restaurant · Vysočany",
+        "de": "Restaurant · Vysočany"
+      },
+      "popis": {
+        "cs": "Praha 9 · rodinná oslava",
+        "en": "Prague 9 · family celebration",
+        "de": "Prag 9 · Familienfeier"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Soukromá vila · Hanspaulka",
+        "en": "Private Villa · Hanspaulka",
+        "de": "Privatvilla · Hanspaulka"
+      },
+      "popis": {
+        "cs": "Praha 6 · zahradní slavnost",
+        "en": "Prague 6 · garden party",
+        "de": "Prag 6 · Gartenfest"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Restaurace · Krč",
+        "en": "Restaurant · Krč",
+        "de": "Restaurant · Krč"
+      },
+      "popis": {
+        "cs": "Praha 4 · svatební hostina",
+        "en": "Prague 4 · wedding reception",
+        "de": "Prag 4 · Hochzeitsfeier"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Penzion · Říčany",
+        "en": "Guesthouse · Říčany",
+        "de": "Pension · Říčany"
+      },
+      "popis": {
+        "cs": "rodinná oslava",
+        "en": "family celebration",
+        "de": "Familienfeier"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Restaurace · Beroun",
+        "en": "Restaurant · Beroun",
+        "de": "Restaurant · Beroun"
+      },
+      "popis": {
+        "cs": "firemní večírek",
+        "en": "corporate party",
+        "de": "Firmenfeier"
+      }
+    },
+    {
+      "nazev": {
+        "cs": "Kavárna · Poděbrady",
+        "en": "Café · Poděbrady",
+        "de": "Café · Poděbrady"
+      },
+      "popis": {
+        "cs": "komorní jazzový večer",
+        "en": "intimate jazz evening",
+        "de": "Kleiner Jazzabend"
       }
     }
   ]
