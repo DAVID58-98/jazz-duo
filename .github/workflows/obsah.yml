@@ -1,0 +1,60 @@
+name: Recenze a reference
+
+# Po každé změně recenze.json nebo reference.json vygeneruje sekce
+# „Co nám píší klienti“ a „Pro koho jsme hráli“ do CZ, EN i DE stránky.
+# Ručně: záložka Actions → Recenze a reference → Run workflow.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'recenze.json'
+      - 'reference.json'
+      - 'nastroje/obsah.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: obsah
+  cancel-in-progress: false
+
+jobs:
+  obsah:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Vygenerovat recenze a reference
+        run: python3 nastroje/obsah.py .
+
+      - name: Uložit, pokud se něco změnilo
+        id: commit
+        shell: bash
+        run: |
+          git add index.html en/index.html de/index.html llms.txt
+          if git diff --cached --quiet; then
+            echo "Stránky se nezměnily."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Recenze a reference: aktualizace"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Znovu publikovat web
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" >/dev/null \
+            && echo "Publikování spuštěno." \
+            || echo "::notice::Publikování se nepodařilo spustit ručně – web se aktualizuje při příštím pushi."
