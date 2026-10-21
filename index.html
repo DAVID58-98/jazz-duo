@@ -1153,7 +1153,13 @@ html #builder .mlabel{font-size:11px}
 .mo-also a:hover{background:var(--emerald);border-color:var(--emerald);color:#fff}
 .mo-also a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 </style>
-<style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}</style>
+<style id="mo-vt">@view-transition{navigation:auto}::view-transition-group(*){animation-duration:.42s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}.topbar .brand,.site-header .brand{view-transition-name:mo-brand}.hero-slogans,.article-title{view-transition-name:mo-title}@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}/* zarovnání karet „Proč právě my“: ikony, nadpisy i texty začínají ve stejné výšce */
+@supports (grid-template-rows:subgrid){
+#benefits .benefits-grid{row-gap:0}
+#benefits .benefits-grid>.benefit{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:13px;align-content:start;justify-items:start;margin-bottom:18px}
+}
+@media (max-width:560px){@supports (grid-template-rows:subgrid){#benefits .benefits-grid>.benefit{row-gap:10px;margin-bottom:12px}}}
+</style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4KJPMW7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
