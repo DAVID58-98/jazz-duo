@@ -1282,7 +1282,7 @@ html.jz-lock,html.jz-lock body{overflow:hidden}
     var stm=box(el('div','jz-stm'),x1,y1,sw,y2-y1);stm.style.transformOrigin=up?'50% 100%':'50% 0';I.appendChild(stm);
     return {el:h,stem:stm,sx:sx,sy:sy,dx:dt.x,dy:dt.y,dot:dt.i,tx:tx,ty:ty,kx:hw/D,ky:hh/D};});
   var word=el('div','jz-word');word.style.fontSize=px(L*.19);word.innerHTML='jazz<b>'+KEY+'</b>.cz';I.appendChild(word);
-  function placeWord(){word.style.left=px(cx-word.offsetWidth/2);word.style.top=px(gy+L*1.2);}
+  function placeWord(){word.style.left='0';word.style.right='0';word.style.textAlign='center';word.style.top=px(gy+L*1.2);}
   placeWord();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(placeWord);
   var tap=el('div','jz-tap');tap.textContent='Klepnutím přeskočíte';I.appendChild(tap);
 
