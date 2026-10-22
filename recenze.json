@@ -30,7 +30,8 @@
         "cs": "Moc děkujeme za krásný večer. Jazzové duo vytvořilo přesně takovou atmosféru, jakou jsme si představovali. Hosté byli nadšení.",
         "en": "Thank you for a lovely evening. The jazz duo created exactly the atmosphere we had hoped for. Our guests loved it.",
         "de": "Vielen Dank für den schönen Abend. Das Jazzduo sorgte genau für die Atmosphäre, die wir uns gewünscht hatten. Unsere Gäste waren begeistert."
-      }
+      },
+      "hvezdy": 5
     },
     {
       "jmeno": "Lucie M.",
@@ -44,7 +45,8 @@
         "cs": "Děkujeme za příjemný hudební doprovod naší svatby. Bylo to elegantní, nenucené a krásně to zapadlo do celého dne.",
         "en": "Thank you for the lovely music at our wedding. It was elegant, relaxed and fitted perfectly into our special day.",
         "de": "Vielen Dank für die schöne musikalische Begleitung unserer Hochzeit. Es war elegant, entspannt und passte wunderbar zu unserem Tag."
-      }
+      },
+      "hvezdy": 5
     },
     {
       "jmeno": "Petr S.",
@@ -58,7 +60,8 @@
         "cs": "Skvělé vystoupení na našem firemním večírku. Příjemný jazz, profesionální přístup a bezproblémová domluva. Rádi Vás pozveme znovu.",
         "en": "A great performance at our company event. Lovely jazz, a professional approach and easy communication. We would gladly book you again.",
         "de": "Ein toller Auftritt bei unserer Firmenfeier. Angenehmer Jazz, professionelles Auftreten und unkomplizierte Kommunikation. Gerne wieder."
-      }
+      },
+      "hvezdy": 5
     },
     {
       "jmeno": "Kateřina V.",
@@ -72,7 +75,8 @@
         "cs": "Hudba byla moc příjemná a vůbec nerušila naši společnost. Jazz Duo krásně doplnilo atmosféru oslavy. Děkujeme!",
         "en": "The music was lovely and never interrupted our conversations. The jazz duo complemented the celebration beautifully. Thank you!",
         "de": "Die Musik war sehr angenehm und störte unsere Gespräche überhaupt nicht. Das Jazzduo ergänzte die Feier wunderbar. Vielen Dank!"
-      }
+      },
+      "hvezdy": 4
     },
     {
       "jmeno": "Tomáš H.",
@@ -86,7 +90,8 @@
         "cs": "Výborný výběr skladeb a moc pěkné provedení. Na tak malé obsazení opravdu skvělý zvuk. Určitě doporučuji.",
         "en": "Excellent song selection and beautiful performance. A fantastic sound for such a small ensemble. Highly recommended.",
         "de": "Hervorragende Stückauswahl und eine sehr schöne Darbietung. Ein toller Klang für eine so kleine Besetzung. Absolut empfehlenswert."
-      }
+      },
+      "hvezdy": 4
     }
   ]
 }
