@@ -1,14 +1,15 @@
-name: Recenze a reference
+name: Recenze, reference a videa
 
-# Po každé změně recenze.json nebo reference.json vygeneruje sekce
-# „Co nám píší klienti“ a „Pro koho jsme hráli“ do CZ, EN i DE stránky.
-# Ručně: záložka Actions → Recenze a reference → Run workflow.
+# Po každé změně recenze.json, reference.json nebo videa.json vygeneruje sekce
+# „Co nám píší klienti“, „Pro koho jsme hráli“ a „Videoukázky“ do CZ, EN i DE stránky.
+# Ručně: záložka Actions → Recenze, reference a videa → Run workflow.
 on:
   push:
     branches: [main]
     paths:
       - 'recenze.json'
       - 'reference.json'
+      - 'videa.json'
       - 'nastroje/obsah.py'
   workflow_dispatch:
 
@@ -29,7 +30,7 @@ jobs:
         with:
           ref: main
 
-      - name: Vygenerovat recenze a reference
+      - name: Vygenerovat recenze, reference a videa
         run: python3 nastroje/obsah.py .
 
       - name: Uložit, pokud se něco změnilo
@@ -44,7 +45,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Recenze a reference: aktualizace"
+          git commit -m "Recenze, reference a videa: aktualizace"
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
