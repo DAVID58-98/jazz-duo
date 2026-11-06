@@ -2,6 +2,14 @@
   "_navod": "Návod je v souboru NAVOD-videa.md",
   "videa": [
     {
+      "url": "https://youtube.com/shorts/9Fh07PPHEYw",
+      "nazev": "Blue Suede Shoes",
+      "misto": {
+        "cs": "Club Salsita, Praha",
+        "en": "Salsita Club, Prague",
+        "de": "Salsita Club, Prague"
+      },
+    {
       "url": "https://youtube.com/shorts/6dR5MH3qNFE",
       "nazev": "Route 66",
       "misto": {
