@@ -1366,7 +1366,12 @@ html #builder .mlabel{font-size:11px}
       <div class="vid-slider" id="vidSlider">
         <button class="vid-arrow prev" id="vidPrev" type="button" aria-label="Previous video">‹</button>
         <div class="vid-viewport">
-          <div class="vid-track" id="vidTrack"><div class="vid-item"><button class="vid-blob" type="button" aria-label="Play video: Route 66 – Orangery Habrovany · jazz duo"><svg class="vid-eq" data-i="0" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/0.webp" data-cid="vidclipo0" data-i="0"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name">Route 66</div><div class="vid-place">Orangery Habrovany · jazz duo</div></div><div class="vid-item"><button class="vid-blob" type="button" aria-label="Play video: L-O-V-E – Hotel Augustine Prague · jazz trio"><svg class="vid-eq" data-i="1" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/1.webp" data-cid="vidclipo1" data-i="1"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name">L-O-V-E</div><div class="vid-place">Hotel Augustine Prague · jazz trio</div></div><div class="vid-item"><button class="vid-blob" type="button" aria-label="Play video: Cheek to Cheek – Karlovy Vary Festival · jazz trio"><svg class="vid-eq" data-i="2" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/5.webp" data-cid="vidclipo2" data-i="2"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name">Cheek to Cheek</div><div class="vid-place">Karlovy Vary Festival · jazz trio</div></div><div class="vid-item"><button class="vid-blob" type="button" aria-label="Play video: Sway – Jazz Club Reduta · jazz trio"><svg class="vid-eq" data-i="3" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/7.webp" data-cid="vidclipo3" data-i="3"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name">Sway</div><div class="vid-place">Jazz Club Reduta · jazz trio</div></div></div>
+          <div class="vid-track" id="vidTrack"><!-- VIDEA:START – generuje se z videa.json, ručně neupravovat -->
+            <div class="vid-item" data-yt="6dR5MH3qNFE" data-vert="1"><button class="vid-blob" type="button" aria-label="Play video: Route 66 – Orangery Habrovany"><svg class="vid-eq" data-i="0" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/0.webp" data-cid="vidclipo0" data-i="0"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name" lang="cs">Route 66</div><div class="vid-place">Orangery Habrovany</div></div>
+            <div class="vid-item" data-yt="Z7Oo_03YVFE" data-vert="1"><button class="vid-blob" type="button" aria-label="Play video: L-O-V-E – Hotel Augustine, Prague"><svg class="vid-eq" data-i="1" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/1.webp" data-cid="vidclipo1" data-i="1"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name" lang="cs">L-O-V-E</div><div class="vid-place">Hotel Augustine, Prague</div></div>
+            <div class="vid-item" data-yt="0OWzK3Rk-cw"><button class="vid-blob" type="button" aria-label="Play video: Cheek to Cheek – Karlovy Vary Festival"><svg class="vid-eq" data-i="2" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/5.webp" data-cid="vidclipo2" data-i="2"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name" lang="cs">Cheek to Cheek</div><div class="vid-place">Karlovy Vary Festival</div></div>
+            <div class="vid-item" data-yt="rfCD0AcGA-A"><button class="vid-blob" type="button" aria-label="Play video: Sway – Jazz Club Reduta, Prague"><svg class="vid-eq" data-i="3" viewBox="0 0 200 200" aria-hidden="true"></svg><span class="vid-photo" data-src="https://jazzduo.cz/video/7.webp" data-cid="vidclipo3" data-i="3"></span><span class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button><div class="vid-name" lang="cs">Sway</div><div class="vid-place">Jazz Club Reduta, Prague</div></div>
+            <!-- VIDEA:END --></div>
         </div>
         <button class="vid-arrow next" id="vidNext" type="button" aria-label="Next video">›</button>
       </div>
@@ -2028,16 +2033,14 @@ body{overflow-x:hidden;max-width:100%}
   (function(){
     var track=$('vidTrack');if(!track)return;
 
-    // pořadí videí: náhledová fotka (video/N), název skladby, místo, YouTube ID
-    // vert:true = video na výšku (YouTube Shorts) → modal 9:16
-    var VIDEOS=[
-      {img:'0', name:'Route 66', place:'Orangery Habrovany \u00b7 jazz duo', yt:'6dR5MH3qNFE', vert:true},
-      {img:'1', name:'L-O-V-E', place:'Hotel Augustine Prague \u00b7 jazz trio', yt:'Z7Oo_03YVFE', vert:true},
-      {img:'5', name:'Cheek to Cheek', place:'Karlovy Vary Festival \u00b7 jazz trio', yt:'0OWzK3Rk-cw'},
-      {img:'7', name:'Sway', place:'Jazz Club Reduta \u00b7 jazz trio', yt:'rfCD0AcGA-A'}
-    ];
-    var IMGBASE='https://jazzduo.cz/video/';
-    var IMGEXT={ '1':'.webp','2':'.webp','3':'.webp','4':'.webp','5':'.webp','6':'.webp','7':'.webp','8':'.webp','9':'.webp' };
+    // Videa se nečtou odsud, ale z dlaždic v HTML. Ty generuje nastroje/obsah.py z videa.json
+    // (data-yt = YouTube ID, data-vert = video na výšku → modal 9:16, data-src = náhled).
+    var VIDEOS=Array.prototype.map.call(track.querySelectorAll('.vid-item'),function(n){
+      var nm=n.querySelector('.vid-name'),pl=n.querySelector('.vid-place'),ph=n.querySelector('.vid-photo');
+      return {img:ph?ph.getAttribute('data-src'):'',name:nm?nm.textContent:'',place:pl?pl.textContent:'',
+        yt:n.getAttribute('data-yt'),vert:n.getAttribute('data-vert')==='1'};
+    });
+    if(!VIDEOS.length)return;
 
     // odlišné tvary blobů (z ladiče hudebníků)
     var BLOBS=[
@@ -2101,7 +2104,7 @@ body{overflow-x:hidden;max-width:100%}
       var item=el('div');item.className='vid-item';
       var btn=el('button');btn.className='vid-blob';btn.type='button';
       btn.setAttribute('aria-label','Play video: '+v.name+(v.place?' – '+v.place:''));
-      var src=IMGBASE+v.img+(IMGEXT[v.img]||'.webp');
+      var src=v.img;
       var cid='vidclip'+key;
       btn.innerHTML=
         '<svg class="vid-eq" data-i="'+src_i+'" viewBox="0 0 200 200" aria-hidden="true"></svg>'+

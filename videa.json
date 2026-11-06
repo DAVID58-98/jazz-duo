@@ -1,0 +1,45 @@
+{
+  "_navod": "Návod je v souboru NAVOD-videa.md",
+  "videa": [
+    {
+      "url": "https://youtube.com/shorts/6dR5MH3qNFE",
+      "nazev": "Route 66",
+      "misto": {
+        "cs": "Oranžerie Habrovany",
+        "en": "Orangery Habrovany",
+        "de": "Orangerie Habrovany"
+      },
+      "nahled": "video/0.webp"
+    },
+    {
+      "url": "https://youtube.com/shorts/Z7Oo_03YVFE",
+      "nazev": "L-O-V-E",
+      "misto": {
+        "cs": "Hotel Augustine, Praha",
+        "en": "Hotel Augustine, Prague",
+        "de": "Hotel Augustine, Prag"
+      },
+      "nahled": "video/1.webp"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=0OWzK3Rk-cw",
+      "nazev": "Cheek to Cheek",
+      "misto": {
+        "cs": "Festival Karlovy Vary",
+        "en": "Karlovy Vary Festival",
+        "de": "Festival Karlovy Vary"
+      },
+      "nahled": "video/5.webp"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=rfCD0AcGA-A",
+      "nazev": "Sway",
+      "misto": {
+        "cs": "Jazz Club Reduta, Praha",
+        "en": "Jazz Club Reduta, Prague",
+        "de": "Jazz Club Reduta, Prag"
+      },
+      "nahled": "video/7.webp"
+    }
+  ]
+}
