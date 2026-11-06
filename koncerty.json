@@ -2,13 +2,6 @@
  "source": "https://www.davidklenha.cz/#koncerty",
  "items": [
   {
-   "date": "2026-11-04",
-   "time": "19:00",
-   "place": "Salsita Club, Praha",
-   "title": "Soukromá akce",
-   "band": "Jazz Duo"
-  },
-  {
    "date": "2026-11-07",
    "time": "19:30",
    "place": "Karlovarské městské divadlo",
@@ -128,5 +121,5 @@
    "band": "Jazz Duets"
   }
  ],
- "updated": "2026-11-03T06:49Z"
+ "updated": "2026-11-06T16:47Z"
 }
