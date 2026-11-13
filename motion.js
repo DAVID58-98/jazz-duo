@@ -246,7 +246,7 @@ later('reviews',function(){
     var p=$('p',c);if(p&&!RM){var txt=p.textContent;p.textContent='';txt.split(/(\s+)/).forEach(function(w){var sp=document.createElement('span');sp.textContent=w;p.appendChild(sp)})}});
   var order=cards.slice();
   function measure(){var m=0;cards.forEach(function(c){c.style.height='';m=Math.max(m,c.offsetHeight)});cards.forEach(function(c){c.style.height=m+'px'});st.style.height=(m+26)+'px'}
-  function layout(){order.forEach(function(c,i){c.style.zIndex=10-i;c.style.transform=i?'translateY('+(i*12)+'px) scale('+(1-i*.05)+')':'none';c.style.opacity=i>2?0:1;c.setAttribute('aria-hidden',i?'true':'false')})}
+  function layout(){order.forEach(function(c,i){c.style.zIndex=10-i;c.style.transform=i?'translateY('+(i*12)+'px) scale('+(1-i*.05)+')':'none';c.style.opacity=i>2?0:1;c.setAttribute('aria-hidden',i?'true':'false');c.inert=!!i})}
   function show(c){var ss=$$('.stars span',c),ws=$$('p span',c);
     ss.forEach(function(s,i){s.classList.remove('on');setTimeout(function(){s.classList.add('on');if(!RM)A(s,frames(24,function(t){return {transform:'scale('+(1+.6*(1-spring(t,6,14)))+') rotate('+((1-spring(t,6,14))*-30)+'deg)'}}),{duration:500})},RM?0:150+i*110)});
     if(!RM)ws.forEach(function(w,i){A(w,[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:380,delay:300+i*14,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'})})}
@@ -436,8 +436,9 @@ later('builderFx',function(){
   var first=$('img',box),base=first?first.src.replace(/[^\/]*$/,''):'';
   if(base)onView(tile||box,function(){['vocal','piano','bass','drums','saxophone','trumpet','trombone'].forEach(function(n){var im=new Image();im.decoding='async';im.src=base+n+'.webp'})},0);
   /* pevná výška: řada hudebníků si drží místo pro plnou sestavu, spodní hrana dlaždice nikam necestuje */
-  function fix(reset){if(reset)box.style.minHeight='';var c=$('.mcard',box);if(!c)return;var mob=matchMedia('(max-width:860px)').matches,
-      h=c.offsetHeight,g=parseFloat(getComputedStyle(box).rowGap)||6,need=Math.ceil(mob?h*2+g:h);
+  function fix(reset){if(reset)box.style.minHeight='';var c=$('.mcard',box);if(!c)return;
+    if(matchMedia('(max-width:860px)').matches){box.style.minHeight='';return}  /* mobil: výška podle skutečného počtu řad */
+    var need=Math.ceil(c.offsetHeight);
     if(need>(parseFloat(box.style.minHeight)||0))box.style.minHeight=need+'px'}
   var rt=0;addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){fix(true)},150)},{passive:true});
   box.addEventListener('load',function(){fix()},true);addEventListener('load',function(){fix()});fix();
@@ -456,6 +457,7 @@ later('builderFx',function(){
       g.style.cssText='position:absolute;margin:0;animation:none;pointer-events:none;z-index:3;left:'+(ghost.r.left-tr.left)+'px;top:'+(ghost.r.top-tr.top)+'px;width:'+ghost.r.width+'px';
       tile.appendChild(g);var a=A(g,[{opacity:1,transform:'none'},{opacity:0,transform:'translateY(8px) scale(.6)'}],{duration:320,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'});
       if(a)a.onfinish=function(){g.remove()};else g.remove();ghost=null}
+    if(tile&&h0){fix();var h1=tile.getBoundingClientRect().height;if(Math.abs(h1-h0)>1)A(tile,[{height:h0+'px'},{height:h1+'px'}],{duration:420,easing:'cubic-bezier(.2,.8,.2,1)'});h0=0}
   }).observe(box,{childList:true});
 });
 
