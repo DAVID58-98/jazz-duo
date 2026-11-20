@@ -1337,7 +1337,7 @@ html #builder .mlabel{font-size:11px}
 <script>/* Vánoce: výzdoba se sama zapne 1. 12. a vypne po 15. 1. Test kdykoliv: adresa s ?vanoce=1, zrušení testu ?vanoce=0 */
 (function(){var d=new Date(),k=(d.getMonth()+1)*100+d.getDate(),on=k>=1201||k<=115;
 try{var q=/[?&]vanoce=([01])/.exec(location.search),s=sessionStorage;if(q){if(q[1]==='1')s.setItem('jz-xmas','1');else s.removeItem('jz-xmas');}if(s.getItem('jz-xmas')==='1')on=true;if(q&&q[1]==='0')on=k>=1201||k<=115;}catch(e){}
-if(!on)return;document.documentElement.classList.add('xmas');var x=document.createElement('script');x.src='/vanoce.js?v=1';x.defer=true;document.head.appendChild(x);})();</script>
+if(!on)return;document.documentElement.classList.add('xmas');var x=document.createElement('script');x.src='/vanoce.js?v=2';x.defer=true;document.head.appendChild(x);})();</script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4KJPMW7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
